@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)http://guides.nyu.edu/r -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        
+        <!-- BEGIN: writeHead() -->
+        
+		<title>R - Quantitative Analysis Guide - Research Guides at New York University</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="robots" content="noarchive">
+<!--USER GENERATED METADATA-->
+<meta name="statistical resources" content="statistical resources">
+<meta name="stats" content="what statistical test to use">
+<meta name="statistics" content="statistics">
+<!--AUTO GENERATED DUBLIN CORE METADATA-->
+<meta name="DC.Title" content="Research Guides: Quantitative Analysis Guide: R">
+<meta name="DC.Creator" content="Denis Rubin">
+<meta name="DC.Subject" content="Statistics">
+<meta name="DC.Description" content="Resources and support for statistical and numerical data analysis">
+<meta name="DC.Publishers" content="New York University">
+<meta name="DC.Rights" content="Copyright New York University 2017">
+<meta name="DC.Language" content="en">
+<meta name="DC.Identifier" scheme="URI" content="http://guides.nyu.edu/r">
+<meta name="DC.Date.Created" scheme="ISO8601" content="Jul 23, 2014">
+<meta name="DC.Date.Modified" scheme="ISO8601" content="Apr 3, 2017">
+
+		<meta property="og:title" content="Research Guides: Quantitative Analysis Guide: R">
+		<meta property="og:description" content="Resources and support for statistical and numerical data analysis">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="http://guides.nyu.edu/r">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="@springshare">
+        <link rel="stylesheet" href="./R - Quantitative Analysis Guide - Research Guides at New York University_files/1.8.24_themes_base_jquery-ui.css">
+        <link rel="stylesheet" href="./R - Quantitative Analysis Guide - Research Guides at New York University_files/font-awesome.min.css">
+				<link rel="stylesheet" type="text/css" href="./R - Quantitative Analysis Guide - Research Guides at New York University_files/slick.css">
+				<link rel="stylesheet" type="text/css" href="./R - Quantitative Analysis Guide - Research Guides at New York University_files/slick-theme.css">
+            <link rel="stylesheet" href="./R - Quantitative Analysis Guide - Research Guides at New York University_files/lg-public.min.css">
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="/web/css1.15.14/springshare.public.ie8hacks.css" />
+        <![endif]-->
+        <script async="" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/analytics.js"></script><script type="text/javascript" async="" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/ga.js"></script><script type="text/javascript" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/1.12.1_jquery.min.js"></script>
+        <script type="text/javascript" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/1.9.2_jquery-ui.min.js"></script>
+            <script type="text/javascript" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/lg-public.min.js"></script>
+		<style>/* =========================================== */
+                        /* bootstrap overrides */
+                        /* =========================================== */
+                        #s-lg-tabs-container .nav-tabs > li > a,
+                        #s-lg-tabs-container .nav-tabs > li > button,
+                        #s-lg-tabs-container .nav-pills > li > a,
+                        #s-lg-tabs-container .nav-pills > li > button {
+                            
+                            border: 1px solid transparent;
+                            -webkit-border-radius: 0;
+                            -moz-border-radius: 0;
+                            border-radius: 0;
+                            background-color: #ffffff;
+                            color: #57086c;
+                            font-weight: bold;
+                            padding: 4px 15px;
+                        }
+                        #s-lg-tabs-container .nav-tabs {
+                            border-bottom: 0;
+                        }
+                        #s-lg-tabs-container .nav-tabs > li#s-lg-admin-tab-add > a {
+                            -webkit-border-radius: 4px 4px 0 0;
+                            -moz-border-radius: 4px 4px 0 0;
+                            border-radius: 4px 4px 0 0;
+                        }
+                        #s-lg-tabs-container .nav-tabs > li > a:hover,
+                        #s-lg-tabs-container .nav-tabs > li > button:hover,
+                        #s-lg-tabs-container .nav-pills > li > a:hover,
+                        #s-lg-tabs-container .nav-pills > li > button:hover {
+                            
+                            border: 1px solid transparent;
+                            -webkit-border-radius: 0;
+                            -moz-border-radius: 0;
+                            border-radius: 0;
+                            background-color: #008996;
+                            color: #57086c;
+                        }
+                        #s-lg-tabs-container .nav-tabs > .active > a,
+                        #s-lg-tabs-container .nav-tabs > .active > button,
+                        #s-lg-tabs-container .nav-pills > .active > a,
+                        #s-lg-tabs-container .nav-pills > .active > button {
+                            color: #57086c;
+                            cursor: default;
+                            background-color: #008996;
+                            
+                            border: 1px solid transparent;
+                            -webkit-border-radius: 0;
+                            -moz-border-radius: 0;
+                            border-radius: 0;
+                            border-bottom-color: transparent;
+                            font-weight: bold;
+                        }
+                        #s-lg-tabs-container .nav-tabs > .active > .s-lg-subtab-ul > .active > a,
+                        #s-lg-tabs-container .nav-tabs > .active > .s-lg-subtab-ul > .active > button {
+                            color: #57086c;
+                            cursor: default;
+                            background-color: #008996;
+                            border-bottom-color: transparent;
+                        }
+                        #s-lg-tabs-container .nav-tabs > .active > a:hover,
+                        #s-lg-tabs-container .nav-pills > .active > a:hover,
+                        #s-lg-tabs-container .nav-tabs > .active > button:hover,
+                        #s-lg-tabs-container .nav-pills > .active > button:hover {
+                            color: #57086c;
+                            cursor: pointer;
+                            background-color: #008996;
+                            
+                            border: 1px solid transparent;
+                            -webkit-border-radius: 0;
+                            -moz-border-radius: 0;
+                            border-radius: 0;
+                            border-bottom-color: transparent;
+                            font-weight: bold;
+                        }
+                        #s-lg-tabs-container .nav .dropdown-toggle .caret {
+                            border-top-color: #e1e1e1;
+                        }
+                        #s-lg-tabs-container .nav-tabs button.dropdown-toggle .caret {
+                            margin-left: 2px;
+                            margin-top: -3px;
+                        }
+                        #s-lg-tabs-container .nav-tabs > li > a.s-lg-tab-drop {
+                            border-radius: 0;
+                            padding: 4px 6px 4px 3px;
+                            border-left: 1px solid transparent;
+                        }
+                        #s-lg-tabs-container .nav-tabs > li > button.s-lg-tab-drop {
+                            border-radius: 0;
+                            padding: 4px 6px 0px 3px;
+                            border-left: 1px solid transparent;
+                            margin-right: 2px;
+                        }
+                        #s-lg-tabs-container .nav-tabs > li > a.s-lg-tab-drop:hover {
+                            border-radius: 0;
+                            border-left: 1px solid #bbb;
+                            padding: 4px 6px 4px 3px;
+                        }
+                        #s-lg-tabs-container .nav-tabs > li > button.s-lg-tab-drop:hover {
+                            border-radius: 0;
+                            border-left: 1px solid #bbb;
+                            padding: 4px 6px 0px 3px;
+                        }
+                        #s-lg-tabs-container .nav-tabs > li > a.s-lg-tab-top-link,
+                        #s-lg-tabs-container .nav-tabs > li > a.s-lg-tab-top-link:hover,
+                        #s-lg-tabs-container .nav-tabs > li > button.s-lg-tab-top-link,
+                        #s-lg-tabs-container .nav-tabs > li > button.s-lg-tab-top-link:hover {
+                            border-radius: 0;
+                            font-weight: bold;
+                            padding: 4px 5px 4px 10px;
+                        }
+                        .nav-tabs > li > a.s-lg-tab-top-link,
+                        .nav-tabs > li > button.s-lg-tab-top-link {
+                            margin-right: 0px;
+                        }
+
+                        #s-lg-tabs-container .nav-pills > li > a.s-lg-tab-drop,
+                        #s-lg-tabs-container .nav-pills > li > button.s-lg-tab-drop {
+                            border-radius: 0;
+                            padding: 4px 8px 4px 8px;
+                            border-left: 1px solid transparent;
+                            position: absolute;
+                            right: 0;
+                        }
+                        #s-lg-tabs-container .nav-pills > li > a.s-lg-tab-drop:hover,
+                        #s-lg-tabs-container .nav-pills > li > button.s-lg-tab-drop:hover {
+                            border-radius: 0;
+                            border-left: 1px solid #bbb;
+                            padding: 4px 8px 4px 8px;
+                        }
+                        #s-lg-tabs-container .nav-pills > li > a.s-lg-tab-top-link,
+                        #s-lg-tabs-container .nav-pills > li > a.s-lg-tab-top-link:hover,
+                        #s-lg-tabs-container .nav-pills > li > button.s-lg-tab-top-link,
+                        #s-lg-tabs-container .nav-pills > li > button.s-lg-tab-top-link:hover {
+                            width: 100%;
+                            float: left;
+                            border-radius: 0;
+                            font-weight: bold;
+                            padding: 4px 15px 4px 15px;
+                        }#s-lg-guide-tabs-title-bar { border-top: 1px solid #008996; }
+                    .s-lib-box {
+                        border-color: #e2e0e0;
+                        border-width: 0px;
+                        box-shadow: none;border-radius: 0;
+                        background-color: #e0d6e6;
+                    }
+                    .s-lib-box-std .s-lib-box-title {
+                        background-color: #ffffff;background-image: none;
+                        color: #4a4a4a;
+                        border-bottom: 0px solid #e2e0e0;
+                    }
+                    .s-lib-box .s-lib-box-title {
+                        background-color: #ffffff;background-image: none;
+                        color: #4a4a4a;
+                        border-bottom: 0px solid #e2e0e0;;
+                        border-radius: 0;
+                    }
+                    .s-lib-box .s-lg-box-footer {
+                    border-radius: 0;
+                    }</style>
+		<!-- BEGIN: CUSTOM HEAD SYSTEM JS/CSS -->
+		<link rel="shortcut icon" href="https://library.nyu.edu/favicon.ico">
+
+<style>
+div.s-lg-az-result-description  {font-size: 12px !important;}
+a.s-lg-label-more, a.s-lg-label-less {font-size: 12px !important;}
+
+a {font-family: helvetica, arial, sans-serif; color: #448CCB !important}
+
+header
+ { 
+   background-image: url('http://dev.library.nyu.edu/assets/images/nyulibraries-logo.svg'); 
+   background-position: 21px 21px;
+   background-repeat: no-repeat;
+   background-color: #57068c;
+   height: 110px;
+   padding-left: 20px;
+   padding-right: 20px;
+   border-bottom: 1px solid #653d24;
+}
+   
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus /* Guides Page Left Tabs Dropdown Menu links*/
+ {
+    text-decoration: none;
+    color: #f5f5f5 !important;
+    background-color: #57068C !important;
+    border-radius: 0px !important;
+}
+#s-lg-guide-tabs .dropdown-menu
+{
+    width: 270px !important;
+}
+#s-lg-guide-tabs ul.nav li.dropdown:hover ul.dropdown-menu  /* Guides Page Left Tabs Dropdown Menu div*/
+{
+     border-radius: 0px !important;
+}
+.badge /* Box Guides Count*/
+{
+    visibility: hidden;
+}
+.badge:after /* Down Triangle for Boxes*/
+{
+    content: "▾";
+    visibility: visible;
+    color:  #4A4A4A !important; 
+    font-size: small !important;
+}
+
+.s-lg-index-nav-btn active
+{
+    background-color: #ffffff;
+}
+.bold
+{
+    color: #4A4A4A !important; 
+    font-weight: normal !important; 
+}
+.s-lg-index-nav-btn
+{
+    color: #57068c !important;
+    background-color: #FFFFFF !important;
+}
+.s-lg-public-search-field  /* Search Box Div*/
+{
+    width: 194px !important;   
+}
+.nav-pills>li.active>a:hover,  .nav-pills>li.active>a:focus, .nav-pills>li.active>a
+{
+    background-color: #FFFFFF !important;  
+    border-bottom-color: #57068C !important;
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+#s-lg-hp-nav .nav-pills>li.active>a:hover, #s-lg-hp-nav .nav-pills>li.active>a:focus, #s-lg-hp-nav .nav-pills>li.active>a
+{
+    background-color: #FFFFFF !important;  
+    border-bottom: 4px solid !important;
+    border-bottom-color: #57068C !important;
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+.nav>li>a:hover, .nav>li>a:focus
+{
+    background-color: #EEEEEE !important;
+    font-weight: bold;
+    border-radius: 0 !important;
+    border-bottom: 2px solid !important;
+    border-bottom-color: #EEEEEE !important;
+}
+#s-lg-hp-nav .nav-pills
+{
+    border-bottom: 2px solid !important;
+    border-bottom-color: #57068C !important;
+}
+.btn.btn-sm.btn-primary
+{
+    background-image: none !important;
+    color: #FFFFFF  !important;
+    background-color:  #008996 !important;
+    border-color:  #008996 !important;
+    border-radius: 0px !important;
+}
+.btn.btn-sm.btn-default.btn-close
+{
+    background-color:  #57068C !important;
+    borde-color:  #57068C !important;
+    color: #FFFFFF  !important;
+}
+#s-lg-hp-nav
+{
+    background-color: #FFFFFF !important;
+}
+.s-lg-index-nav-btn > a
+{
+    color: #57068C !important;
+    font-weight: bold;
+    font-size: 14px;
+}
+.breadcrumbs               /*Breadcrumb Div*/
+{
+    border: 2px solid;
+    border-color: #57068C !important;
+    margin-top: 10px !important;
+    padding: 5px 10px 0px 0px !important;
+    font-size: 12px !important;
+}
+.breadcrumb > li
+{
+    font-size: 12px !important;
+}
+#s-lib-bc-list
+{
+    margin-left: 10px !important;
+}
+a, .ui-widget-content a
+{
+    color:  #027bc2 !important;
+    font-size: 12px !important;
+}
+.panel-default         /*Removing Rounded Corners from the boxes*/
+{
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+.panel-heading
+{
+    background-color: #F3F0F5  !important;
+    border-color: #E2E0E0 !important;
+}
+.s-lib-box-idx-guide-list, .s-lib-box-er-course-list        /* All Guides Inner Boxes*/
+{
+    border: white;
+    background-color: #FFFFFF !important;                 /* Removing box border and adding custom  purple bottom */
+    border-bottom: 2px solid !important;
+    border-bottom-color: #57068C !important;
+    border-radius: 0 !important;                                       /*Removing Rounded Corners*/
+   -moz-border-radius: 0 !important;
+}
+#s-lib-public-main .alert  /* Subject Homepage*/
+{
+    display: none;  
+}
+#s-lg-guide-list-controls  /* Div containing Showing and Sorting by alphabetically */
+{
+    display: none !important;
+}
+#search-guides   /*Seach Guides Div*/
+{
+   margin-right: 75px;    /* Positioning Search Guides Box*/
+   padding-top: 15px;
+}
+#s-lg-guide-search   /*Search Box Input*/
+{
+   background-color: #F3F3F3  !important;
+   border-color: #999999 !important;
+   border-radius: 0px;
+}
+.btn-default    /* Search Guides Button*/
+{
+   border: 2px solid !important;
+   border-color: #57068C !important;
+   border-radius: 0px !important;
+}
+.btn-default:hover   /* Search Guides Button*/
+{
+   border: 2px solid;
+   border-color: #57068C !important;
+   border-radius: 0px;
+   background-color:#57068C !important;
+   color: white !important;
+}
+.s-lg-guide-list   /*Removing Guides List Bullet Points*/
+
+{
+   list-style-type: none !important;
+}
+.popover-title /*Changing Popover Title Weight to Bold */
+{
+    font-weight: bold !important;
+}
+.no-class
+{
+ background-color: #57068C !important;
+}
+#s-lib-bc
+{
+   border: 0px !important;
+   width: inherit;
+}
+#s-lg-guide-search-form
+{
+   margin-top: 15px !important;
+}
+#s-lg-guide-search-terms
+{
+    background-color: #F3F3F3 !important;
+    border-color: #999999 !important;
+    border-radius: 0px;
+}
+#research-btn
+{
+    color: #FFFFFF  !important;
+    background-color:  #008996 !important;
+    border-color:  #008996 !important;
+    font-size: 16px  !important;
+    padding: 15px  !important;
+    border: 0px !important;
+}
+#s-lg-tabs-container .nav-tabs > li > a, #s-lg-tabs-container .nav-pills > li > a
+{
+   background-color: #57068c !important;
+   border-radius: 0px !important;
+   color: #FFFFFF !important;
+   padding: 4px 15px !important;
+   text-align: left !important;
+}
+#s-lg-tabs-container .nav-tabs > li > a:hover, #s-lg-tabs-container .nav-pills > li > a:hover
+{
+   background-color: #ffffff!important;
+   border: 1px solid !important;
+   border-color: #57068C !important;
+   border-radius: 0px !important;
+   color: #57068C !important;
+   padding: 4px 15px !important;
+   text-align: left !important;
+}
+#s-lg-tabs-container .nav-tabs > li, #s-lg-tabs-container .nav-pills > li 
+{
+    margin: 5px 0px !important;
+    border-bottom: 8px solid !important;
+    border-bottom-color: #FFFFFF !important;
+}
+#s-lg-tabs-container .nav-tabs, #s-lg-tabs-container .nav-pills
+{
+   border-bottom: 0px !important;
+   border-bottom-color: #FFFFFF !important;
+}
+.s-lib-box /* Guides Page Content Box*/
+{
+    box-shadow: none !important;
+    border: none !important;
+}
+.s-lib-box-title /* Guides Page Box Title */
+{
+   background-color: #F3F0F5 !important;
+   border: 1px solid !important;
+   border-color: #E2E0E0 !important;
+}
+.s-lib-box-content /* Guides Page Box Content */
+{
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid !important;
+    border-bottom-color: #4A4A4A !important;
+}
+#s-lg-guide-desc-container   /* Guides Page Description Container removing top padding*/
+{
+   padding-top: 0px !important;
+}
+#s-lg-guide-name   /* Guides Page Guide Name */
+{
+   font-size: 24px !important;
+}
+
+#s-lg-tabs-container .nav-tabs > li > a:hover,
+#s-lg-tabs-container .nav-pills > li > a:hover {
+    background-color: #799a05 !important;
+    color: #e2e1dd !important;
+}
+
+#s-lg-tabs-container .nav-tabs > .active > a,
+#s-lg-tabs-container .nav-pills > .active > a {
+    color: #e2e1dd !important;
+    background-color: #799a05 !important;
+}
+
+#s-lg-tabs-container .nav-tabs > .active > a:hover, 
+#s-lg-tabs-container .nav-pills > .active > a:hover {
+    color: #57086c !important;
+    background-color: #799a05 !important;
+}
+
+#s-lg-tabs-container .dropdown-menu {
+    background-color: #FFFFFF !important;
+}
+#s-lg-tabs-container .dropdown-menu > li > a {
+    color: #57086c !important;
+}
+#s-lg-tabs-container .dropdown-menu > li > a:hover {
+    color: #ffffff !important;
+}
+
+/* Set the background color of selected items to inverted colors */
+.chosen-container-single .chosen-single {
+  background-color: #069 !important;
+  color: #000 !important;
+  background: transparent;
+}
+
+/* Reset the background color of default selections to white with dark grey text */
+.chosen-container-single .chosen-single.chosen-default {
+  background-color: #069 !important;
+  color: #333 !important;
+}
+
+</style>
+
+<script>
+$(document).ready(function()
+{
+   $('#s-lg-index-owner-btn').find('a').html("BY AUTHOR");  //Changing By Owner to By Author
+   $('#s-lg-index-group-btn').find('a').html("BY CAMPUS LOCATION");  //Changing By Group to By Campus Location
+//   $('.btn-default').html("Search");  //Changing Text of Search Button
+   $('form.form-inline.pull-right').find('span').html("");  //Removing default Search text
+   $('#ask-a-librarian').after("<div><a target='_blank' href='http://library.nyu.edu/forms/research/consultations.html'><button id='research-btn'><b>Schedule Research Consultation</b></button></a></div>");
+   if(document.getElementById("s-lg-guide-search"))
+   {
+          document.getElementById("s-lg-guide-search").setAttribute("placeholder","search subject guides");  //Changing Placeholder of Search Guides Box
+   }
+   if(document.getElementById("s-lg-guide-search-terms"))
+   {
+          document.getElementById("s-lg-guide-search-terms").setAttribute("placeholder","enter your search here");  //Changing Placeholder of Guides Page Search Box
+   }
+});
+</script>
+		<!-- END: CUSTOM HEAD SYSTEM JS/CSS -->
+		<!-- BEGIN: CUSTOM HEAD GUIDE JS/CSS -->
+		<link rel="stylesheet" type="text/css" href="https://s3.amazonaws.com/nyu.dataservices.web/libguide/flip_image.css">
+
+<style type="text/css">
+
+.carousel-inner  img {margin-left: auto; margin-right: auto;}
+.carousel-inner div {color: black; text-shadow: none;}
+.carousel-indicators li {border: 1px solid black;}
+.carousel-indicators li.active {background-color: black;}
+.carousel-control.right, .carousel-control.left {background-image:none;}
+.tales {width: 100%;}
+.carousel-inner{width:100%; max-height: 500px !important;}
+
+
+a {font-family: verdana, geneva; color: #448CCB !important}
+
+#s-lg-tabs-container .nav-tabs > li > a:hover,
+#s-lg-tabs-container .nav-pills > li > a:hover {
+    background-color: #F2C4FE !important;
+    color: #57086c !important;
+}
+
+#s-lg-tabs-container .nav-tabs > .active > a,
+#s-lg-tabs-container .nav-pills > .active > a {
+    color: #57086c !important;
+    background-color: #E588FE !important;
+}
+
+#s-lg-tabs-container .nav-tabs > .active > a:hover, 
+#s-lg-tabs-container .nav-pills > .active > a:hover {
+    color: #57086c !important;
+    background-color: #E588FE !important;
+}
+
+
+</style>
+
+<script type="text/javascript">// <![CDATA[
+function toggleMe(a){
+	var e=document.getElementById(a);
+	if(!e)return true;
+	if(e.style.display=="none"){
+		e.style.display="block"
+	} else {
+		e.style.display="none"
+	}
+	return true;
+}
+// ]]></script>
+
+
+
+<script type="text/javascript">// <![CDATA[
+var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-53374642-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+// ]]></script>
+		<!-- END: CUSTOM HEAD GUIDE JS/CSS -->
+		<script src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/sa2.php"></script>
+		<script>
+			springSpace.Common = springSpace.Common || { };
+
+			springSpace.Common.constant = {
+					PROCESSING: {
+						ACTION_DISPLAY_POLL: 159
+					}
+			};
+			springSpace.Common.baseURL = "http://guides.nyu.edu/";
+			/*
+			springSpace.guidePublicObj = new springSpace.guidePublic.GuidePublic({
+				script_name: "/c.php",
+				guide_id: 277138,
+				page_id: 1847150,
+				constant: {
+					PROCESSING: {
+
+					},
+					CONTENT: {
+						CONTENT_BOOKS: 5
+					}
+				}
+			});
+			*/
+			// Hide guide attributes and subjects/tags if theyre empty.
+			jQuery(function () {
+				//jQuery("#s-lg-guide-header-subjects").hide();
+				//jQuery("#s-lg-guide-header-tags").hide();
+			});
+
+			handleScroll=function() {
+				var target_elt = "";
+				var anchor = window.location.hash.substring(1);
+
+				if (jQuery.isNumeric(anchor)) {
+					xhr = jQuery.ajax({
+						async: false,
+						url: "/content_process.php",
+						type: "POST",
+						dataType: "json",
+						data: {
+							action: 562,
+							anchor: anchor
+						},
+						success: function(response, textStatus, jqXHR) {
+							if ((response.data.box_id != 0) && jQuery("#s-lg-box-" + response.data.box_id)) {
+								target_elt = "#s-lg-box-" + response.data.box_id;
+							}
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+
+						}
+					});
+				}
+				else if (false) {
+					target_elt = "#s-lg-page-section-1847150";
+				}
+
+				if (target_elt != "") {
+					jQuery("html, body").animate({ scrollTop: jQuery(target_elt).offset().top }, 750);
+					if (jQuery(this).scrollTop() > 220) {
+						jQuery("#s-lib-scroll-top").fadeIn(750);
+					}
+				}
+			}
+	   </script>
+	   <script>
+			// Enable tooltips.
+			jQuery(function () {
+				try {
+					springSpace.UI.initPopOvers();
+				} catch (e) { }
+			});springSpace.springTrack.init({_st_site_id: '873',_st_guide_id: '277138',_st_page_id: '1847150'});
+			jQuery(function() {springSpace.springTrack.trackPage({_st_type_id: '1',_st_group_id: '5751',_st_guide_id: '277138',_st_page_id: '1847150'});
+			});
+			jQuery(document).ready(function() {
+				handleScroll();
+			});
+	   </script>
+		        <!-- END: writeHead() -->
+        	</head>
+		<body class="s-lg-guide-body">
+		<a id="s-lg-public-skiplink" class="alert-info" href="http://guides.nyu.edu/r#s-lg-guide-main">Skip to main content</a>                <!-- BEGIN: Page Header -->
+         <div id="s-lib-banner" class="container s-lib-banner-public">
+                                        <a href="http://library.nyu.edu/" title="" target="" aria-hidden="true" tabindex="-1"><img alt="Banner Image" usemap="#headermap" name="s-lib-banner-img" id="s-lib-banner-img" class="img-responsive" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/General-banner.png" aria-hidden="true" tabindex="-1"></a>
+                         </div>        <!-- END: Page Header -->
+        <!-- BEGIN: Guide Info Header -->
+        <div id="s-lg-guide-header" class="container s-lib-header s-lib-side-borders">
+            <div id="s-lib-bc">
+                
+			<ol id="s-lib-bc-list" class="breadcrumb">
+				
+					<li id="s-lib-bc-customer">
+						<a title="NYU Libraries" href="http://library.nyu.edu/">NYU Libraries
+						</a>
+					</li>
+					<li id="s-lib-bc-site">
+						<a title="Research Guides" href="http://guides.nyu.edu/">Research Guides
+						</a>
+					</li>
+					<li id="s-lib-bc-group">
+						<a title="Elmer Holmes Bobst Library" href="http://guides.nyu.edu/bobst">Elmer Holmes Bobst Library
+						</a>
+					</li>
+					<li id="s-lib-bc-guide">
+						<a title="Quantitative Analysis Guide" href="http://guides.nyu.edu/quant">Quantitative Analysis Guide
+						</a>
+					</li>
+					<li id="s-lib-bc-page" class="active">R
+					</li>
+			</ol>            </div>
+			<div class="pull-right">
+				<div id="s-lg-guide-header-search">
+					
+				<div id="s-lg-guide-search-box">
+					<form role="search" id="s-lg-guide-search-form" action="http://guides.nyu.edu/srch.php" method="GET">
+						<div class="input-group input-group-sm">
+							<input type="text" id="s-lg-guide-search-terms" name="q" class="form-control" placeholder="enter your search here">
+							<label class="sr-only" for="s-lg-guide-search-terms">Search this Guide</label><input type="hidden" name="guide_id" value="277138">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit">Search</button>
+							</span>
+						</div>
+					</form>
+				</div>				</div>
+							</div>
+            <div id="s-lg-guide-header-info">
+                <h1 id="s-lg-guide-name">Quantitative Analysis Guide: R</h1>
+                <div id="s-lg-guide-desc-container">
+                    <span id="s-lg-guide-description">Resources and support for statistical and numerical data analysis</span>
+                </div>
+            </div>
+        </div>
+        <!-- END: Guide Info Header -->
+        <div id="s-lg-tabs-container" class="container s-lib-side-borders pad-top-med">
+            <div id="s-lg-guide-tabs" class="tabs" role="navigation" aria-label="Guide Page Menu">
+                <ul class="nav nav-tabs split-button-nav" role="menu">
+                    
+				<li role="menuitem">
+					<a title="An overview of NYU Data Services" class="" href="http://guides.nyu.edu/c.php?g=277138&amp;p=1847146" aria-label="Navigate to the page: Home">
+						<span>Home</span>
+                        
+					</a>
+				</li>
+				<li role="menuitem">
+					<a title="" class="" href="http://guides.nyu.edu/spss" aria-label="Navigate to the page: SPSS">
+						<span>SPSS</span>
+                        
+					</a>
+				</li>
+				<li role="menuitem">
+					<a title="" class="" href="http://guides.nyu.edu/stata" aria-label="Navigate to the page: Stata">
+						<span>Stata</span>
+                        
+					</a>
+				</li>
+				<li role="menuitem">
+					<a title="" class="" href="http://guides.nyu.edu/sas" aria-label="Navigate to the page: SAS">
+						<span>SAS</span>
+                        
+					</a>
+				</li>
+				<li role="menuitem" class="active">
+					<a title="" class="active" href="http://guides.nyu.edu/r" aria-label="Navigate to the page: R">
+						<span>R</span>
+                        
+					</a>
+				</li>
+				<li role="menuitem">
+					<a title="" class="" href="http://guides.nyu.edu/matlab" aria-label="Navigate to the page: MATLAB">
+						<span>MATLAB</span>
+                        
+					</a>
+				</li>
+				<li role="menuitem">
+					<a title="" class="" href="http://guides.nyu.edu/quant/jmp" aria-label="Navigate to the page: JMP">
+						<span>JMP</span>
+                        
+					</a>
+				</li>
+					<li role="menuitem" class="dropdown clearfix" aria-haspopup="true">
+                        <a title="" class="s-lg-tab-top-link  pull-left" href="http://guides.nyu.edu/c.php?g=277138&amp;p=1847154" aria-label="Navigate to the page: Other">
+                    		<span>Other</span>
+                            
+						</a>
+						<a class="s-lg-tab-drop dropdown-toggle" data-toggle="dropdown" aria-label="Guide sub-page dropdown control" href="javascript:void();">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </a>
+                        <ul class="s-lg-subtab-ul dropdown-menu" role="menu">
+                            <li role="menuitem">
+                                <a title="" href="http://guides.nyu.edu/quant/excel" aria-label="Navigate to the page: Excel">Excel
+                                    
+								</a>
+                            </li>
+                            <li role="menuitem">
+                                <a title="" href="http://guides.nyu.edu/quant/python" aria-label="Navigate to the page: Python">Python
+                                    
+								</a>
+                            </li>
+                            <li role="menuitem">
+                                <a title="" href="http://guides.nyu.edu/quant/sql" aria-label="Navigate to the page: SQL">SQL
+                                    
+								</a>
+                            </li></ul>
+					</li>
+				<li role="menuitem">
+					<a title="" class="" href="http://guides.nyu.edu/c.php?g=277138&amp;p=1847148" aria-label="Navigate to the page: Finding Data">
+						<span>Finding Data</span>
+                        
+					</a>
+				</li>
+					<li role="menuitem" class="dropdown clearfix" aria-haspopup="true">
+                        <a title="" class="s-lg-tab-top-link  pull-left" href="http://guides.nyu.edu/stats" aria-label="Navigate to the page: Statistical Guidance">
+                    		<span>Statistical Guidance</span>
+                            
+						</a>
+						<a class="s-lg-tab-drop dropdown-toggle" data-toggle="dropdown" aria-label="Guide sub-page dropdown control" href="javascript:void();">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </a>
+                        <ul class="s-lg-subtab-ul dropdown-menu" role="menu">
+                            <li role="menuitem">
+                                <a title="Statistical Software Comparison" href="http://guides.nyu.edu/quant/statsoft" aria-label="Navigate to the page: Which Statistical Software to Use?">Which Statistical Software to Use?
+                                    
+								</a>
+                            </li>
+                            <li role="menuitem">
+                                <a title="Merging or joining data in various software" href="http://guides.nyu.edu/quant/merge" aria-label="Navigate to the page: Merging Data Sets">Merging Data Sets
+                                    
+								</a>
+                            </li>
+                            <li role="menuitem">
+                                <a title="Choose Statistical Test for 1 Dependent Variable" href="http://guides.nyu.edu/quant/choose_test_1DV" aria-label="Navigate to the page: Choose Statistical Test for 1 Dependent Variable">Choose Statistical Test for 1 Dependent Variable
+                                    
+								</a>
+                            </li>
+                            <li role="menuitem">
+                                <a title="Choose Statistical Test for 2 or More Dependent Variables" href="http://guides.nyu.edu/quant/choose_test_NDV" aria-label="Navigate to the page: Choose Statistical Test for 2 or More Dependent Variables">Choose Statistical Test for 2 or More Dependent Variables
+                                    
+								</a>
+                            </li></ul>
+					</li>                </ul>
+            </div>
+        </div>
+        <div id="s-lg-guide-tabs-title-bar" class="container s-lib-side-borders"></div>
+        <!-- BEGIN: Guide Content -->
+        <div id="s-lg-guide-main" class="container s-lib-main s-lib-side-borders">
+            			
+				<div class="row s-lg-row">
+    <div id="s-lg-col-126" class="col-md-12">
+        <div class="s-lg-col-boxes">
+        </div>
+    </div>
+				
+</div>
+				<div class="row s-lg-row">
+    <div id="s-lg-col-1" class="col-md-2">
+        <div class="s-lg-col-boxes">
+							<div id="s-lg-box-wrapper-6645280" class="s-lg-box-wrapper-6645280">
+					<div id="s-lg-box-5649224-container" class="s-lib-box-container">
+						<div id="s-lg-box-5649224" class="s-lib-box s-lib-box-std">
+							<h2 class="s-lib-box-title">Quick Links
+                                </h2>
+							<div id="s-lg-box-collapse-5649224">
+								<div class="s-lib-box-content pad-left-none pad-right-none">
+									
+			<div id="s-lg-content-11146027" class="  clearfix">
+				<p><a href="http://guides.nyu.edu/dataservices" "=""><img src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/data_services_logo.png" width="200"></a></p>
+		   </div><div class="">
+                            <ul id="s-lg-link-list-12589306" class="s-lg-link-list s-lg-link-list-2"><li class="">
+                            
+			<div id="s-lg-content-11164485" class="">
+				<span><a href="http://guides.nyu.edu/software" target="_blank" onclick="return springSpace.springTrack.trackLink({link: this,_st_type_id: &#39;2&#39;,_st_content_id: &#39;11164485&#39;});">List of available software</a> 
+				</span>
+				<div id="s-lg-icons-11164485" class="s-lg-icons pad-left-sm"><ul>
+				<li><img alt="Supported by Data Services" class="s-lg-icon" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/DS_icon.png" title="Supported by Data Services">
+				</li></ul>
+				</div>
+			</div></li>
+                            <li class="">
+                            
+			<div id="s-lg-content-11168611" class="">
+				<span><a href="http://guides.nyu.edu/quant/statsoft" target="_blank" onclick="return springSpace.springTrack.trackLink({link: this,_st_type_id: &#39;2&#39;,_st_content_id: &#39;11168611&#39;});">Statistical Software Comparison</a> 
+				</span>
+				<div id="s-lg-icons-11168611" class="s-lg-icons pad-left-sm"><ul>
+				<li><img alt="Supported by Data Services" class="s-lg-icon" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/DS_icon.png" title="Supported by Data Services">
+				</li></ul>
+				</div>
+			</div></li>
+                            <li class="">
+                            
+			<div id="s-lg-content-11170603" class="">
+				<span><a href="http://guides.nyu.edu/quant/choose_test_1DV" target="_blank" onclick="return springSpace.springTrack.trackLink({link: this,_st_type_id: &#39;2&#39;,_st_content_id: &#39;11170603&#39;});">What statistical test to use?</a> 
+				</span>
+				<div id="s-lg-icons-11170603" class="s-lg-icons pad-left-sm"><ul>
+				<li><img alt="Supported by Data Services" class="s-lg-icon" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/DS_icon.png" title="Supported by Data Services">
+				</li></ul>
+				</div><div id="s-lg-link-desc-11170603" class="s-lg-link-desc">NYU Data Services reference guide</div>
+			</div></li>
+                            <li class="">
+                            
+			<div id="s-lg-content-11159938" class="">
+				<span><a href="http://www.ats.ucla.edu/stat/dae/" target="_blank" onclick="return springSpace.springTrack.trackLink({link: this,_st_type_id: &#39;2&#39;,_st_content_id: &#39;11159938&#39;});">Data Analysis Examples</a> 
+				</span><div id="s-lg-link-desc-11159938" class="s-lg-link-desc">External (UCLA) examples of regression and power analysis</div>
+			</div></li>
+                            
+                                </ul>
+                                </div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+							</div>
+        </div>
+    </div>
+    <div id="s-lg-col-2" class="col-md-7">
+        <div class="s-lg-col-boxes">
+							<div id="s-lg-box-wrapper-6645281" class="s-lg-box-wrapper-6645281">
+					<div id="s-lg-box-5649020-container" class="s-lib-box-container">
+						<div id="s-lg-box-5649020" class="s-lib-box s-lib-box-std">
+							<h2 class="s-lib-box-title">I would like to...
+                                </h2>
+							<div id="s-lg-box-collapse-5649020">
+								<div class="s-lib-box-content pad-left-none pad-right-none">
+									
+			<div id="s-lg-content-11145899" class="  clearfix">
+				<p style="padding-left: 30px;"><a href="http://guides.nyu.edu/appointment">Schedule a consultation</a></p>
+<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;Raccess&#39;)">Access the software</a></p>
+	<div id="Raccess" style="display: none; padding-left: 30px;">
+		<ul style="padding-left: 30px;">
+			<li>R is a free open source statistical software which can be downloaded through  <a href="http://cran.r-project.org/" target="_blank">CRAN</a>. RStudio is a popular interface which runs R code and can be be <a href="http://www.rstudio.com/products/rstudio/download/" target="_blank">downloaded</a> to be used as an alternative to the R interface. To run RStudio, R needs to be downloaded first.</li>
+			<li>R is installed in several <a href="http://www.nyu.edu/its/labs" target="_blank">computer labs</a> on campus, including <a href="http://guides.nyu.edu/dataservices" target="_blank">Data&nbsp;Services</a> workstations located on the 5th floor of Bobst Library.</li>
+			<li>NYU students have free access to R through NYU <a href="http://www.nyu.edu/its/vcl/" target="_blank">Virtual&nbsp;Computing&nbsp;Lab</a> (VCL).</li>
+		</ul>
+	</div>
+
+<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;SPSSclass&#39;)">Take a class</a></p>
+	<div id="SPSSclass" style="display: none; padding-left: 30px;">
+		<ul style="padding-left: 30px;">
+			<li>Introduction to R&nbsp;|&nbsp;<a href="http://guides.nyu.edu/r#18912061">Class Materials</a>&nbsp;|&nbsp;<a href="http://guides.nyu.edu/DS_class_calendar">Check for current offerings</a></li>
+			<li>Data Management in R&nbsp;|&nbsp;<a href="http://guides.nyu.edu/r#18912061">Class Materials</a>&nbsp;|&nbsp;<a href="http://guides.nyu.edu/DS_class_calendar">Check for current offerings</a></li>
+			<li>Creating Graphics in R&nbsp;|&nbsp;<a href="http://guides.nyu.edu/r#18912061">Class Materials</a>&nbsp;|&nbsp;<a href="http://guides.nyu.edu/DS_class_calendar">Check for current offerings</a></li>
+		</ul>
+	</div>
+
+<p style="padding-left: 30px;"><a href="http://guides.nyu.edu/r#18912062">Browse learning resources</a></p>
+		   </div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+							</div>
+							<div id="s-lg-box-wrapper-6645282" class="s-lg-box-wrapper-6645282">
+					<div id="s-lg-box-5649021-container" class="s-lib-box-container">
+						<div id="s-lg-box-5649021" class="s-lib-box s-lib-box-std">
+							<h2 class="s-lib-box-title">Class Materials
+                                </h2>
+							<div id="s-lg-box-collapse-5649021">
+								<div class="s-lib-box-content pad-left-none pad-right-none">
+									
+			<div id="s-lg-content-11145900" class="  clearfix">
+				<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;Ra&#39;)">Introduction to R</a></p>
+
+<div id="Ra" style="display: block; padding-left: 30px;">
+<ul style="padding-left: 30px;">
+	<li><a onclick="return toggleMe(&#39;Rout1&#39;)">Outline</a>
+
+	<div id="Rout1" style="display: none; padding-left: 0px;">
+	<ul style="padding-left: 15px;">
+		<li>Interface of R and RStudio</li>
+		<li>Data types and indexing (assignments, objects, vectors, matrices, data frames, lists)</li>
+		<li>R built in functions and syntax</li>
+		<li>Working directory</li>
+		<li>Packages</li>
+		<li>Importing data from CSV, Excel, .txt, SPSS, Stata files etc...</li>
+		<li>Exporting data as CSV</li>
+		<li>Preparing data for analysis (renaming variables, variable types, missing values)</li>
+		<li>Computing, transforming and recoding variables</li>
+		<li>Subset datasets by row and by columns</li>
+		<li>Descriptive statistics, frequency tables, cross tabulation tables</li>
+		<li>Graphics (boxplot, histogram, scatterplot, partitioning window)</li>
+		<li>Basic analyses (t-test, correlation, ANOVA, regression, chi-square)</li>
+	</ul>
+	</div>
+	</li>
+</ul>
+
+<ul style="padding-left: 30px;">
+	<li>
+	<div><a href="https://nyu.qualtrics.com/jfe/form/SV_0pQUsBFuixSuXiZ" target="_blank">Tutorial Evaluation (Introduction to R)</a></div>
+	</li>
+</ul>
+
+<div style="border:3px white;overflow-y:hidden;overflow-x:hidden; max-width: 200px; max-height: 200px;"><iframe frameborder="0" height="300" scrolling="no" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/embeddedfolderview.html" style="margin-top: -40px" width="800"></iframe></div>
+</div>
+
+<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;Rb&#39;)">Data Wrangling in R</a></p>
+
+<div id="Rb" style="display: block; padding-left: 30px;">
+<ul style="padding-left: 30px;">
+	<li><a onclick="return toggleMe(&#39;Rout2&#39;)">Outline</a>
+
+	<div id="Rout2" style="display: none; padding-left: 0px;">
+	<ul style="padding-left: 15px;">
+		<li>Review of data types</li>
+		<li>Subsetting datasets</li>
+		<li>Sorting datasets</li>
+		<li>Reshaping datasets</li>
+		<li>Merging and appending datasets</li>
+		<li>Aggregating datasets (statistics by group, using the suite of apply functions)</li>
+		<li>User written functions (syntax, if/else statements)</li>
+		<li>Loops (for loop, while loop, repeat loop)</li>
+	</ul>
+	</div>
+	</li>
+</ul>
+
+<ul style="padding-left: 30px;">
+	<li>
+	<div><a href="https://nyu.qualtrics.com/jfe/form/SV_0pQUsBFuixSuXiZ" target="_blank">Tutorial Evaluation (Data Wrangling in R)</a></div>
+	</li>
+</ul>
+
+<div style="border:3px white;overflow-y:hidden;overflow-x:hidden; max-width: 200px; max-height: 175px;"><iframe frameborder="0" height="200" scrolling="no" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/embeddedfolderview(1).html" style="margin-top: -40px" width="800"></iframe></div>
+</div>
+
+<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;Rc&#39;)">Creating Graphics with R</a></p>
+
+<div id="Rc" style="display: block; padding-left: 30px;">
+<ul style="padding-left: 30px;">
+	<li><a onclick="return toggleMe(&#39;Rout3&#39;)">Outline</a>
+
+	<div id="Rout3" style="display: block; padding-left: 0px;">
+	<ul style="padding-left: 15px;">
+		<li>Base plot function</li>
+		<li>Graphs for quantitative data (boxplots, scatterplots, bar graphs, histograms etc...)</li>
+		<li>Changing graph elements: titles, point size, colors</li>
+		<li>Extensive use of ggplot2</li>
+	</ul>
+	</div>
+	</li>
+</ul>
+
+<ul style="padding-left: 30px;">
+	<li>
+	<div><a href="https://nyu.qualtrics.com/jfe/form/SV_0pQUsBFuixSuXiZ" target="_blank">Tutorial Evaluation (Creating Graphics with R)</a></div>
+	</li>
+</ul>
+
+<div style="border:3px white;overflow-y:hidden;overflow-x:hidden; max-width: 200px; max-height: 175px;"><iframe frameborder="0" height="200" scrolling="no" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/embeddedfolderview(2).html" style="margin-top: -40px" width="800"></iframe></div>
+
+</div>
+		   </div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+							</div>
+							<div id="s-lg-box-wrapper-6645283" class="s-lg-box-wrapper-6645283">
+					<div id="s-lg-box-5649022-container" class="s-lib-box-container">
+						<div id="s-lg-box-5649022" class="s-lib-box s-lib-box-std">
+							<h2 class="s-lib-box-title">Learning Resources
+                                </h2>
+							<div id="s-lg-box-collapse-5649022">
+								<div class="s-lib-box-content pad-left-none pad-right-none">
+									
+			<div id="s-lg-content-11145901" class="  clearfix">
+				<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;LR1&#39;)">Official Documentation</a></p>
+
+<div id="LR1" style="display: none;">
+<ul style="padding-left: 60px;">
+	<li><a href="http://cran.r-project.org/manuals.html" target="_blank">CRAN: The R Manuals</a></li>
+</ul>
+</div>
+
+<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;LR2&#39;)">Lynda.com video tutorials</a> (<a href="http://www.nyu.edu/servicelink/KB0011404" target="_blank">NYU community only</a>)</p>
+
+<div id="LR2" style="display: none;">
+<ul style="padding-left: 60px;">
+	<li><a href="http://www.lynda.com/R-tutorials/Up-Running-R/120612-2.html?org=nyu.edu" target="_blank">Up and Running with R</a>
+
+	<div>A 2.5 hour introductory tutorial to R.</div>
+	</li>
+	<li><a href="http://www.lynda.com/R-tutorials/R-Statistics-Essential-Training/142447-2.html?org=nyu.edu" target="_blank">R Statistics Essential Training</a>
+	<div>A 6 hour detailed tutorial focusing on using R for basic statistics.</div>
+	</li>
+	<li><a href="http://www.lynda.com/R-tutorials/Code-Clinic-R/372541-2.html?org=nyu.edu" target="_blank">Code Clinic: R</a>
+	<div>Explore solutions to common R programming challenges.</div>
+	</li>
+</ul>
+</div>
+
+<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;LR3&#39;)">Library Books</a></p>
+
+<div id="LR3" style="display: none;">
+<ul style="padding-left: 60px;">
+	<li>Search for online texts at
+	<ul>
+		<li><a href="https://arch.library.nyu.edu/databases/proxy/NYU00541" target="_blank">ebrary</a></li>
+		<li><a href="https://arch.library.nyu.edu/databases/proxy/NYU00372" target="_blank">Books24x7</a></li>
+		<li><a href="https://arch.library.nyu.edu/databases/proxy/NYU01272" target="_blank">Safari Books Online</a></li>
+	</ul>
+	</li>
+</ul>
+
+<ul style="padding-left: 60px;">
+	<li><a onclick="return toggleMe(&#39;LR6&#39;)">Selected Library Books on R</a>
+
+	<div id="LR6" style="display: none;">
+	<div id="api_box_iid343_bid18914508"><link rel="stylesheet" type="text/css" href="./R - Quantitative Analysis Guide - Research Guides at New York University_files/libguides_api.css">        <div class="libguides_api_box">            <div id="wrapbox18914508" style="">	<div class="roundbox outerbox" id="18914508" style="background-color:#FFFFFF;">				<div class="roundbox headerbox" id="title18914508" style="background-image:none; background-color:#FFFFFF;">						<div class="bi_books">&nbsp;</div>			<h2><span style="color:#FFFFFF;">R Books</span>			</h2>		</div>					<div class="roundbox innerbox innerbox_14" id="content18914508" style="background-color:#EFF0E8;"><div id="boxatt18914508" class="boxatt"><div class="itemlist"><div id="book6077748" class="book_div"><div class="book_cover"><a id="book_6077748" href="https://ezproxy.library.nyu.edu/login?url=https://getit.library.nyu.edu/resolve?&amp;ctx_ver=Z39.88-2004&amp;ctx_enc=info:ofi/enc:UTF-8&amp;ctx_tim=2014-08-04T15%3A14%3A56IST&amp;url_ver=Z39.88-2004&amp;url_ctx_fmt=infofi/fmt:kev:mtx:ctx&amp;rfr_id=info:sid/primo.exlibrisgroup.com:primo-nyu_aleph004021911&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:book&amp;rft.genre=book&amp;rft.jtitle=&amp;rft.btitle=R%20IN%20ACTION%20:%20DATA%20ANALYSIS%20AND%20GRAPHICS%20WITH%20R.&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.auinit=&amp;rft.auinit1=&amp;rft.auinitm=&amp;rft.ausuffix=&amp;rft.au=KABACOFF%2C%20ROBERT%20I&amp;rft.aucorp=&amp;rft.volume=&amp;rft.issue=&amp;rft.part=&amp;rft.quarter=&amp;rft.ssn=&amp;rft.spage=&amp;rft.epage=&amp;rft.pages=&amp;rft.artnum=&amp;rft.pub=MANNING&amp;rft.place=SHELTER%20ISLAND&amp;rft.issn=&amp;rft.eissn=&amp;rft.isbn=9781935182399&amp;rft.sici=&amp;rft.coden=&amp;rft_id=info:doi/&amp;rft.object_id=&amp;rft.primo=nyu_aleph004021911&amp;rft.eisbn=&amp;rft_dat=%3Cnyu_aleph%3E004021911%3C/nyu_aleph%3E%3Cgrp_id%3E129879230%3C/grp_id%3E%3Coa%3E%3C/oa%3E&amp;rft_id=info:oai/&amp;req.language=eng"><img alt="Cover Art" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/index.aspx" title="R in Action" class="book_art_0" style="float:left;"></a></div><a href="https://ezproxy.library.nyu.edu/login?url=https://getit.library.nyu.edu/resolve?&amp;ctx_ver=Z39.88-2004&amp;ctx_enc=info:ofi/enc:UTF-8&amp;ctx_tim=2014-08-04T15%3A14%3A56IST&amp;url_ver=Z39.88-2004&amp;url_ctx_fmt=infofi/fmt:kev:mtx:ctx&amp;rfr_id=info:sid/primo.exlibrisgroup.com:primo-nyu_aleph004021911&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:book&amp;rft.genre=book&amp;rft.jtitle=&amp;rft.btitle=R%20IN%20ACTION%20:%20DATA%20ANALYSIS%20AND%20GRAPHICS%20WITH%20R.&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.auinit=&amp;rft.auinit1=&amp;rft.auinitm=&amp;rft.ausuffix=&amp;rft.au=KABACOFF%2C%20ROBERT%20I&amp;rft.aucorp=&amp;rft.volume=&amp;rft.issue=&amp;rft.part=&amp;rft.quarter=&amp;rft.ssn=&amp;rft.spage=&amp;rft.epage=&amp;rft.pages=&amp;rft.artnum=&amp;rft.pub=MANNING&amp;rft.place=SHELTER%20ISLAND&amp;rft.issn=&amp;rft.eissn=&amp;rft.isbn=9781935182399&amp;rft.sici=&amp;rft.coden=&amp;rft_id=info:doi/&amp;rft.object_id=&amp;rft.primo=nyu_aleph004021911&amp;rft.eisbn=&amp;rft_dat=%3Cnyu_aleph%3E004021911%3C/nyu_aleph%3E%3Cgrp_id%3E129879230%3C/grp_id%3E%3Coa%3E%3C/oa%3E&amp;rft_id=info:oai/&amp;req.language=eng" onclick="return SpringTrack.trackLink(this, {st_type : TRACKING_TYPE_BOOK, link_id: 6077748}); "><span class="book_title">R in Action</span><span class="book_author"> - Robert I. Kabacoff</span></a><div class="book_isbn">ISBN: 9781935182399</div><div class="book_pubyear">Publication Date: 2011-08-27</div></div><br style="clear:both;"><div id="book6083861" class="book_div"><div class="book_cover"><a id="book_6083861" href="https://ezproxy.library.nyu.edu/login?url=https://getit.library.nyu.edu/resolve?&amp;ctx_ver=Z39.88-2004&amp;ctx_enc=info:ofi/enc:UTF-8&amp;ctx_tim=2014-08-06T11%3A55%3A42IST&amp;url_ver=Z39.88-2004&amp;url_ctx_fmt=infofi/fmt:kev:mtx:ctx&amp;rfr_id=info:sid/primo.exlibrisgroup.com:primo-nyu_aleph004021913&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:book&amp;rft.genre=book&amp;rft.jtitle=&amp;rft.btitle=DATA%20ANALYSIS%20WITH%20R.&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.auinit=&amp;rft.auinit1=&amp;rft.auinitm=&amp;rft.ausuffix=&amp;rft.au=GROLEMUND&amp;rft.aucorp=&amp;rft.volume=&amp;rft.issue=&amp;rft.part=&amp;rft.quarter=&amp;rft.ssn=&amp;rft.spage=&amp;rft.epage=&amp;rft.pages=&amp;rft.artnum=&amp;rft.pub=O%27REILLY%20MEDIA%2C%20INC%2C%20USA&amp;rft.place=&amp;rft.issn=&amp;rft.eissn=&amp;rft.isbn=9781449359010&amp;rft.sici=&amp;rft.coden=&amp;rft_id=info:doi/&amp;rft.object_id=&amp;rft.primo=nyu_aleph004021913&amp;rft.eisbn=&amp;rft_dat=%3Cnyu_aleph%3E004021913%3C/nyu_aleph%3E%3Cgrp_id%3E129879228%3C/grp_id%3E%3Coa%3E%3C/oa%3E&amp;rft_id=info:oai/&amp;req.language=eng"><img alt="Cover Art" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/index(1).aspx" title="Hands-On Programming with R" class="book_art_0" style="float:left;"></a></div><a href="https://ezproxy.library.nyu.edu/login?url=https://getit.library.nyu.edu/resolve?&amp;ctx_ver=Z39.88-2004&amp;ctx_enc=info:ofi/enc:UTF-8&amp;ctx_tim=2014-08-06T11%3A55%3A42IST&amp;url_ver=Z39.88-2004&amp;url_ctx_fmt=infofi/fmt:kev:mtx:ctx&amp;rfr_id=info:sid/primo.exlibrisgroup.com:primo-nyu_aleph004021913&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:book&amp;rft.genre=book&amp;rft.jtitle=&amp;rft.btitle=DATA%20ANALYSIS%20WITH%20R.&amp;rft.aulast=&amp;rft.aufirst=&amp;rft.auinit=&amp;rft.auinit1=&amp;rft.auinitm=&amp;rft.ausuffix=&amp;rft.au=GROLEMUND&amp;rft.aucorp=&amp;rft.volume=&amp;rft.issue=&amp;rft.part=&amp;rft.quarter=&amp;rft.ssn=&amp;rft.spage=&amp;rft.epage=&amp;rft.pages=&amp;rft.artnum=&amp;rft.pub=O%27REILLY%20MEDIA%2C%20INC%2C%20USA&amp;rft.place=&amp;rft.issn=&amp;rft.eissn=&amp;rft.isbn=9781449359010&amp;rft.sici=&amp;rft.coden=&amp;rft_id=info:doi/&amp;rft.object_id=&amp;rft.primo=nyu_aleph004021913&amp;rft.eisbn=&amp;rft_dat=%3Cnyu_aleph%3E004021913%3C/nyu_aleph%3E%3Cgrp_id%3E129879228%3C/grp_id%3E%3Coa%3E%3C/oa%3E&amp;rft_id=info:oai/&amp;req.language=eng" onclick="return SpringTrack.trackLink(this, {st_type : TRACKING_TYPE_BOOK, link_id: 6083861}); "><span class="book_title">Hands-On Programming with R</span><span class="book_author"> - Garrett Grolemund</span></a><div class="book_isbn">ISBN: 9781449359010</div><div class="book_pubyear">Publication Date: 2014-08-02</div></div><br style="clear:both;"><div id="book6077547" class="book_div"><div class="book_cover"><a id="book_6077547" href="https://ezproxy.library.nyu.edu/login?url=https://getit.library.nyu.edu/resolve?&amp;ctx_ver=Z39.88-2004&amp;ctx_enc=info:ofi/enc:UTF-8&amp;ctx_tim=2014-08-06T10%3A59%3A03IST&amp;url_ver=Z39.88-2004&amp;url_ctx_fmt=infofi/fmt:kev:mtx:ctx&amp;rfr_id=info:sid/primo.exlibrisgroup.com:primo-nyu_aleph003975630&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:book&amp;rft.genre=book&amp;rft.jtitle=&amp;rft.btitle=R%20for%20Everyone%20:%20Advanced%20Analytics%20and%20Graphics&amp;rft.aulast=Lander&amp;rft.aufirst=Jared%20P.&amp;rft.auinit=&amp;rft.auinit1=&amp;rft.auinitm=&amp;rft.ausuffix=&amp;rft.au=Lander%2C%20Jared%20P&amp;rft.aucorp=&amp;rft.volume=&amp;rft.issue=&amp;rft.part=&amp;rft.quarter=&amp;rft.ssn=&amp;rft.spage=&amp;rft.epage=&amp;rft.pages=&amp;rft.artnum=&amp;rft.pub=&amp;rft.place=&amp;rft.issn=&amp;rft.eissn=&amp;rft.isbn=9780321888037&amp;rft.sici=&amp;rft.coden=&amp;rft_id=info:doi/&amp;rft.object_id=&amp;rft.primo=nyu_aleph003975630&amp;rft.eisbn=&amp;rft_dat=%3Cnyu_aleph%3E003975630%3C/nyu_aleph%3E%3Cgrp_id%3E119174416%3C/grp_id%3E%3Coa%3E%3C/oa%3E&amp;rft_id=info:oai/&amp;req.language=eng"><img alt="Cover Art" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/index(2).aspx" title="R for Everyone" class="book_art_0" style="float:left;"></a></div><a href="https://ezproxy.library.nyu.edu/login?url=https://getit.library.nyu.edu/resolve?&amp;ctx_ver=Z39.88-2004&amp;ctx_enc=info:ofi/enc:UTF-8&amp;ctx_tim=2014-08-06T10%3A59%3A03IST&amp;url_ver=Z39.88-2004&amp;url_ctx_fmt=infofi/fmt:kev:mtx:ctx&amp;rfr_id=info:sid/primo.exlibrisgroup.com:primo-nyu_aleph003975630&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:book&amp;rft.genre=book&amp;rft.jtitle=&amp;rft.btitle=R%20for%20Everyone%20:%20Advanced%20Analytics%20and%20Graphics&amp;rft.aulast=Lander&amp;rft.aufirst=Jared%20P.&amp;rft.auinit=&amp;rft.auinit1=&amp;rft.auinitm=&amp;rft.ausuffix=&amp;rft.au=Lander%2C%20Jared%20P&amp;rft.aucorp=&amp;rft.volume=&amp;rft.issue=&amp;rft.part=&amp;rft.quarter=&amp;rft.ssn=&amp;rft.spage=&amp;rft.epage=&amp;rft.pages=&amp;rft.artnum=&amp;rft.pub=&amp;rft.place=&amp;rft.issn=&amp;rft.eissn=&amp;rft.isbn=9780321888037&amp;rft.sici=&amp;rft.coden=&amp;rft_id=info:doi/&amp;rft.object_id=&amp;rft.primo=nyu_aleph003975630&amp;rft.eisbn=&amp;rft_dat=%3Cnyu_aleph%3E003975630%3C/nyu_aleph%3E%3Cgrp_id%3E119174416%3C/grp_id%3E%3Coa%3E%3C/oa%3E&amp;rft_id=info:oai/&amp;req.language=eng" onclick="return SpringTrack.trackLink(this, {st_type : TRACKING_TYPE_BOOK, link_id: 6077547}); "><span class="book_title">R for Everyone</span><span class="book_author"> - Jared P. Lander</span></a><div class="book_isbn">ISBN: 9780321888037</div><div class="book_pubyear">Publication Date: 2013-12-19</div></div><br style="clear:both;"><div id="book6077548" class="book_div"><div class="book_cover"><a id="book_6077548" href="https://ezproxy.library.nyu.edu/login?url=http://proquestcombo.safaribooksonline.com/book/programming/r/9780596809287/r-cookbook/id3283695?query=((R+Cookbook))#snippet"><img alt="Cover Art" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/index(3).aspx" title="R Cookbook" class="book_art_0" style="float:left;"></a></div><a href="https://ezproxy.library.nyu.edu/login?url=http://proquestcombo.safaribooksonline.com/book/programming/r/9780596809287/r-cookbook/id3283695?query=((R+Cookbook))#snippet" onclick="return SpringTrack.trackLink(this, {st_type : TRACKING_TYPE_BOOK, link_id: 6077548}); "><span class="book_title">R Cookbook</span><span class="book_author"> - Paul Teetor</span></a><div class="book_isbn">ISBN: 9780596809157</div><div class="book_pubyear">Publication Date: 2011-03-25</div></div><br style="clear:both;"><div id="book6077937" class="book_div"><div class="book_cover"><a id="book_6077937" href="https://ezproxy.library.nyu.edu/login?url=http://site.ebrary.com/lib/nyulibrary/docDetail.action?docID=10513550"><img alt="Cover Art" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/index(4).aspx" title="The Art of R Programming" class="book_art_0" style="float:left;"></a></div><a href="https://ezproxy.library.nyu.edu/login?url=http://site.ebrary.com/lib/nyulibrary/docDetail.action?docID=10513550" onclick="return SpringTrack.trackLink(this, {st_type : TRACKING_TYPE_BOOK, link_id: 6077937}); "><span class="book_title">The Art of R Programming</span><span class="book_author"> - Norman Matloff</span></a><div class="book_isbn">ISBN: 9781593273842</div><div class="book_pubyear">Publication Date: 2011-10-15</div></div><br style="clear:both;"><div id="book6596769" class="book_div"><div class="book_cover"><a id="book_6596769" href="https://ezproxy.library.nyu.edu/login?url=http://site.ebrary.com/lib/nyulibrary/detail.action?docID=10965359&amp;p00=text+analysis+students+literature"><img alt="Cover Art" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/index(5).aspx" title="Text Analysis with R for Students of Literature" class="book_art_0" style="float:left;"></a></div><a href="https://ezproxy.library.nyu.edu/login?url=http://site.ebrary.com/lib/nyulibrary/detail.action?docID=10965359&amp;p00=text+analysis+students+literature" onclick="return SpringTrack.trackLink(this, {st_type : TRACKING_TYPE_BOOK, link_id: 6596769}); "><span class="book_title">Text Analysis with R for Students of Literature</span><span class="book_author"> - Matthew L. Jockers</span></a><div class="book_isbn">ISBN: 9783319031637</div><div class="book_pubyear">Publication Date: 2014-07-03</div></div><br style="clear:both;"><div id="book6077549" class="book_div"><div class="book_cover"><a id="book_6077549" href="https://ezproxy.library.nyu.edu/login?url=https://getit.library.nyu.edu/resolve?&amp;ctx_ver=Z39.88-2004&amp;ctx_enc=info:ofi/enc:UTF-8&amp;ctx_tim=2014-08-06T11%3A03%3A23IST&amp;url_ver=Z39.88-2004&amp;url_ctx_fmt=infofi/fmt:kev:mtx:ctx&amp;rfr_id=info:sid/primo.exlibrisgroup.com:primo-nyu_aleph003733904&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:book&amp;rft.genre=book&amp;rft.jtitle=&amp;rft.btitle=R%20graphics%20cookbook&amp;rft.aulast=Chang&amp;rft.aufirst=Winston&amp;rft.auinit=&amp;rft.auinit1=&amp;rft.auinitm=&amp;rft.ausuffix=&amp;rft.au=Chang%2C%20Winston&amp;rft.aucorp=&amp;rft.volume=&amp;rft.issue=&amp;rft.part=&amp;rft.quarter=&amp;rft.ssn=&amp;rft.spage=&amp;rft.epage=&amp;rft.pages=&amp;rft.artnum=&amp;rft.pub=O%27Reilly&amp;rft.place=Beijing%20%253B%20Sebastopol%2C%20CA&amp;rft.issn=&amp;rft.eissn=&amp;rft.isbn=9781449316952&amp;rft.sici=&amp;rft.coden=&amp;rft_id=info:doi/&amp;rft.object_id=&amp;rft.primo=nyu_aleph003733904&amp;rft.eisbn=&amp;rft_dat=%3Cnyu_aleph%3E003733904%3C/nyu_aleph%3E%3Cgrp_id%3E102366938%3C/grp_id%3E%3Coa%3E%3C/oa%3E&amp;rft_id=info:oai/&amp;req.language=eng"><img alt="Cover Art" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/index(6).aspx" title="R Graphics Cookbook" class="book_art_0" style="float:left;"></a></div><a href="https://ezproxy.library.nyu.edu/login?url=https://getit.library.nyu.edu/resolve?&amp;ctx_ver=Z39.88-2004&amp;ctx_enc=info:ofi/enc:UTF-8&amp;ctx_tim=2014-08-06T11%3A03%3A23IST&amp;url_ver=Z39.88-2004&amp;url_ctx_fmt=infofi/fmt:kev:mtx:ctx&amp;rfr_id=info:sid/primo.exlibrisgroup.com:primo-nyu_aleph003733904&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:book&amp;rft.genre=book&amp;rft.jtitle=&amp;rft.btitle=R%20graphics%20cookbook&amp;rft.aulast=Chang&amp;rft.aufirst=Winston&amp;rft.auinit=&amp;rft.auinit1=&amp;rft.auinitm=&amp;rft.ausuffix=&amp;rft.au=Chang%2C%20Winston&amp;rft.aucorp=&amp;rft.volume=&amp;rft.issue=&amp;rft.part=&amp;rft.quarter=&amp;rft.ssn=&amp;rft.spage=&amp;rft.epage=&amp;rft.pages=&amp;rft.artnum=&amp;rft.pub=O%27Reilly&amp;rft.place=Beijing%20%253B%20Sebastopol%2C%20CA&amp;rft.issn=&amp;rft.eissn=&amp;rft.isbn=9781449316952&amp;rft.sici=&amp;rft.coden=&amp;rft_id=info:doi/&amp;rft.object_id=&amp;rft.primo=nyu_aleph003733904&amp;rft.eisbn=&amp;rft_dat=%3Cnyu_aleph%3E003733904%3C/nyu_aleph%3E%3Cgrp_id%3E102366938%3C/grp_id%3E%3Coa%3E%3C/oa%3E&amp;rft_id=info:oai/&amp;req.language=eng" onclick="return SpringTrack.trackLink(this, {st_type : TRACKING_TYPE_BOOK, link_id: 6077549}); "><span class="book_title">R Graphics Cookbook</span><span class="book_author"> - Winston Chang</span></a><div class="book_isbn">ISBN: 9781449316952</div><div class="book_pubyear">Publication Date: 2013-01-06</div></div><br style="clear:both;"><div id="book6646564" class="book_div"><div class="book_cover"><a id="book_6646564" href="https://ezproxy.library.nyu.edu/login?url=http://site.ebrary.com/lib/nyulibrary/detail.action?docID=10983259&amp;p00=an+introduction+statistical+learning"><img alt="Cover Art" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/index(7).aspx" title="An Introduction to Statistical Learning" class="book_art_0" style="float:left;"></a></div><a href="https://ezproxy.library.nyu.edu/login?url=http://site.ebrary.com/lib/nyulibrary/detail.action?docID=10983259&amp;p00=an+introduction+statistical+learning" onclick="return SpringTrack.trackLink(this, {st_type : TRACKING_TYPE_BOOK, link_id: 6646564}); "><span class="book_title">An Introduction to Statistical Learning</span><span class="book_author"> - Gareth James; Trevor Hastie; Robert Tibshirani; Daniela Witten</span></a><div class="book_isbn">ISBN: 1461471370</div><div class="book_pubyear">Publication Date: 2014-07-11</div></div><br style="clear:both;"><div id="book6077585" class="book_div"><div class="book_cover"><a id="book_6077585" href="https://ezproxy.library.nyu.edu/login?url=http://site.ebrary.com/lib/nyulibrary/detail.action?docID=10340663&amp;p00=ggplot2"><img alt="Cover Art" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/index(8).aspx" title="Ggplot2" class="book_art_0" style="float:left;"></a></div><a href="https://ezproxy.library.nyu.edu/login?url=http://site.ebrary.com/lib/nyulibrary/detail.action?docID=10340663&amp;p00=ggplot2" onclick="return SpringTrack.trackLink(this, {st_type : TRACKING_TYPE_BOOK, link_id: 6077585}); "><span class="book_title">Ggplot2</span><span class="book_author"> - Hadley Wickham</span></a><div class="book_isbn">ISBN: 9780387981413</div><div class="book_pubyear">Publication Date: 2013-01-06</div></div><br style="clear:both;"></div></div>		</div>	</div>            </div>        </div></div>
+	<script type="text/javascript" src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/api_box.php"></script></div>
+	</li>
+</ul>
+</div>
+
+<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;LR4&#39;)">Forums</a></p>
+
+<div id="LR4" style="display: none;">
+<ul style="padding-left: 60px;">
+	<li><a href="https://github.com/trending?l=r" target="_blank">GitHub</a></li>
+	<li><a href="http://stackoverflow.com/questions/tagged/r" target="_blank">StackExchange</a></li>
+	<li><a href="http://www.talkstats.com/forumdisplay.php/14-R" target="_blank">Talk Stats</a></li>
+</ul>
+</div>
+
+<p style="padding-left: 30px;"><a onclick="return toggleMe(&#39;LR5&#39;)">Other resources</a></p>
+
+<div id="LR5" style="display: none;">
+<ul style="padding-left: 60px;">
+	<li><a href="http://www.statmethods.net/" style="font-size: small;" target="_blank">Quick-R</a>
+
+	<div>A great quick reference that covers many common topics in R.</div>
+	</li>
+	<li><a href="http://www.rstudio.com/resources/training/online-learning/" style="font-size: small;" target="_blank">RStudio Online Learning</a>
+	<div>Resources provided by the RStudio team which cover the basics of R programming and other tools the RStudio team has developed.</div>
+	</li>
+	<li><a href="http://www.ats.ucla.edu/stat/r/" style="font-size: small;" target="_blank">UCLA Statistical Computing (R)</a>
+	<div>A variety of learning modules, FAQ and case examples of using R for statistical computing.</div>
+	</li>
+	<li><a href="https://dev1.ed-projects.nyu.edu/statistics" style="font-size: small;" target="_blank">Introduction to Statistics and R</a>
+	<div>A site created by NYU which introduces a variety of statistical concepts alongside examples using R.</div>
+	</li>
+	<li><a href="http://www.rdocumentation.org/" style="font-size: small;" target="_blank">Rdocumentation.org</a>
+	<div>Search through all available R packages on CRAN, Github and Bioconductor.</div>
+	</li>
+	<li><a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf" style="font-size: small;" target="_blank">R Reference Card</a>
+	<div>A pdf guide that highlights important commands under several main topics in R programming.</div>
+	</li>
+	<li><a href="http://www.cookbook-r.com/" style="font-size: small;" target="_blank">Cookbook for R</a>
+	<div>Provides examples of common problems and their solutions in R.</div>
+	</li>
+	<li><a href="http://adv-r.had.co.nz/" style="font-size: small;" target="_blank">Advanced R</a>
+	<div>Hadley Wickham's reference for more advanced R users who want to improve their R programming skills.</div>
+	</li>
+	<li><a href="http://www.r-bloggers.com/" style="font-size: small;" target="_blank">R-bloggers</a>
+	<div>A collection of articles and blogs from around the R community.</div>
+	</li>
+	<li><a href="https://www.codeschool.com/courses/try-r" style="font-size: small;" target="_blank">Code School</a>
+	<div>Interactive exercises for R beginners.</div>
+	</li>
+	<li><a href="http://gastonsanchez.com/Handling_and_Processing_Strings_in_R.pdf" style="font-size: small;" target="_blank">Handling and Processing Strings in R</a>
+	<div>Gaston Sanchez's guide to handling strings in R.</div>
+	</li>
+	<li><a href="http://swirlstats.com/" style="font-size: small;" target="_blank">swirl</a>
+	<div>Interactive courses through the swirl package.</div>
+	</li>
+	<li><a href="http://www.rstudio.com/resources/cheatsheets/" style="font-size: small;" target="_blank">R Studio Cheatsheets</a>
+	<div>Cheatsheets created by the R Studio team which go over topics such as shiny, R Markdown and dplyr.</div>
+	</li>
+	<li><a href="http://www.cyclismo.org/tutorial/R/index.html" style="font-size: small;" target="_blank">R Tutorial</a>
+	<div>R tutorial from Clarkson University.</div>
+	</li>
+</ul>
+</div>
+		   </div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+							</div>
+        </div>
+    </div>
+    <div id="s-lg-col-3" class="col-md-3">
+        <div class="s-lg-col-boxes">
+							<div id="s-lg-box-wrapper-6645284" class="s-lg-box-wrapper-6645284">
+					<div id="s-lg-box-5649227-container" class="s-lib-box-container">
+						<div id="s-lg-box-5649227" class="s-lib-box s-lib-box-std">
+							<h2 class="s-lib-box-title">Upcoming Tutorials
+                                </h2>
+							<div id="s-lg-box-collapse-5649227">
+								<div class="s-lib-box-content pad-left-none pad-right-none">
+									
+			<div id="s-lg-content-11146030" class="  clearfix">
+				<p style="text-align: center;"><strong>Upcoming Tutorials</strong></p>
+		   </div>
+			<div id="s-lg-content-11148426" class="s-lg-widget "><iframe src="./R - Quantitative Analysis Guide - Research Guides at New York University_files/embed_mini_calendar.html" style="border-width:0" width="250" height="450" frameborder="0" scrolling="no"></iframe>
+		   </div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+							</div>
+        </div>
+    </div>
+				
+</div>
+				<div class="row s-lg-row">
+    <div id="s-lg-col-127" class="col-md-12">
+        <div class="s-lg-col-boxes">
+        </div>
+    </div>
+				
+</div>            
+				<ul id="s-lg-page-prevnext" class="pager s-lib-hide">
+					<li class="previous">
+					<a href="http://guides.nyu.edu/sas">&lt;&lt; <strong>Previous:</strong> SAS</a>
+					</li>
+					<li class="next">
+					<a href="http://guides.nyu.edu/matlab"><strong>Next:</strong> MATLAB &gt;&gt;</a>
+					</li>
+				</ul>        </div>
+        <!-- END: Guide Content -->
+        <!-- BEGIN: Page Footer -->
+        <div id="s-lib-footer-public" class="s-lib-footer footer container  s-lib-side-borders">
+            <div id="s-lg-guide-header-meta" class="pad-top-sm pad-left-med clearfix">
+                <ul id="s-lg-guide-header-attributes" class="">
+                    <li id="s-lg-guide-header-updated" class="s-lg-h-separator">
+                        <span class="s-lg-guide-label">Last Updated:</span> <span class="s-lg-text-greyout">Apr 3, 2017 6:14 PM</span>                    </li>
+                    <li id="s-lg-guide-header-url" class="s-lg-h-separator">
+                        <span class="s-lg-guide-label">URL:</span> <span class="s-lg-text-greyout">http://guides.nyu.edu/quant</span>                    </li>
+                    <li id="s-lg-guide-print-url">
+                        <a href="javascript: window.print();"><i class="fa fa-print" title="Print Page"></i> Print Page</a>                    </li>
+                </ul>
+                <div id="s-lib-footer-login-link" class="pull-right pad-right-med">
+                    <a href="https://nyu.libapps.com/libapps/login.php?site_id=873&amp;target64=L2xpYmd1aWRlcy9hZG1pbl9jLnBocD9nPTI3NzEzOCZwPTE4NDcxNTA=">Author Log-in</a>                </div>
+            </div>
+            <div class="pad-bottom-sm clearfix">
+                <div id="s-lib-footer-support-link" class="pull-right pad-right-med">
+                    <a href="mailto:ab6137@nyu.edu">Report a problem.</a> 
+                </div>
+                <div id="s-lg-guide-header-subjects" class="pad-top-sm pad-left-med pad-right-med pull-left">
+                    
+                    <span class="s-lg-guide-label">Subjects: </span>
+                    <span class="s-lg-small bold"><a href="http://guides.nyu.edu/sb.php?subject_id=59312">Statistics</a></span>
+                                    </div>
+                <div id="s-lg-guide-header-tags" class="pad-top-sm pad-left-med">
+                    
+                    <span class="s-lg-guide-label">Tags: </span>
+                    <span class="s-lg-small bold"><a href="http://guides.nyu.edu/srch.php?tag=data%20analysis&amp;default_lg=1">data analysis</a>, <a href="http://guides.nyu.edu/srch.php?tag=jmp&amp;default_lg=1">jmp</a>, <a href="http://guides.nyu.edu/srch.php?tag=join&amp;default_lg=1">join</a>, <a href="http://guides.nyu.edu/srch.php?tag=matlab&amp;default_lg=1">matlab</a>, <a href="http://guides.nyu.edu/srch.php?tag=merge&amp;default_lg=1">merge</a>, <a href="http://guides.nyu.edu/srch.php?tag=r&amp;default_lg=1">r</a>, <a href="http://guides.nyu.edu/srch.php?tag=sas&amp;default_lg=1">sas</a>, <a href="http://guides.nyu.edu/srch.php?tag=spss&amp;default_lg=1">spss</a>, <a href="http://guides.nyu.edu/srch.php?tag=stata&amp;default_lg=1">stata</a>, <a href="http://guides.nyu.edu/srch.php?tag=statistics&amp;default_lg=1">statistics</a></span>
+                                    </div>
+            </div>
+        </div>
+        <!-- END: Page Footer -->
+        
+			<div id="s-lib-scroll-top" style="display: none;">
+				<a href="javascript:void(0);" onclick="jQuery(&#39;html, body&#39;).animate({scrollTop: 0}, 750);" title="Back to Top" aria-label="Back to Top" aria-hidden="true">
+					<span class="fa-stack fa-lg">
+					  <i class="fa fa-square-o fa-stack-2x"></i>
+					  <i class="fa fa-angle-double-up fa-stack-1x" style="position:relative; bottom:2px;"></i>
+					</span>
+				</a>
+			</div>        <div id="s-lib-alert" title="">
+                            <div id="s-lib-alert-content"></div>
+                       </div>        
+                <!-- BEGIN: Custom Footer -->
+                
+
+		<!-- END: Custom Footer -->
+<!-- BEGIN: Analytics code --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-74778259-1', 'auto');
+  ga('send', 'pageview');
+
+</script><!-- END: Analytics code -->	
+	
+	<div id="cli_dialog_div"></div></body></html>

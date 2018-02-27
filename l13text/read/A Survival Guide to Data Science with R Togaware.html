@@ -1,0 +1,2833 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)https://togaware.com/onepager/ -->
+<html lang="en-AU" class=" js cssanimations csstransitions js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths ua-chrome ua-chrome-56 ua-chrome-56-0 ua-chrome-56-0-2924 ua-chrome-56-0-2924-87 ua-desktop ua-desktop-macintosh ua-mac_os_x ua-mac_os_x-10 ua-mac_os_x-10-11 ua-mac_os_x-10-11-6 ua-webkit ua-webkit-537 ua-webkit-537-36 js"><!--BEGIN head--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        
+        <!-- Meta Tags -->
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>OnePageR – Togaware</title>
+<link rel="dns-prefetch" href="https://maps.googleapis.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Togaware » Feed" href="https://togaware.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Togaware » Comments Feed" href="https://togaware.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Togaware » OnePageR Comments Feed" href="https://togaware.com/onepager/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/togaware.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=d12e03879c26a41915faf69eda075e55"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./A Survival Guide to Data Science with R Togaware_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="animatecss-css" href="./A Survival Guide to Data Science with R Togaware_files/animate-custom.css" type="text/css" media="all">
+<link rel="stylesheet" id="parallaxcss-css" href="./A Survival Guide to Data Science with R Togaware_files/parallax.css" type="text/css" media="all">
+<link rel="stylesheet" id="fontawesomecss-css" href="./A Survival Guide to Data Science with R Togaware_files/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="maincss-css" href="./A Survival Guide to Data Science with R Togaware_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="reset-css" href="./A Survival Guide to Data Science with R Togaware_files/reset.css" type="text/css" media="all">
+<link rel="stylesheet" id="bootstrapcss-css" href="./A Survival Guide to Data Science with R Togaware_files/bootstrap.css" type="text/css" media="all">
+<link rel="stylesheet" id="bootstrapcsstheme-css" href="./A Survival Guide to Data Science with R Togaware_files/bootstrap-theme.css" type="text/css" media="all">
+<style id="bootstrapcsstheme-inline-css" type="text/css">
+ 
+body {
+    background-color: #ecebe9;
+}
+
+.home-content-boxes .content-box {
+    background: #efefef;
+    padding: 30px 10px;
+}
+
+.content-box p {
+    margin: 25px 0 50px 0;
+}
+
+@media (min-width: 768px) {
+    .home-content-boxes .content-box {
+        padding: 30px 20px;
+        margin: 0 0.98%;
+    }
+    .home-content-boxes .col-md-3.content-box {
+        width: 23%;
+    }
+    .home-content-boxes .col-md-4.content-box {
+        width: 31.33333333%;
+    }
+    .home-content-boxes .col-md-6.content-box {
+        width: 48%;
+        margin: 0 0.96%;
+    }
+    .home-content-boxes .col-md-12.content-box {
+        width: 98%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .home-content-boxes .col-md-3.content-box {
+        width: 23%;
+    }
+}
+
+@media (min-width: 992px) {
+    .home-content-boxes .col-md-3.content-box {
+        width: 23%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cntbox_btn {
+        position: relative;
+        bottom: 0px;
+    }
+}
+
+.sticky-header .nav {
+    float: left;
+    margin-left: 25px;
+}
+
+.content-boxes .col { 
+    background-color: transparent;
+}
+
+.t4p-counters-box .t4p-counter-box .counter-box-container { 
+    color: #000000 ;
+}
+
+.t4p-counters-box .t4p-counter-box .counter-box-border {
+    border-color: #000000;
+    border: 1px solid;
+}  
+
+.t4p-flip-box .flip-box-heading {
+    color: #333333 ;
+}
+
+.t4p-flip-box .flip-box-heading-back {
+    color: #eeeded ;
+}
+
+.sep-boxed-pricing .panel-heading h3 {
+    color: #ffffff ;
+}
+
+.full-boxed-pricing.t4p-pricing-table .panel-heading h3 {
+    color: #333333 ;
+}
+
+.sep-boxed-pricing .panel-heading, 
+.sep-boxed-pricing .pricing-row {
+    background-color: #0bb697 !important;
+}
+
+.sep-boxed-pricing .panel-container,
+.full-boxed-pricing {
+    border-color: #dcdcdc ;
+}
+
+.t4p-accordian .panel-heading {
+    background-color: #f2f2f2;
+}
+
+.t4p-title .title-sep {
+    border-color: #f0f0f0;
+}
+
+.person-img, .person-imgage-container img {
+    border: 0px solid #f6f6f6;
+}
+
+ul.nav-menu a {
+    text-transform: none
+}
+
+ul.nav-menu li a:active,
+ul.nav-menu li:active > a,
+ul.nav-menu li a:focus,
+ul.nav-menu li:focus > a,
+ul.nav-menu li a:hover,
+ul.nav-menu li:hover> a,
+ul.nav-menu li:hover,
+ul.nav-menu li a:hover span,
+ul.nav-menu li:hover> a span,
+ul.nav-menu li:hover> .sf-with-ul::after {
+    color: #fff;
+}
+
+        .sub-menu .sub-menu a:after {
+            position: absolute;
+        }
+    
+@media (min-width: 1220px) {
+    .container,
+    #wrapper {
+        width: 1200px;
+    }
+    .wooslider {
+        max-width: 1200px;
+    }
+}
+ 
+@media only screen and (max-width: 1219px) {
+    body #header.sticky-header {
+        margin: 0px ;
+        left: 0px;
+    }
+}
+
+#gmap {
+    width: 100%;
+    margin:0 auto;
+    height: 415px
+}
+
+.animated { 
+    visibility: hidden;
+}
+
+.menu-back {
+    background-color: #595959;
+    background: -webkit-gradient(radial, center center, 0, center center, 460, from(#595959), to(#353535));
+    background: -webkit-radial-gradient(circle, #595959, #353535);
+    background: -moz-radial-gradient(circle, #595959, #353535);
+    background: -o-radial-gradient(circle, #595959, #353535);
+    background: -ms-radial-gradient(circle, #595959, #353535);
+}
+
+.da-dots span {
+    background: #3e3e3e
+}
+
+/**
+ * Posts Layout
+ * 
+ */
+
+.home .type-post .entry-content,
+.archive .type-post .entry-content,
+.search .type-post .entry-content,
+.page-template-blog-page-php .type-post .entry-content {
+    font-size: 13px;
+}
+
+.entry-content {
+    margin-top: 25px;
+}
+
+.home .odd0,
+.archive .odd0,
+.search .odd0,
+.page-template-blog-page-php .odd0 {
+    clear: both;
+}
+
+.home .odd1,
+.archive .odd1,
+.search .odd1,
+.page-template-blog-page-php .odd1 {
+    margin-right: 0px;
+}
+
+.home .entry-title,
+.entry-title a,
+.archive .entry-title,
+.search .entry-title,
+.page-template-blog-page-php .entry-title {
+    font-size: 120%;
+    line-height: 120%;
+    margin-bottom: 0;
+}
+
+.home .entry-header,
+.archive .entry-header,
+.search .entry-header,
+.page-template-blog-page-php .entry-header {
+    font-size: 12px;
+    padding: 0;
+}
+
+.home .published strong,
+.archive .published strong,
+.search .published strong,
+.page-template-blog-page-php .published strong {
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.home .hfeed,
+.archive .hfeed,
+.single .hfeed,
+.page .hfeed,
+.page-template-blog-page-php .hfeed {
+    margin-right: 0px;
+}
+
+.home .type-post .entry-footer,
+.archive .type-post .entry-footer,
+.search .type-post .entry-footer,
+.page-template-blog-page-php .type-post .entry-footer {
+    float: left;
+    width: 100%
+}
+
+.home .type-post .comment-count,
+.archive .type-post .comment-count,
+.search .type-post .comment-count,
+.page-template-blog-page-php .type-post .comment-count {
+    background: none;
+    padding-right: 0;
+}
+
+.title-container #logo a {
+    padding: 0px 20px 0px 3px;
+}
+
+body #header.sticky-header img#logo-image {
+    max-width: 100px;
+}
+#logo a{font-size:39px ;}#logo a{font-family:Roboto;}#logo a{font-style:700;}#logo a{letter-spacing:-.03em;}#tagline{font-size:13px ;}#tagline{font-family:Roboto;}.entry-title, .entry-title a, .page-title{font-size:28px ;}.entry-title, .entry-title a, .page-title{font-family:Roboto;}.entry-content{font-size:16px ;}.entry-content{font-family:Roboto;}.entry-content{line-height:1.5em;}body{color:;}#sticky-logo a{font-size:25px ;}#sticky-logo a{font-family:Roboto;}#sticky-logo a{font-weight:400;}#sticky-logo a{color:#ffffff;}#sticky-logo a{letter-spacing:-.03em;}ul.nav-menu a, .menu-header, #wrapper .dd-container label, #wrapper .dd-container a, #wrapper .dd-container a.mean-expand{font-size:14px ;}ul.nav-menu a, .menu-header, #wrapper .dd-container label, #wrapper .dd-container a, #wrapper .dd-container a.mean-expand{font-family:Roboto;}.new-top-menu ul.nav-menu a, .top-menu, #wrapper .new-top-menu .dd-container label, #wrapper .new-top-menu .dd-container a, .woocommerce-menu .cart > a, .woocommerce-menu .my-account > a{font-size:12px ;}.new-top-menu ul.nav-menu a, .top-menu, #wrapper .new-top-menu .dd-container label, #wrapper .new-top-menu .dd-container a, .woocommerce-menu .cart > a, .woocommerce-menu .my-account > a{font-family:Roboto;}.new-top-menu ul.nav-menu a, .top-menu, #wrapper .new-top-menu .dd-container label, #wrapper .new-top-menu .dd-container a, .woocommerce-menu .cart > a, .woocommerce-menu .my-account > a{font-weight:400;}.new-top-menu ul.nav-menu a, .top-menu, #wrapper .new-top-menu .dd-container label, #wrapper .new-top-menu .dd-container a, .woocommerce-menu .cart > a, .woocommerce-menu .my-account > a{color:#c1c1c1;}#bootstrap-slider .carousel-caption h2 {font-size:36px ;}#bootstrap-slider .carousel-caption h2 {font-family:Roboto;}#bootstrap-slider .carousel-caption p  {font-size:18px ;}#bootstrap-slider .carousel-caption p  {font-family:Roboto;}.da-slide h2 {font-size:36px ;}.da-slide h2 {font-family:Roboto;}.da-slide p {font-size:18px ;}.da-slide p {font-family:Roboto;}#slide_holder .featured-title a {font-size:36px ;}#slide_holder .featured-title a {font-family:Roboto;}#slide_holder p {font-size:18px ;}#slide_holder p {font-family:Roboto;}.widget-title{font-size:19px ;}.widget-title{font-family:Roboto;}.widget-content, .aside, .aside a{font-size:13px ;}.widget-content, .aside, .aside a{font-family:Roboto;}.widget-content, .widget-content a, .widget-content .tab-holder .news-list li .post-holder a, .widget-content .tab-holder .news-list li .post-holder .meta{color:;}.content-box h2{font-size:30px ;}.content-box h2{font-family:Roboto;}.content-box h2{font-weight:400;}.content-box h2{color:#6b6b6b;}.content-box p{font-size:22px ;}.content-box p{font-family:Roboto;}.content-box p{font-weight:400;}.content-box p{color:#888;}.entry-content h1{font-size:38px ;}.entry-content h1{font-family:Roboto;}.entry-content h2{font-size:30px ;}.entry-content h2{font-family:Roboto;}.entry-content h3{font-size:24px ;}.entry-content h3{font-family:Roboto;}.entry-content h4{font-size:18px ;}.entry-content h4{font-family:Roboto;}.entry-content h5{font-size:18px ;}.entry-content h5{font-family:Roboto;}.entry-content h6{font-size:14px ;}.entry-content h6{font-family:Roboto;}
+ul.primary-menu-cont.nav-menu li:hover ul,
+ul.primary-menu-cont.nav-menu li.nav-hover ul {
+    top: 52px;
+}
+
+.sticky-header #logo {
+    float: left;
+    padding: 6px 6px 6px 3px;
+}
+
+.sticky-header #sticky-logo {
+    float: left;
+    padding: 0px 6px 0px 3px;
+}
+
+body #header.sticky-header img#logo-image {
+    margin-left: 10px;
+}
+
+#backtotop {
+    right: 2%;
+}
+
+#wrapper {
+    position: relative;
+    margin: 0 auto 30px auto;
+    background: #f9f9f9;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+}
+
+#wrapper:before {
+    -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 0 9px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.6);
+    left: 30px;
+    right: 30px;
+    position: absolute;
+    z-index: -1;
+    height: 20px;
+    bottom: 0px;
+    content: "";
+    -webkit-border-radius: 100px / 10px;
+    -moz-border-radius: 100px / 10px;
+    border-radius: 100px / 10px;
+}
+
+a, 
+a:hover,
+a:focus,
+.entry-content a:link, 
+.entry-content a:active, 
+.entry-content a:visited, 
+#secondary a:hover, 
+#secondary-2 a:hover, 
+.tooltip-shortcode, 
+#jtwt .jtwt_tweet a:hover, 
+.contact_info a:hover, 
+.widget .wooslider h2.slide-title a, 
+.widget .wooslider h2.slide-title a:hover {
+    color: #7a9cad;
+}
+
+.header {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.header .container {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+ul.nav-menu > li {
+    padding: 0px 8px;
+}
+
+body #header.sticky-header {
+    margin-left: -16px;
+}
+
+#rss, 
+#email-newsletter, 
+#facebook, 
+#twitter, 
+#instagram, 
+#skype, 
+#youtube, 
+#flickr, 
+#linkedin, 
+#plus, 
+#pinterest, 
+#tumblr { 
+    color: #999999;
+}
+.sc_menu li a {
+    color: #999999;
+}
+
+#rss, 
+#email-newsletter, 
+#facebook, 
+#twitter, 
+#instagram, 
+#skype, 
+#youtube, 
+#flickr, 
+#linkedin, 
+#plus, 
+#pinterest, 
+#tumblr { 
+    font-size: normal;
+}
+.sc_menu li a {
+    font-size: normal;
+}
+
+.menu-back { 
+    background-repeat: no-repeat;
+}
+
+.content-box-1 i { 
+    color: #faa982;
+}
+
+.content-box-2 i { 
+    color: #8fb859;
+}
+
+.content-box-3 i { 
+    color: #78665e;
+}
+
+.content-box-4 i { 
+    color: #82a4fa;
+}
+
+.t4p-reading-box-container a.button-default,
+button,
+.button,
+.bootstrap-button,
+input#submit,
+.da-slide .da-link,
+span.more a,
+a.read-more,
+a.comment-reply-link,
+.entry-content a.t4p-button-default,
+.button.button-3d.button-small,
+.button.default.button-3d.button-small,
+.button.default.small,
+#reviews input#submit,
+.woocommerce .login .button,
+.woocommerce .register .button,
+.bbp-submit-wrapper button,
+.wpcf7-form input[type="submit"],
+.wpcf7-submit,
+#wrapper a.read-more,
+input[type="submit"],
+.price_slider_amount button,
+.product-buttons .add_to_cart_button,
+.product-buttons .button.product_type_grouped,
+.product-buttons .button.product_type_simple,
+.product-buttons .button.product_type_external {
+    -webkit-box-shadow: 0px 2px 0px #1d6e72;
+    -moz-box-shadow: 	0px 2px 0px #1d6e72;
+    box-shadow: 	0px 2px 0px #1d6e72;		
+}
+
+.t4p-reading-box-container a.button-default:active,
+button:active,
+.button:active,
+.bootstrap-button:active,
+input#submit:active,
+.da-slide .da-link:active,
+span.more a:active,
+a.read-more:active,
+a.comment-reply-link:active,
+.entry-content a.t4p-button-default:active,
+.button.button-3d.button-small:active,
+.button.default.button-3d.button-small:active,
+.button.default.small:active,
+#reviews input#submit:active,
+.woocommerce .login .button:active,
+.woocommerce .register .button:active,
+.bbp-submit-wrapper button:active,
+.wpcf7-form input[type="submit"]:active,
+.wpcf7-submit:active,
+#wrapper a.read-more:active,
+input[type="submit"]:active,
+.product-buttons .add_to_cart_button:active,
+.product-buttons .button.product_type_grouped:active,
+.product-buttons .button.product_type_simple:active,
+.product-buttons .button.product_type_external:active {
+    -webkit-box-shadow: 0px 1px 0px #1d6e72;
+    -moz-box-shadow: 	0px 1px 0px #1d6e72;
+    box-shadow:		0px 1px 0px #1d6e72;		
+}
+
+.t4p-reading-box-container a.button-default:hover,
+input[type="submit"]:hover,
+button:hover,
+.button:hover,
+.bootstrap-button:hover,
+input#submit:hover,
+.da-slide .da-link:hover,
+span.more a:hover,
+a.read-more:hover,
+a.comment-reply-link:hover,
+.entry-content a.t4p-button-default:hover,
+.button.button-3d.button-small:hover,
+.button.default.button-3d.button-small:hover,
+.button.default.small:hover,
+.t4p-button.button-green.button-3d.button-small:hover,
+.button.green.button-3d.button-small:hover,
+.t4p-button.button-darkgreen.button-3d.button-small:hover,
+.button.darkgreen.button-3d.button-small:hover,
+.t4p-button.button-orange.button-3d.button-small:hover,
+.button.orange.button-3d.button-small:hover,
+.t4p-button.button-blue.button-3d.button-small:hover,
+.button.blue.button-3d.button-small:hover,
+.t4p-button.button-darkblue.button-3d.button-small:hover,
+.button.darkblue.button-3d.button-small:hover,
+.t4p-button.button-red.button-3d.button-small:hover,
+.button.darkred.button-3d.button-small:hover,
+.t4p-button.button-pink.button-3d.button-small:hover,
+.button.pink.button-3d.button-small:hover,
+.t4p-button.button-darkgray.button-3d.button-small:hover,
+.button.darkgray.button-3d.button-small:hover,
+.t4p-button.button-lightgray.button-3d.button-small:hover,
+.button.lightgray.button-3d.button-small:hover,
+#reviews input#submit:hover,
+.woocommerce .login .button:hover,
+.woocommerce .register .button:hover,
+.bbp-submit-wrapper button:hover,
+.wpcf7-form input[type="submit"]:hover,
+.wpcf7-submit:hover,
+#wrapper a.read-more:hover,
+.price_slider_amount button:hover,
+.product-buttons .add_to_cart_button:hover,
+.product-buttons .button.product_type_grouped:hover,
+.product-buttons .button.product_type_simple:hover,
+.product-buttons .button.product_type_external:hover {
+    -webkit-box-shadow:  0px 2px 0px #313a43;
+    -moz-box-shadow: 	 0px 2px 0px #313a43;
+    box-shadow: 	 0px 2px 0px #313a43;		
+}
+
+.button.button-3d.button-medium,
+.button.default.button-3d.button-medium,
+.button.default.medium,
+#comment-submit,
+.woocommerce form.checkout #place_order,
+.woocommerce .single_add_to_cart_button,
+.bbp-submit-wrapper button.button-medium,
+.wpcf7-form input[type="submit"].button-medium,
+.wpcf7-submit.button-medium {
+    -webkit-box-shadow:  0px 3px 0px #1d6e72;
+    -moz-box-shadow: 	 0px 3px 0px #1d6e72;
+    box-shadow: 	 0px 3px 0px #1d6e72;		
+}
+
+.button.button-3d.button-medium:active,
+.button.default.button-3d.button-medium:active,
+.button.default.medium:active,
+#comment-submit:active,
+.woocommerce form.checkout #place_order:active,
+.woocommerce .single_add_to_cart_button:active,
+.bbp-submit-wrapper button.button-medium:active,
+.wpcf7-form input[type="submit"].button-medium:active,
+.wpcf7-submit.button-medium:active {
+    -webkit-box-shadow:  0px 1px 0px #1d6e72;
+    -moz-box-shadow: 	 0px 1px 0px #1d6e72;
+    box-shadow: 	 0px 1px 0px #1d6e72;		
+}
+
+.button.button-3d.button-medium:hover,
+.button.default.button-3d.button-medium:hover,
+.button.default.medium:hover,
+.t4p-button.button-green.button-3d.button-medium:hover,
+.button.green.button-3d.button-medium:hover,
+.t4p-button.button-darkgreen.button-3d.button-medium:hover,
+.button.darkgreen.button-3d.button-medium:hover,
+.t4p-button.button-orange.button-3d.button-medium:hover,
+.button.orange.button-3d.button-medium:hover,
+.t4p-button.button-blue.button-3d.button-medium:hover,
+.button.blue.button-3d.button-medium:hover,
+.t4p-button.button-darkblue.button-3d.button-medium:hover,
+.button.darkblue.button-3d.button-medium:hover,
+.t4p-button.button-red.button-3d.button-medium:hover,
+.button.darkred.button-3d.button-medium:hover,
+.t4p-button.button-pink.button-3d.button-medium:hover,
+.button.pink.button-3d.button-medium:hover,
+.t4p-button.button-darkgray.button-3d.button-medium:hover,
+.button.darkgray.button-3d.button-medium:hover,
+.t4p-button.button-lightgray.button-3d.button-medium:hover,
+.button.lightgray.button-3d.button-medium:hover,
+#comment-submit:hover,
+.woocommerce form.checkout #place_order:hover,
+.woocommerce .single_add_to_cart_button:hover,
+.bbp-submit-wrapper button.button-medium:hover,
+.wpcf7-form input[type="submit"].button-medium:hover,
+.wpcf7-submit.button-medium:hover {
+    -webkit-box-shadow:  0px 3px 0px #313a43;
+    -moz-box-shadow: 	 0px 3px 0px #313a43;
+    box-shadow: 	 0px 3px 0px #313a43;		
+}
+
+.button.button-3d.button-large,
+.button.default.button-3d.button-large,
+.button.default.large,
+.bbp-submit-wrapper button.button-large,
+.wpcf7-form input[type="submit"].button-large,
+.wpcf7-submit.button-large {
+    -webkit-box-shadow:  0px 4px 0px #1d6e72;
+    -moz-box-shadow: 	 0px 4px 0px #1d6e72;
+    box-shadow: 	 0px 4px 0px #1d6e72;		
+}
+
+.button.button-3d.button-large:active,
+.button.default.button-3d.button-large:active,
+.button.default.large:active,
+.bbp-submit-wrapper button.button-large:active,
+.wpcf7-form input[type="submit"].button-large:active,
+.wpcf7-submit.button-large:active {
+    -webkit-box-shadow:  0px 1px 0px #1d6e72;
+    -moz-box-shadow: 	 0px 1px 0px #1d6e72;
+    box-shadow: 	 0px 1px 0px #1d6e72;				
+}
+
+.button.button-3d.button-large:hover,
+.button.default.button-3d.button-large:hover,
+.button.default.large:hover,
+.t4p-button.button-green.button-3d.button-large:hover,
+.button.green.button-3d.button-large:hover,
+.t4p-button.button-darkgreen.button-3d.button-large:hover,
+.button.darkgreen.button-3d.button-large:hover,
+.t4p-button.button-orange.button-3d.button-large:hover,
+.button.orange.button-3d.button-large:hover,
+.t4p-button.button-blue.button-3d.button-large:hover,
+.button.blue.button-3d.button-large:hover,
+.t4p-button.button-darkblue.button-3d.button-large:hover,
+.button.darkblue.button-3d.button-large:hover,
+.t4p-button.button-red.button-3d.button-large:hover,
+.button.darkred.button-3d.button-large:hover,
+.t4p-button.button-pink.button-3d.button-large:hover,
+.button.pink.button-3d.button-large:hover,
+.t4p-button.button-darkgray.button-3d.button-large:hover,
+.button.darkgray.button-3d.button-large:hover,
+.t4p-button.button-lightgray.button-3d.button-large:hover,
+.button.lightgray.button-3d.button-large:hover,
+.bbp-submit-wrapper button.button-large:hover,
+.wpcf7-form input[type="submit"].button-large:hover,
+.wpcf7-submit.button-large:hover {
+    -webkit-box-shadow:  0px 4px 0px #313a43;
+    -moz-box-shadow: 	 0px 4px 0px #313a43;
+    box-shadow: 	 0px 4px 0px #313a43;				
+}
+
+.button.button-3d.button-xlarge,
+.button.default.button-3d.button-xlarge,
+.button.default.xlarge,
+.bbp-submit-wrapper button.button-xlarge,
+.wpcf7-form input[type="submit"].button-xlarge,
+.wpcf7-submit.button-xlarge {
+    -webkit-box-shadow:  0px 5px 0px #1d6e72, 1px 7px 7px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 	 0px 5px 0px #1d6e72, 1px 7px 7px 3px rgba(0,0,0,0.3);
+    box-shadow:		 0px 5px 0px #1d6e72, 1px 7px 7px 3px rgba(0,0,0,0.3);		
+}
+
+.button.button-3d.button-xlarge:active,
+.button.default.button-3d.button-xlarge:active,
+.button.default.xlarge:active,
+.bbp-submit-wrapper button.button-xlarge:active,
+.wpcf7-form input[type="submit"].button-xlarge:active,
+.wpcf7-submit.button-xlarge:active {
+    -webkit-box-shadow:  0px 2px 0px #1d6e72, 1px 7px 7px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 	 0px 2px 0px #1d6e72, 1px 7px 7px 3px rgba(0,0,0,0.3);
+    box-shadow: 	 0px 2px 0px #1d6e72, 1px 7px 7px 3px rgba(0,0,0,0.3);					
+}
+
+.button.button-3d.button-xlarge:hover,
+.button.default.button-3d.button-xlarge:hover,
+.button.default.xlarge:hover,
+.t4p-button.button-green.button-3d.button-xlarge:hover,
+.button.green.button-3d.button-xlarge:hover,
+.t4p-button.button-darkgreen.button-3d.button-xlarge:hover,
+.button.darkgreen.button-3d.button-xlarge:hover,
+.t4p-button.button-orange.button-3d.button-xlarge:hover,
+.button.orange.button-3d.button-xlarge:hover,
+.t4p-button.button-blue.button-3d.button-xlarge:hover,
+.button.blue.button-3d.button-xlarge:hover,
+.t4p-button.button-darkblue.button-3d.button-xlarge:hover,
+.button.darkblue.button-3d.button-xlarge:hover,
+.t4p-button.button-red.button-3d.button-xlarge:hover,
+.button.darkred.button-3d.button-xlarge:hover,
+.t4p-button.button-pink.button-3d.button-xlarge:hover,
+.button.pink.button-3d.button-xlarge:hover,
+.t4p-button.button-darkgray.button-3d.button-xlarge:hover,
+.button.darkgray.button-3d.button-xlarge:hover,
+.t4p-button.button-lightgray.button-3d.button-xlarge:hover,
+.button.lightgray.button-3d.button-xlarge:hover,
+.bbp-submit-wrapper button.button-xlarge:hover,
+.wpcf7-form input[type="submit"].button-xlarge:hover,
+.wpcf7-submit.button-xlarge:hover {
+    -webkit-box-shadow:  0px 5px 0px #313a43, 1px 7px 7px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 	 0px 5px 0px #313a43, 1px 7px 7px 3px rgba(0,0,0,0.3);
+    box-shadow:          0px 5px 0px #313a43, 1px 7px 7px 3px rgba(0,0,0,0.3);					
+}
+
+.t4p-reading-box-container a.button-default,
+button,
+.bootstrap-button,
+input#submit,
+.da-slide .da-link,
+span.more a,
+a.read-more,
+a.comment-reply-link,
+.entry-content a.t4p-button-default,
+.t4p-button,
+.button,
+.button.default,
+.gform_wrapper .gform_button,
+#comment-submit,
+.woocommerce form.checkout #place_order,
+.woocommerce .single_add_to_cart_button,
+#reviews input#submit,
+.woocommerce .login .button,
+.woocommerce .register .button,
+.woocommerce .button.view,
+.woocommerce .wc-backward,
+.entry-content a.woocommerce-Button,
+.bbp-submit-wrapper button,
+.wpcf7-form input[type="submit"],
+.wpcf7-submit,
+input[type="submit"],
+.price_slider_amount button,
+.product-buttons .add_to_cart_button,
+.product-buttons .button.product_type_grouped,
+.product-buttons .button.product_type_simple,
+.product-buttons .button.product_type_external,
+#content .entry-content .product-buttons a:link {
+    color: #f4f4f4;
+}
+
+.t4p-reading-box-container a.button-default:hover,
+button:hover,
+.bootstrap-button:hover,
+input#submit:hover,
+.da-slide .da-link:hover,
+span.more a:hover,
+a.read-more:hover,
+a.comment-reply-link:hover,
+.entry-content a.t4p-button-default:hover,
+.t4p-button:hover,
+.button:hover,
+.button.default:hover,
+.gform_wrapper .gform_button:hover,
+#comment-submit:hover,
+.woocommerce form.checkout #place_order:hover,
+.woocommerce .single_add_to_cart_button:hover,
+#reviews input#submit:hover,
+.woocommerce .login .button:hover,
+.woocommerce .register .button:hover,
+.woocommerce .wc-backward,
+.entry-content a.woocommerce-Button:hover,
+.woocommerce .button.view:hover,
+.bbp-submit-wrapper button:hover,
+.wpcf7-form input[type="submit"]:hover,
+.wpcf7-submit:hover,
+#wrapper a.read-more:hover,
+input[type="submit"]:hover,
+.product-buttons .add_to_cart_button:hover,
+.product-buttons .button.product_type_grouped:hover,
+.product-buttons .button.product_type_simple:hover,
+.product-buttons .button.product_type_external:hover,
+#content .entry-content .product-buttons a:hover {
+    color: #ffffff;
+}
+
+.tagcloud a:hover {
+    color: #ffffff !important;
+}
+
+.t4p-reading-box-container a.button-default,
+input[type="submit"],
+button,
+.button,
+.bootstrap-button,
+input#submit,
+.da-slide .da-link,
+span.more a,
+a.read-more,
+a.comment-reply-link,
+.entry-content a.t4p-button-default,
+.t4p-button.button-flat,
+.home-content-boxes .t4p-button {
+    text-shadow: none;
+}
+
+.t4p-reading-box-container a.button-default,
+button,
+.bootstrap-button,
+input#submit,
+.da-slide .da-link,
+span.more a,
+a.read-more,
+a.comment-reply-link,
+.entry-content a.t4p-button-default,
+.t4p-button,
+.button,
+.button.default,
+.button-default,
+.gform_wrapper .gform_button,
+#comment-submit,
+.woocommerce form.checkout #place_order,
+.woocommerce .single_add_to_cart_button,
+#reviews input#submit,
+.woocommerce .login .button,
+.woocommerce .register .button,
+.woocommerce-message .wc-forward,
+.woocommerce .wc-backward,
+.woocommerce .button.view,
+.bbp-submit-wrapper button,
+.wpcf7-form input[type="submit"],
+.wpcf7-submit,
+#wrapper a.read-more,
+input[type="submit"],
+.price_slider_amount button,
+.product-buttons .add_to_cart_button,
+.product-buttons .button.product_type_grouped,
+.product-buttons .button.product_type_simple,
+.product-buttons .button.product_type_external {
+    border-width: 1px;
+    border-style: solid;
+}
+
+.t4p-reading-box-container a.button-default:hover,
+input[type="submit"]:hover,
+button:hover,
+.button:hover,
+.bootstrap-button:hover,
+input#submit:hover,
+.da-slide .da-link:hover,
+span.more a:hover,
+a.read-more:hover,
+a.comment-reply-link:hover,
+.entry-content a.t4p-button-default:hover,
+.t4p-button:hover,
+.button:hover,
+.button.default:hover,
+.t4p-button.button-default:hover,
+#wrapper a.read-more:hover,
+.t4p-accordian .panel-title a.active,
+.price_slider_amount button:hover,
+.button:focus,
+.button:active {
+    border-width: 1px;
+    border-style: solid;
+}
+
+.t4p-reading-box-container a.button-default,
+button,
+.button,
+.bootstrap-button,
+input#submit,
+.da-slide .da-link,
+span.more a,
+a.read-more,
+a.comment-reply-link,
+.entry-content a.t4p-button-default,
+.t4p-button,
+.button.default,
+.button-default,
+.gform_wrapper .gform_button,
+#comment-submit,
+.woocommerce form.checkout #place_order,
+.woocommerce .single_add_to_cart_button,
+#reviews input#submit,
+.woocommerce .login .button,
+.woocommerce .register .button,
+.woocommerce-message .wc-forward,
+.woocommerce .wc-backward,
+.woocommerce .button.view,
+.bbp-submit-wrapper button,
+.wpcf7-form input[type="submit"],
+.wpcf7-submit,
+#wrapper a.read-more,
+.woocommerce-pagination .current,
+.t4p-accordian .panel-title a.active,
+input[type="submit"],
+.price_slider_amount button,
+.product-buttons .add_to_cart_button,
+.product-buttons .button.product_type_grouped,
+.product-buttons .button.product_type_simple,
+.product-buttons .button.product_type_external,
+.button:focus,
+.button:active {
+    border-color: #0bb697;
+}
+
+.t4p-reading-box-container a.button-default:hover,
+button:hover,
+.bootstrap-button:hover,
+input#submit:hover,
+.da-slide .da-link:hover,
+span.more a:hover,
+a.read-more:hover,
+a.comment-reply-link:hover,
+.entry-content a.t4p-button-default:hover,
+.t4p-button:hover,
+.button:hover,
+.button.default:hover,
+.button-default:hover,
+.gform_wrapper .gform_button:hover,
+#comment-submit:hover,
+.woocommerce form.checkout #place_order:hover,
+.woocommerce .single_add_to_cart_button:hover,
+.woocommerce-message .wc-forward:hover,
+.woocommerce .wc-backward:hover,
+.woocommerce .button.view:hover,
+#reviews input#submit:hover,
+.woocommerce .login .button:hover,
+.woocommerce .register .button:hover,
+.bbp-submit-wrapper button:hover,
+.wpcf7-form input[type="submit"]:hover,
+.wpcf7-submit:hover,
+#wrapper a.read-more:hover,
+.woocommerce-pagination .current:hover,
+input[type="submit"]:hover,
+.price_slider_amount button:hover,
+.product-buttons .add_to_cart_button:hover,
+.product-buttons .button.product_type_grouped:hover,
+.product-buttons .button.product_type_simple:hover,
+.product-buttons .button.product_type_external:hover {
+    border-color: #313a43 !important;
+}
+
+.t4p-reading-box-container a.button-default,
+button,
+.bootstrap-button,
+input#submit,
+.da-slide .da-link,
+span.more a,
+a.read-more,
+a.comment-reply-link,
+.entry-content a.t4p-button-default,
+.t4p-button,
+.button,
+.button.default,
+#comment-submit,
+.woocommerce form.checkout #place_order,
+.woocommerce .single_add_to_cart_button,
+#reviews input#submit,
+.woocommerce .evolve-shipping-calculator-form .button,
+.woocommerce .login .button,
+.woocommerce .register .button,
+.woocommerce-message .wc-forward,
+.woocommerce .wc-backward,
+.woocommerce .button.view,
+.bbp-submit-wrapper button,
+.wpcf7-form input[type="submit"],
+.wpcf7-submit,
+a.read-more,
+input[type="submit"],
+.price_slider_amount button,
+.product-buttons .add_to_cart_button,
+.product-buttons .button.product_type_grouped,
+.product-buttons .button.product_type_simple,
+.product-buttons .button.product_type_external {
+    border-radius: 4px;
+}
+
+.t4p-reading-box-container a.button-default,
+button,
+.bootstrap-button,
+input#submit,
+.da-slide .da-link,
+span.more a,
+a.read-more,
+a.comment-reply-link,
+.entry-content a.t4p-button-default,
+.t4p-button,
+.reading-box .button,
+.continue.button,
+#wrapper .portfolio-one .button,
+#wrapper .comment-submit,
+#reviews input#submit,
+.comment-form input[type="submit"],
+.button,
+.button-default,
+.button.default,
+a.read-more,
+.tagcloud a:hover,
+h5.toggle.active a,
+h5.toggle.active a:hover,
+span.more a,
+.project-content .project-info .project-info-box a.button,
+input[type="submit"],
+.price_slider_amount button,
+.gform_wrapper .gform_button,
+.woocommerce-pagination .current,
+.widget_shopping_cart_content .buttons a,
+.woocommerce-success-message a.button,
+.woocommerce .order-again .button,
+.woocommerce-message .wc-forward,
+.woocommerce .wc-backward,
+.woocommerce .button.view,
+.product-buttons .add_to_cart_button,
+.product-buttons .button.product_type_grouped,
+.product-buttons .button.product_type_simple,
+.product-buttons .button.product_type_external,
+.wpcf7-form input.button,
+.wpcf7-form input[type="submit"],
+.wpcf7-submit,
+.woocommerce .single_add_to_cart_button,
+.woocommerce .button.view,
+.woocommerce .shipping-calculator-form .button,
+.woocommerce form.checkout #place_order,
+.woocommerce .checkout_coupon .button,
+.woocommerce .login .button,
+.woocommerce .register .button,
+.woocommerce .evolve-order-details .order-again .button,
+.t4p-accordian .panel-title a.active {
+    background: #0bb697;
+		
+    background-image: -webkit-gradient( linear, left bottom, left top, from( #0bb697 ), to( #0bb697 ) );
+    background-image: -webkit-linear-gradient( bottom, #0bb697, #0bb697 );
+    background-image:    -moz-linear-gradient( bottom, #0bb697, #0bb697 );
+    background-image:      -o-linear-gradient( bottom, #0bb697, #0bb697 );
+    background-image: linear-gradient( to top, #0bb697, #0bb697 );	
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0bb697', endColorstr='#0bb697' );
+
+}
+
+.t4p-reading-box-container a.button-default:hover,	
+input[type="submit"]:hover, 
+button:hover, 
+.bootstrap-button:hover,
+input#submit:hover, 
+.da-slide .da-link:hover, 
+span.more a:hover,
+a.read-more:hover,	
+a.comment-reply-link:hover,	
+.entry-content a.t4p-button-default:hover,	
+.t4p-button:hover,
+#wrapper .portfolio-one .button:hover,
+#wrapper .comment-submit:hover,
+#reviews input#submit:hover,
+.comment-form input[type="submit"]:hover,
+.wpcf7-form input[type="submit"]:hover,
+.wpcf7-submit:hover,
+.bbp-submit-wrapper button:hover,
+.button:hover,
+.button-default:hover,
+.button.default:hover,
+.price_slider_amount button:hover,
+.gform_wrapper .gform_button:hover,
+.woocommerce .single_add_to_cart_button:hover,
+.woocommerce .shipping-calculator-form .button:hover,
+.woocommerce form.checkout #place_order:hover,
+.woocommerce .checkout_coupon .button:hover,
+.woocommerce .login .button:hover,
+.woocommerce .register .button:hover,
+.woocommerce .evolve-order-details .order-again .button:hover,
+.woocommerce .button.view:hover,
+.reading-box .button:hover, 
+.continue.button:hover, 
+#wrapper .comment-form input[type="submit"]:hover,
+.comment-form input[type="submit"]:hover,
+.button:hover,
+.button .lightgray:hover,
+a.read-more:hover,
+span.more a:hover, 
+a.button:hover, 
+.woocommerce-pagination .page-numbers.current:hover,
+.product-buttons .add_to_cart_button:hover,
+.product-buttons .button.product_type_grouped:hover, 
+.product-buttons .button.product_type_simple:hover,
+.product-buttons .button.product_type_external:hover {
+    background: #313a43;
+
+    background-image: -webkit-gradient( linear, left bottom, left top, from( #313a43 ), to( #313a43 ) );
+    background-image: -webkit-linear-gradient( bottom, #313a43, #313a43 );
+    background-image:    -moz-linear-gradient( bottom, #313a43, #313a43 );
+    background-image:      -o-linear-gradient( bottom, #313a43, #313a43 );
+    background-image: linear-gradient( to top, #313a43, #313a43 );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=\#313a43', endColorstr=\#313a43');
+
+}
+
+/* Extra small devices (phones, <768px) */
+
+@media (max-width: 768px) {
+    .da-slide h2,
+    #bootstrap-slider .carousel-caption h2 {
+        font-size: 100%;
+        letter-spacing: 1px;
+    }
+    #slide_holder .featured-title a {
+        font-size: 80%;
+        letter-spacing: 1px;
+    }
+    .da-slide p,
+    #slide_holder p,
+    #bootstrap-slider .carousel-caption p {
+        font-size: 90%;
+    }
+}
+
+
+/* Small devices (tablets, 768px) */
+
+@media (min-width: 768px) {
+    .da-slide h2 {
+        font-size: 180%;
+        letter-spacing: 0;
+    }
+    #slide_holder .featured-title a {
+        font-size: 120%;
+        letter-spacing: 0;
+    }
+    .da-slide p,
+    #slide_holder p {
+        font-size: 100%;
+    }
+}
+
+
+/* Large devices (large desktops) */
+
+@media (min-width: 992px) {
+    .da-slide h2 {
+        font-size: 36px;
+        line-height: 1em;
+    }
+    #slide_holder .featured-title a {
+        font-size: 36px;
+        line-height: 1em;
+    }
+    .da-slide p {
+        font-size: 18px;
+    }
+    #slide_holder p {
+        font-size: 18px;
+    }
+}
+
+.woocommerce form.checkout .col-2, 
+.woocommerce form.checkout #order_review_heading, 
+.woocommerce form.checkout #order_review {
+    display: none;
+}
+
+    ul.nav-menu li.current-menu-item > a,
+    ul.nav-menu li.current-menu-ancestor > a,
+    ul.nav-menu li.current-menu-ancestor > a span,
+    ul.nav-menu li.current-menu-item > a span,
+    ul.nav-menu li.current-menu-item > .sf-with-ul::after,
+    ul.nav-menu li.current-menu-ancestor > .sf-with-ul::after,
+    ul.nav-menu li.current-menu-item > a.sf-with-ul::after,
+    .sticky-header ul.nav-menu li.current-menu-item > a {
+        color: #fff ;
+    }
+
+.page-title-container {
+    border-color: #f0f0f0;
+}
+
+.page-title-container {
+    background-image: url();
+}
+
+#search-text,
+input#s,
+#respond input#author, 
+#respond input#url, 
+#respond input#email, 
+#respond textarea,
+#comment-input input,
+#comment-textarea textarea,
+.comment-form-comment textarea,
+.input-text,
+.post-password-form .password,
+.wpcf7-form .wpcf7-text,
+.wpcf7-form .wpcf7-quiz,
+.wpcf7-form .wpcf7-number,
+.wpcf7-form textarea,
+.wpcf7-form .wpcf7-select,
+.wpcf7-captchar,
+.wpcf7-form .wpcf7-date,
+.gform_wrapper .gfield input[type=text],
+.gform_wrapper .gfield input[type=email],
+.gform_wrapper .gfield textarea,
+.gform_wrapper .gfield select,
+#bbpress-forums .bbp-search-form #bbp_search,
+.bbp-reply-form input#bbp_topic_tags,
+.bbp-topic-form input#bbp_topic_title,
+.bbp-topic-form input#bbp_topic_tags,
+.bbp-topic-form select#bbp_stick_topic_select,
+.bbp-topic-form select#bbp_topic_status_select,
+#bbpress-forums div.bbp-the-content-wrapper textarea.bbp-the-content,
+.main-nav-search-form input,
+.search-page-search-form input,
+.chzn-container-single .chzn-single,
+.chzn-container .chzn-drop,
+.evolve-select-parent,
+.evolve-select-parent select,
+.evolve-select-parent .evolve-select-arrow,
+.evolve-select-parent .country_to_state,
+.evolve-select-parent .state_select,
+#wrapper .select-arrow,
+#lang_sel_click a.lang_sel_sel,
+#lang_sel_click ul ul a,
+#lang_sel_click ul ul a:visited,
+#lang_sel_click a,
+#lang_sel_click a:visited,
+#wrapper .search-field input,
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=file],
+textarea,
+select {
+    background-color: #ffffff;
+}
+ 
+#search-text,   
+input#s,
+input#s .placeholder,
+#comment-input input,
+#comment-textarea textarea,
+#comment-input .placeholder,
+#comment-textarea .placeholder,
+.comment-form-comment textarea,
+.input-text,
+.post-password-form .password,
+.wpcf7-form .wpcf7-text,
+.wpcf7-form .wpcf7-quiz,
+.wpcf7-form .wpcf7-number,
+.wpcf7-form textarea,
+.wpcf7-form .wpcf7-select,
+.wpcf7-select-parent .select-arrow,
+.wpcf7-captchar,
+.wpcf7-form .wpcf7-date,
+.gform_wrapper .gfield input[type=text],
+.gform_wrapper .gfield input[type=email],
+.gform_wrapper .gfield textarea,
+.gform_wrapper .gfield select,
+#bbpress-forums .bbp-search-form #bbp_search,
+.bbp-reply-form input#bbp_topic_tags,
+.bbp-topic-form input#bbp_topic_title,
+.bbp-topic-form input#bbp_topic_tags,
+.bbp-topic-form select#bbp_stick_topic_select,
+.bbp-topic-form select#bbp_topic_status_select,
+#bbpress-forums div.bbp-the-content-wrapper textarea.bbp-the-content,
+.main-nav-search-form input,
+.search-page-search-form input,
+.chzn-container-single .chzn-single,
+.chzn-container .chzn-drop,
+.evolve-select-parent,
+.evolve-select-parent select,
+.evolve-select-parent .country_to_state,
+.evolve-select-parent .state_select,
+.select2-container .select2-choice>.select2-chosen,
+#wrapper .search-field input,
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=file],
+textarea,
+select {
+    color: #888888;
+}
+
+input#s::-webkit-input-placeholder,
+#comment-input input::-webkit-input-placeholder,
+.post-password-form .password::-webkit-input-placeholder,
+#comment-textarea textarea::-webkit-input-placeholder,
+.comment-form-comment textarea::-webkit-input-placeholder,
+.input-text::-webkit-input-placeholder {
+    color: #888888;
+}
+
+input#s:-moz-placeholder,
+#comment-input input:-moz-placeholder,
+.post-password-form .password::-moz-input-placeholder,
+#comment-textarea textarea:-moz-placeholder,
+.comment-form-comment textarea:-moz-placeholder,
+.input-text:-moz-placeholder,
+input#s:-ms-input-placeholder,
+#comment-input input:-ms-input-placeholder,
+.post-password-form .password::-ms-input-placeholder,
+#comment-textarea textarea:-moz-placeholder,
+.comment-form-comment textarea:-ms-input-placeholder,
+.input-text:-ms-input-placeholder {
+    color: #888888;
+}
+
+#search-text,
+input#s,
+#respond input#author, 
+#respond input#url, 
+#respond input#email, 
+#respond textarea,
+#comment-input input,
+#comment-textarea textarea,
+.comment-form-comment textarea,
+.input-text,
+.post-password-form .password,
+.wpcf7-form .wpcf7-text,
+.wpcf7-form .wpcf7-quiz,
+.wpcf7-form .wpcf7-number,
+.wpcf7-form textarea,
+.wpcf7-form .wpcf7-select,
+.wpcf7-select-parent .select-arrow,
+.wpcf7-captchar,
+.wpcf7-form .wpcf7-date,
+.gform_wrapper .gfield input[type=text],
+.gform_wrapper .gfield input[type=email],
+.gform_wrapper .gfield textarea,
+.gform_wrapper .gfield_select[multiple=multiple],
+.gform_wrapper .gfield select,
+.gravity-select-parent .select-arrow,
+.select-arrow,
+#bbpress-forums .quicktags-toolbar,
+#bbpress-forums .bbp-search-form #bbp_search,
+.bbp-reply-form input#bbp_topic_tags,
+.bbp-topic-form input#bbp_topic_title,
+.bbp-topic-form input#bbp_topic_tags,
+.bbp-topic-form select#bbp_stick_topic_select,
+.bbp-topic-form select#bbp_topic_status_select,
+#bbpress-forums div.bbp-the-content-wrapper textarea.bbp-the-content,
+#wp-bbp_topic_content-editor-container,
+#wp-bbp_reply_content-editor-container,
+.main-nav-search-form input,
+.search-page-search-form input,
+.chzn-container-single .chzn-single,
+.chzn-container .chzn-drop,
+.evolve-select-parent,
+.evolve-select-parent select,
+.evolve-select-parent select2-container,
+.evolve-select-parent .evolve-select-arrow,
+.evolve-select-parent .country_to_state,
+.evolve-select-parent .state_select,
+#lang_sel_click a.lang_sel_sel,
+#lang_sel_click ul ul a,
+#lang_sel_click ul ul a:visited,
+#lang_sel_click a,
+#lang_sel_click a:visited,
+#wrapper .search-field input,
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=file],
+textarea,
+select {
+    border-color: #E0E0E0;
+}
+  
+@media (min-width: 992px) {
+    .home-content-boxes .col-md-3.content-box {
+        padding-top: 40px;
+        padding-right: 30px;
+        padding-bottom: 40px;
+        padding-left: 30px;
+    }
+}
+
+@media (min-width: 1220px) {
+    #wrapper .t4p-megamenu-wrapper.col-span-1 {
+        width: 300px;
+    }
+    #wrapper .t4p-megamenu-wrapper.col-span-2 {
+        width: 600px;
+    }
+    #wrapper .t4p-megamenu-wrapper.col-span-3 {
+        width: 900px;
+    }
+    #wrapper .t4p-megamenu-wrapper {
+        width: 1200px;
+    }
+}
+
+#wrapper .t4p-megamenu-wrapper .t4p-megamenu-title {
+    font-family: Roboto;
+    font-size: 15px;
+    color: ;
+    text-transform: none;
+}
+
+#wrapper .t4p-megamenu-wrapper ul li .t4p-megamenu-title:hover,
+#wrapper .t4p-megamenu-wrapper ul li:hover > .t4p-megamenu-title {
+    color: #fff ;
+}
+
+#wrapper .t4p-megamenu-wrapper .t4p-megamenu-bullet,
+.t4p-megamenu-bullet {
+    border-left: 3px solid ;
+}
+
+ul.nav-menu > li {
+    float: left;
+}
+
+ul.nav-menu > li.t4p-dropdown-menu {
+    position: relative;
+}
+
+ul.nav-menu > li.t4p-dropdown-menu li {
+    position: relative;
+    width: 100%;
+}
+
+ul.nav-menu li.t4p-dropdown-menu li:hover ul,
+ul.nav-menu li.t4p-dropdown-menu li.nav-hover ul,
+ul.nav-menu li.t4p-dropdown-menu li li:hover ul,
+ul.nav-menu li.t4p-dropdown-menu li li.nav-hover ul,
+ul.nav-menu li.t4p-dropdown-menu li li li:hover ul,
+ul.nav-menu li.t4p-dropdown-menu li li li.nav-hover ul {
+    left: 14em;
+}
+
+ul.nav-menu li.t4p-dropdown-menu ul {
+    left: 0px;
+    width: 14em;
+}
+
+ul.nav-menu .t4p-megamenu-menu .widget-content a {
+    color:  ;
+}
+
+ul.nav-menu .t4p-megamenu-menu li .widget-content ul,
+ul.nav-menu .t4p-megamenu-menu li:hover .widget-content ul {
+    background: transparent;
+}
+
+.center-menu ul.nav-menu li {
+    display: block;
+}
+
+#wrapper .t4p-megamenu-wrapper .t4p-megamenu-submenu {
+    border-right-color: #090009;
+}
+
+.t4p-megamenu-wrapper.col-span-1,
+.t4p-megamenu-wrapper.col-span-2,
+.t4p-megamenu-wrapper.col-span-3 {
+    margin-left: -8;
+}
+
+ul.nav-menu li li:hover .t4p-megamenu-title,
+ul.nav-menu li li:hover .t4p-megamenu-title a,
+ul.nav-menu li li.current-menu-item .t4p-megamenu-title, 
+ul.nav-menu li li.current-menu-item .t4p-megamenu-title a, 
+ul.nav-menu li li.current-menu-ancestor .t4p-megamenu-title,
+ul.nav-menu li li.current-menu-ancestor .t4p-megamenu-title a {
+    color: #fff !important;
+}
+
+#bootstrap-slider .layout-left {
+    left: 0;
+    right: 50%;
+    margin-left: 60px;
+}
+
+#bootstrap-slider .carousel-caption {
+    bottom: 12%;
+}
+
+@media (max-width: 540px) {
+    #bootstrap-slider .layout-left {
+        left: 0;
+        margin-left: 60px;
+        padding-bottom: 0px;
+    }
+    #bootstrap-slider .carousel-caption {
+        bottom: 5%;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    #bootstrap-slider .layout-left {
+        left: 20px;
+        right: 20px;
+        margin: 0;
+    }
+}
+
+#bootstrap-slider .carousel-caption p {
+    background: rgba(0, 0, 0, .7);
+}
+
+#bootstrap-slider .carousel-control {
+    left: 60px;
+    bottom: 6%;
+}
+
+#bootstrap-slider .right.carousel-control {
+    left: 100px;
+}
+
+.page-title-container {
+    background-color: #f9f9f9;
+}
+
+.page-title-container {
+    padding: 25px 0px;
+}
+li { 
+    margin: 5px 0;  
+}
+
+.dd-selected-text {
+    float: right !important;
+}
+
+.header, .footer {
+    background-image: url(../wp-content/themes/evolve/library/media/images/pattern/pattern_2.png) !important;
+}
+
+.woocommerce-menu-holder {
+    float: left;
+}
+
+.container-menu {
+    z-index: auto;
+}
+
+#search-text-top {
+    position: absolute;
+    right: 0;
+}
+
+#search-text-top:focus {
+    position: absolute;
+    right: 0px;
+    left: initial;
+}
+
+@media all and (-ms-high-contrast:none) {
+    #search-text-box #search_label_top,
+    #stickysearch_label {
+        position: absolute;
+        right: 0px;
+    }
+    #search-text-top,
+    #search-stickyfix {
+        margin-right: 0px;
+        position: relative !important;
+    }
+    #search-text-box #search_label_top::after {
+        right: 30px;
+    }
+    #stickysearch-text-box #stickysearch_label::after {
+        right: 15px !important;
+    }
+    #search-text-top:focus,
+    #search-stickyfix:focus {
+        position: relative !important;
+    }
+}
+
+.header .woocommerce-menu {
+    margin-right: 20px;
+    padding: 5px;
+}
+
+@media (max-width: 768px) {
+    .header_v0 .title-container #logo a {
+        padding: 0px;
+    }
+    #search-text-top {
+        background: #fff;
+        font-size: 12px;
+        font-weight: normal;
+        color: #888;
+    }
+    .sc_menu {
+        float: none;
+        text-align: center;
+    }
+    #search-text-top {
+        border: 1px solid #fff;
+        height: 36px;
+        width: 170px;
+    }
+    .woocommerce-menu-holder {
+        float: none;
+    }
+    .header .woocommerce-menu {
+        float: none;
+        margin-right: 0;
+    }
+    .title-container #logo {
+        float: none;
+    }
+    #righttopcolumn,
+    #social,
+    .header a,
+    #tagline,
+    #logo {
+        width: auto;
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .header_v0 div#search-text-box {
+        margin-right: 0px
+    }
+}
+
+.sticky-header ul.t4p-navbar-nav > li {
+    display: inline-block;
+    float: none;
+}
+
+.link-effect .sub-menu a {
+    white-space: normal;
+}
+
+</style>
+<link rel="stylesheet" id="mediacss-css" href="./A Survival Guide to Data Science with R Togaware_files/media.css" type="text/css" media="all">
+<link rel="stylesheet" id="shortcode-css" href="./A Survival Guide to Data Science with R Togaware_files/shortcodes.css" type="text/css" media="all">
+<link rel="stylesheet" id="animations-css" href="./A Survival Guide to Data Science with R Togaware_files/animations.css" type="text/css" media="all">
+<link rel="stylesheet" id="meanmenu-css" href="./A Survival Guide to Data Science with R Togaware_files/meanmenu.css" type="text/css" media="all">
+<link rel="stylesheet" id="redux-google-fonts-evl_options-css" href="./A Survival Guide to Data Science with R Togaware_files/css" type="text/css" media="all">
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/jquery.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/parallax.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/modernizr.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/carousel.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/tipsy.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/fields.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/jquery.infinite-scroll.min.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/jquery.scroll.pack.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/supersubs.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/superfish.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/buttons.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/ddslick.js"></script><style id="css-ddslick" type="text/css">.dd-select{ border-radius:2px; border:solid 1px #ccc; position:relative; cursor:pointer;}.dd-desc { color:#aaa; display:block; overflow: hidden; font-weight:normal; line-height: 1.4em; }.dd-selected{ overflow:hidden; display:block; padding:10px; font-weight:bold;}.dd-pointer{ width:0; height:0; position:absolute; right:10px; top:50%; margin-top:-3px;}.dd-pointer-down{ border:solid 5px transparent; border-top:solid 5px #000; }.dd-pointer-up{border:solid 5px transparent !important; border-bottom:solid 5px #000 !important; margin-top:-8px;}.dd-options{ border:solid 1px #ccc; border-top:none; list-style:none; box-shadow:0px 1px 5px #ddd; display:none; position:absolute; z-index:2000; margin:0; padding:0;background:#fff; overflow:auto;}.dd-option{ padding:10px; display:block; border-bottom:solid 1px #ddd; overflow:hidden; text-decoration:none; color:#333; cursor:pointer;-webkit-transition: all 0.25s ease-in-out; -moz-transition: all 0.25s ease-in-out;-o-transition: all 0.25s ease-in-out;-ms-transition: all 0.25s ease-in-out; }.dd-options > li:last-child > .dd-option{ border-bottom:none;}.dd-option:hover{ background:#f3f3f3; color:#000;}.dd-selected-description-truncated { text-overflow: ellipsis; white-space:nowrap; }.dd-option-selected { background:#f6f6f6; }.dd-option-image, .dd-selected-image { vertical-align:middle; float:left; margin-right:5px; max-width:64px;}.dd-image-right { float:right; margin-right:15px; margin-left:5px;}.dd-container{ position:relative;}​ .dd-selected-text { font-weight:bold}​</style>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/jquery.meanmenu.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/jquery.flexslider.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/modernizr(1).js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/jquery.carouFredSel.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/bootstrap.min.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/tooltip.js"></script>
+<link rel="https://api.w.org/" href="https://togaware.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://togaware.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://togaware.com/wp-includes/wlwmanifest.xml"> 
+
+<link rel="canonical" href="https://togaware.com/onepager/">
+<link rel="shortlink" href="https://togaware.com/?p=49">
+<link rel="alternate" type="application/json+oembed" href="https://togaware.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftogaware.com%2Fonepager%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://togaware.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftogaware.com%2Fonepager%2F&amp;format=xml">
+<script type="text/javascript">
+(function(url){
+	if(/(?:Chrome\/26\.0\.1410\.63 Safari\/537\.31|WordfenceTestMonBot)/.test(navigator.userAgent)){ return; }
+	var addEvent = function(evt, handler) {
+		if (window.addEventListener) {
+			document.addEventListener(evt, handler, false);
+		} else if (window.attachEvent) {
+			document.attachEvent('on' + evt, handler);
+		}
+	};
+	var removeEvent = function(evt, handler) {
+		if (window.removeEventListener) {
+			document.removeEventListener(evt, handler, false);
+		} else if (window.detachEvent) {
+			document.detachEvent('on' + evt, handler);
+		}
+	};
+	var evts = 'contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop keydown keypress keyup mousedown mousemove mouseout mouseover mouseup mousewheel scroll'.split(' ');
+	var logHuman = function() {
+		var wfscr = document.createElement('script');
+		wfscr.type = 'text/javascript';
+		wfscr.async = true;
+		wfscr.src = url + '&r=' + Math.random();
+		(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(wfscr);
+		for (var i = 0; i < evts.length; i++) {
+			removeEvent(evts[i], logHuman);
+		}
+	};
+	for (var i = 0; i < evts.length; i++) {
+		addEvent(evts[i], logHuman);
+	}
+})('//togaware.com/?wordfence_logHuman=1&hid=6D21C1CAF31F3D912BA97105AD4BCE1F');
+</script>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<link rel="icon" href="https://togaware.com/wp-content/uploads/2014/04/cropped-favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="https://togaware.com/wp-content/uploads/2014/04/cropped-favicon-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://togaware.com/wp-content/uploads/2014/04/cropped-favicon-180x180.png">
+<meta name="msapplication-TileImage" content="https://togaware.com/wp-content/uploads/2014/04/cropped-favicon-270x270.png">
+
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" type="text/css" href="https://togaware.com/wp-content/themes/evolve-plus/assets/css/ie.css">
+        <![endif]-->
+
+    <script type="text/javascript" charset="UTF-8" src="./A Survival Guide to Data Science with R Togaware_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./A Survival Guide to Data Science with R Togaware_files/util.js"></script><script type="text/javascript" charset="UTF-8" src="./A Survival Guide to Data Science with R Togaware_files/geocoder.js"></script><script type="text/javascript" charset="UTF-8" src="./A Survival Guide to Data Science with R Togaware_files/stats.js"></script><script type="text/javascript" async="" src="./A Survival Guide to Data Science with R Togaware_files/saved_resource"></script></head><!--END head-->
+
+    
+    <!--BEGIN body-->
+    <body class="page-template-default page page-id-49 has-sidebar">
+                    <div id="wrapper">
+                
+            <div class="menu-back">
+                                <div class="clearfix"></div>
+            </div><!--/.menu-back-->
+
+            <div id="top"></div>
+            <!--BEGIN .header-pattern-->
+<div class="header-pattern">
+    <!--BEGIN .header-border-->
+
+    <div class="header-border">
+
+        <div class="header-border-sticky">
+            <!--BEGIN .header-->
+            <div class="header-bg"></div>
+            <div class="header">
+                <!--BEGIN .container-header-->
+                <div class="container container-header header_v0">
+                    <!--BEGIN #righttopcolumn-->
+                    <div id="righttopcolumn">
+                                                    <!--BEGIN #subscribe-follow-->
+                            <div id="social">
+                                									
+    <ul class="sc_menu">
+            </ul>	
+                                        
+                            </div>
+                            <!--END #subscribe-follow-->
+                        
+                        <!--BEGIN #Woocommerce-->
+                                                <!--END #Woocommerce-->
+                    </div>
+                    <!--END #righttopcolumn-->
+
+                    <div class="header-logo-container"><a href="https://togaware.com/">                                    <img id="logo-image" class="img-responsive normal_logo" alt="Togaware" src="./A Survival Guide to Data Science with R Togaware_files/togaware02tr5.png">
+                                    </a></div>                    <!--BEGIN .title-container-->
+                    <div class="title-container ">
+                                                     
+                    </div>
+                    <!--END .title-container-->
+                </div>
+                <!--END .container-header-->
+            </div>
+            <!--END .header-->
+        </div>
+    </div>
+    <!--END .header-border-->
+</div>
+<!--END .header-pattern-->
+<div class="menu-container header_v0">
+    
+        <div class="menu-header">
+            <div class="menu-header-sticky">
+                <!--BEGIN .container-menu-->
+                <div class="container nacked-menu container-menu">
+                                            <div class="primary-menu col-md-11 col-sm-11">
+                                                            <nav class="nav nav-holder link-effect">
+                                    <div class="nav-menu"><ul class="nav-menu sf-js-enabled sf-arrows">
+<li class="page_item page-item-12"><a href="https://togaware.com/togaware/">Graham’s Blog</a></li>
+<li class="page_item page-item-165"><a href="https://togaware.com/data-mining/">Data Science</a></li>
+<li class="page_item page-item-49 current_page_item"><a href="https://togaware.com/onepager/">OnePageR</a></li>
+<li class="page_item page-item-115"><a href="https://togaware.com/rattle/">Rattle</a></li>
+<li class="page_item page-item-177"><a href="https://togaware.com/gnulinux/">GNU/Linux</a></li>
+<li class="page_item page-item-168"><a href="https://togaware.com/latex/">LaTeX</a></li>
+<li class="page_item page-item-182"><a href="https://togaware.com/ecosysl/">EcoSysl</a></li>
+<li class="page_item page-item-149 page_item_has_children"><a href="https://togaware.com/data-science-resources/" class="sf-with-ul">More</a>
+<ul class="children" style="float: none; width: 9em; display: none;">
+	<li class="page_item page-item-353" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/data-science-resources/bookshelf/" style="float: none; width: auto;">Bookshelf</a></li>
+	<li class="page_item page-item-179" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/data-science-resources/freedom/" style="float: none; width: auto;">Freedom</a></li>
+	<li class="page_item page-item-189" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/data-science-resources/press/" style="float: none; width: auto;">References</a></li>
+	<li class="page_item page-item-20" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/" style="float: none; width: auto;">Togaware</a></li>
+	<li class="page_item page-item-137" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/data-science-resources/testing-rest/" style="float: none; width: auto;">REST</a></li>
+</ul>
+</li>
+<li class="page_item page-item-160 page_item_has_children"><a href="https://togaware.com/about/" class="sf-with-ul">About</a>
+<ul class="children" style="float: none; width: 10.4545em; display: none;">
+	<li class="page_item page-item-196" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/graham-williams/" style="float: none; width: auto;">Graham Williams</a></li>
+	<li class="page_item page-item-276" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/short-bio/" style="float: none; width: auto;">Short Bio</a></li>
+	<li class="page_item page-item-274" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/bio/" style="float: none; width: auto;">Bio</a></li>
+	<li class="page_item page-item-314" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/presentations/" style="float: none; width: auto;">Presentations</a></li>
+	<li class="page_item page-item-258" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/publications/" style="float: none; width: auto;">Publications</a></li>
+</ul>
+</li>
+</ul></div>
+                            <div id="undefined" class="dd-container" style="width: 100%;"><div class="dd-select" style="width: 100%;"><input class="dd-selected-value" type="hidden" value=""><a class="dd-selected"><label class="dd-selected-text"><span class="t4p-icon-menu"></span></label></a></div><ul class="dd-options dd-click-off-close" style="width: 100%;"><li><a class="dd-option dd-option-selected"> <label class="dd-option-text"><span class="t4p-icon-menu"></span></label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/togaware/"> <label class="dd-option-text">Graham’s Blog</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/data-mining/"> <label class="dd-option-text">Data Science</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/onepager/"> <label class="dd-option-text">OnePageR</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/rattle/"> <label class="dd-option-text">Rattle</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/gnulinux/"> <label class="dd-option-text">GNU/Linux</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/latex/"> <label class="dd-option-text">LaTeX</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/ecosysl/"> <label class="dd-option-text">EcoSysl</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/data-science-resources/"> <label class="dd-option-text">More</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/data-science-resources/bookshelf/"> <label class="dd-option-text">Bookshelf</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/data-science-resources/freedom/"> <label class="dd-option-text">Freedom</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/data-science-resources/press/"> <label class="dd-option-text">References</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/"> <label class="dd-option-text">Togaware</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/data-science-resources/testing-rest/"> <label class="dd-option-text">REST</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/about/"> <label class="dd-option-text">About</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/about/graham-williams/"> <label class="dd-option-text">Graham Williams</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/about/short-bio/"> <label class="dd-option-text">Short Bio</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/about/bio/"> <label class="dd-option-text">Bio</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/about/presentations/"> <label class="dd-option-text">Presentations</label></a></li><li><a class="dd-option"> <input class="dd-option-value" type="hidden" value="https://togaware.com/about/publications/"> <label class="dd-option-text">Publications</label></a></li></ul></div></nav>
+                        </div><!-- /.primary-menu -->
+                                                    <!--BEGIN #searchform-->
+                            <form action="https://togaware.com/" method="get" class="searchform ubersearch">
+                                <div id="search-text-box">
+                                    <label class="searchfield col-md-1 col-sm-1" id="search_label_top" for="search-text-top"><input id="search-text-top" type="text" tabindex="1" name="s" class="search" placeholder="Type your search"></label>
+                                </div>
+                            </form>
+                            <div class="clearfix"></div>
+                            <!--END #searchform-->
+                            <header id="header" class="sticky-header  container row sticky" style="">
+    <div class="container">
+        <div id="sticky-logo" style="margin-top: 53px;"><a class="logo-url" href="https://togaware.com/">                    <img id="logo-image" class="img-responsive normal_logo" src="./A Survival Guide to Data Science with R Togaware_files/togaware02tr5.png" alt="Togaware">
+                    </a></div>        <div class="sticky-menu col-md-10 col-sm-10">
+                            <nav class="nav nav-holder link-effect">
+                    <div class="nav-menu"><ul class="nav-menu sf-js-enabled sf-arrows">
+<li class="page_item page-item-12"><a href="https://togaware.com/togaware/">Graham’s Blog</a></li>
+<li class="page_item page-item-165"><a href="https://togaware.com/data-mining/">Data Science</a></li>
+<li class="page_item page-item-49 current_page_item"><a href="https://togaware.com/onepager/">OnePageR</a></li>
+<li class="page_item page-item-115"><a href="https://togaware.com/rattle/">Rattle</a></li>
+<li class="page_item page-item-177"><a href="https://togaware.com/gnulinux/">GNU/Linux</a></li>
+<li class="page_item page-item-168"><a href="https://togaware.com/latex/">LaTeX</a></li>
+<li class="page_item page-item-182"><a href="https://togaware.com/ecosysl/">EcoSysl</a></li>
+<li class="page_item page-item-149 page_item_has_children"><a href="https://togaware.com/data-science-resources/" class="sf-with-ul">More</a>
+<ul class="children" style="float: none; width: auto; display: none;">
+	<li class="page_item page-item-353" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/data-science-resources/bookshelf/" style="float: none; width: auto;">Bookshelf</a></li>
+	<li class="page_item page-item-179" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/data-science-resources/freedom/" style="float: none; width: auto;">Freedom</a></li>
+	<li class="page_item page-item-189" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/data-science-resources/press/" style="float: none; width: auto;">References</a></li>
+	<li class="page_item page-item-20" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/" style="float: none; width: auto;">Togaware</a></li>
+	<li class="page_item page-item-137" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/data-science-resources/testing-rest/" style="float: none; width: auto;">REST</a></li>
+</ul>
+</li>
+<li class="page_item page-item-160 page_item_has_children"><a href="https://togaware.com/about/" class="sf-with-ul">About</a>
+<ul class="children" style="float: none; width: auto; display: none;">
+	<li class="page_item page-item-196" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/graham-williams/" style="float: none; width: auto;">Graham Williams</a></li>
+	<li class="page_item page-item-276" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/short-bio/" style="float: none; width: auto;">Short Bio</a></li>
+	<li class="page_item page-item-274" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/bio/" style="float: none; width: auto;">Bio</a></li>
+	<li class="page_item page-item-314" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/presentations/" style="float: none; width: auto;">Presentations</a></li>
+	<li class="page_item page-item-258" style="white-space: normal; float: none; width: 100%;"><a href="https://togaware.com/about/publications/" style="float: none; width: auto;">Publications</a></li>
+</ul>
+</li>
+</ul></div>
+            </nav>
+        </div>
+                    <!--BEGIN #searchform-->
+            <form action="https://togaware.com/" method="get" class="stickysearchform stickyubersearch">
+                <div id="stickysearch-text-box" class="col-md-1 col-sm-1">
+                    <label class="searchfield" id="stickysearch_label" for="search-stickyfix"><input id="search-stickyfix" type="text" tabindex="1" name="s" class="search" placeholder="Type your search"></label>
+                </div>
+            </form>
+            <div class="clearfix"></div>
+            <!--END #searchform-->
+            </div>
+</header>                </div><!-- /.container -->
+            </div><!-- /.menu-header -->
+        </div>
+        </div>
+ 
+            <div class="menu-container">
+                                    <div class="menu-back">
+                        <div class="sliderblock">
+    </div><!--/.sliderblock-->                        <div style="clear:both;"></div> 
+
+                                                                        
+                    </div><!--/.menu-back-->
+                                    <!--BEGIN .content-->
+                <div class="content singular page pageid-49">
+                                        <!--BEGIN .container-->
+                    <div class="container container-center row">
+                        <!--BEGIN #content-->
+                        <div id="content">
+                            
+<!--BEGIN #primary .hfeed-->
+
+<div id="primary" class=" col-md-8 col-md-8 col-single col-single">
+
+    <ul class="breadcrumbs"><li><a class="home" href="https://togaware.com/">Home</a></li><li>OnePageR</li></ul>
+            <!--BEGIN .hentry-->
+            <div id="post-49" class="post-49 page type-page status-publish hentry p publish first-page untagged">
+                                        <h1 class="entry-title">OnePageR</h1>
+                        
+                <!--BEGIN .entry-content .article-->
+                <div class="entry-content article">
+
+                    <h4>A Survival Guide to Data Science with R</h4>
+<p>Below we weave together a collection of documents that introduce tools for the data scientist—tools that are all part of the <a href="http://www.r-project.org/" target="_blank">R</a> Statistical Software Suite.</p>
+<p>Each module is a&nbsp; collection of one page sections that cover particular aspects of the topic. The modules aim to be a hands-on guide to a specific task that a new user can work through and then used as a reference guide. Each page aims to be a bite sized chunk for hands-on learning, building on what has gone before. Many modules also have a lecture pack and a laboratory session where a number of tasks can be completed. The R code sitting behind each chapter is also provided and can easily be run standalone to replicate the material presented in the chapter.</p>
+<p>The&nbsp; material begins with an overview of how an organisation should go about setting up their Analytics capability and then introduce the Data Scientist to R.</p>
+<p>&nbsp;</p>
+<p>The material here is in various stages of completeness and is always <em>under development</em>! Chapters will change (improve) regularly. All of the material is provided under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a> allowing access to everyone for any purpose (except commercial) and is provided at no cost. Refer to the <a href="http://datamining.togaware.com/">Data Mining Survival Guide</a> or my book on <a href="http://www.amazon.com/gp/product/1441998896/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=togaware-20&amp;linkCode=as2&amp;camp=217145&amp;creative=399373&amp;creativeASIN=1441998896">Data Mining with Rattle and R: The Art of Excavating Data for Knowledge Discovery (Use R)</a> for related material.</p>
+<p>Enjoy!</p>
+<p>The data used across the chapters is available for download as <a href="http://handsondatascience.com/data.zip">data.zip</a>.</p>
+<p><strong>Data Science Templates</strong></p>
+<p>My book, <em>Data Science Quick Start: Knowledge Discovery Through R</em>, introduces the concept of templates for supporting the data scientist. Below are a variety of templates covering different tasks.</p>
+<table class="tg" align="left">
+<tbody>
+<tr>
+<th>Data</th>
+<th>Classification</th>
+<th>Regression</th>
+</tr>
+<tr>
+<td><a href="http://handsondatascience.com/scripts/00_setup.R">00_setup.R</a><br>
+<a href="http://handsondatascience.com/scripts/10_ingest.R">10_ingest.R</a><br>
+<a href="http://handsondatascience.com/scripts/20_observe.R">20_observe.R</a><br>
+<a href="http://handsondatascience.com/scripts/30_prepare.R">30_prepare.R</a><br>
+<a href="http://handsondatascience.com/scripts/40_meta.R">40_meta.R</a><br>
+<a href="http://handsondatascience.com/scripts/50_save.R">50_save.R</a></td>
+<td style="vertical-align: top;"><a href="http://handsondatascience.com/scripts/60_model.R">60_model.R</a><br>
+<a href="http://handsondatascience.com/scripts/62_rpart.R">62_rpart.R</a><br>
+<a href="http://handsondatascience.com/scripts/64_randomForest.R">64_randomForest.R</a><br>
+66_xgboost.R<br>
+68_dnn.R</td>
+<td style="vertical-align: top;">70_model.R<br>
+72_lm.R<br>
+74_rpart<br>
+76_dnn.R</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Part 1: Data Science</strong></p>
+<ol start="1">
+<li>Data Mining, Analytics, and Data Science: <a href="http://handsondatascience.com/DataScienceO.pdf">Chapter</a> – <a href="http://handsondatascience.com/DataScienceO.R">R</a> – <a href="http://handsondatascience.com/DataScienceL.pdf">Lecture</a></li>
+<li>Rattle to R: <a href="http://handsondatascience.com/RattleO.pdf">Chapter</a> – <a href="http://handsondatascience.com/RattleO.R">R</a></li>
+<li>An Introduction to R Programming: Chapter – R</li>
+<li>Literate Data Science with KnitR: <a href="http://handsondatascience.com/KnitRO.pdf">Chapter</a> – <a href="http://handsondatascience.com/KnitRO.R">R</a> – <a href="http://handsondatascience.com/KnitRL.pdf">Lecture</a></li>
+<li>More Basics of R <a href="http://handsondatascience.com/BasicRO.pdf">Chapter</a> – <a href="http://handsondatascience.com/BasicRO.R">R</a></li>
+</ol>
+<p><strong>Part 2: Dealing With Data</strong></p>
+<ol start="6">
+<li>A Template for Preparing Data: <a href="http://handsondatascience.com/DataO.pdf">Chapter</a> – <a href="http://handsondatascience.com/DataO.R">R</a></li>
+<li>Reading Data into R: *Chapter – *<a href="http://handsondatascience.com/ReadO.R">R</a></li>
+<li>Open Access Data via the CKAN API: <a href="http://handsondatascience.com/CkanO.pdf" target="_blank">Chapter</a> – <a href="http://handsondatascience.com/CkanO.R">R</a></li>
+<li>Exploring and Summarising Data: *<a href="http://handsondatascience.com/SummaryO.pdf">Chapter</a> – *<a href="http://handsondatascience.com/SummaryO.R">R</a></li>
+<li>Visualising Data with GGPlot2: *<a href="http://handsondatascience.com/GGPlot2O.pdf">Chapter</a> – *<a href="http://handsondatascience.com/GGPlot2O.R">R</a></li>
+<li>Transforming Data: *<a href="http://handsondatascience.com/TransformO.pdf">Chapter</a> – *<a href="http://handsondatascience.com/TransformO.R">R</a></li>
+<li>Case Study: Analysis of Sea Ports: <a href="http://handsondatascience.com/CaseStudiesO.pdf">Chapter</a> – <a href="http://handsondatascience.com/CaseStudiesO.R">R</a></li>
+<li>Case Study: Web Log Analysis: Chapter – R</li>
+</ol>
+<p><strong>Part 3: Building Models</strong></p>
+<ol start="14">
+<li>A Template for Building Models: <a href="http://handsondatascience.com/ModelsO.pdf">Chapter</a> – <a href="http://handsondatascience.com/ModelsO.R">R</a></li>
+<li>Cluster Analysis: <a href="http://handsondatascience.com/ClustersO.pdf">Chapter</a> – <a href="http://handsondatascience.com/ClustersO.R">R</a> – <a href="http://handsondatascience.com/ClustersL.pdf">Lecture</a></li>
+<li>Association Analysis: <a href="http://handsondatascience.com/ARulesO.pdf">Chapter</a> – <a href="http://handsondatascience.com/ARulesO.R">R</a> – Lecture</li>
+<li>Decision Trees: *<a href="http://handsondatascience.com/DTreesL.pdf">Lecture</a> – *<a href="http://handsondatascience.com/DTreesO.pdf">Chapter</a> – *<a href="http://handsondatascience.com/DTreesO.R">R</a> – *<a href="http://handsondatascience.com/DTreesG.pdf">Rattle</a></li>
+<li>Ensembles of Decision Trees: *<a href="http://handsondatascience.com/EnsemblesL.pdf">Lecture</a> – *<a href="http://handsondatascience.com/EnsemblesO.pdf">Chapter</a> – *<a href="http://handsondatascience.com/EnsemblesO.R">R</a></li>
+<li>Support Vector Machines</li>
+<li>Neural Networks</li>
+<li><span class="smallipop sampleElement" title="Naive Bayes is a probabilistic learner that is effective for classification tasks.">Naive Bayes: <a href="http://handsondatascience.com/BayesO.pdf">Chapter</a> – <a href="http://handsondatascience.com/BayesO.R">R</a></span></li>
+<li>Multivariate Adaptive Regression Splines: <a href="http://handsondatascience.com/MarsO.pdf">Chapter</a> – <a href="http://handsondatascience.com/MarsO.R">R</a></li>
+<li>Evaluating Models: *<a href="http://handsondatascience.com/EvaluateO.pdf">Chapter</a> – *<a href="http://handsondatascience.com/EvaluateO.R">R</a></li>
+<li>Scoring (R)</li>
+<li>PMML (R) Exporting Models for Deployment</li>
+</ol>
+<p><strong>Part 4: Advanced R and Analytics</strong></p>
+<ol start="26">
+<li>Strings: <a href="http://handsondatascience.com/StringsO.pdf">Chapter</a>, <a href="http://handsondatascience.com/StringsO.R">R</a></li>
+<li>Dates and Time: *<a href="http://handsondatascience.com/DateTimeO.pdf">Chapter</a> – *<a href="http://handsondatascience.com/DateTimeO.R">R</a></li>
+<li>Spatial Data *<a href="http://handsondatascience.com/MapsO.pdf">Chapter</a> – *<a href="http://handsondatascience.com/MapsO.R">R</a></li>
+<li>Big Data *<a href="http://handsondatascience.com/BigDataO.pdf">Chapter</a> – *<a href="http://handsondatascience.com/BigDataO.R">R</a></li>
+<li>Exploring Different Plots: <a href="http://handsondatascience.com/PlotsO.pdf">Chapter</a> – <a href="http://handsondatascience.com/PlotsO.R">R</a></li>
+<li>Writing Functions: <a href="http://handsondatascience.com/FunctionsO.pdf">Chapter</a> – <a href="http://handsondatascience.com/FunctionsO.R">R</a></li>
+<li>Parallel Processing: <a href="http://handsondatascience.com/ParallelO.pdf">Chapter</a> – <a href="http://handsondatascience.com/ParallelO.R">R</a></li>
+<li>Environments: *<a href="http://handsondatascience.com/EnvironmentsO.pdf">Chapter</a> – <a href="http://handsondatascience.com/EnvironmentsO.R">R</a></li>
+<li>Text Mining: *<a href="http://handsondatascience.com/TextMiningO.pdf">Chapter</a> – *<a href="http://handsondatascience.com/TextMiningO.R">R</a> – Corpus as <a href="http://handsondatascience.com/data/corpus.tar.gz">tar.gz</a> or <a href="http://handsondatascience.com/data/corpus.zip">zip</a></li>
+<li>Social Network Analysis: Chapter – R</li>
+<li>Genetic Programming: Chapter – R</li>
+<li>Time Series Analysis: <a href="http://handsondatascience.com/TimeSericesO.pdf">Chapter</a> – <a href="http://handsondatascience.com/TimeSeriesO.R">R</a></li>
+</ol>
+<p><strong>Part 5: Appendicies</strong></p>
+<ol start="38">
+<li>Doing R with Style: <a href="http://handsondatascience.com/StyleO.pdf">Chapter</a> – <a href="http://handsondatascience.com/StyleO.R">R</a></li>
+<li>Packaging (R) Pulling it Together into a Package: <a href="http://handsondatascience.com/PackageO.pdf">Chapter</a></li>
+</ol>
+<hr>
+<p>Other great resources for modular approaches to learning R include:</p>
+<ul>
+<li><a href="http://jaredknowles.com/r-bootcamp/">Jared Knowles’ R-Bootcamp</a></li>
+</ul>
+<hr>
+<p>Other Togaware resources:</p>
+<ul>
+<li>Open Source Machine Learning with R – <a href="http://2017.fossasia.org/index.html">FOSSAsia 2017</a> – (<a href="https://togaware.com/access/20170318_gjw_fossasia.pdf">PDF</a>)</li>
+<li><a href="http://handsondatascience.com/DataMiningL.pdf">Introducing Data Mining — Lecture</a></li>
+<li><a href="http://togaware.com/access/141007_canrug_release.pdf">Ensembles in the ATO – October 2014</a></li>
+<li><a href="http://icfoss.org/R/">International Centre for Free and Open Source Software – May 2015</a> (<a href="http://togaware.com/access/KeralaWorkshop.pdf">PDF</a>)</li>
+<li><a href="http://datamining.ws.gc.cuny.edu/2014/03/24/graham-williams-workshop/">CUNY NSF Workshop – March 2014</a> (<a href="http://togaware.com/access/1403_CUNYWorkshop.pdf">PDF</a>)</li>
+<li><a href="http://togaware.com/access/AusDMTutorial.pdf">AusDM-2013 Tutorial – November 2013</a></li>
+<li><a href="http://togaware.com/access/HefeiTutorial.pdf">IDEAL-2013 Tutorial – October 2013</a></li>
+</ul>
+<hr>
+<p>Other resources include:</p>
+<ul>
+<li><a href="http://www.whoishostingthis.com/resources/r-programming/">Resources from WhoIsHostingThis</a></li>
+</ul>
+<hr>
+<p>Local package archive:</p>
+<pre>install.packages("rattle", repos="http://rattle.togaware.com", type="source")
+install.packages("wsrf", repos="http://rattle.togaware.com", type="source")
+install.packages("wsrpart", repos="http://rattle.togaware.com", type="source")
+install.packages("wskm", repos="http://rattle.togaware.com", type="source")
+</pre>
+<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img class="img-responsive" src="./A Survival Guide to Data Science with R Togaware_files/88x31.png" alt="Creative Commons License"></a></p>
+<p><!--script type="text/javascript"><!X-X- google_ad_client = "ca-pub-3609163581471493"; /* jun2014 short */ google_ad_slot = "5094147040"; google_ad_width = 320; google_ad_height = 50; //X-X->
+</script>
+<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script--></p>
+
+                    <div class="clearfix"></div>
+
+                </div><!--END .entry-content .article-->
+
+                <!-- Auto Discovery Trackbacks
+                <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:dc="http://purl.org/dc/elements/1.1/"
+			xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+		<rdf:Description rdf:about="https://togaware.com/onepager/"
+    dc:identifier="https://togaware.com/onepager/"
+    dc:title="OnePageR"
+    trackback:ping="https://togaware.com/onepager/trackback/" />
+</rdf:RDF>                -->
+                <!--END .hentry-->
+            </div>
+
+            
+<div id="comments">   
+            <!--BEGIN #comments-->
+
+        <div class="comments-title-back"><h3 class="comment-title"><span class="comment-title-meta no-comment">No Comments Yet</span></h3><span class="comment-feed-link"><a class="tipsytext follow-replies" href="https://togaware.com/onepager/feed/" name="Follow replies"><i class="t4p-icon-social-rss"></i></a></span><div class="clearfix"></div></div>        
+                    <div class="comments-title-back pings-title"><h3 class="pings-title"><span class="pings-title-meta">23 Pings/Trackbacks</span></h3>
+                <div class="clearfix"></div>
+            </div>
+                
+            
+
+            
+            <!--BEGIN .pings-list-->
+            <ol class="comment-list">
+                    <!--BEING .pings-->
+    <li class="pingback comment first-comment reader reader-text-mining-in-r---granger-moch" id="ping-114">
+    <a href="http://grangermoch.com/text-mining-in-r/" rel="external nofollow" class="url">Text Mining in R - Granger Moch</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-114">14 October 2015 at 10:01 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-how-to-learn-r-|-mubashir-qasim" id="ping-117">
+    <a href="http://mqasim.me/?p=50401" rel="external nofollow" class="url">How to Learn R | Mubashir Qasim</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-117">10 December 2015 at 10:19 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-【r学习路线】怎样学习r-|-王路情博客—数据科学家" id="ping-118">
+    <a href="http://www.wangluqing.com/2015/12/28/r-learning-path/" rel="external nofollow" class="url">【R学习路线】怎样学习R | 王路情博客—数据科学家</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-118">28 December 2015 at 10:10 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-【译文】怎样学习r（下）-|-ppv课博客" id="ping-119">
+    <a href="http://www.ppvke.com/Blog/archives/26673" rel="external nofollow" class="url">【译文】怎样学习R（下） | PPV课博客</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-119">29 December 2015 at 7:57 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-data-mining---processing-datavis-|-pearltrees" id="ping-120">
+    <a href="http://www.pearltrees.com/mesmoiron/data-mining/id10072851/item165867258" rel="external nofollow" class="url">Data mining - Processing DataVis | Pearltrees</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-120">13 January 2016 at 5:04 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-learning-r-in-seven-simple-steps-—-dr.-jonathan-jenkins,-dba,-cssbb,-msqa" id="ping-122">
+    <a href="http://www.jonathanjenkins.org/learning-r-in-seven-simple-steps/" rel="external nofollow" class="url">Learning R in Seven Simple Steps — Dr. Jonathan Jenkins, DBA, CSSBB, MSQA</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-122">24 April 2016 at 3:32 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-learning-r-in-seven-simple-steps-|-tech-news" id="ping-123">
+    <a href="http://ksav.com.np/tech/2016/04/25/learning-r-in-seven-simple-steps/" rel="external nofollow" class="url">Learning R in Seven Simple Steps | Tech News</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-123">25 April 2016 at 7:20 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-learning-r-in-seven-simple-steps" id="ping-124">
+    <a href="http://importknowledge.com/learning-r-in-seven-simple-steps/" rel="external nofollow" class="url">Learning R in Seven Simple Steps</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-124">27 May 2016 at 6:46 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-batish" id="ping-125">
+    <a href="https://batishblog.wordpress.com/2016/04/13/422/" rel="external nofollow" class="url">batish</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-125">1 June 2016 at 6:49 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-r-tutorials-–-tutorials-for-iot-makers" id="ping-128">
+    <a href="https://iotmakerblog.wordpress.com/2016/07/03/r-tutorials/" rel="external nofollow" class="url">R tutorials – Tutorials For IoT-Makers</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-128">3 July 2016 at 7:05 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-los-7-pasos-para-convertirte-en-un-data-scientist-en-r.-un-camino-de-aprensizaje-ordenado-y-sin-agobios---conceptos-claros" id="ping-134">
+    <a href="http://conceptosclaros.com/los-7-pasos-para-convertirte-en-data-scientist-en-r/" rel="external nofollow" class="url">Los 7 pasos para convertirte en un data scientist en R. Un camino de aprensizaje ordenado y sin agobios - Conceptos Claros</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-134">2 November 2016 at 5:46 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-one-page-r:-a-survival-guide-to-data-science-with-r-–-cloud-data-architect" id="ping-136">
+    <a href="http://www.dataarchitect.cloud/one-page-r-a-survival-guide-to-data-science-with-r/" rel="external nofollow" class="url">One-page R: a survival guide to data science with R – Cloud Data Architect</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-136">18 November 2016 at 7:50 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-writing-good-r-code-and-writing-well-–-rstudio" id="ping-138">
+    <a href="https://www.rstudio.com/rviews/2016/12/02/writing-good-r-code-and-writing-well/" rel="external nofollow" class="url">Writing Good R Code and Writing Well – RStudio</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-138">2 December 2016 at 7:29 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-writing-good-r-code-and-writing-well---use-r!use-r!" id="ping-139">
+    <a href="https://use-r.com/writing-good-r-code-and-writing-well/" rel="external nofollow" class="url">Writing Good R Code and Writing Well - Use-R!Use-R!</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-139">3 December 2016 at 10:15 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-writing-good-r-code-and-writing-well-–-mubashir-qasim" id="ping-140">
+    <a href="http://mqasim.me/?p=97443" rel="external nofollow" class="url">Writing Good R Code and Writing Well – Mubashir Qasim</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-140">3 December 2016 at 2:18 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-consells-per-l’escriptura-del-programari-|-bloc-d&#39;estadística-oficial" id="ping-141">
+    <a href="https://blocestadistica.wordpress.com/2016/12/09/consells-per-lescriptura-del-programari/" rel="external nofollow" class="url">Consells per l’escriptura del programari | Bloc d'estadística oficial</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-141">10 December 2016 at 12:29 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-one-page-r:-a-survival-guide-to-data-science-with-r---use-r!use-r!" id="ping-142">
+    <a href="http://use-r.com/one-page-r-a-survival-guide-to-data-science-with-r/" rel="external nofollow" class="url">One Page R: A Survival Guide to Data Science with R - Use-R!Use-R!</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-142">14 December 2016 at 9:18 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-one-page-r:-a-survival-guide-to-data-science-with-r-|-a-bunch-of-data" id="ping-143">
+    <a href="http://abunchofdata.com/one-page-r-a-survival-guide-to-data-science-with-r/" rel="external nofollow" class="url">One Page R: A Survival Guide to Data Science with R | A bunch of data</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-143">14 December 2016 at 10:51 am</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-onepager-–-togaware-|-eedsp-|-scoop.it" id="ping-144">
+    <a href="http://www.scoop.it/t/eedsp/p/4072799876/2016/12/14/onepager-togaware" rel="external nofollow" class="url">OnePageR – Togaware | EEDSP | Scoop.it</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-144">14 December 2016 at 1:58 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-one-page-r:-a-survival-guide-to-data-science-with-r-–-mubashir-qasim" id="ping-145">
+    <a href="http://mqasim.me/?p=98900" rel="external nofollow" class="url">One Page R: A Survival Guide to Data Science with R – Mubashir Qasim</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-145">14 December 2016 at 2:19 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-onepager-–-togaware-|-open-source-tools-..." id="ping-146">
+    <a href="http://www.scoop.it/t/open-source-tools-for-data-science/p/4072807413/2016/12/14/onepager-togaware" rel="external nofollow" class="url">OnePageR – Togaware | Open source tools ...</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-146">14 December 2016 at 5:53 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-linkdump-#22-|-wzb-data-science-blog" id="ping-147">
+    <a href="https://datascience.blog.wzb.eu/2016/12/16/linkdump-22/" rel="external nofollow" class="url">Linkdump #22 | WZB Data Science Blog</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-147">16 December 2016 at 8:57 pm</a>
+    <!--END .pings-list-->
+</li>
+    <!--BEING .pings-->
+    <li class="pingback comment reader reader-por-revisar-chrome-|-pearltrees" id="ping-149">
+    <a href="http://www.pearltrees.com/f.arnaldos/por-revisar-chrome/id16876267/item193707369" rel="external nofollow" class="url">Por revisar Chrome | Pearltrees</a> on <a class="trackback-time" href="https://togaware.com/onepager/#comment-149">9 January 2017 at 10:43 pm</a>
+    <!--END .pings-list-->
+</li>
+                <!--END .pings-list-->
+            </ol>
+        
+        <div class="navigation-links page-navigation clearfix row">
+            <div class="col-sm-6 col-md-6 nav-next"></div>
+            <div class="col-sm-6 col-md-6 nav-previous"></div>
+        </div>    
+
+        <!--END #comments-->
+
+        </div>
+
+    <!--BEGIN #respond-->
+
+    <!--BEGIN #comment-form-->
+
+    <div class="clearfix"></div>        
+
+    	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://togaware.com/onepager/#respond" style="display:none;">Cancel reply</a></small></h3><p class="must-log-in">You must be <a href="https://togaware.com/wp-login.php?redirect_to=https%3A%2F%2Ftogaware.com%2Fonepager%2F">logged in</a> to post a comment.</p>	</div><!-- #respond -->
+	    <!--END #comment-form-->
+
+    <!--END #respond-->
+
+    
+
+    <!--END #primary .hfeed-->
+</div>
+
+
+<!--BEGIN #secondary .aside-->
+<div id="secondary" class="aside col-sm-6 col-md-4">
+
+    <div id="search-2" class="widget widget_search"><div class="widget-content"><!--BEGIN #searchform-->
+<form action="https://togaware.com/" method="get" class="searchform">
+    <div id="search-text-box">
+        <label class="searchfield" id="search_label" for="search-text">
+            <input id="search-text" type="text" tabindex="3" name="s" class="search" placeholder="Type your search">
+        </label>
+    </div>
+    <div id="search-button-box">
+        <button id="search-button" tabindex="4" type="submit" class="search-btn"></button>
+    </div>
+</form>
+<div class="clearfix"></div>
+<!--END #searchform--></div></div>		<div id="recent-posts-2" class="widget widget_recent_entries"><div class="widget-content">		<div class="before-title"><div class="widget-title-background"></div><h3 class="widget-title">Recent Posts</h3></div>		<ul>
+					<li>
+				<a href="https://togaware.com/accessing-the-microsoft-ecosystem-for-developers/">Accessing the Microsoft Ecosystem for Developers</a>
+						</li>
+					<li>
+				<a href="https://togaware.com/sharing-our-r-programs-with-style/">Sharing our R Programs — With Style</a>
+						</li>
+					<li>
+				<a href="https://togaware.com/microsoft-r-9-0-1-install-on-ubuntu-16-10/">Microsoft R Server 9.0.1 Install on Ubuntu 16.10</a>
+						</li>
+					<li>
+				<a href="https://togaware.com/outstanding-paper-award-big-data-opportunities-and-challenges/">Outstanding Paper Award: Big Data Opportunities and Challenges</a>
+						</li>
+					<li>
+				<a href="https://togaware.com/rattle-5-0-0-alpha-released/">Rattle 5.0.0 Alpha Released – ggraptR and Microsoft R Support</a>
+						</li>
+				</ul>
+		</div></div>		<div id="archives-2" class="widget widget_archive"><div class="widget-content"><div class="before-title"><div class="widget-title-background"></div><h3 class="widget-title">Archives</h3></div>		<ul>
+			<li><a href="https://togaware.com/2017/01/">January 2017</a></li>
+	<li><a href="https://togaware.com/2016/12/">December 2016</a></li>
+	<li><a href="https://togaware.com/2016/11/">November 2016</a></li>
+	<li><a href="https://togaware.com/2016/09/">September 2016</a></li>
+	<li><a href="https://togaware.com/2016/07/">July 2016</a></li>
+	<li><a href="https://togaware.com/2015/11/">November 2015</a></li>
+	<li><a href="https://togaware.com/2015/10/">October 2015</a></li>
+	<li><a href="https://togaware.com/2015/09/">September 2015</a></li>
+	<li><a href="https://togaware.com/2014/11/">November 2014</a></li>
+	<li><a href="https://togaware.com/2014/07/">July 2014</a></li>
+	<li><a href="https://togaware.com/2014/04/">April 2014</a></li>
+		</ul>
+		</div></div><div id="tag_cloud-2" class="widget widget_tag_cloud"><div class="widget-content"><div class="before-title"><div class="widget-title-background"></div><h3 class="widget-title">Tags</h3></div><div class="tagcloud"><a href="https://togaware.com/tag/analytics/" class="tag-link-7 tag-link-position-1" title="1 topic" style="font-size: 8pt;">analytics</a>
+<a href="https://togaware.com/tag/analytics-space/" class="tag-link-4 tag-link-position-2" title="1 topic" style="font-size: 8pt;">analytics space</a>
+<a href="https://togaware.com/tag/australian/" class="tag-link-6 tag-link-position-3" title="1 topic" style="font-size: 8pt;">australian</a>
+<a href="https://togaware.com/tag/azure/" class="tag-link-46 tag-link-position-4" title="1 topic" style="font-size: 8pt;">azure</a>
+<a href="https://togaware.com/tag/cloud/" class="tag-link-45 tag-link-position-5" title="1 topic" style="font-size: 8pt;">cloud</a>
+<a href="https://togaware.com/tag/connect-r/" class="tag-link-10 tag-link-position-6" title="1 topic" style="font-size: 8pt;">connect-r</a>
+<a href="https://togaware.com/tag/data-import/" class="tag-link-15 tag-link-position-7" title="1 topic" style="font-size: 8pt;">data import</a>
+<a href="https://togaware.com/tag/data-science/" class="tag-link-29 tag-link-position-8" title="6 topics" style="font-size: 22pt;">data science</a>
+<a href="https://togaware.com/tag/developer/" class="tag-link-47 tag-link-position-9" title="1 topic" style="font-size: 8pt;">developer</a>
+<a href="https://togaware.com/tag/ensembles/" class="tag-link-41 tag-link-position-10" title="1 topic" style="font-size: 8pt;">ensembles</a>
+<a href="https://togaware.com/tag/extreme-ensembles/" class="tag-link-42 tag-link-position-11" title="1 topic" style="font-size: 8pt;">extreme ensembles</a>
+<a href="https://togaware.com/tag/feature-requests/" class="tag-link-11 tag-link-position-12" title="1 topic" style="font-size: 8pt;">feature requests</a>
+<a href="https://togaware.com/tag/ggplot2/" class="tag-link-22 tag-link-position-13" title="1 topic" style="font-size: 8pt;">ggplot2</a>
+<a href="https://togaware.com/tag/ggraptr/" class="tag-link-38 tag-link-position-14" title="1 topic" style="font-size: 8pt;">ggraptr</a>
+<a href="https://togaware.com/tag/government/" class="tag-link-5 tag-link-position-15" title="1 topic" style="font-size: 8pt;">government</a>
+<a href="https://togaware.com/tag/graml/" class="tag-link-34 tag-link-position-16" title="1 topic" style="font-size: 8pt;">graml</a>
+<a href="https://togaware.com/tag/grammar-of-machine-learning/" class="tag-link-33 tag-link-position-17" title="1 topic" style="font-size: 8pt;">grammar of machine learning</a>
+<a href="https://togaware.com/tag/information-builders/" class="tag-link-13 tag-link-position-18" title="1 topic" style="font-size: 8pt;">information builders</a>
+<a href="https://togaware.com/tag/introductions/" class="tag-link-30 tag-link-position-19" title="1 topic" style="font-size: 8pt;">introductions</a>
+<a href="https://togaware.com/tag/leaflet/" class="tag-link-20 tag-link-position-20" title="1 topic" style="font-size: 8pt;">leaflet</a>
+<a href="https://togaware.com/tag/linux/" class="tag-link-36 tag-link-position-21" title="1 topic" style="font-size: 8pt;">linux</a>
+<a href="https://togaware.com/tag/massively-distributed-models/" class="tag-link-44 tag-link-position-22" title="1 topic" style="font-size: 8pt;">massively distributed models</a>
+<a href="https://togaware.com/tag/mchine-learning/" class="tag-link-40 tag-link-position-23" title="1 topic" style="font-size: 8pt;">mchine learning</a>
+<a href="https://togaware.com/tag/microsoft-r-server/" class="tag-link-39 tag-link-position-24" title="1 topic" style="font-size: 8pt;">Microsoft R Server</a>
+<a href="https://togaware.com/tag/model-export/" class="tag-link-14 tag-link-position-25" title="1 topic" style="font-size: 8pt;">model export</a>
+<a href="https://togaware.com/tag/open-source/" class="tag-link-37 tag-link-position-26" title="1 topic" style="font-size: 8pt;">open source</a>
+<a href="https://togaware.com/tag/open-street-map/" class="tag-link-19 tag-link-position-27" title="1 topic" style="font-size: 8pt;">open street map</a>
+<a href="https://togaware.com/tag/privacy/" class="tag-link-43 tag-link-position-28" title="1 topic" style="font-size: 8pt;">privacy</a>
+<a href="https://togaware.com/tag/r/" class="tag-link-32 tag-link-position-29" title="1 topic" style="font-size: 8pt;">R</a>
+<a href="https://togaware.com/tag/raptr/" class="tag-link-23 tag-link-position-30" title="1 topic" style="font-size: 8pt;">raptr</a>
+<a href="https://togaware.com/tag/rattle/" class="tag-link-9 tag-link-position-31" title="2 topics" style="font-size: 12.581818181818pt;">rattle</a>
+<a href="https://togaware.com/tag/rexer/" class="tag-link-25 tag-link-position-32" title="1 topic" style="font-size: 8pt;">rexer</a>
+<a href="https://togaware.com/tag/r-software/" class="tag-link-18 tag-link-position-33" title="5 topics" style="font-size: 20.218181818182pt;">r software</a>
+<a href="https://togaware.com/tag/rstat/" class="tag-link-12 tag-link-position-34" title="1 topic" style="font-size: 8pt;">rstat</a>
+<a href="https://togaware.com/tag/r_software/" class="tag-link-24 tag-link-position-35" title="2 topics" style="font-size: 12.581818181818pt;">r_software</a>
+<a href="https://togaware.com/tag/sas/" class="tag-link-26 tag-link-position-36" title="1 topic" style="font-size: 8pt;">sas</a>
+<a href="https://togaware.com/tag/shiny/" class="tag-link-21 tag-link-position-37" title="1 topic" style="font-size: 8pt;">shiny</a>
+<a href="https://togaware.com/tag/spss/" class="tag-link-27 tag-link-position-38" title="1 topic" style="font-size: 8pt;">spss</a>
+<a href="https://togaware.com/tag/video/" class="tag-link-31 tag-link-position-39" title="1 topic" style="font-size: 8pt;">video</a>
+<a href="https://togaware.com/tag/virtual-machine/" class="tag-link-35 tag-link-position-40" title="2 topics" style="font-size: 12.581818181818pt;">virtual machine</a>
+<a href="https://togaware.com/tag/web-site/" class="tag-link-8 tag-link-position-41" title="1 topic" style="font-size: 8pt;">web site</a></div>
+</div></div><div id="meta-2" class="widget widget_meta"><div class="widget-content"><div class="before-title"><div class="widget-title-background"></div><h3 class="widget-title">Meta</h3></div>			<ul>
+						<li><a href="https://togaware.com/wp-login.php">Log in</a></li>
+			<li><a href="https://togaware.com/feed/">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://togaware.com/comments/feed/">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
+			</div></div></div><!--END #secondary .aside--><!--END #content-->
+</div>
+<!--END .container-->
+</div>
+<!--END .content-->
+</div>
+<!--BEGIN .content-bottom-->
+<div class="content-bottom">
+<!--END .content-bottom-->
+</div>
+<!--BEGIN .footer-->
+<div class="footer">
+<!--BEGIN .container-->
+    <div class="container container-footer">
+                <div class="clearfix"></div>
+        <p id="copyright"><span class="credits"><a href="http://theme4press.com/evolve-multipurpose-wordpress-theme/">evolve</a> theme by Theme4Press&nbsp;&nbsp;•&nbsp;&nbsp;Powered by <a href="http://wordpress.org/">WordPress</a>&nbsp;&nbsp;•&nbsp;&nbsp;© Togaware Pty Ltd </span></p>        <!-- Theme Hook -->
+        
+    <script type="text/javascript">
+
+        function insertParam(url, parameterName, parameterValue, atStart) {
+        replaceDuplicates = true;
+        if (url.indexOf('#') > 0) {
+        var cl = url.indexOf('#');
+        urlhash = url.substring(url.indexOf('#'), url.length);
+        } else {
+        urlhash = '';
+        cl = url.length;
+        }
+        sourceUrl = url.substring(0, cl);
+        var urlParts = sourceUrl.split("?");
+        var newQueryString = "";
+        if (urlParts.length > 1) {
+        var parameters = urlParts[1].split("&");
+        for (var i = 0; (i < parameters.length); i++) {
+        var parameterParts = parameters[i].split("=");
+        if (!(replaceDuplicates && parameterParts[0] == parameterName)) {
+        if (newQueryString == "") {
+        newQueryString = "?" + parameterParts[0] + "=" + (parameterParts[1] ? parameterParts[1] : '');
+        }
+        else {
+        newQueryString += "&";
+        newQueryString += parameterParts[0] + "=" + (parameterParts[1] ? parameterParts[1] : '');
+        }
+        }
+        }
+        }
+        if (newQueryString == "")
+                newQueryString = "?";
+        if (atStart) {
+        newQueryString = '?' + parameterName + "=" + parameterValue + (newQueryString.length > 1 ? '&' + newQueryString.substring(1) : '');
+        } else {
+        if (newQueryString !== "" && newQueryString != '?')
+                newQueryString += "&";
+        newQueryString += parameterName + "=" + (parameterValue ? parameterValue : '');
+        }
+        return urlParts[0] + newQueryString + urlhash;
+        }
+        ;
+        function ytVidId(url) {
+        var p = /^(?:https?:)?(\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+        //return (url.match(p)) ? true : false;
+        }
+
+        function playVideoAndPauseOthers(slider) {
+        jQuery(slider).find('iframe').each(
+                function(i) {
+                var func = 'stopVideo';
+                this.contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
+                if (jQuery(this).is(':visible') && jQuery(this).parents('li').attr('data-autoplay') == 'yes') {
+                this.contentWindow.postMessage(
+                        '{"event":"command","func":"' + 'playVideo' + '","args":""}', '*'
+                        );
+                if (jQuery(this).parents('li').attr('data-mute') == 'yes') {
+                this.contentWindow.postMessage(
+                        '{"event":"command","func":"' + 'mute' + '","args":""}', '*'
+                        );
+                }
+                }
+                }
+        );
+        }
+
+        /* ------------------ PREV & NEXT BUTTON FOR FLEXSLIDER (YOUTUBE) ------------------ */
+        jQuery('.flex-next, .flex-prev').click(
+                function() {
+                playVideoAndPauseOthers(jQuery(this).parents('.flexslider, .t4ps-slider'));
+                }
+        );
+        function onPlayerStateChange(frame, slider) {
+        return function(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+        jQuery(slider).flexslider("pause");
+        }
+        if (event.data == YT.PlayerState.PAUSED) {
+        jQuery(slider).flexslider("play");
+        }
+        if (event.data == YT.PlayerState.BUFFERING) {
+        jQuery(slider).flexslider("pause");
+        }
+        }
+        }
+
+
+        //
+        //
+        //
+        // YouTube & Vimeo
+        //
+        //
+        //
+        jQuery(document).ready(
+                function() {
+                var iframes = jQuery('iframe');
+                jQuery.each(
+                        iframes, function(i, v) {
+                        var src = jQuery(this).attr('src');
+                        if (src) {
+                                if (src.indexOf('vimeo') >= 1) {
+                            jQuery(this).attr('id', 'player_' + (i + 1));
+                            var new_src = insertParam(src, 'api', '1', false);
+                            var new_src_2 = insertParam(new_src, 'player_id', 'player_' + (i + 1), false);
+                            jQuery(this).attr('src', new_src_2);
+                            }
+                                    if (ytVidId(src)) {
+                            jQuery(this).attr('id', 'player_' + (i + 1));
+                            jQuery(this).parent().wrap('<span class="play3" />');
+                            window.yt_vid_exists = true;
+                            var new_src = insertParam(src, 'enablejsapi', '1', false);
+                            jQuery(this).attr('src', new_src);
+                            }
+                            }
+                        }
+                );
+                        if (window.yt_vid_exists == true) {
+                    var tag = document.createElement('script');
+                    tag.src = window.location.protocol + "//www.youtube.com/iframe_api";
+                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                    }
+                    }
+        );
+        // Define YT_ready function.
+        var YT_ready = (function() {
+        var onReady_funcs = [], api_isReady = false;
+        /* @param func function     Function to execute on ready
+         * @param func Boolean      If true, all qeued functions are executed
+         * @param b_before Boolean  If true, the func will added to the first
+         position in the queue*/
+        return function(func, b_before) {
+        if (func === true) {
+        api_isReady = true;
+        while (onReady_funcs.length) {
+        // Removes the first func from the array, and execute func
+        onReady_funcs.shift()();
+        }
+        } else if (typeof func == "function") {
+        if (api_isReady) func();
+        else onReady_funcs[b_before ? "unshift" : "push"](func);
+        }
+        }
+        })();
+        // This function will be called when the API is fully loaded
+        function onYouTubePlayerAPIReady() {
+        YT_ready(true)
+        }
+
+
+        //
+        //
+        //
+        // FlexSlider
+        //
+        //
+        //    
+
+
+        jQuery('.flexslider').flexslider(
+        {
+        slideshow: false,
+                slideshowSpeed: 7000,
+                video: true,
+                pauseOnHover: false,
+                useCSS: false,
+                start: function(slider) {
+                if (typeof (slider.slides) !== 'undefined' && slider.slides.eq(slider.currentSlide).find('iframe').length !== 0) {
+                        jQuery(slider).find('.flex-control-nav').hide();
+    
+                        if (window.yt_vid_exists == true) {
+                    YT_ready(
+                            function() {
+                            new YT.Player(
+                                    slider.slides.eq(slider.currentSlide).find('iframe').attr('id'), {
+                            events: {
+                            'onStateChange': onPlayerStateChange(
+                                    slider.slides.eq(slider.currentSlide).find('iframe').attr('id'),
+                                    slider
+                                    )
+                            }
+                            }
+                            );
+                            }
+                    );
+                    }
+                    } else {
+                        jQuery(slider).find('.flex-control-nav').show();
+                    }
+                },
+                before: function(slider) {
+                if (slider.slides.eq(slider.currentSlide).find('iframe').length !== 0) {
+    $f(slider.slides.eq(slider.currentSlide).find('iframe')[0]).api('pause');
+                            if (window.yt_vid_exists == true) {
+                    YT_ready(
+                            function() {
+                            new YT.Player(
+                                    slider.slides.eq(slider.currentSlide).find('iframe').attr('id'), {
+                            events: {
+                            'onStateChange': onPlayerStateChange(
+                                    slider.slides.eq(slider.currentSlide).find('iframe').attr('id'),
+                                    slider
+                                    )
+                            }
+                            }
+                            );
+                            }
+                    );
+                    }
+    
+                /* ------------------  YOUTUBE FOR AUTOSLIDER ------------------ */
+                playVideoAndPauseOthers(slider);
+                }
+                },
+                after: function(slider) {
+                if (slider.slides.eq(slider.currentSlide).find('iframe').length !== 0) {
+                        jQuery(slider).find('.flex-control-nav').hide();
+                        if (window.yt_vid_exists == true) {
+                    YT_ready(
+                            function() {
+                            new YT.Player(
+                                    slider.slides.eq(slider.currentSlide).find('iframe').attr('id'), {
+                            events: {
+                            'onStateChange': onPlayerStateChange(
+                                    slider.slides.eq(slider.currentSlide).find('iframe').attr('id'),
+                                    slider
+                                    )
+                            }
+                            }
+                            );
+                            }
+                    );
+                    }
+                    } else {
+                        jQuery(slider).find('.flex-control-nav').show();
+                    }
+                }
+        }
+        );
+        function playVideoAndPauseOthers(slider) {
+        jQuery(slider).find('iframe').each(
+                function(i) {
+                var func = 'stopVideo';
+                this.contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
+                if (jQuery(this).is(':visible') && jQuery(this).parents('li').attr('data-autoplay') == 'yes') {
+                this.contentWindow.postMessage(
+                        '{"event":"command","func":"' + 'playVideo' + '","args":""}', '*'
+                        );
+                if (jQuery(this).parents('li').attr('data-mute') == 'yes') {
+                this.contentWindow.postMessage(
+                        '{"event":"command","func":"' + 'mute' + '","args":""}', '*'
+                        );
+                }
+                }
+                }
+        );
+        }
+
+        /* ------------------ PREV & NEXT BUTTON FOR FLEXSLIDER (YOUTUBE) ------------------ */
+        jQuery('.flex-next, .flex-prev').click(
+                function() {
+                playVideoAndPauseOthers(jQuery(this).parents('.flexslider, .t4ps-slider'));
+                }
+        );
+        function onPlayerStateChange(frame, slider) {
+        return function(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+        jQuery(slider).flexslider("pause");
+        }
+        if (event.data == YT.PlayerState.PAUSED) {
+        jQuery(slider).flexslider("play");
+        }
+        if (event.data == YT.PlayerState.BUFFERING) {
+        jQuery(slider).flexslider("pause");
+        }
+        }
+        }
+
+
+        // prettyPhoto
+
+        if (jQuery().prettyPhoto) {
+        var ppArgs = {
+                animation_speed: 'fast',
+            overlay_gallery: false,
+                autoplay_slideshow: false,
+                slideshow: 5000,
+                    opacity: 0.8,
+            show_title: false,
+                show_desc: true,
+    social_tools: "",        };
+        var ppArgsRelated = ppArgs;
+        jQuery("a[rel^='prettyPhoto']").prettyPhoto(ppArgs);
+    
+        jQuery('.lightbox-enabled a').has('img').prettyPhoto(ppArgs);
+        var mediaQuery = 'desk';
+        if (Modernizr.mq('only screen and (max-width: 600px)') || Modernizr.mq('only screen and (max-height: 520px)')) {
+
+        mediaQuery = 'mobile';
+        jQuery("a[rel^='prettyPhoto']").unbind('click');
+            jQuery('.lightbox-enabled a').has('img').unbind('click');
+        }
+
+        // Disables prettyPhoto if screen small
+        jQuery(window).on(
+                'resize', function() {
+                if ((Modernizr.mq('only screen and (max-width: 600px)') || Modernizr.mq('only screen and (max-height: 520px)')) && mediaQuery == 'desk') {
+                jQuery("a[rel^='prettyPhoto']").unbind('click.prettyphoto');
+                    jQuery('.lightbox-enabled a').has('img').unbind('click.prettyphoto');
+                mediaQuery = 'mobile';
+                } else if (!Modernizr.mq('only screen and (max-width: 600px)') && !Modernizr.mq('only screen and (max-height: 520px)') && mediaQuery == 'mobile') {
+                jQuery("a[rel^='prettyPhoto']").prettyPhoto(ppArgs);
+                    jQuery('.lightbox-enabled a').has('img').prettyPhoto(ppArgs);
+                mediaQuery = 'desk';
+                }
+                }
+        );
+        }
+
+
+        // Testimonials
+
+        jQuery(document).ready(
+                function() {
+                function onAfter(curr, next, opts, fwd) {
+                var $ht = jQuery(this).height();
+                //set the container's height to that of the current slide
+                jQuery(this).parent().css('height', $ht);
+                }
+
+                if (jQuery().cycle) {
+                jQuery('.reviews').cycle(
+                {
+                fx: 'fade',
+                        after: onAfter,
+                        timeout: 4000                }
+                );
+                }
+                }
+        );</script>
+
+
+    
+    <script type="text/javascript">
+        var $jx = jQuery.noConflict();
+        $jx("div.post").mouseover(
+                function() {
+                $jx(this).find("span.edit-post").css('visibility', 'visible');
+                }
+        ).mouseout(
+                function() {
+                $jx(this).find("span.edit-post").css('visibility', 'hidden');
+                }
+        );
+        $jx("div.type-page").mouseover(
+                function() {
+                $jx(this).find("span.edit-page").css('visibility', 'visible');
+                }
+        ).mouseout(
+                function() {
+                $jx(this).find("span.edit-page").css('visibility', 'hidden');
+                }
+        );
+        $jx("div.type-attachment").mouseover(
+                function() {
+                $jx(this).find("span.edit-post").css('visibility', 'visible');
+                }
+        ).mouseout(
+                function() {
+                $jx(this).find("span.edit-post").css('visibility', 'hidden');
+                }
+        );
+        $jx("li.comment").mouseover(
+                function() {
+                $jx(this).find("span.edit-comment").css('visibility', 'visible');
+                }
+        ).mouseout(
+                function() {
+                $jx(this).find("span.edit-comment").css('visibility', 'hidden');
+                }
+        );</script>
+
+    
+        <script type="text/javascript">
+            jQuery(document).ready(
+                    function($) {
+                    if (jQuery('.sticky-header').length >= 1) {
+                    jQuery(window).scroll(function() {
+                    var header = jQuery(document).scrollTop();
+                    var headerHeight = jQuery('.new-top-menu').height() + jQuery('.menu-header').height() + jQuery('.header-pattern').height();
+                    if (header > headerHeight) {
+                    jQuery('.sticky-header').addClass('sticky');
+                    jQuery('.sticky-header').show();
+                    } else {
+                    jQuery('.sticky-header').removeClass('sticky');
+                    jQuery('.sticky-header').hide();
+                    }
+                    });
+                    }
+                    }
+            );</script>
+
+        
+        <script type="text/javascript">
+            /*----------------------------*/
+            /* Animated Buttons
+             /*----------------------------*/
+
+            var $animated = jQuery.noConflict();
+            $animated('.post-more').hover(
+                    function() {
+                    $animated(this).addClass('animate pulse')
+                    },
+                    function() {
+                    $animated(this).removeClass('animate pulse')
+                    }
+            )
+                    $animated('.read-more').hover(
+                    function() {
+                    $animated(this).addClass('animate pulse')
+                    },
+                    function() {
+                    $animated(this).removeClass('animate pulse')
+                    }
+            )
+                    $animated('#submit').hover(
+                    function() {
+                    $animated(this).addClass('animate pulse')
+                    },
+                    function() {
+                    $animated(this).removeClass('animate pulse')
+                    }
+            )
+                    $animated('input[type="submit"]').hover(
+                    function() {
+                    $animated(this).addClass('animate pulse')
+                    },
+                    function() {
+                    $animated(this).removeClass('animate pulse')
+                    }
+            )
+                    $animated('.button').hover(
+                    function() {
+                    $animated(this).addClass('animate pulse')
+                    },
+                    function() {
+                    $animated(this).removeClass('animate pulse')
+                    }
+            )
+
+        </script>
+
+        
+        <script type="text/javascript">
+            /*----------------*/
+            /* AnythingSlider
+             /*----------------*/
+            var $s = jQuery.noConflict();
+            $s(
+                    function() {
+                    $s('#slides')
+                            .anythingSlider({autoPlay: true, delay: 7000, })
+                    }
+            )
+        </script>
+
+                <script type="text/javascript">
+            /*----------------*/
+            /* Parallax Slider
+             /*----------------*/
+
+            var $par = jQuery.noConflict();
+            $par('#da-slider').cslider(
+                    {
+                        autoplay: true,
+                        bgincrement: 450,
+                        interval: 4000                    }
+            );</script>
+
+    
+    <script type="text/javascript">
+        /*----------------------*/
+        /* Bootstrap Slider
+         /*---------------------*/
+
+        var $carousel = jQuery.noConflict();
+        $carousel('#myCarousel').carousel(
+                {
+                    interval: 7000
+                }
+        )
+
+                $carousel('#carousel-nav a').click(
+                function(q) {
+                q.preventDefault();
+                targetSlide = $carousel(this).attr('data-to') - 1;
+                $carousel('#myCarousel').carousel(targetSlide);
+                $carousel(this).addClass('active').siblings().removeClass('active');
+                }
+        );
+        $carousel('#bootstrap-slider').carousel(
+                {
+                    interval: 7000                }
+        )
+
+        $carousel('#carousel-nav a').click(
+                function (q) {
+                    q.preventDefault();
+                    targetSlide = $carousel(this).attr('data-to') - 1;
+                    $carousel('#bootstrap-slider').carousel(targetSlide);
+                    $carousel(this).addClass('active').siblings().removeClass('active');
+                }
+        );
+    </script>
+
+            <!--END .container-->
+    </div>
+    <!--END .footer-->
+</div>
+<!--END body-->
+    <a href="https://togaware.com/onepager/#top" id="top-link"><div id="backtotop" style="display: block;"></div></a>
+            </div>
+    <script>
+            if (jQuery(".posts-container-infinite").length == 1) {
+                var ias = jQuery.ias({
+                    container: ".posts-container-infinite",
+                    item: "div.post",
+                    pagination: "div.pagination",
+                    next: "a.pagination-next",
+                });
+
+                ias.extension(new IASTriggerExtension({
+                        text: "Load more items",
+                        offset: 99999
+                }));
+                ias.extension(new IASSpinnerExtension({
+                }));
+                ias.extension(new IASNoneLeftExtension());
+            }else{}
+    </script><script type="text/javascript">
+/* <![CDATA[ */
+var js_local_vars = {"mobile_nav_cart":"Shopping Cart","language_flag":"","testimonials_speed":"4000","infinite_blog_finished_msg":"<em>All posts displayed<\/em>","infinite_blog_text":"<em>Loading the next set of posts...<\/em>","portfolio_loading_text":"<em>Loading Portfolio Items...<\/em>","theme_url":"https:\/\/togaware.com\/wp-content\/themes\/evolve-plus","order_actions":"Details"};
+var js_responsive_menu = {"responsive_menu":"<span class=\"t4p-icon-menu\"><\/span>","responsive_menu_layout":"basic"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/main.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/main_backend.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/gmap.js"></script>
+<script type="text/javascript" src="./A Survival Guide to Data Science with R Togaware_files/wp-embed.min.js"></script>
+
+<!--END html(kthxbye)-->
+
+</div><div id="cli_dialog_div"></div></body><iframe id="evernote_clearly__in_page" frameborder="0" allowtransparency="true" scrolling="auto" style="position: fixed; width: 5px; height: 5px; top: -10px; left: -10px;" src="./A Survival Guide to Data Science with R Togaware_files/saved_resource.html"></iframe><iframe frameborder="0" allowtransparency="true" scrolling="auto" id="evernote_clearly__in_isolation" src="./A Survival Guide to Data Science with R Togaware_files/isolation.html" style="position: fixed; width: 100%; height: 100%; top: -100%; left: -100%; z-index: 2147483647;"></iframe></html>

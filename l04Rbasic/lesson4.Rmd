@@ -1,0 +1,536 @@
+---
+title: "数据科学与社会研究 <br> 第四讲、夯基：关于R的基础"
+author: "李丁 社会与人口学院"
+date: "2017年9月26日"
+output:
+  ioslides_presentation:
+    highlight: pygments
+    widescreen: yes
+    css: ../lec.css
+---
+
+
+## R语法基础入门 
+
+摘要：讲解Ｒ语法的基础知识
+
+* R对象概要介绍
+* R数据对象详解
+* 函数和控制语句
+
+
+# R 语言中的对象
+
+
+## 对象
+Everything in S(R) is an object;
+
+Every object is S(R) has a class.
+
+* 向量
+* 函数
+* 变量
+* 矩阵
+* 数组
+* 数据框
+* 列表
+
+
+## 向量
+向量及其基本操作
+
+```{r eval=FALSE}
+1 + 1 * 3
+c(0,1,1,2,3,9)
+c("hello world", "I am a R user")
+c(1,2,3,4) + c(3,4,5,6)
+c(1,2,3,4) + c(1,2)
+1:6
+```
+
+向量之间除了四种数字运算外，还可以进行比较，例如：
+```{r}
+c(1,2,3,4) > c(1,2,1,2)
+```
+
+
+## 函数
+
+在R语言中，所有的操作和运算都是由函数来完成的。和数学中的函数类似，大多数的函数都是由函数名和参数这两项组成的。例如下面计算指数的例子，`exp`是函数名，括号中的1则是参数。
+```{r}
+exp(1)
+exp(c(1,2,3,4))
+```
+
+
+## 变量
+R语言中可以将各种向量赋值为一个变量。赋值操作符就是等号“`=`”，也可以是"`<-`"。下面的例子就是先将向量赋值给x，然后求取其对数。
+```{r}
+x <- c(1,2,3,4)
+log(x)
+```
+如果我们想从变量x中取出某一个元素的话，可以使用方括号加索引号，下面取出第二个元素：
+```{r eval=FALSE}
+x[2]
+x[2:4]
+x[-4]
+x[x>2]
+```
+
+
+## 数组
+数组(Array)是多维的向量，建立数组的方法如下：
+```{r}
+a <- array(1:12,dim=c(3,4))
+print(a)
+```
+```{r eval=FALSE}
+a[2,2]
+a[2,]
+```
+
+
+## 数据框
+数据框(Data frame)是一种类似Excel表格的矩阵数据结构，列表示变量，行表示案例。各列数据类型可以不同，但长度必需一致。下面我们来构建一个有三个属性、五个样本的数据框。
+```{r}
+city  <- c('beijing','shanghai','chengdu','shanghai','beijing')
+age <- c(23,43,51,32,60)
+gender <- c('F','M','F','F','M')
+people <- data.frame(city,age,gender)
+print(people)
+```
+
+
+## 数据框
+和数组操作一样，可以用方括号来提取数据框中的元素。另一种方法是用`$` 符号来提取某一列。例如提取age变量和gender变量。
+```{r}
+people$age
+people$gender
+```
+```{r eval=FALSE}
+people$age>30
+people$city[people$age>30]
+```
+
+
+## 列表
+列表(List)是最为灵活的数据结构，它的元素可以是不同类型，也可以有不同长度。还是用age、city、gender三个向量来构建列表。
+```{r}
+peoplelist <- list(age=age,city=city,gender=gender)
+print(peoplelist)
+```
+
+```{r eval=FALSE}
+people.list$array <- a
+people.list$dataframe <- people
+```
+
+
+## 对象和类
+函数`str()`可用以查看一个对象的内部结构。
+```{r eval=TRUE}
+str(people)
+```
+
+
+## 模型与公式
+
+模型是描述数据的函数。很多时候以公式形式展现，用以预测或解释。
+```
+y ~ x1 + x2 + x3 ... + xn
+```
+一个线性回归例子：使用的数据集是R内置数据car。R语言中回归分析的函数是`lm`，将回归结果存入变量`model`中。
+
+```{r}
+model <- lm(formula=dist ~ speed, data=cars)
+```
+
+
+##
+
+`summary`作为一个泛函数，可呈现回归结果：包括了各系数及其对应的P值，残差标准误和决定系数等。
+
+```{r}
+summary(model)
+```
+
+
+
+# R数据对象详解
+
+## 工作目录和工作空间
+
+工作目录
+
+- `getwd()`  显示当前的工作目录
+- `setwd()`  修改当前的工作目录
+
+工作空间
+
+- `ls()`  列出当前工作空间中的对象
+- `rm(objectlist)`  移除（删除）一个或多个对象
+- `save.image("myfile")`	保存工作空间到文件myfile中（默认后缀 .RData）
+- `save(object, file="myfile")`	保存指定对象到一个文件中
+- `load("myfile")`读取一个工作空间到当前会话中
+
+
+## 基本对象：向量
+
+- 单个数值（标量）是向量的一种特例
+- 向量的元素必须属于某种模式（mode），可以整型（integer）、数值型（numeric）、字符型（character）、逻辑型（logical）、复数型（complex）
+- 循环补齐（recycle）：在一定情况下自动延长向量
+- 筛选：提取向量子集
+- 向量化：对向量的每一个元素应用函数
+- 使用seq()创建向量
+- 使用rep()重复向量常数
+```{r eval=FALSE}
+vector1 <- seq(2,10,2)
+vector1 <- 1:10 + 2
+vector2 <- 1:(10 + 2)
+```
+
+
+##  向量的计算
+去掉最大值和最小值后的向量的算术均值
+```{r}
+vector <- rnorm(10)
+vec_max <- max(vector)
+vec_min <- min(vector)
+vector_trimmed <- vector[vector<vec_max & vector>vec_min]
+vec_mean <- sum(vector_trimmed)/length(vector_trimmed)
+
+```
+
+
+## 复合对象
+复合对象是建立在向量基础上的数据结构，这些复合对象是为了满足数据分析的需要而建立的。下面来介绍三种数据结构：矩阵、数据框和列表。
+```{r eval=FALSE}
+vector <- 1:12
+my_matrix <- matrix(vector,nrow=3,ncol=4,byrow=F) 
+dim(my_matrix)
+dim(vector) <- c(4,3)
+print(vector)
+```
+
+
+## 矩阵
+```{r}
+vector1 <- vector2 <- vector3 <- rnorm(3)
+my_matrix <- cbind(vector1,vector2,vector3)
+ifelse(my_matrix>0,1,0)
+```
+
+
+## 求解线性方程组
+```{r}
+A <- matrix(c(3,1,5,2),2,2)
+b <- matrix(c(4,1),ncol=1)
+x <- solve(A,b)
+
+```
+
+
+## 算术运算小结
+
+- `x + y`     加法
+- `x - y`     减法
+- `x * y`     乘法
+- `x / y`     除法
+- `x ^ y`     乘幂
+- `x %% y`    模运算(求余数)
+- `x %/% y`   整数除法()
+
+
+## 逻辑运算小结
+
+- `x == y`    判断是否相等
+- `x <= y`    判断是否小于等于
+- `x >= y`    判断是否大于等于
+- `x & y`     向量的逻辑“与”运算（x、y以及运算结果都是向量）
+- `x | y`     向量的逻辑“或”运算（x、y以及运算结果都是向量）
+- `!x`        逻辑非
+- 逻辑值`TRUE`和`FALSE`可以缩写为`T`和`F`（两者都必须是大写）。而在算术表达式它们会转换为1和0
+
+
+## 数据框
+构建一个有两个属性、五个样本的数据框。
+```{r}
+city <- c('A','B','C','D')
+temp = c(27,29,23,14)
+data <- data.frame(city,temp)
+```
+提取数据框中的元素
+```{r eval=FALSE}
+data[ ,1]
+data[, 'city']
+data$city
+```
+
+
+## 数据框
+
+字符转换为因子型变量，可按如下方式手工进行参数设定。
+
+```{r}
+data <- data.frame(city,temp,stringsAsFactors=F)
+```
+数据框将不同向量组合一起更方便操作，尝试找出高于平均温度的城市。
+```{r}
+ave <- mean(data$temp)
+data[data$temp>ave, ]
+```
+
+
+## 数据框
+下面几个函数可用来了解一个数据框的基本属性。
+```{r eval=FALSE}
+data <- data.frame(city,temp)
+summary(data)
+dim(data)
+head(data)
+str(data)
+```
+summary函数负责对每列进行统计，dim得到维度，head得到前六行数据，而str则返回整个数据的结构。
+
+
+## 数据框
+数据框排序排序，order函数
+```{r eval=FALSE}
+order(data$temp)
+data[order(data$temp),]
+data[order(data$temp,decreasing=T),][1:2, ]
+```
+
+
+## 列表
+
+列表(List)是最为灵活的数据结构，可以由不同类型的对象组合而成，也可以是不同的长度
+
+```{r}
+data_list = list(temp=temp,city=city)
+print(data_list)
+```
+```{r eval=FALSE}
+data_list$mat <- my_mat
+data_list$data <- data
+```
+
+
+## 列表
+列表也能使用数字为索引来提取元素，但需要用两个方括号。例如提取最后一个data元素。
+
+```{r eval=FALSE}
+names(data_list)
+data_list$data
+length(data_list)
+data_list[[4]]
+```
+
+
+## 缺失值与空值
+
+真实的数据分析工作中会经常遇到数据缺失情况，缺失的数据在Ｒ中一般表示为NA。当一个数据中包含了NA时，很多函数的行为会不一样，甚至会产生错误。
+```{r eval=FALSE}
+temp <- c(27, 29, 23, 14,NA)
+mean(temp)
+mean(temp,na.rm=T)
+is.na(temp)
+```
+
+
+## 缺失值与空值
+缺失值的意义是应该有数据而没有，起到一个占位符的作用。空值的意义则是完成没有，空值的表示是NULL。下面的例子中temp仍然只有四个元素。
+```{r}
+temp <- c(27, 29, 23, 14,NULL)
+```
+NULL有时候可以用来方便的删除复杂对象中的一个元素，例如删除前面data_list中的data元素。
+```{r eval=FALSE}
+data_list$data <- NULL
+```
+
+
+
+# 函数和控制语句
+
+## 函数的构成
+
+和数学中的函数概念类似，函数由三部分构成，即输入、运算、输出。
+```{r}
+exp(c(1,2,3,4))
+```
+
+
+## 自定义函数
+
+一个求圆面积的函数
+```{r}
+myfunc <- function(r) {
+  area <- pi*r^2
+  return(area)
+  }
+print(myfunc(4))
+```
+
+函数在调用时会新建一个特殊的子环境，用以处理函数中涉及到的变量，例如上面函数中的area变量，这种变量称为局部变量，因为不会在全局环境中出现而影响其它函数，使用起来非常安全。但函数内部可以调用全局变量，例如上面的pi。
+
+
+## 条件判断
+
+通常R代码的执行是按行顺序执行的，但有时需要根据条件来执行某些分支代码
+```{r}
+num <- 5
+if (num %% 2 != 0) {
+  cat(num,'is odd')
+}
+```
+
+
+## 条件判断
+if只是单一判断是否执行某条代码，若需要多分支判断，可增加else语句，例如增加奇数和偶数的屏幕输出。
+```{r}
+num <- 4
+if (num %% 2 != 0) {
+  cat(num, 'is odd')
+} else {
+  cat(num, 'is even')
+}
+```
+
+
+## 条件判断
+对于超过两个分支的条件判断，我们可以使用多重嵌套的if-else语句。例如计算某个数字和3相除的余数。
+```{r}
+num <- 10
+if (num %% 3 == 1)  {
+  cat('mode is',1)
+} else if (num %% 3 == 2) {
+  cat('mode is',2)
+} else {
+  cat('mode is',0)
+}
+```
+
+
+## 二元判断函数
+
+ifelse可用于向量化计算，例如判断多个数字是奇数还是偶数。
+```{r}
+num <- 1:6
+ifelse(num%%2==0, yes='even',no='odd')
+```
+ifelse的嵌套
+```{r}
+num <- sample(20:70,20,replace=T)
+res <- ifelse(num>50,'老年',ifelse(num<30,'青年', '中年'))
+```
+
+
+
+## 循环
+
+循环语句可以重复运行某一段代码。根据终止的条件，可以将循环分为for循环和while循环。
+
+for循环的终止条件是循环的次数，例如我们计算1到100所有奇数的和。
+
+```{r}
+x <- 0
+for (i in 1:100) {
+  if (i %% 2 != 0) {
+    x <- x + i
+  }
+}
+```
+
+实际应用中，计算奇数之和只需要一条代码即可。
+
+```{r eval=FALSE}
+sum(seq(1,100,by=2))
+```
+
+
+## 循环
+
+while循环的终止条件是达到某一个标准，还是计算上面同样的例子。
+
+```{r}
+x <- 0
+i <- 1
+while (i < 100) {
+  if (i %% 2 != 0) {
+    x <- x + i
+  }
+  i <- i + 1
+}
+```
+
+
+## 循环
+
+除了for、while循环之外，R语言中还可以使用repeat来进行无限次的循环操作。仍是计算100以内的奇数之和。
+
+
+```{r}
+x <- 0
+i <- 1
+repeat  {
+  if (i %% 2 != 0) {
+    x <- x + i
+  }
+  i <- i + 1
+  if (i > 100) break
+}
+```
+
+
+## 循环
+循环中另外一个常见的命令是next，也就是跳过循环中next后面的代码，而重新开始一次循环。
+
+```{r}
+x <- 0
+i <- 0
+repeat  {
+  i <- i + 1
+  if (i > 100) break
+  if (i %% 2 == 0) next
+  x <- x + i
+}
+```
+
+
+## 函数
+
+编写自定义函数是非常容易的，下例是将前面的计算fibonaci数字的代码段转为一个函数。
+
+```{r}
+fibonaci <- function(n) {
+  i <- 2
+  x <- 1:2
+  while (x[i] < n) {
+    x[i+1] <- x[i-1] + x[i]
+    i <- i + 1
+  }
+  x <- x[-i]
+  return(x)
+}
+SeqFi <- fibonaci(100)
+```
+
+
+## 课后强化练习
+
+基础部分
+
+- [Chapter 1 Intro to basics](https://campus.datacamp.com/courses/free-introduction-to-r/chapter-1-intro-to-basics-1?ex=1)
+- [Chapter 2 Vectors](https://campus.datacamp.com/courses/free-introduction-to-r/chapter-2-vectors-2?ex=1)
+- [Chapter 4 Factors](https://campus.datacamp.com/courses/free-introduction-to-r/chapter-4-factors-4?ex=1)
+- [Chapter 5 Data frames](https://campus.datacamp.com/courses/free-introduction-to-r/chapter-5-data-frames?ex=1)
+
+中级部分
+
+- [Chapter 1 Conditionals and Control Flow](https://campus.datacamp.com/courses/intermediate-r/chapter-1-conditionals-and-control-flow?ex=1)
+- [Chapter 3 Functions](https://campus.datacamp.com/courses/intermediate-r/chapter-3-functions?ex=1)
+
+认真研读[R语言基础小抄](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)，并将相关的代码输入到R代码文件中。
+
+[更多小抄](https://www.rstudio.com/resources/cheatsheets/)
+

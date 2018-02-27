@@ -1,0 +1,324 @@
+---
+title: "R读入和处理SPSS、stata中文数据"
+author: "liding@ruc.edu.cn"
+date: "November 28, 2017"
+output:
+  html_document:
+    highlight: pygments
+    widescreen: yes
+    css: ../lec.css
+---
+
+## 说在前面的话
+
+R能够读入和处理SPSS和stata数据，但是R中因子型变量（factor变量，也就是分类变量）是数值变量和文本变量之外的一种单独的类型。而R会对不同的类型对象采取不同的处理方法，从而具有其他的优势，如回归模型因子变量自动作为虚拟变量纳入。
+
+在SPSS和Stata数据中，实际上只存在两类变量，数值变量和文本变量，分类变量实际上只是带有标签的数值变量。你要他们相互加减乘除，机器也是可以做的，阻止如此做的只能是人。但是在R中，让两个分类变量相加，机器都不允许。
+
+因此，为了发挥R的独特优势，我们读入stata和spss数据时，最好将spss和stata中带有标签的分类变量都转化为因子变量。但是SPSS和stata数据中不仅会给分类变量加标签，还会给数值变量加上用户缺失值标签。
+
+那么如何处理这两类不同的标签呢？一种是不区分，统一读进来，将标签信息保存起来，读进来的数据作为一种特殊类型的变量。一种是读的时候就区分，全部取值都带来有标签的转变为因子，而标签不全的变量则保留标签信息但不转变为因子。
+
+haven包和Daniel在haven基础上改进开发的sjmisc包采用的是前一种处理思路，读进来的变量都为labelled类型，变量标签和取值标签保存在变量的相关属性中。sjlabelled、sjPlot、sjstat等包可以调用,也可以通过设定好的函数依据标签转化为因子变量。
+
+而foreign包和readstata13包采用的是第二种处理思路。在读入数据时可以通过一定的设定将带标签的分类变量转变为因子，而带用户缺失值标签的连续变量（标签不全的变量）仍然保持数值变量类型，但保留了取值标签信息，备查。
+
+R还可以写出SPSS和Stata格式的数据。因此，当你只有某个较新版本的spss或者stata数据而手头的软件版本比较低时，除了让有新版本软件的朋友帮你另存为旧版本的数据或者使用statransfor之外，一种方法就是用开源的R读入新版本的数据，然后写出成为旧版本的数据，这里暂不讨论。
+
+## 一、haven包读入SPSS、stata或SAS数据
+
+Rstudio推荐使用haven包读入数据
+```{r,eval= FALSE}
+library(haven)
+data1 <- read_sav("路径+文件名.sav")
+data2 <- read_stata("路径+文件名.dta",encoding ="GB2312")
+data3 <- read_sas("路径+文件名.sas7bdat")
+```
+
+<br>
+haven包读人SPSS和Stata数据后，变量和取值标签变为变量的属性，变量默认为labelled类型。
+
+Stata14之前的数据未存Encoding信息,需设定中文数据可能是GB2312编码。
+
+SPSS数据和Stata14后版本支持unicode编码。haven可默认读入。
+
+### 1.1 读Stata数据
+
+当预览标签为乱码时，可尝试设定encoding=“GB2312”或者encoding=“gbk”。预览没有乱码时，意味着这数据encoding为默认的utf-8。
+
+![](pic/readcgss.png)
+
+```{r}
+library(haven)
+cgss2003 <- read_dta("cgss2003.dta",encoding = "utf-8")
+str(cgss2003$sitetype)
+attr(cgss2003$sitetype,"label")
+attr(cgss2003$sitetype,"labels")
+```
+
+### 1.2 读入SPSS数据
+
+SPSS数据默认unicode编码,haven包的read_spss不能设定encoding信息。如果预览中spss数据标签等内容存在乱码，原数据的编码不一致，可以另存为低版本的spss统一编码形式然后haven读入或者使用后面的foreign包读入spss数据，它可以设定编码格式。
+
+![](pic/cgssspss2.png) 
+
+### 1.3 查看读入SPSS &Stata数据后的label信息
+
+haven包默认导入spss和stata数据后,变量标签存在*变量*的的label属性当中,取值标签在labels属性当中。
+
+```{r}
+library(tidyverse)
+library(haven)
+cgss2003 <- read_sav("CGSS2003b.sav")  # spss7.0版数据
+str(cgss2003$sitetype)
+attr(cgss2003$sitetype,"label")
+attr(cgss2003$sitetype,"labels")
+```
+
+### 1.4 使用label信息{#myImagePage2}
+
+这些标签信息怎么使用呢？如果直接统计分析，输出中没有标签信息
+
+```{r}
+cgss2003 %>%  count(sitetype)
+
+ggplot(cgss2003, aes(x=sitetype)) +
+  geom_bar() + 
+  scale_x_discrete(drop=TRUE)
+```
+
+### 1.5 使用label信息:使用sjPlot包分析
+
+Daniel Lüdecke 专门研究了如何使用spss和stata数据导入附带的label信息，创建了一系列的包，并将之tidyverse化。
+
+```{r , warning = FALSE,message= FALSE}
+#if(!require(sjmisc)) install.packages("sjmisc")
+if(!require(sjPlot)) install.packages("sjPlot")
+sjt.frq(cgss2003$sitetype)
+```
+
+
+```{r,fig.height= 4}
+sjp.setTheme(theme.font ='STXihei' ) # STHeiti也可
+cgss2003  %>% select(sitetype) %>%  sjplot(fun="frq")
+```
+
+Daniel开发的 sjlabelled包中还有一些专门处理标签信息的函数，例如获得标签
+```{r,eval=FALSE}
+sjlabelled::get_labels(cgss2003$sitetype,include.values="n")
+
+sjlabelled::set_labels(cgss2003$sitetype,
+                       labels=c("不适合"="-3",
+                                "无填答/不回答"="-2",
+                                "不知道/说不清" = "-1",
+                                "直辖市/省会城市的市区" = "1",
+                                "地级市市区"  ="2",
+                                "县城城区"="3" ,
+                                "集镇" ="4" ))
+
+```
+
+
+                 
+mac中使用sjp中的作图函数绘制图形时，注意设定好字体，只有支持中文的字体才能在图形的标签元素（如标题）中呈现出来，如果是几何元素对应的标签，也需要设定，参见下面的解决方案。
+
+[sjp更多介绍1](https://strengejacke.wordpress.com/2016/11/14/pipe-friendly-workflow-with-sjplot-sjmisc-and-sjstats-part-1-rstats-tidyverse/);
+
+[sjp更多介绍2](https://strengejacke.wordpress.com/sjplot-r-package/);
+
+[MAC电脑Rstudio作图中文乱码的解决方案](http://note.youdao.com/noteshare?id=9367dbf7c91458d07f54e256b6c2271d)
+
+[可以用的中文字体名列表](http://www.cnblogs.com/code/articles/2381967.html)
+
+
+
+### 1.6 使用label信息:将labelled分类变量转换为因子
+
+使用haven包的as_factor()命令可以将labelled类型的变量变成因子，将变量的取值替换为标签本身。这是R数据处理分类变量的普遍方式。方式如下：
+```{r,fig.height=2.5}
+cgss2003  %>%
+  filter(sitetype>0) %>%
+  select(sitetype) %>% 
+  haven::as_factor() %>% 
+  droplevels() %>% 
+  sjplot(fun="frq",axis.title="调查地类型")
+```
+
+### 1.7 使用label信息:将labelled分类变量转换为因子
+
+SJ[(strange jack)](http://www.strengejacke.de/sjPlot/)的`sjmisc::to_label()`改进了haven包函数，不仅可以将所有labbled的列转为因子。还可以设定是否将用户定义的缺失值替换为NA(drop.na=TRUE)，删除未用到的取值标签(drop.levels=TRUE)。
+
+```{r,fig.height=2.5}
+cgss2003  %>%
+  select(sitetype) %>% 
+  sjmisc::to_label(drop.levels=TRUE) %>% 
+  sjplot(fun="frq",axis.title="调查地类型")
+
+```
+
+### 1.8 删除连续变量中的用户缺失值标签
+
+haven中的zap_labels可以删除标签，并将用户定义缺失值标签对应的取值替换为NA。但是很多数据集定义的用户缺失值只是加了标签并未明确设定。因此不好用。一种做法是在spss和stata中将这些特殊值如-1，-2，-3，9997，998 之类的明确定义为用户缺失值，然后再导入数据。
+
+而sjlabelled包的zap_labels函数对haven包中的函数做了改进，可以将标签当做缺失值删除。当你处理的是连续变量时，少数几个用户缺失值标签通常是无用的，可以使用这一命令删除。
+
+
+```{r,fig.height=2.5,message=FALSE}
+cgss2003  %>%
+  select(birth05) %>% 
+  sjlabelled::zap_labels() %>% 
+  qplot(binwidth=5)
+```
+
+Daniel开发的一系列包如sjlabelled、sjPlot、sjstat、sjmisc试图将SPSS和stata的数据存储和处理理念带回到R当中，并在数据分析是将标签自动加上。原来他可以同时使用haven包和foreign包读入数据，后来似乎靠向了haven包和tidyverse风格。如果你想保持stata和spss的数据结构概念，可以更多了解他开发的包。
+
+https://github.com/strengejacke
+http://strengejacke.de/sjPlot/datainit/
+https://cran.r-project.org/web/packages/sjmisc/index.html
+
+
+### 1.9 Have包读入CGSS2003数据预处理的完整例子
+
+```{r}
+library(haven)
+library(tidyverse)
+# cgss2003 <- read_sav("CGSS2003b.sav")  # stata和spss都可以
+cgss2003 <- read_stata("CGSS2003.dta") 
+#替换用户定义缺失值为系统缺失值
+cgss2003[cgss2003==-1] <- NA;cgss2003[cgss2003==-2] <- NA;cgss2003[cgss2003==-3] <- NA
+str(cgss2003$sitetype)
+# 删除没有用到的取值标签
+cgss2003 <- sjlabelled::drop_labels(cgss2003) 
+
+#将剩余取值标签的变量转为因子，无取值标签的变量仍然为labelled类型
+str(cgss2003$sitetype)
+
+cgss2003 <- sjmisc::to_label(cgss2003) # as_label也可以用
+# cgss2003 <- haven::as_factor(cgss2003)会将所有变量转成因子，不好
+knitr::kable(as.data.frame(table(cgss2003$sitetype)))
+
+#将剩余的labelled变量，都转化为普通数值变量
+w <- which(sapply(cgss2003, class) == 'labelled')
+cgss2003[w] <- lapply(cgss2003[w], 
+                      function(x) as.numeric(as.character(x))
+                      )
+sjPlot::set_theme(theme.font ='STXihei' )
+
+cgss2003 %>%
+  select(sitetype) %>% sjPlot::sjplot(fun="frq")
+```
+
+
+## 二、foreign包读入spss数据
+
+除了haven包外，foreign包也是读入常见数据的较为成熟的包。它可以设定的参数更多。read.spss读入spss数据时，可设定reencode参数,对中文数据进行处理。
+
+你可以设定是否读入标签信息、是否转变为数据框、设定因子变量多类数、删除因子标签中多于的空格、替换用户缺失值为NA、带有部分标签的变量如何处理等。
+
+默认情况下是将所有带标签的变量转化为factor类型，如果有些取值没有label,会自动添加。
+
+使用add.undeclared.levels="no",标签不全的变量不会转化为因子变量，但是会保留在变量的value.labels属性中。CGSS中那些定义了用户缺失值的连续变量最好采用这种方式读入，变成因子变量没有必要。
+
+```{r,warning=FALSE}
+cgss <- foreign::read.spss("CGSS2003.sav",reencode = "GB2312",to.data.frame=TRUE,add.undeclared.levels="no")
+```
+
+foreign包的`read.spss`导入的数据,变量标签存在于数据集的variable.labels属性当中。没有转变为因子变量的取值标签存在变量的value.labels属性中。#SPSS的日期以1582年10月14日为基准，通过加上++ISOdate(1582,10,14)即可转为R的时间格式。
+
+
+```{r,warning= FALSE}
+attr(cgss, "variable.labels")[1:6]
+attr(attr(cgss, "variable.labels")[1:6],"names")
+str(cgss$birth)
+attr(cgss$birth, "value.labels")
+attr(attr(cgss$birth, "value.labels"),"names")
+
+```
+在R中我们可以批量删除某些用户定义的缺失值因子levels，以及连续变量中的用户缺失值。方法如下：
+
+```{r,warning=FALSE,fig.height=2.5}
+cgss[cgss=="无填答/不回答"] <- NA
+cgss[cgss=="不知道/说不清"] <- NA
+cgss[cgss=="不适合"] <- NA
+cgss[cgss=="不适用"] <- NA
+cgss[cgss==-1] <- NA
+cgss[cgss==-2] <- NA
+cgss[cgss==-3] <- NA
+cgss <- droplevels(cgss)
+ggplot(data=cgss,aes(x=sitetype))+geom_bar() +theme(text=element_text(family="STKaiti"))
+#SimSun、SimHei 、STHeiti、 STXihei 
+
+```
+
+
+## 三、readstata13包读入stata数据
+
+foreign包的read.dta支持读入stata5-12的数据，可以设定的参数有限。现在已经过时了,可以使用readstata13包。它可以支持stata15及以前所有版本的stata数据文件，但如果是 Stata/MP 15创建的变量数超过 32,767的数据（119）可能存在问题，尚未测试。
+
+readstata13 读入的标签信息在*数据集*的val.labels和label.table中。默认情况下convert.factors=TRUE，所有将带有标签的变量存为factor变量，标签不全的情况下会出现warning,且不会转为因子变量。convert.factors=FALSE设定会使得所有读入的变量都不转为因子变量，只保留标签信息。
+
+cgss数据连续变量因为带有用户定义的缺失值标签，convert.factors=TRUE设定恰好合适，默认即可。这和foreign保持了一致。
+
+```{r,warning=FALSE}
+if(!require(readstata13)) install.packages("readstata13")
+cgss <- read.dta13("cgss2003.dta",convert.factors=TRUE)
+# 变量标签、变量取值标签
+attr(cgss,"var.labels")[1:6]
+attr(cgss,"val.labels")[1:6]
+# 取值标签名
+attr(attr(cgss,"val.labels")[1:6],"names")
+# 取值标签表——有标签的才存在表中
+attr(cgss,"label.table")[1:3]
+attr(attr(cgss,"label.table")[1:3],"names")
+
+attr(cgss,"val.labels")["negotiat"]
+attr(cgss,"label.table")$negotiat
+table(cgss$negotiat)
+
+cgss[cgss=="无填答/不回答"] <- NA
+cgss[cgss=="不知道/说不清"] <- NA
+cgss[cgss=="不适合"] <- NA
+cgss[cgss=="不适用"] <- NA
+
+cgss[cgss==-1] <- NA
+cgss[cgss==-2] <- NA
+cgss[cgss==-3] <- NA
+
+cgss <- droplevels(cgss)
+
+sjPlot::sjplot(cgss,sitetype,fun="frq",axis.title="调查地类型")
+sjPlot::sjt.frq(cgss$sitetype)
+
+ggplot(data=subset(cgss,!is.na(sitetype)))+
+  geom_bar(aes(x=sitetype)) +
+  theme(text=element_text(family="STKaiti"))
+```
+
+read.dta13的选项中，generate.factors=TRUE可以给标签不全的变量产生标签，这个不适用于CGSS数据，会将带有用户缺失值标签的连续变量变为因子变量。此外还可以设定将浮点数或双精度数加标签（这个也没有必要），或则选择一定的数据行。
+
+
+通过encoding可以设定数据编码形式，stata14数据是utf-8编码，可以设定encoding = "NULL"停止转换。fromEncoding可以认为设定原数据编码样式。
+
+
+
+## 四 针对中文数据的改进
+
+陈华珊自定义的ezdf包针对中文做了一些改进，将变量标签存在了meta数据框中。它可分别设标签和文本变量的编码——有些情况下数据中的中文并不是采用相同的编码cgss2013的stata数据就是如此。这个包中还定义了简单的汇总函数，可将取值标签自动添加到汇总统计中。更多信息:https://github.com/huashan/ezdf/blob/master/Doc/Easy_Data.pdf
+
+但这个包的系统性和更新频率不如strange jack。
+
+```{r,eval= FALSE}
+# 安装必要的包，运行一次即可
+install.packages('data.table')
+library(devtools)
+options(download.file.method = "wininet")
+install_git("https://github.com/huashan/ezdf")
+install_github('huashan/pander')
+
+# 加载包
+library(ezdf)
+dat <- readStata(file,varNameEncoding="GB2312",charEncoding="GBK")
+```
+更多R入门的内容请查看李丁的网站:http://www.istata.cn/?page_id=41
+
+

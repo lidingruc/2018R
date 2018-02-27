@@ -1,0 +1,128 @@
+.libguides_api_box div, .libguides_api_box td { font: 12px/1.5em Arial; }
+.libguides_api_box h2 { font: 14px/1.8em Geneva, Arial, sans-serif; font-weight:bold; color: #000; margin: 0px; padding: 2px; }
+.libguides_api_box h4 { font: 11px/1.5em Geneva, Arial, sans-serif; color: #000; margin: 0px; padding: 7px; }
+.libguides_api_box a {color:#2954d1;}
+.libguides_api_box a:link, .libguides_api_box a:visited, .libguides_api_box a:active { text-decoration:none; }
+.libguides_api_box a:hover { text-decoration:underline; }
+
+.outerbox {background-color:#eaeaea; padding:7px; margin-bottom:17px; }
+
+.headerbox { padding:4px 4px 5px 5px; margin-bottom:5px; background: transparent url(//lgimages.s3.amazonaws.com/boxhead-blueshade.gif) 0 0 repeat-x; }
+.headerbox h2 {color:#666666; font: bold 12px Verdana, Arial, Helvetica, sans-serif; display:inline; }
+
+.bi_text, .bi_links, .bi_file, .bi_rss, .bi_event, .bi_video, .bi_poll, .bi_books, .bi_search { display:none; font: bold 12px Courier sans-serif !important; margin: 0; padding: 0; width: 18px; height: 14px; min-width: 18px; background: transparent url(//lgimages.s3.amazonaws.com/box-icons.gif) 0 1px no-repeat; float:left; padding-right:0; }
+.bi_links { background-position:0 -19px;}
+.bi_file { background-position:0 -59px;}
+.bi_rss { background-position:0 -79px;}
+.bi_event { background-position:0 -99px;}
+.bi_video { background-position:0 -119px;}
+.bi_poll { background-position:0 -159px;}
+.bi_books { background-position:0 -180px;}
+.bi_search { background-position:0 -199px;}
+
+.innerbox, .innerboxprofile { background-color:#FFFFFF; padding:8px; margin:0px; font: normal 12px Arial, Helvetica, sans-serif; }
+.innerbox p { margin-bottom: 12px; }
+.innerbox img, .innerbox object, .innerbox embed, .innerbox input, .innerbox select { max-width:99%; } /* prevent content from bleeding outside the box border */
+.innerbox table img, .innerbox table object, .innerbox table embed, .innerbox table input, .innerbox table select { max-width:none; } /* dont resize objects within tables since that can cause the objects to display much smaller than intended */
+.boxatt { padding-top:5px; }
+
+.itemlist ul, .itemlist li { margin: 0 8px 0 8px; color: #484848; padding: 0 3px 5px 0; }
+.itemlist ul { padding-top:10px; }
+
+.resdesc { font: 11px  Arial, Helvetica, sans-serif; color:#000; margin: 0; padding: 0 0 7px 0; }
+
+/* these are the classes for the book cover art */
+.book_art_0, .book_art_1, .book_art_2 { border:0px; margin:0px 10px 10px 0px; }
+.book_art_0 { width:90px; }
+.book_art_1 { width:140px; }
+.book_art_2 { width:200px; }
+
+.libguides_api_list { padding: 0 0 0 20px; margin: 0px; }
+
+/* new profile box classes specified in lib_profile_box */
+.profileimage { max-width:140px; width:expression(this.scrollHeight > 139 ? '140px' : 'auto'); border:1px solid #999999; display:block; margin:10px 0px 5px 0px; padding:4px; }
+.profileh4 { font-size:11px; line-height:1.5em; padding:5px; }
+.profilecontent { margin-top:15px; }
+.im_icon { padding-right:10px; padding-bottom:10px; }
+.profile_image_align { display:block; margin-left:auto; margin-right:auto; text-align:center; }
+.profile_display_name { font-weight: bold; text-align: center; }
+
+/* libcal appt scheduler button for profile */
+.aptsched { text-align:center; }
+button.aptsch { margin:15px auto 5px auto; background:#e3e3e3; border:1px solid #bbb; -webkit-border-radius:3px; -moz-border-radius:3px; -ms-border-radius:3px; -o-border-radius:3px; border-radius:3px; -webkit-box-shadow:inset 0 0 1px 1px #f6f6f6; -moz-box-shadow:inset 0 0 1px 1px #f6f6f6; -ms-box-shadow:inset 0 0 1px 1px #f6f6f6; -o-box-shadow:inset 0 0 1px 1px #f6f6f6; box-shadow:inset 0 0 1px 1px #f6f6f6; color:#333; font:bold 12px helvetica, arial, sans-serif; padding:8px 0 9px; text-align:center; text-shadow:0 1px 0 #fff; width:170px; }
+button.aptsch:hover { background:#d9d9d9; -webkit-box-shadow:inset 0 0 1px 1px #eaeaea; -moz-box-shadow:inset 0 0 1px 1px #eaeaea; -ms-box-shadow:inset 0 0 1px 1px #eaeaea; -o-box-shadow:inset 0 0 1px 1px #eaeaea; box-shadow:inset 0 0 1px 1px #eaeaea; color:#222; cursor:pointer; }
+button.aptsch:active { background:#d0d0d0; -webkit-box-shadow:inset 0 0 1px 1px #e3e3e3; -moz-box-shadow:inset 0 0 1px 1px #e3e3e3; -ms-box-shadow:inset 0 0 1px 1px #e3e3e3; -o-box-shadow:inset 0 0 1px 1px #e3e3e3; box-shadow:inset 0 0 1px 1px #e3e3e3; color:#000; }
+
+/* book property classes */
+.book_cover, .book_title, .book_author, .book_callno, .book_isbn, .book_pubyear, .book_description { }
+.book_title { font-weight:bold; }
+.book_div { margin-bottom:10px; clear:both; }
+
+/* remove resource icons and more info stuff from L&L entries */
+.res_icon, .b_moreinfo, .popupdiv { display:none; }
+
+/* LibAnswers Box */
+.la_box_qa h4 {
+	font: 13px/1.5em Geneva, Arial, sans-serif;
+	border-bottom: 1px solid #ededed;
+	padding: 7px 7px 2px 7px;
+	margin: 5px 0 10px 0;
+}
+.la_qtop {
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 10px;
+	margin-bottom: 25px;
+}
+.la_bcap {
+	padding: 5px;
+	margin: -5px 10px 0 0;
+	float: left;
+	display: block;
+	background-color: #000;
+	color: #fff;
+	font-size: 18px;
+	line-height: 13px;
+	font-weight: bold;
+}
+.la_question {
+	margin: 5px 0 15px 0;
+}
+.la_details {
+	margin-bottom: 20px;
+}
+.la_updated {
+	font-size: .8em;
+	text-align: right;
+	margin-bottom: 5px;
+	float: right;
+	line-height: 1.5em;
+	display: none;
+}
+.la_topics h4 {
+	display: inline;
+	border: 0px;
+	margin: 0;
+	padding: 0;
+	font: bold 12px Arial, Helvetica, sans-serif;
+}
+.la_topiclist {
+	display: inline;
+}
+.la_answer { 
+	margin-bottom: 20px;
+}
+.la_answer .la_bcap {
+	background-color: #fff;
+	color: #000;
+	border: 1px solid #000;
+}
+.la_video {
+	max-width: 100%;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+.lg_rss_list { margin-top: 0px; margin-bottom: 0px; margin-left: 0px; padding-left: 16px; }
+.lg_rss_list_item { padding-bottom: 5px; }
+
+/* table of contents box */
+.box_toc_subpage { margin-left:10px; }

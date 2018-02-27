@@ -1,0 +1,162 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin:0;
+	padding:0;
+	background-color:#ffffff;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:small;
+}
+li {
+    margin-bottom: 10px;
+}
+.container {
+	width:300;
+	margin-left:auto;
+	margin-right:auto;
+}
+h1 {
+	color:#003365;
+	font-size:large;
+}
+h2 {
+	color:#003365;
+	font-size:medium;
+}
+hr {
+	width:95%;
+}
+.breaking_polls {
+	font-size:small;
+	text-align:left;
+	color:#000000;
+}
+.breaking_polls b {
+	font-weight:normal;
+}
+
+
+#header {
+	text-align:center;
+}
+#header_ad {
+	padding:0;
+	margin:0;
+	background:url(../images/ad_space_bg.gif) repeat-x #fff;
+}
+#header_ad img {
+	padding-top:0.5em;
+	padding-bottom:0.5em;
+	margin:0;
+}
+.ad-unit {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#logo {
+	background-color:#003365;
+
+}
+#logo_bottom_bg {
+	background:url(../images/header_bottom_bg.gif) repeat-x top;
+	height:20;
+}
+#header_menu {
+	color:#FFF;
+	background-color:#003365;
+	padding:.5em;
+	margin:0;
+}
+#header_menu a, #header_menu a:hover, #header_menu a:visited {
+	color:#FFF;
+}
+#page_header {
+	background:url(../images/page_header_bg.gif) repeat-x top #fff;
+	padding:0.5em;
+	font-size:large;
+
+}
+
+#body {
+	padding:0.5em;
+}
+#recent dl dt {
+	padding-bottom:0.5em;
+}
+
+
+#footer {
+	background:url(../images/footer_bg.gif) repeat-x top #003365;
+	color:#FFF;
+	text-align:center;
+	font-size:x-small;
+	padding:1em;
+}
+#footer_menu a, #footer_menu a:hover, #footer_menu a:visited {
+	color:#FFF;
+}
+.feed li {
+	list-style:none;
+}
+
+/* Listicle content */
+.container.listicle {
+    padding: 0 10px;
+}
+
+ul#listicle {
+    padding: 0;
+}
+
+ul#listicle > li {
+    list-style: none;
+}
+
+#listicle .listicle-item .class-image img {
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+    max-height: 570px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.listicle-item-title{
+    font-style: bold;
+}
+/* END Listicle content */
+
+.pagenavigator {
+  clear: both;
+  text-align: center;
+}
+
+.pagenavigator .next {
+  float: right;
+}
+.pagenavigator .previous {
+  float: left;
+}
+.adblade_unit {
+    padding-top: 20px;
+    clear: both;
+}
+.ndn_embed {
+    margin-top: 20px;
+}
+
+.continue-reading {
+    color: #999;
+}
+
+.arrow-down {
+  margin: 0 5px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #999;
+  vertical-align: middle;
+  display: inline-block;
+}
