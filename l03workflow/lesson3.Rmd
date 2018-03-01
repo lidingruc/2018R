@@ -2,7 +2,7 @@
 ---
 title: "R语言介绍及基础操作"
 author: "李丁"
-date: "2017年10月10日"
+date: "2018年"
 output:
   ioslides_presentation:
     widescreen: yes
@@ -12,7 +12,7 @@ output:
 
 ## 课程大纲 
 
-* R语言的特征
+* R语言的特征(跳过)
 * R使用流程与工具箱
 * 演示:基础操作与数据分析流程
 * 使用github获得最新讲义
@@ -40,7 +40,7 @@ output:
 - 各类前沿的方法（不断更新）
 - 实现可重复性(Reproducible)分析
 - 适用于多操作系统的轻量化平台
-- 编程简单(学习曲线比较陡)
+- 简单但学习曲线比较陡
 - 更新快速且文档完备(需要适应)
 
 
@@ -397,7 +397,7 @@ knitr::include_graphics("pic/gapminder-gganimate.gif")
     + [1](https://campus.datacamp.com/courses/intermediate-r/chapter-1-conditionals-and-control-flow?ex=1)
     + [3](https://campus.datacamp.com/courses/intermediate-r/chapter-3-functions?ex=1)
 
+## 时间允许 
 
-## {.flexbox .vcenter .nobackground}
+[Data visualisation](file:///Users/liding/E/Bdata/liding17/book/r4ds/_book/data-visualisation.html)示例章的概要展示和作业说明
 
-![To be continued](pic/tobecontinued.png)
