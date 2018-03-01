@@ -1,0 +1,33 @@
+@charset "ISO-8859-1";
+
+/* Taken from http://denilsonsa.selfip.org/~denilson/menu/menu.html */
+
+body, .section {
+	/*background:#7a9 url(backs/green.jpg) repeat fixed;*/
+	color: black;
+}
+div.section {
+	background-color: #cdd;
+	background-image: url(backs/green_faded.jpg);
+	border: 1px solid;
+	margin: 0  0 1em 0;
+	padding: 1em;
+}
+
+h1 {
+	font-size: 2em;
+}
+/*
+a:link { color: #000000; }
+a:visited { color: #000000; } 
+a:hover { color: #000000; } 
+*/
+
+a.menu:visited { color: #FFFFFF; }
+a.menu:link { color: #FFFFFF; }
+
+div.section h1, div.section h2 {
+	margin-top: 0;
+}
+
+

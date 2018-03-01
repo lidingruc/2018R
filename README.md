@@ -41,6 +41,7 @@ PPT文件：https://github.com/lidingruc/2018R/blob/master/%E7%AC%AC%E4%BA%8C%E8
 课后作业（不用提交）：针对大数据时代和社会研究方法中的某个问题，你如何学习、积累并将之解决？简单规划一下自己的学习路径。
 
 继续阅读此前没有看完的内容：
+
 http://moderndive.com/index.html
 
 http://moderndive.com/2-getting-started.html
@@ -83,7 +84,7 @@ http://r4ds.had.co.nz/graphics-for-communication.html
 
 http://note.youdao.com/noteshare?id=94c815919f88613d071d2254934ca53e
 
-提交作业1：将http://r4ds.had.co.nz/data-visualisation.html一章中的命令复制到R scripts中，并运行，如果有错误，找出，并尝试解决。
+提交作业1：将 http://r4ds.had.co.nz/data-visualisation.html 一章中的命令复制到R scripts中，并运行，如果有错误，找出，并尝试解决。
 自己要强化学习。
 
 ## 第4讲、夯基：关于R的基础
@@ -101,7 +102,7 @@ http://r4ds.had.co.nz/transform.html
 
 课堂演示：R基础入门：R中的对象、函数、控制语句与数据框操作
 
-提交作业2：将http://r4ds.had.co.nz/transform.html 中的命令转移到R scripts文件中，并完成其中的练习题。
+提交作业2：将 http://r4ds.had.co.nz/transform.html  中的命令转移到R scripts文件中，并完成其中的练习题。
 
 
 ## 第5讲、备砖：数据管理（变量层次的管理）
@@ -116,7 +117,7 @@ http://r4ds.had.co.nz/strings.html
 http://r4ds.had.co.nz/dates-and-times.html
 
 
-提交作业3：将http://moderndive.com/5-wrangling.html中的命令转移到R scripts文件中，并完成其中的练习题。
+提交作业3：将 http://moderndive.com/5-wrangling.html 中的命令转移到R scripts文件中，并完成其中的练习题。
 
 
 ## 第6讲、备砖：数据管理（数据层次的管理）
@@ -129,7 +130,7 @@ http://moderndive.com/4-tidy.html
 http://r4ds.had.co.nz/relational-data.html
 
 
-提交作业4：将http://r4ds.had.co.nz/tidy-data.html中的命令转移到R scripts文件中，并完成其中的练习题。
+提交作业4：将 http://r4ds.had.co.nz/tidy-data.html 中的命令转移到R scripts文件中，并完成其中的练习题。
 
 
 ## 第7讲、探索：统计描述与ggplot作图
@@ -144,7 +145,7 @@ http://moderndive.com/3-viz.html
 http://r4ds.had.co.nz/data-visualisation.html
 
 
-提交作业5：将用http://r4ds.had.co.nz/exploratory-data-analysis.html中的命令转移到R scripts文件中，并完成其中的作业题。
+提交作业5：将 http://r4ds.had.co.nz/exploratory-data-analysis.html 中的命令转移到R scripts文件中，并完成其中的作业题。
 
 
 ## 第8讲、可视化：R基础作图
@@ -153,10 +154,11 @@ http://r4ds.had.co.nz/data-visualisation.html
 
 课堂演示：利用基础命令作图
 
-提交作业6：将http://moderndive.com/3-viz.html中的命令转移到R scripts文件中，并完成其中的learning check
+提交作业6：将http://moderndive.com/3-viz.html 中的命令转移到R scripts文件中，并完成其中的learning check
 
 
 ## 第9讲、推论：统计检验
+
 课前预习:第二讲讲义中关于抽样和统计推论的部分
 
 http://moderndive.com/7-sim.html
@@ -174,7 +176,7 @@ https://github.com/andrewpbray/infer
 
 课堂演示:如何用R来进行卡方检验、T检验、方差检验、分析检验，模拟抽样分布
 
-提交作业7：运行http://moderndive.com/10-hypo.html中的命令，并完成其中的learning check
+提交作业7：运行 http://moderndive.com/10-hypo.html 中的命令，并完成其中的learning check
 
 
 
@@ -192,18 +194,23 @@ http://moderndive.com/7-multiple-regression.html
 
 http://moderndive.com/11-inference-for-regression.html
 
-提交作业8：将http://r4ds.had.co.nz/model-basics.html对应的rmd文件中的命令誊到R script上 运作一遍。
+提交作业8：将http://r4ds.had.co.nz/model-basics.html 对应的rmd文件中的命令誊到R script上 运作一遍。
 
 ## 第11讲、建模：回归诊断与拓展
+
 课前预习：预习回归诊断、模型选择、logit回归内容
 
 交互效应：http://faculty.smu.edu/kyler/courses/7312/interact.pdf
+
 回归诊断：https://socialsciences.mcmaster.ca/jfox/Courses/Brazil-2009/index.html
+
 GLM模型：https://socialsciences.mcmaster.ca/jfox/Courses/SPIDA/index.html
+
 SEM模型：https://socialsciences.mcmaster.ca/jfox/Courses/R/IQSBarcelona/index.html
+
 高级模型与编程： https://socialsciences.mcmaster.ca/jfox/Courses/R/Peking/index.html
 
-课堂演示
+课堂演示：交互效应、回归诊断、logit回归等
 
 课后作业（不提交）：将课堂示例操练一下。
 
@@ -235,8 +242,10 @@ https://ismayc.github.io/soc301_s2017/group-projects/index.html
 
 课前预习：空间分析的基本原理
 
-入门材料：http://note.youdao.com/noteshare?id=92cbe89d3e03cc530ac28c4a0eb6449e
+自学材料：http://note.youdao.com/noteshare?id=92cbe89d3e03cc530ac28c4a0eb6449e
+
 朱可夫：http://www.people.fas.harvard.edu/~zhukov/spatial.html
+
 孙秀林空间建模：http://note.youdao.com/noteshare?id=4f4180ea28db7fdd238b882b681c5cd2
 
 课堂演示：空间数据的基本介绍与作图 
@@ -248,7 +257,7 @@ https://ismayc.github.io/soc301_s2017/group-projects/index.html
 
 课前预习：
 
-入门材料：http://note.youdao.com/noteshare?id=f0d94703ba72b57c54ad9318bdf0f274
+自学材料：http://note.youdao.com/noteshare?id=f0d94703ba72b57c54ad9318bdf0f274
 
 课堂演示：文本分词、词云、主题、情感分析
 
@@ -259,9 +268,9 @@ https://ismayc.github.io/soc301_s2017/group-projects/index.html
 
 课前预习：
 
-http://note.youdao.com/noteshare?id=57cc2a7d0f893b58d4fbb217f65f167d
+自学资料：http://note.youdao.com/noteshare?id=57cc2a7d0f893b58d4fbb217f65f167d
 
-http://note.youdao.com/noteshare?id=6d0aab0f55880292730ff9535488b356
+网页原理：http://note.youdao.com/noteshare?id=6d0aab0f55880292730ff9535488b356
 
 课堂演示：用R爬取数据的原理与实战
 
@@ -277,11 +286,11 @@ https://bbs.pku.edu.cn/v2/board.php?bid=682
 
 安装说明：http://note.youdao.com/noteshare?id=8b5797ca96ee80737a6a9048c0423b6f
 
-http://note.youdao.com/noteshare?id=ab8f1f4e84519a6eb3881c8d7ca37841
+python入门：http://note.youdao.com/noteshare?id=ab8f1f4e84519a6eb3881c8d7ca37841
 
-http://note.youdao.com/noteshare?id=aa3b31703ff6468eb2c884494e11b939
+python爬虫：http://note.youdao.com/noteshare?id=aa3b31703ff6468eb2c884494e11b939
 
-http://note.youdao.com/noteshare?id=8d72a2741f381b292d40c7583047c891
+python爬虫：http://note.youdao.com/noteshare?id=8d72a2741f381b292d40c7583047c891
 
 课后作业（不提交）：安装配置好python后，尝试运行示例命令。
  

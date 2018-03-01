@@ -1,0 +1,134 @@
+/* for CSS column layout */
+
+body {
+  FONT-SIZE: 10pt;
+  font-family: Helvetica, Arial, sans-serif;
+  background: #D3D3D3;
+  background-image: none;
+}
+
+#leftcontent {
+  width: 128px;
+  float: left;	
+  text-align: center;
+  margin-bottom: 0.5em; 
+  border: 1px solid black;
+  background: #cceeff;
+}
+
+#rightcontent {
+  margin-left: 140px;
+  background: #ffffff;
+  padding: 1em;
+  border: 1px solid black;
+}
+
+#ncrmlogo { 
+  float: right;
+  border: 1px solid lightgray;
+}
+
+.logo { 
+  float: right;
+  padding: 1em;
+}
+
+#footer { 
+  font-size: 9pt;
+  margin-top: 0.5em; 
+  padding-top: 0.5em; 
+  border-top: 1px dashed black;
+  clear: both; /* ensure footer goes at the very bottom instead of beside the sidebar or main content */
+}
+
+#host { 
+  float: left;
+}
+
+#maintainer { 
+  font-size: 9pt;
+  font-style: italic;
+  float: right;
+  clear: none; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, "MS Serif", "New York", serif;
+}
+
+.biasdef {
+  text-align: center; 
+  font-style: italic; 
+}
+
+.initial {
+  font-weight: bold;
+}
+
+p { 
+  border: 10 px; 
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link { color: #3366FF; }
+a:visited { color: #6633CC; }
+a:hover, a:active { 
+  text-decoration: underline; 
+  color: #9685BA;
+}
+
+img { border: none; }
+
+.link {
+  color: white;
+  font-size: 8pt;
+  height: 26px;
+  border: 1px solid black;
+  background: #003366;
+  margin: 1px;
+  border-color: #006633;
+  border-style: groove;
+  border-width: 2px;
+  text-align: center;
+  font-family: Arial, Tahoma, Verdana, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+a link:active { color: #33FF33; }
+
+.vcenter { 
+  line-height: 25px;
+}
+
+p.link.a:link { color: black; }
+
+.linklogo { text-align: left; }
+
+p.linksection { 
+  font-size: 70%;
+  text-align: center; 
+  padding-left: 10%;
+  margin-top: 10;
+  margin-bottom: 0;
+}
+
+div.readmore { 
+  margin-left: 10px; 
+  margin-top: 5px; 
+}
+
+p.readmore { 
+  margin: 2px;
+}
+
+p.person{ 
+  margin: 0.5em;
+ }
+
+.affiliation{ 
+  margin-left: 1em;
+  font-style: italic;
+ }
