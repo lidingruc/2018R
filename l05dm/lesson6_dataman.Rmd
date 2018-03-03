@@ -12,9 +12,9 @@ output:
 ## 内容提纲
 
 - 数据导入 Data import
-    + SPSS数据
-    + stata数据
-    + sas数据
+    + 导入CSV数据
+    + haven导入SPSS、stata数据
+    + foreign包导入SPSS、stata数据
     
 - 数据整理 Tidy data
     + 理想的数据结构
@@ -26,7 +26,7 @@ output:
 
 # 数据读入
 
-## R读入文本文件
+## R读入CSV等文本数据
 使用tidyverse中的readr包：
 ```{r, message=FALSE}
 library(tidyverse)
@@ -118,8 +118,8 @@ Stata14之前的数据无Encoding信息,中文数据可能是GB2312编码。
 
 Stata14版本支持unicode编码。haven默认可以读入。
 
-## haven读入stata数据:CGSS{#myImageP70}
-当预览标签为乱码时，可尝试设定encoding=“GB2312”或者encoding=“gbk”。没有乱码的情况下，通常encoding为默认的utf-8，可以不设定。
+## haven读入stata数据:CGSS{#myImageP50}
+预览为乱码时，可尝试设定encoding=“GB2312”或encoding=“gbk”。无乱码encoding为默认的utf-8即可。
 
 ![](../pic/readcgss.png)
 
@@ -129,12 +129,12 @@ cgss2003 <- read_dta("cgss2003.dta",encoding = "utf-8")
 ```
 
 ## haven读入SPSS数据:CGSS{#myImageP70}
-SPSS数据默认unicode编码，haven包的read_spss默认unicode，无法设定encoding信息。
+haven包1.1.1版之前的read_spss默认编码为unicode，无法设定encoding信息。而有时一些中文SPSS数据的编码不是utf-8，导致乱码。可以将数据存为spss低版本再试。1.1.1之后的版本可以设定encoding。
 
 ![](../pic/cgssspss2.png) 
 
-## haven读入SPSS&Stata数据
-**haven**包默认导入spss和stata数据后,变量标签在字段的label属性中,取值标签在labels属性中。
+## haven读入SPSS&Stata数据后的标签
+变量标签在字段的label属性中；取值标签在labels属性中。
 
 ```{r}
 library(haven)
@@ -144,9 +144,7 @@ attr(cgss2003$sitetype,"label")
 attr(cgss2003$sitetype,"labels")
 ```
 
-## 如何使用label信息？{#myImageP70}
-
-如果直接统计分析，没有标签信息
+## 使用label信息：直接统计无标签信息{#myImageP50}
 
 <div style="float: left;width: 40%;text-align: left;">
 ```{r}
@@ -162,7 +160,7 @@ ggplot(cgss2003, aes(x=sitetype)) +
 ```
 </div>
 
-## 如何使用label信息:1-使用sjPlot包分析
+## 使用label信息:使用sjPlot包分析-表
 
 ```{r , warning = FALSE,message= FALSE}
 #if(!require(sjmisc)) install.packages("sjmisc")
@@ -170,7 +168,7 @@ if(!require(sjPlot)) install.packages("sjPlot")
 sjt.frq(cgss2003$sitetype)
 ```
 
-## 如何使用label信息:1-使用sjPlot包分析
+## 使用label信息:使用sjPlot包分析-图
 ```{r,fig.height= 4}
 sjPlot::set_theme(theme.font ='STXihei' ) # STHeiti也可
 cgss2003  %>% select(sitetype) %>%  sjplot(fun="frq")
@@ -179,7 +177,7 @@ cgss2003  %>% select(sitetype) %>%  sjplot(fun="frq")
 [更多介绍1](https://strengejacke.wordpress.com/2016/11/14/pipe-friendly-workflow-with-sjplot-sjmisc-and-sjstats-part-1-rstats-tidyverse/);[更多介绍2](https://strengejacke.wordpress.com/sjplot-r-package/);[MAC电脑Rstudio作图中文乱码的解决方案](http://note.youdao.com/noteshare?id=9367dbf7c91458d07f54e256b6c2271d)
 
 
-## 如何使用label信息:2-转换为因子
+## 使用label信息:标签转为因子-更好
 使用haven包的as_factor()命令可以将所有labelled的列变成因子。
 ```{r,fig.height=2.5}
 cgss2003  %>%
@@ -190,10 +188,10 @@ cgss2003  %>%
   sjplot(fun="frq",axis.title="调查地类型")
 ```
 
-## 如何使用label信息:2-转换为因子
-用SJ[(strange jack)](http://www.strengejacke.de/sjPlot/)的`sjmisc::to_label()`可以将所有labbled的列转为因子。
+## 使用label信息:标签转为因子
+用SJ[(strange jack)](http://www.strengejacke.de/sjPlot/)的`sjmisc::to_label()`可以将所有labbled的变量转为因子。
 
-可同时设定是否将标记的用户缺失值替换为NA(drop.na=TRUE)，是否删除未用到的取值标签(drop.levels=TRUE)。
+可同时设定将用户缺失值替换为NA(drop.na=TRUE)，删除未用到的取值标签(drop.levels=TRUE)。
 
 ```{r,fig.height=2.5}
 cgss2003  %>%
@@ -202,8 +200,8 @@ cgss2003  %>%
   sjplot(fun="frq",axis.title="调查地类型")
 ```
 
-## 如何使用label信息:2-删除因子
-定义了用户缺失值标签的*连续变量*也变成了因子，不好。<br>sjlabelled和haven中zap_labels都可以批量删除标签。但前者将所有待删除的标签对应的取值都替换为NA；后者仅将用户定义缺失值标签替换为NA。
+## 使用label信息:带标签的连续变量
+上面的命令将定义了用户值标签的*连续变量*也变成了因子，不好！最好先处理好这些标签。<br>sjlabelled和haven中zap_labels可批量删除标签并将标签对应的取值都替换为NA。
 
 ```{r,fig.height=2.5,message=FALSE}
 cgss2003  %>%
@@ -212,7 +210,7 @@ cgss2003  %>%
   qplot(binwidth=5)
 ```
 
-## 读入SPSS和Stata数据的最优操作
+## **haven**读入SPSS和Stata数据的最优操作
 ```{r}
 library(haven)
 cgss2003 <- read_sav("../data/CGSS2003.sav") 
@@ -230,29 +228,26 @@ cgss2003[w] <- lapply(cgss2003[w],
 ```
 
 ## foreign包读入数据{#myImageP90}
-foreign包也是读入数据的常见包。SPSS数据默认unicode编码,但CGSS2003.SAV数据仍存在乱码。一种方法是将其在spss中另存为低版本如SPSS7.0数据，然后用haven包的read_spss读入。
-
-![](../pic/cgssspss2.png) 
-
-另一种方法是用foreign包中的read.spss函数读入。它可设定reencode参数。
-```{r}
-cgss <- foreign::read.spss("../data/CGSS2003.sav",reencode = "GB2312",to.data.frame=TRUE)
+foreign包也是读入数据的常见包。其read.spss可设定reencode等参数。
+```{r,warning =FALSE }
+cgss <- foreign::read.spss("../data/CGSS2003.sav"
+                           ,reencode = "GB2312",
+                           to.data.frame=TRUE,max.value.labels=50)
+table(cgss$sex)
 ```
 
 
-## foreign包读入数据
-
-foreign包读入外部数据时可选参数更多。`read.dta`,`read.spss`导入数据后,变量标签存在 variable.labels属性当中,<br>取值标签存在label.table属性中。默认将带标签的标量转化为 factor类型。如果有些取值没有label,会自动添加。
+## foreign包读入数据的标签
+变量标签存在 variable.labels属性当中；取值标签存在label.table属性中。<br>默认将带标签的变量转化为factor类型。部分取值没有label,会自动添加。
 
 ```{r,warning= FALSE}
 attr(cgss, "variable.labels")[1:6]
+attr(cgss, "label.table")[6]
 str(cgss$sitetype)
 ```
 
-## foreign读入数据:删除务必要的因子levels
-
+## foreign读入数据:删除不必要的因子levels
 ```{r,warning=FALSE,fig.height=2.5}
-
 cgss[cgss=="无填答/不回答"] <- NA
 cgss[cgss=="不知道/说不清"] <- NA
 cgss[cgss=="不适合"] <- NA
@@ -262,45 +257,6 @@ ggplot(data=cgss,aes(x=sitetype))+geom_bar() +theme(text=element_text(family="ST
 #SimSun、SimHei 、STHeiti、 STXihei 
 ```
 中文字体名：http://www.cnblogs.com/code/articles/2381967.html
-
-
-## 创建变量`mutate`
-```{r}
-cgss2003%>%
-    mutate(age = 2003 - birth) %>%
-summarize(
-    min = min(age, na.rm = TRUE),
-    q1 = quantile(age, 0.25, na.rm = TRUE),
-    median = quantile(age, 0.5, na.rm = TRUE),
-    q3 = quantile(age, 0.75, na.rm = TRUE),
-    max = max(age, na.rm = TRUE),
-    mean = mean(age, na.rm = TRUE),
-    sd = sd(age, na.rm = TRUE),
-    missing = sum(is.na(age))
-  )
-```
-
-## recode因子变量
-```{r}
-library(forcats)
-cgss2003 %>%
-   mutate(han = fct_collapse(ethnic,"汉"=c("汉"),
-              "少数民族"=c("蒙","满","回","藏","壮","维","其他")))%>%
-   count(han)  
-```
-如果分类变量是labelled类，分组若依据取值大小依次分类用下面的cut函数较好；否则转变为因子变量后使用fct_recode或fct_collapse会更好一些。
-
-##  recode连续变量为分类变量
-```{r}
-cgss2003 %>%
-    mutate(age=2003-birth) %>%
-   mutate(agegr=cut(age,
-                    breaks=c(0,20,40,60,Inf),
-              labels=c("yonth","midage","midoage","elder"))) %>%
-   count(agegr)                   
-```
-ggplot2::cut_number可以等案例数(近似)分割
-findInterval也可以分组，左闭区间。cut默认是右闭。
 
 
 ## 针对中文数据的改进
@@ -323,11 +279,11 @@ dat <- readStata(file,varNameEncoding="GB2312",charEncoding="GBK")
 
 ##  注意: Strings (characters) 和 factors的差异
 
-- 默认情况R会将字符当做因子变量处理（统计渊源）
+- R默认会将字符当做因子变量处理（统计渊源）
 - 有时候会带来麻烦
 - 使用 `stringsAsFactors = FALSE` 修改默认设定
-
 + 可以将其他数据导出为csv文件(注意编码)然后读入R 
+
 
 # 数据整理
 
@@ -396,7 +352,7 @@ ggplot(table1, aes(year, cases)) +
   geom_point(aes(colour = country))
 ```
 
-## 宽数据变长数据{#myImageP70}
+## 宽数据变长数据{#myImageP90}
 
 ![](../pic/tidy2.png)
 
@@ -428,7 +384,7 @@ table2
 spread(table2, key = type, value = count)
 ```
 
-## 长数据变宽数据{#myImageP70}
+## 长数据变宽数据{#myImageP90}
 
 ![](../pic/tidy3.png)
 

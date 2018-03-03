@@ -105,6 +105,24 @@ bike %>%
   table()
 ```
 
+## 选择描述某个变量
+
+```{r}
+out <- bike %>%
+summarize(
+    min = min(Bike_Age ,na.rm = TRUE),
+    q1 = quantile(Bike_Age ,0.25, na.rm = TRUE),
+    median = quantile(Bike_Age ,0.5, na.rm = TRUE),
+    q3 = quantile(Bike_Age,0.75, na.rm = TRUE),
+    max = max(Bike_Age,na.rm = TRUE),
+    mean = mean(Bike_Age ,na.rm = TRUE),
+    sd = sd(Bike_Age,na.rm = TRUE),
+    missing = sum(is.na(Bike_Age))
+  )
+knitr::kable(out)
+```
+
+
 ## 删除变量 `select()`
 
 ```{r}
@@ -132,6 +150,7 @@ bike %>%
 bike <- bike %>%
   mutate(Bike_birth=Crash_Year - Bike_Age,
          Drvr_birth=Crash_Year - Drvr_Age)
+
 ```
 
 ## recode因子变量
@@ -167,6 +186,10 @@ bike %>%
                     labels=c("youth","oldyouth","midage","elder"))) %>%
    count(B_agegr)                   
 ```
+ggplot2::cut_number可以等案例数(近似)分割
+findInterval也可以分组，左闭区间。cut默认是右闭
+
+
 
 ## 替换变量：因子变量
 ```{r}

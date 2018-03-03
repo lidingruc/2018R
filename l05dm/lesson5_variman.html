@@ -313,6 +313,44 @@ dim(bike_perc20)</pre>
 ##   Non-Intersection     2213  462
 ##   Non-Roadway           205   30</pre>
 
+</article></slide><slide class=""><hgroup><h2>选择描述某个变量</h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>out &lt;- bike %&gt;%
+summarize(
+    min = min(Bike_Age ,na.rm = TRUE),
+    q1 = quantile(Bike_Age ,0.25, na.rm = TRUE),
+    median = quantile(Bike_Age ,0.5, na.rm = TRUE),
+    q3 = quantile(Bike_Age,0.75, na.rm = TRUE),
+    max = max(Bike_Age,na.rm = TRUE),
+    mean = mean(Bike_Age ,na.rm = TRUE),
+    sd = sd(Bike_Age,na.rm = TRUE),
+    missing = sum(is.na(Bike_Age))
+  )
+knitr::kable(out)</pre>
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="right">min</th>
+<th align="right">q1</th>
+<th align="right">median</th>
+<th align="right">q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">missing</th>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">16</td>
+<td align="right">27</td>
+<td align="right">46</td>
+<td align="right">69</td>
+<td align="right">30.68886</td>
+<td align="right">16.87225</td>
+<td align="right">130</td>
+</tr>
+</table>
+
 </article></slide><slide class=""><hgroup><h2>删除变量 <code>select()</code></h2></hgroup><article  id="-select">
 
 <pre class = 'prettyprint lang-r'>bike %&gt;%
@@ -405,6 +443,8 @@ bike &lt;- bike %&gt;%
 ## 3   midage  1632
 ## 4    elder   225
 ## 5     &lt;NA&gt;   169</pre>
+
+<p>ggplot2::cut_number可以等案例数(近似)分割 findInterval也可以分组，左闭区间。cut默认是右闭</p>
 
 </article></slide><slide class=""><hgroup><h2>替换变量：因子变量</h2></hgroup><article >
 
@@ -706,7 +746,7 @@ other_format</pre>
 
 <pre class = 'prettyprint lang-r'>(today &lt;- Sys.Date())</pre>
 
-<pre >## [1] &quot;2018-03-03&quot;</pre>
+<pre >## [1] &quot;2018-03-04&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>dif &lt;- today - real_dates
 class(dif)</pre>
