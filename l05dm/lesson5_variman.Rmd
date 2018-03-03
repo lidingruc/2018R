@@ -1,0 +1,371 @@
+---
+title: "备砖：<br> 用R进行数据管理1"
+author: "李丁"
+date: "2018年"
+output:
+  ioslides_presentation:
+    highlight: pygments
+    widescreen: yes
+    css: ../lec.css
+---
+
+## 内容提纲
+
+- 变量管理 使用`dplyr`
+    - `filter()`: 筛选案例
+    - `select()`: 筛选变量 
+    - `sample_n()` / `sample_frac()`: 随机选择案例
+    - `rename()`: 变量重命名
+    - `fct_recode`:recode变量
+    - `mutate()`: 增加新变量
+    - `arrange()`: 案例排序 
+    - `summarise()`: 汇总变量
+    
+- 文本数据处理
+- 日期数据处理
+
+
+
+# 使用`dplyr` 处理变量
+
+## `dplyr` 规则
+
+- 第一个参数是数据框
+- 返回的是数据框 
+
+
+## 筛选个案 `filter()`
+
+- 选择案例（行）
+- 能同时设定多个筛选条件
+
+```{r,message= FALSE,warning=FALSE}
+# 读入数据
+library(tidyverse)
+library(readr)
+bike <- read_delim("../data/nc_bike_crash.csv", ";", 
+    escape_double = FALSE, trim_ws = TRUE)
+```
+##筛选个案 `filter()` 
+
+选出Durham县发生的与自行车相关的交通事故
+
+```{r,message= FALSE,warning=FALSE}
+bike %>%
+  filter(County == "Durham")
+```
+
+## 筛选个案`filter()` 
+
+选出Durham县且车龄 < 10 的案例
+
+```{r}
+bike %>%
+  filter(County == "Durham", Bike_Age < 10)
+```
+
+## `slice()` 选择部分案例 
+
+头五条
+```{r}
+bike %>%
+  slice(1:5)
+```
+
+## `slice()` 选择部分案例
+
+最后五条
+```{r}
+last_row <- nrow(bike)
+bike %>%
+  slice((last_row-4):last_row)
+```
+
+## `sample_n()` or `sample_frac()`随机挑选案例 
+
+- `sample_n()`: 随机选5个案例
+```{r}
+bike_n5 <- bike %>%
+  sample_n(5, replace = FALSE)
+dim(bike_n5)
+```
+
+- `sample_frac()`: 随机选20%案例
+```{r}
+bike_perc20 <-bike %>%
+  sample_frac(0.2, replace = FALSE)
+dim(bike_perc20)
+```
+
+## 选择变量`select()`
+
+```{r}
+bike %>%
+  select(Crash_Loc, Hit_Run) %>%
+  table()
+```
+
+## 删除变量 `select()`
+
+```{r}
+bike %>%
+  select(-OBJECTID) %>%
+  names()
+```
+
+##重命名 `rename()`  
+
+修改输入错误、缩短、修改变量名
+
+将`Speed_Limi` 改为`Speed_Limit`:
+
+```{r}
+ bike %>%
+  rename(Speed_Limit = Speed_Limi) %>%
+  select(starts_with("Speed_")) %>%
+  names()
+```
+
+## 创建变量`mutate()`  
+
+```{r}
+bike <- bike %>%
+  mutate(Bike_birth=Crash_Year - Bike_Age,
+         Drvr_birth=Crash_Year - Drvr_Age)
+```
+
+## recode因子变量
+查看原取值
+```{r}
+bike %>%count(DrvrAge_Gr)
+```
+将70 和70+ 合并
+
+## recode因子变量
+
+```{r}
+library(forcats)
+bike <- bike %>%
+   forcats::as_factor(DrvrAge_Gr) %>%  # 实际上可以不要
+  mutate(DrvrAge_Gr = fct_recode(DrvrAge_Gr,"70+"="70")) %>%
+  mutate(DrvrAge_Gr2 = fct_collapse(DrvrAge_Gr,
+                                   "0-19"="0-19",
+                                   "20-29"=c("20-24","25-29"),
+                                   "30-39"="30-39",
+                                   "40-49"="40-49",
+                                   "50-59"="50-59",
+                                   "60+"=c("60-69","70+")
+                                   ))
+```
+如果分类变量是字符串转变使用fct_recode或fct_collapse实际上会自动变为因子变量。如果是labelled数值转为因子后再recode比较好。
+
+##  recode连续变量为分类变量
+```{r}
+bike %>%
+   mutate(B_agegr=cut(Bike_Age,
+                    breaks=c(0,20,40,60,Inf),
+                    labels=c("youth","oldyouth","midage","elder"))) %>%
+   count(B_agegr)                   
+```
+
+## 替换变量：因子变量
+```{r}
+# 因子变量只能替换为已定义的取值,不如用recode
+bike <- bike %>%
+             mutate(DrvrAge_Gr3 =replace(DrvrAge_Gr ,
+                                        is.na(DrvrAge_Gr ),
+                                        "70+"))
+bike %>%count(DrvrAge_Gr3) 
+```
+
+## 替换变量：连续变量
+```{r}
+# replace 满足条件的位置为其他取值
+bike <- bike %>%
+             mutate(Drvr_Age2=replace(Drvr_Age ,
+                                        is.na(Drvr_Age),
+                                        mean(Drvr_Age,na.rm=TRUE)))
+bike %>%summarise(mean=mean(Drvr_Age2,na.rm=TRUE))
+
+```
+
+## 替换变量：连续变量
+```{r}
+# 因子变量只能替换为已定义的取值
+bike <- bike %>%
+             mutate(DrvrAge_Gr4=if_else(Drvr_Age<30,1,
+                                       if_else(Drvr_Age>=60,3,2)))
+#bike %>%count(DrvrAge_Gr4)
+#等价于
+bike <- bike %>%
+             mutate(DrvrAge_Gr4=replace(Drvr_Age,Drvr_Age<30,1)) %>%
+             mutate(DrvrAge_Gr4=replace(DrvrAge_Gr4,DrvrAge_Gr4>1&DrvrAge_Gr4<60,2)) %>%
+             mutate(DrvrAge_Gr4=replace(DrvrAge_Gr4,DrvrAge_Gr4>=60,3))
+
+bike %>%count(DrvrAge_Gr4)
+```
+
+
+## 文本替换 
+
+<div class="question">
+`BikeAge_gr` 中`10-Jun` or `15-Nov` 是什么意思?
+</div>
+
+```{r}
+bike %>%
+  group_by(BikeAge_Gr) %>%
+  summarise(crash_count = n())
+```
+
+
+## 文本替换
+
+- 清理这个文本数据，年龄分组而不是日期
+    + `10-Jun` 应该为 `6-10`
+    + `15-Nov` 应该为 `11-15`
+  
+- 可以使用R包: `stringr`
+
+- 加载:
+```{r}
+if(!require(stringr)) install.packages(stringr)
+```
+了解更多https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html
+
+
+## `str_replace()` 替换文本 
+
+我们要对 `BikeAge_Gr` 做如下处理
+
+    + `10-Jun` should be `6-10`
+    + `15-Nov` should be `11-15`
+
+```{r}
+bike <- bike %>%
+  mutate(BikeAge_Gr = str_replace(BikeAge_Gr, "10-Jun", "6-10")) %>%
+  mutate(BikeAge_Gr = str_replace(BikeAge_Gr, "15-Nov", "11-15"))
+```
+
+替换操作时应该尤其小心! 但只要我们没有将改变存进原始数据，就可以重来。
+
+##  替换文本 
+
+```{r}
+bike %>%
+  group_by(BikeAge_Gr) %>%
+  summarise(crash_count = n()) %>%
+  arrange(desc(crash_count))
+```
+
+
+## 文本处理
+```{r}
+dna_ex <- "ACAAAGATGCCATTGTCCCCCGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCAACGGCCACCGCTGCCCTGCCCCTGGAGGGTGGCCCCACCGGCCGAGACAGCGAGCATATG"
+
+# 字符串长度
+length(dna_ex)
+nchar(dna_ex)
+
+# 截取字符串
+substr(dna_ex, 10, 20)
+str_sub(dna_ex, 10, 20) <- "CCCCCAA"
+# 切分字符串
+sp_dna <- strsplit(dna_ex, "") 
+class(sp_dna)
+
+```
+## 文本处理
+```{r}
+table(sp_dna)
+strsplit(dna_ex, "A")
+```
+
+## 匹配字符串
+```{r}
+grep('AA', dna_ex, value = TRUE)
+regexpr('AA', dna_ex)
+gregexpr('AA', dna_ex)
+
+```
+
+## 匹配字符串
+```{r}
+str_locate_all(dna_ex, 'AA') # stringr包, str_extract_all提取
+```
+
+## 字符串处理
+```{r}
+fruits <- c('Apple', 'Banana', 'Orange', 'Grape', 'Pineapple', 'Kiwi', 'Peach', 'Mango', 'Strawberry', 'Guava', 'Cherry')
+fruits
+grep('a', fruits, value = TRUE, ignore.case = TRUE)
+grep('a', fruits, value = FALSE, ignore.case = TRUE)
+positions_a <- gregexpr(pattern = "a", text = fruits, ignore.case = TRUE)
+num_a <- sapply(positions_a, function(x) ifelse(x[1] > 0, length(x), 0))
+num_a 
+```
+
+
+## 字符串粘合：paste
+```{r}
+paste("X", 1:5, sep = ".")
+paste("X", 1:5, sep = ".", collapse = "")
+paste0("X", 1:5, sep = ".")
+# paste0("X", 1:5) 与 paste("X", 1:5, sep = "") 等价
+```
+
+##  其他变换
+```{r}
+string1 <- 'RUC Data Services'
+tolower(string1) 
+toupper(string1)
+
+string2 <- toString(c(1,3,4))
+string2
+```
+
+```{r}
+#还有stringi包可以了解
+
+```
+
+
+## 日期函数
+```{r}
+dates <- c('11/28/2011', '12/07/2012', '08/01/2013', '02/09/2015')
+class(dates)
+real_dates <- as.Date(dates, format = '%m/%d/%Y')
+class(real_dates)
+
+other_format <- format(real_dates, '%A %B %d, %Y')
+other_format
+class(other_format)
+
+(today <- Sys.Date())
+dif <- today - real_dates
+class(dif)
+```
+
+
+##　日期函数
+
+```{r}
+# SPSS格式的时间数据处理
+library(foreign)
+cred <- read.spss("../xample final/credit_card.sav",to.data.frame =TRUE)
+# spss日期转换R格式 
+# SPSS的日期以1582年10月14日为基准
+cred$dob <- cred$dob++ISOdate(1582,10,14)
+cred$card_date <- cred$card_date++ISOdate(1582,10,14)
+
+```
+
+
+
+
+
+
+
+
+
+

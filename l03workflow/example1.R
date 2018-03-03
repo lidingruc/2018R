@@ -1,5 +1,5 @@
 # 利用RScripts演示数据分析
-# 数据科学与社会研究:基于R和Python的实践 2017年
+# 数据科学与社会研究:技术基础 2018年
 # 李丁(liding@ruc.edu.cn)
 # 中国人民大学社会与人口学院
 
@@ -10,7 +10,7 @@ library(ggplot2)
 library(gganimate)
 
 #读入数据
-setwd("/Users/liding/E/Bdata/liding17/2017R/lesson3/")
+setwd("/Users/liding/E/Bdata/liding17/2018R/l03workflow/")
 gapminder <- read.csv("gapminder.csv")
 
 #初步了解数据
@@ -42,4 +42,5 @@ gapminder_plot <- ggplot(gapminder) +
   scale_x_log10()
 # gapminder_plot
 gganimate(gapminder_plot, convert='gm convert', filename = "gapminder-gganimate.gif")
+
 
