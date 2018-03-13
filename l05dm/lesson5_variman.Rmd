@@ -10,20 +10,53 @@ output:
 ---
 
 ## 内容提纲
++ tibble数据框
 
-- 变量管理 使用`dplyr`
++ 变量管理:使用`dplyr`
+
     - `filter()`: 筛选案例
-    - `select()`: 筛选变量 
     - `sample_n()` / `sample_frac()`: 随机选择案例
+    - `select()`: 筛选变量 
     - `rename()`: 变量重命名
     - `fct_recode`:recode变量
     - `mutate()`: 增加新变量
+    - `summarise()` 汇总统计
+    - `group_by()` 分组
     - `arrange()`: 案例排序 
-    - `summarise()`: 汇总变量
-    
-- 文本数据处理
-- 日期数据处理
 
+
++ 字符串处理
++ 日期处理
+
+# tibbles 数据框
+data.frame基础做了针对性的改进。无行名，不修改变量类型，灵活列印,索引方便等等。继承了data.frame的其他多数特性。
+```{r}
+library(tidyverse)
+as_tibble(iris)
+```
+
+## tibble数据
+手工创建数据集
+```{r}
+df <- tibble(
+  x = 1:5, 
+  y = 1, 
+  z = x ^ 2 + y
+)
+df
+df %>% .$x  #  或者.[["x"]]
+```
+
+## tibble数据集
+tribble方便小块数据输入
+```{r}
+tribble(
+  ~x, ~y, ~z,
+
+  "a", 2, 3.6,
+  "b", 1, 8.5
+)
+```
 
 
 # 使用`dplyr` 处理变量
@@ -41,15 +74,13 @@ output:
 
 ```{r,message= FALSE,warning=FALSE}
 # 读入数据
-library(tidyverse)
-library(readr)
 bike <- read_delim("../data/nc_bike_crash.csv", ";", 
     escape_double = FALSE, trim_ws = TRUE)
 ```
 ##筛选个案 `filter()` 
 
 选出Durham县发生的与自行车相关的交通事故
-
+注意：== | & > < >= <= != 等比较符号。
 ```{r,message= FALSE,warning=FALSE}
 bike %>%
   filter(County == "Durham")
@@ -68,8 +99,9 @@ bike %>%
 
 头五条
 ```{r}
-bike %>%
+bike %>% 
   slice(1:5)
+#等价于bike %>% head(5)
 ```
 
 ## `slice()` 选择部分案例
@@ -79,6 +111,7 @@ bike %>%
 last_row <- nrow(bike)
 bike %>%
   slice((last_row-4):last_row)
+# 等价于bike %>% tail(5)
 ```
 
 ## `sample_n()` or `sample_frac()`随机挑选案例 
@@ -97,6 +130,7 @@ bike_perc20 <-bike %>%
 dim(bike_perc20)
 ```
 
+
 ## 选择变量`select()`
 
 ```{r}
@@ -105,8 +139,8 @@ bike %>%
   table()
 ```
 
-## 选择描述某个变量
-
+## 选择变量
+dplyr中的summarize默认summ该数据框中的变量
 ```{r}
 out <- bike %>%
 summarize(
@@ -122,18 +156,18 @@ summarize(
 knitr::kable(out)
 ```
 
-
-## 删除变量 `select()`
+## 筛选变量-删除 `select()`
 
 ```{r}
 bike %>%
+  select(FID,OBJECTID) %>%
   select(-OBJECTID) %>%
   names()
 ```
 
 ##重命名 `rename()`  
 
-修改输入错误、缩短、修改变量名
+修改变量名.多个包中都有这个函数。
 
 将`Speed_Limi` 改为`Speed_Limit`:
 
@@ -145,7 +179,7 @@ bike %>%
 ```
 
 ## 创建变量`mutate()`  
-
+可以自定义非常复杂的函数，而不仅仅是基本算数运算。
 ```{r}
 bike <- bike %>%
   mutate(Bike_birth=Crash_Year - Bike_Age,
@@ -165,7 +199,7 @@ bike %>%count(DrvrAge_Gr)
 ```{r}
 library(forcats)
 bike <- bike %>%
-   forcats::as_factor(DrvrAge_Gr) %>%  # 实际上可以不要
+  forcats::as_factor(DrvrAge_Gr) %>%  # 实际上可以不要
   mutate(DrvrAge_Gr = fct_recode(DrvrAge_Gr,"70+"="70")) %>%
   mutate(DrvrAge_Gr2 = fct_collapse(DrvrAge_Gr,
                                    "0-19"="0-19",
@@ -176,7 +210,7 @@ bike <- bike %>%
                                    "60+"=c("60-69","70+")
                                    ))
 ```
-如果分类变量是字符串转变使用fct_recode或fct_collapse实际上会自动变为因子变量。如果是labelled数值转为因子后再recode比较好。
+得到的位因子变量。如果原变量是labelled数值，请先转为因子，再recode。
 
 ##  recode连续变量为分类变量
 ```{r}
@@ -190,8 +224,8 @@ ggplot2::cut_number可以等案例数(近似)分割
 findInterval也可以分组，左闭区间。cut默认是右闭
 
 
-
 ## 替换变量：因子变量
+
 ```{r}
 # 因子变量只能替换为已定义的取值,不如用recode
 bike <- bike %>%
@@ -202,8 +236,8 @@ bike %>%count(DrvrAge_Gr3)
 ```
 
 ## 替换变量：连续变量
+
 ```{r}
-# replace 满足条件的位置为其他取值
 bike <- bike %>%
              mutate(Drvr_Age2=replace(Drvr_Age ,
                                         is.na(Drvr_Age),
@@ -214,7 +248,6 @@ bike %>%summarise(mean=mean(Drvr_Age2,na.rm=TRUE))
 
 ## 替换变量：连续变量
 ```{r}
-# 因子变量只能替换为已定义的取值
 bike <- bike %>%
              mutate(DrvrAge_Gr4=if_else(Drvr_Age<30,1,
                                        if_else(Drvr_Age>=60,3,2)))
@@ -228,8 +261,7 @@ bike <- bike %>%
 bike %>%count(DrvrAge_Gr4)
 ```
 
-
-## 文本替换 
+## 替换变量：文本变量
 
 <div class="question">
 `BikeAge_gr` 中`10-Jun` or `15-Nov` 是什么意思?
@@ -242,27 +274,11 @@ bike %>%
 ```
 
 
-## 文本替换
+## 替换变量：文本变量
 
 - 清理这个文本数据，年龄分组而不是日期
     + `10-Jun` 应该为 `6-10`
     + `15-Nov` 应该为 `11-15`
-  
-- 可以使用R包: `stringr`
-
-- 加载:
-```{r}
-if(!require(stringr)) install.packages(stringr)
-```
-了解更多https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html
-
-
-## `str_replace()` 替换文本 
-
-我们要对 `BikeAge_Gr` 做如下处理
-
-    + `10-Jun` should be `6-10`
-    + `15-Nov` should be `11-15`
 
 ```{r}
 bike <- bike %>%
@@ -270,9 +286,8 @@ bike <- bike %>%
   mutate(BikeAge_Gr = str_replace(BikeAge_Gr, "15-Nov", "11-15"))
 ```
 
-替换操作时应该尤其小心! 但只要我们没有将改变存进原始数据，就可以重来。
 
-##  替换文本 
+## 分类汇总与排序
 
 ```{r}
 bike %>%
@@ -281,63 +296,211 @@ bike %>%
   arrange(desc(crash_count))
 ```
 
-
-## 文本处理
+## 分类汇总与排序
+top_n 可以得到最多的几个
 ```{r}
-dna_ex <- "ACAAAGATGCCATTGTCCCCCGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCAACGGCCACCGCTGCCCTGCCCCTGGAGGGTGGCCCCACCGGCCGAGACAGCGAGCATATG"
-
-# 字符串长度
-length(dna_ex)
-nchar(dna_ex)
-
-# 截取字符串
-substr(dna_ex, 10, 20)
-str_sub(dna_ex, 10, 20) <- "CCCCCAA"
-# 切分字符串
-sp_dna <- strsplit(dna_ex, "") 
-class(sp_dna)
-
-```
-## 文本处理
-```{r}
-table(sp_dna)
-strsplit(dna_ex, "A")
+bike %>%
+  group_by(BikeAge_Gr) %>%
+  summarize(crash_count= n()) %>%
+  top_n(n = 5)   #如果要降序可以加一句 arrange(desc(crash_count)) %>%
 ```
 
-## 匹配字符串
-```{r}
-grep('AA', dna_ex, value = TRUE)
-regexpr('AA', dna_ex)
-gregexpr('AA', dna_ex)
+# 字符串处理
 
-```
-
-## 匹配字符串
-```{r}
-str_locate_all(dna_ex, 'AA') # stringr包, str_extract_all提取
-```
-
-## 字符串处理
-```{r}
-fruits <- c('Apple', 'Banana', 'Orange', 'Grape', 'Pineapple', 'Kiwi', 'Peach', 'Mango', 'Strawberry', 'Guava', 'Cherry')
-fruits
-grep('a', fruits, value = TRUE, ignore.case = TRUE)
-grep('a', fruits, value = FALSE, ignore.case = TRUE)
-positions_a <- gregexpr(pattern = "a", text = fruits, ignore.case = TRUE)
-num_a <- sapply(positions_a, function(x) ifelse(x[1] > 0, length(x), 0))
-num_a 
-```
-
-
-## 字符串粘合：paste
+## 字符串：粘合：paste
 ```{r}
 paste("X", 1:5, sep = ".")
 paste("X", 1:5, sep = ".", collapse = "")
 paste0("X", 1:5, sep = ".")
 # paste0("X", 1:5) 与 paste("X", 1:5, sep = "") 等价
+str_c("x", 1:3, "z",sep="_")
+str_c(c("x", 1:3, "z"), collapse = ", ")
 ```
 
-##  其他变换
+## 字符串：提取
+```{r}
+dna_ex <- "ACAAAGATGCCATTGTCCCCCGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCAACGGCCACCGCTGCCCTGCCCCTGGAGGGTGGCCCCACCGGCCGAGACAGCGAGCATATG"
+
+# 字符串长度
+length(dna_ex)
+str_length(dna_ex)
+substr(dna_ex, 10, 20)
+str_sub(dna_ex, 10, 20) <- "CCCCCAA" # 替换
+```
+
+
+## 字符串：替换
+```{r}
+# 替换部分字符串
+x <- c("Apple", "Banana", "Pear")
+nchar(x)
+str_sub(x, 1, 1) <- str_to_lower(str_sub(x, 1, 1))
+x
+str_replace(x, "[aeiou]", "-")
+str_replace_all(x, "[aeiou]", "-")
+```
+
+
+## 字符串：切分
+
+```{r}
+# 切分字符串
+sp_dna <- strsplit(dna_ex, "") 
+class(sp_dna)
+table(sp_dna)
+strsplit(dna_ex, "A")
+```
+
+## 字符串:匹配与否
+```{r}
+x <- c("apple", "banana", "pear")
+str_detect(x, "e")
+# 进入运算是作为1、0
+mean(str_detect(x, "e"))
+```
+
+## 字符串：匹配+ 位置规定
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, "an")
+str_view(x, ".a.") # 前后有东西
+str_view(c("abc", "a.c", "bef"), "a\\.c") # 作为文本的点
+x <- "a\\b"  # 作为文本的反斜线
+str_view(x, "\\\\")
+```
+
+## 字符串：匹配+ 位置规定
+```{r}
+x <- c("apple pie", "apple", "apple cake")
+str_view(x, "^a") # 文本头
+str_view(x, "apple$") # 文本尾
+str_view(x, "^apple$") # 整个匹配
+```
+
+## 字符串：匹配+ 类型与数量
+* `\d`: matches any digit.
+* `\s`: matches any whitespace (e.g. space, tab, newline).
+* `[abc]`: matches a, b, or c.
+* `[^abc]`: matches anything except a, b, or c.
+
+* `?`: 0 or 1
+* `+`: 1 or more
+* `*`: 0 or more
+
+* `{n}`: exactly n
+* `{n,}`: n or more
+* `{,m}`: at most m
+* `{n,m}`: between n and m
+
+
+## 字符串：匹配数量
+
+```{r}
+x <- "1888 is the longest year in Roman numerals: MDCCCLXXXVIII"
+str_view(x, "CC?")
+str_view(x, "CC+")
+str_view(x, 'C[LX]+')
+
+str_view(x, "C{2}")
+str_view(x, "C{2,}")
+str_view(x, "C{2,3}")
+```
+
+## 字符串：匹配数量
+
+```{r}
+x <- "1888 is the longest year in Roman numerals: MDCCCLXXXVIII"
+str_view(x, "C{2,3}") # 贪婪匹配
+str_view(x, 'C{2,3}?')  # 最短匹配，在后面放一个问号
+str_view(x, 'C[LX]+?')
+str_view(c("grey", "gray"), "gr(e|a)y")
+
+```
+
+## 字符串:匹配返回信息（基础包）
+
+```{r}
+grep('AA', dna_ex, value = TRUE)  # 原字符串
+regexpr('AA', dna_ex) # 首次匹配位置和长度
+gregexpr('AA', dna_ex) # 全部匹配位置和长度
+
+```
+
+## 匹配字符串：全部匹配首尾位置
+```{r}
+str_locate_all(dna_ex, 'AA') # stringr包, str_extract_all提取
+```
+
+## 字符串处理：
+计算下面的字符集中每一个单词有几个a
+```{r}
+fruits <- c('Apple', 'Banana', 'Orange', 'Grape', 'Pineapple', 'Kiwi', 'Peach', 'Mango', 'Strawberry', 'Guava', 'Cherry')
+fruits
+grep('a', fruits, value = TRUE, ignore.case = TRUE) #字符元素
+grep('a', fruits, value = FALSE, ignore.case = TRUE) #元素位置
+positions_a <- gregexpr(pattern = "a", text = fruits, ignore.case = TRUE) # 每个元素匹配结果
+num_a <- sapply(positions_a, function(x) ifelse(x[1] > 0, length(x), 0))
+num_a #每个元素中有几个小写a
+```
+
+## 括号分组与backreferences
+
+```{r}
+fruit[1:9]  #自带fruit数据
+str_view(fruit, "(..)\\1", match = TRUE)  # 找出所有重复字符对
+```
+## 例子: 
+```{r}
+# stringr::words 数据
+# Find all words containing at least one vowel（元音）, and negate
+no_vowels_1 <- !str_detect(words, "[aeiou]")
+# Find all words consisting only of consonants (辅音 non-vowels)
+no_vowels_2 <- str_detect(words, "^[^aeiou]+$")
+identical(no_vowels_1, no_vowels_2)
+
+```
+
+## 例子：匹配后的子集
+```{r}
+#等价
+words[str_detect(words, "x$")]
+str_subset(words, "x$")
+
+# 数据框
+wddf <- tibble(
+  word = words, 
+  i = seq_along(word)
+)
+wddf %>% 
+  filter(str_detect(words, "x$"))
+```
+
+## 计算字符数量
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_count(x, "a")
+
+# 平均多少个元音
+mean(str_count(words, "[aeiou]"))
+
+wddf %>% 
+  mutate(
+    vowels = str_count(word, "[aeiou]"),
+    consonants = str_count(word, "[^aeiou]")
+  )
+```
+
+##匹配不重叠发生
+```{r}
+# aba只出现了两次而不是三次
+str_count("abababa", "aba")
+str_view_all("abababa", "aba")
+```
+
+
+##  大小写、字符和数字转转换
 ```{r}
 string1 <- 'RUC Data Services'
 tolower(string1) 
@@ -347,11 +510,9 @@ string2 <- toString(c(1,3,4))
 string2
 ```
 
-```{r}
-#还有stringi包可以了解
 
-```
 
+# 日期的处理
 
 ## 日期函数
 ```{r}
@@ -364,11 +525,112 @@ other_format <- format(real_dates, '%A %B %d, %Y')
 other_format
 class(other_format)
 
+```
+
+## 日期函数{#myImageP90}
+
+日期格式定义
+![](../pic/dates.png)
+```{r}
+format(Sys.Date(),format="%m %d %Y")
+format(Sys.Date(),format="%m %d %y")
+format(Sys.Date(),format="%B %b %Y")
+```
+##  日期函数
+```{r}
 (today <- Sys.Date())
 dif <- today - real_dates
 class(dif)
+difftime(today,real_dates,units="week")
+as.character(today)
+
 ```
 
+##  lubridate包
+```{r}
+library(lubridate)
+today()  # date
+now() # date-time (time 可以用hms包)
+as_date(now())
+as_datetime(today())
+```
+##  lubridate包
+转换为日期-时间
+```{r}
+ymd("2017-01-31")
+mdy("January 31st, 2017")
+dmy("31-Jan-2017")
+ymd(20170131)
+ymd_hms("2017-01-31 20:11:59")
+mdy_hm("01/31/2017 08:01")
+ymd(20170131, tz = "UTC")
+```
+
+## 组合成分为时间
+```{r}
+library(nycflights13)
+flights_dt <- flights %>% 
+   filter(!is.na(dep_time), !is.na(arr_time)) %>% 
+  mutate(
+    departure = make_datetime(year, month, day, hour, minute),
+    dep_time =  make_datetime(year, month, day, dep_time %/% 100, dep_time %% 100))
+flights_dt  %>% 
+  select(year, month, day, hour, minute,departure,dep_time)
+```
+
+## 例子:一天内每十分钟航班数
+```{r}
+flights_dt %>% 
+  filter(dep_time < ymd(20130102)) %>% 
+  ggplot(aes(dep_time)) + 
+  geom_freqpoly(binwidth = 600) # 600 s = 10 minutes
+```
+
+## 获取成分
+```{r}
+datetime <- ymd_hms("2016-07-08 12:34:56")
+
+year(datetime)
+month(datetime)
+mday(datetime)
+
+yday(datetime)
+wday(datetime)
+
+month(datetime, label = TRUE)
+wday(datetime, label = TRUE, abbr = FALSE)
+```
+
+## 例子：一个星期每天航班数
+```{r}
+flights_dt %>% 
+  mutate(wday = wday(dep_time, label = TRUE)) %>% 
+  ggplot(aes(x = wday)) +
+    geom_bar()
+```
+
+## 修改时间成分
+
+```{r}
+(datetime <- ymd_hms("2016-07-08 12:34:56"))
+year(datetime) <- 2020
+datetime
+month(datetime) <- 01
+datetime
+hour(datetime) <- hour(datetime) + 1
+datetime
+ymd("2015-02-01") %>% 
+  update(year=2017,hour = 400)
+```
+
+## 例子：将日期部分统一以关注日内时间分布
+
+```{r}
+flights_dt %>% 
+  mutate(dep_hour = update(dep_time, yday = 1)) %>% 
+  ggplot(aes(dep_hour)) +
+    geom_freqpoly(binwidth = 300) ## 每5分钟
+```
 
 ##　日期函数
 
@@ -382,6 +644,15 @@ cred$dob <- cred$dob++ISOdate(1582,10,14)
 cred$card_date <- cred$card_date++ISOdate(1582,10,14)
 
 ```
+
+## 其他日期相关问题（自学）
+
+- 间隔
+    + durations, which represent an exact number of seconds.
+    + periods, which represent human units like weeks and months.
+    + intervals, which represent a starting and ending point.
+- 时区
+
 
 
 

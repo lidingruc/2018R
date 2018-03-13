@@ -149,12 +149,38 @@ sum(vec4, na.rm = TRUE)
 is.na(vec4)  # NA is still in the vector & only removed from the calculation
 
 
+# F. user-defined functions
+set.seed(123)
+(x <- rnorm(100))
+mean(x)
+sum(x)/length(x)
+
+# 名义参数可以随便命名，x可以替换为任意字符
+myMean <- function(x) sum(x)/length(x)
+myMean # can be printed like any object
+
+myMean(x)
+myMean(1:100)
+
+myVar <- function(x) sum((x - myMean(x))^2)/(length(x) - 1)
+myVar(1:100)
+var(1:100) # check
+
+#函数的效率，以阶乘为例。最好选择高手优化的专用命令
+system.time(replicate(100000,prod(1:170)))
+system.time(replicate(100000,factorial(170)))
+system.time(replicate(100000,gamma(171)))
+
+# cleaning up
+objects()
+rm(x,myVar,myMean)
+# using traceback()
+traceback()
+
 				
 # -------------------------------------------
 # -- III. Getting Started in R --
 # -------------------------------------------  
-
-
 
 
 # A. Working directory for reading and saving materials

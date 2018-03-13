@@ -154,6 +154,21 @@ chisq.test(cgss2013$a7a,cgss2013$a2)$expected
 # 标准化偏差，评估单元格影响
 chisq.test(cgss2013$a7a,cgss2013$a2)$resid
 
+##########
+mytable<-xtabs(~ cgss2013$a7a,cgss2013$a2)
+chisq.test(mytable)
+fisher.test(mytable)
+##########
+#似然比检验
+#### Likelihood-Ratio Test Statistic for IxJ tables
+LRstats=function(data){
+  G2=2*sum(data*log(data/chisq.test(data)$expected))
+  G2pvalue=1-pchisq(G2,df=(dim(data)[1]-1)*(dim(data)[2]-1))
+  ans=c(G2,G2pvalue)
+  ans
+}
+LRstats(mytable)
+
 # 二手列联表分析
 observed <- matrix(c(32, 24, 265, 199, 391, 287),nrow = 3, byrow = T)
 observed
@@ -161,6 +176,7 @@ observed
 chisq.test(observed, correct = F)
 cbind(observed, chisq.test(observed)$expected)
 cbind(observed, chisq.test(observed)$resid)
+
 
 ############
 # B、t-test

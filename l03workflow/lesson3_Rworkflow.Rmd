@@ -23,31 +23,31 @@ output:
 
 ## 什么是 R
 
-- R 语言是一种业界盛行的数据分析编程语言
-  - 理念就是快速、准确地把想法转化成软件
+- R 语言是一种计算机高级语言，用于数据分析和绘图
+  - 各种统计建模、作图；任意扩展
 - R 语言脱胎于 1980 年左右诞生的 S 语言
+  - 作者是新西兰奥克兰大学统计系Ross Ihaka与Robert Gentleman
   - S语言是贝尔实验室统计研究部编制的一套完整的高级语言系统
   - 在1998年被美国计算机协会(ACM) 授予了“软件系统奖”
-- 1997 年 R 语言正式成为 GNU 项目
+- 1997 年 R 语言正式成为 GNU 项目，核心代码由R Core Team 维护
 - 2010年获得第一届“统计计算及图形奖”（美国统计协会）
 
 
 ## R 语言的特点
 
-- 开源和免费
-- 功能强大且扩展性强（需要一定基础）
-- 与其它软件的交互能力强
-- 实现可重复性(Reproducible)分析
-- 各类前沿方法（不断更新）
+- 开源且扩展性强(各类前沿方法)
+- 面向对象的程序语言(面向过程的语言stata、spss)
+- 与其它软件的交互能力、可嵌入性强
+- 完整的工作流，实现可重复性(Reproducible)分析
 - 文档多元多样(需要适应)
 - 适用于多操作系统的轻量化平台
-
+- 比较流行[排名](http://redmonk.com/sogrady/2017/03/17/language-rankings-1-17/)
 
 
 ## R 的整合能力 
 
 - 数据：可连接数据库，如Oracle、MySQL
-- 运算：可调用C或Fortran函数进行底层运算
+- 运算：可调用C或Fortran函数进行底层运算；多核、并行计算；GPU计算
 - 应用：可作为运算引擎嵌入JAVA开发的系统中(Rserve)
 - 网络：R与web整合部署(Rook, shiny)
 
@@ -366,6 +366,32 @@ knitr::include_graphics("../pic/gapminder-gganimate.gif")
 ![](../pic/tidy.png)
 
 
+## 为什么教tidyverse
+
+功能主题 |  基础命令 | tidyverse
+----------|-------------|-------------
+字符处理| 基础函数|stringr
+绘图系统| plot|ggplot2
+代码风格| 函数嵌套|管道函数（`%>%`）
+列表处理| list（自建循环）|rlist
+json处理| Rjson+RJSONIO|jsonlite
+数据抓取| RCurl+XML|httr+xml2
+循环任务| for/while——apply|plyr::a_ply——并行运算（foreach、parallel）
+切片索引| subset|dplyr::select+filter
+聚合运算| aggregate|plyr::ddply+mutate——dplyr::group_by+summarize
+数据联结| merge——plyr::join|dplyr::left/right/inner/outer_join
+数据塑型| plyr::melt/dcast|tidyr::gather/spread
+
+## 为什么教tidyverse
+
+功能主题 |  基础命令 | tidyverse
+----------|-------------|-------------
+聚合运算| aggregate|plyr::ddply+mutate——dplyr::group_by+summarize
+数据联结| merge——plyr::join|dplyr::left/right/inner/outer_join
+数据塑型| plyr::melt/dcast|tidyr::gather/spread
+
+data.table 等高效包后面自学很快！
+
 ## 如何得到帮助
 命令   |  功能
 ---------|------------------
@@ -382,6 +408,7 @@ knitr::include_graphics("../pic/gapminder-gganimate.gif")
 ## 参考资料
 
 + 教材
+    - 《R语言实战》
     - [《R for Data Science》]( http://r4ds.had.co.nz/)
     - [《 An Introduction to Statistical and Data Sciences via R》](http://moderndive.com/)
     - [《R for Data Science》习题答案](https://jrnold.github.io/e4qf/)

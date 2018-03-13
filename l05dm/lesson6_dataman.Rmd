@@ -11,7 +11,7 @@ output:
 
 ## 内容提纲
 
-- 数据导入 Data import
+- 数据读入 Data import
     + 导入CSV数据
     + haven导入SPSS、stata数据
     + foreign包导入SPSS、stata数据
@@ -21,8 +21,7 @@ output:
     + 宽数据变长数据:gather
     + 长数据变宽数据:spread
     + 数据的合并:merge & join
-    
-- 变量管理(待续) 
+
 
 # 数据读入
 
@@ -518,7 +517,7 @@ rbind() ## 添加行
 cbind() ## 添加列 
 ```
 
-
+## 增加一些图形
 
 
 

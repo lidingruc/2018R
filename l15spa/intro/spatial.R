@@ -154,7 +154,7 @@ plot(data.sp,pch=16, cex=.5, axes=T)
 
 dev.off()
 
-
+cdata <- fortify(data)
 #########################################
 #### Polygon Data: 2004 Election     ####
 #########################################
@@ -260,6 +260,7 @@ plot(classes_eq, pal=pal, main="Equal Interval", xlab="", ylab="")
 plot(classes_qt, pal=pal, main="Quantile", xlab="", ylab="")
 
 dev.off()
+
 
 
 ## Plot using fixed intervals

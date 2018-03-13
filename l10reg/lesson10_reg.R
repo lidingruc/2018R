@@ -3,6 +3,17 @@
 # Author:     liding
 
 #-------------------------------------------------------------
+# 给一段散点提供一个最好的拟合直线：回归原理的介绍
+# 回归模型的可视化
+# 分类变量
+# 交互效应
+# 变量变换
+# 缺失值
+# 综合例子1
+# CGSS例子
+# 回归诊断与应对
+# 交叉检验
+
 # -------------------------------------------
 # --加载必要的包
 # -------------------------------------------
@@ -320,7 +331,7 @@ MASS:rlm()
 
 
 # -------------------------------------------
-# --回归分析的原理细致展示
+# --综合示例1：介绍回归的各种参数
 # -------------------------------------------
 ## 构建一个虚拟数据
 ## 假定知道真实关系
@@ -350,7 +361,6 @@ yPred <- model$fitted.values
 Rsquared <- sum((yPred-ybar)^2)/sum((y-ybar)^2)
 sqrt(sum(model$residuals^2)/98) # 自由度n-2
 
-
 ## 预测值作图
 yConf <- predict(model,interval= 'confidence')
 yPred <- predict(model,interval= 'prediction')
@@ -373,7 +383,6 @@ model <- lm(y~x)
 summary(model)
 model.matrix(model)
 #实际上，效果等同于T检验。
-
 
 # -------------------------------------------
 # --回归诊断
@@ -431,7 +440,6 @@ plot(model$residuals~x)
 # 解决方案：
 #（1）使用稳健标准误
 #（2）使用WLS(weighted least squares)
-
 
 # 修正的标准误，系数再检验
 require("lmtest")
@@ -562,6 +570,14 @@ broom::tidy(lm_inc)
 # Load packages
 libs <- c("plyr", "tidyverse", "ggplot2", "arm")
 sapply(libs, require, character.only = TRUE)
+
+libs <- c("plyr", "tidyverse", "arm")
+inpkg <- function(x){
+  if (!require(x)) install.packages(x)	
+}
+
+sapply(libs, inpkg)
+
 
 # Load data 
 library(foreign)
@@ -805,5 +821,96 @@ cgss2013 <- cgss2013 %>%
 ggplot(cgss2013,aes(x=2013-a3a,y=lninc))+ geom_point()
 
 
+
+####################
+#回归诊断的标准输出
+#1、残差——拟合值图判断线性性
+#2、QQ图判断残差正态性
+#3、位置-尺度图判断同方差性
+#4、残差-杠杆图探索特异点（离群-残差看、高杠杆-leverage看、强影响-cook's D）
+
+fit <- lm(weight~height,data=women)
+summary(fit)
+par(mfrow=c(1,1))
+plot(women$height, women$weight, main = "Women Age 30-39", 
+     xlab = "Height (in inches)", ylab = "Weight (in pounds)")
+abline(fit)
+#诊断图
+par(mfrow=c(2,2))
+plot(fit)
+
+#二次项
+fit <- lm(weight~height+ I(height^2),data=women)
+par(mfrow=c(1,1))
+plot(women$height, women$weight, main = "Women Age 30-39", 
+     xlab = "Height (in inches)", ylab = "Weight (in lbs)")
+lines(women$height, fitted(fit))
+#诊断图
+par(mfrow=c(2,2))
+plot(fit)
+
+#特异点（模型来拟合数据而不是数据拟合模型，特异点很有价值）
+fit <- lm(weight~height+ I(height^2),data=women[-c(13,15),])
+par(mfrow=c(2,2))
+plot(fit)
+
+####################
+#改进的回归诊断与 问题应对方法
+#1、正态性：car::qqPlot(fit)  ——>变量转换、换模型
+#2、误差独立性：car::durbinWatsonTest(fit)——>稳健标准误
+#3、线性：car::crPlots(fit) ——>变量转换、换模型
+#4、同方差：car::ncvTest(fit) car::spreadLevelPlot(fit)
+#   ——>变量转换、换模型
+#6、多重共线性： car::vif(fit)——>增删变量、换模型
+#7、特异值：car::outlierTest(fit)   car::avPlots(fit) 
+#   car::influencePlot(fit)——>删案例
+#5、综合检验： gvlma::gvlma(fit)
+
+library(car) # Jhon Fox 等
+help(package="car")
+
+plot(fit,which=4)
+
+####################
+#交叉验证（Crossvalidation）
+#以预测效果来评估模型好坏
+#训练数据集-验证数据集
+#10重交叉验证
+# Listing 8.15 - Function for k-fold cross-validated R-square
+shrinkage <- function(fit, k = 10) {
+  require(bootstrap)
+  # define functions
+  theta.fit <- function(x, y) {
+    lsfit(x, y)
+  }
+  theta.predict <- function(fit, x) {
+    cbind(1, x) %*% fit$coef
+  }
+  
+  # matrix of predictors
+  x <- fit$model[, 2:ncol(fit$model)]
+  # vector of predicted values
+  y <- fit$model[, 1]
+  
+  results <- crossval(x, y, theta.fit, theta.predict, ngroup = k)
+  r2 <- cor(y, fit$fitted.values)^2
+  r2cv <- cor(y, results$cv.fit)^2
+  cat("Original R-square =", r2, "\n")
+  cat(k, "Fold Cross-Validated R-square =", r2cv, "\n")
+  cat("Change =", r2 - r2cv, "\n")
+}
+
+# using shrinkage()
+# 数据
+states <- as.data.frame(state.x77[, c("Murder", "Population", 
+                                      "Illiteracy", "Income", "Frost")])
+# 模型
+fit <- lm(Murder ~ Population + Income + Illiteracy + 
+            Frost, data = states)
+# 验证
+shrinkage(fit)
+
+fit2 <- lm(Murder ~ Population + Illiteracy, data = states)
+shrinkage(fit2)
 
 
