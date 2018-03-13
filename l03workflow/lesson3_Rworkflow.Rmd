@@ -2,7 +2,7 @@
 ---
 title: "R语言介绍及基础操作"
 author: "李丁"
-date: "2018年"
+date: "2018年3月13日"
 output:
   ioslides_presentation:
     widescreen: yes
