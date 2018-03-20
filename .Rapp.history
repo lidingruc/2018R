@@ -1,0 +1,163 @@
+install.packages("Zelig", type = "source", repos = "http://r.iq.harvard.edu/")
+library(Zelig)
+install.packages("Zelig", type = "source", repos = "http://r.iq.harvard.edu/")
+library(Zelig)
+install.packages("Zelig", type = "source", repos = library(Zelig)http://r.iq.harvard.edu/")
+library(haven)
+library(Rcmdr)
+library(haven)
+install.packages(haven)
+cgss = read_dta("/Users/liding/DATA/CGSS/2003-2013/CGSS2003p.dta")
+library(haven)
+cgss = read_dta("/Users/liding/DATA/CGSS/2003-2013/CGSS2003p.dta")
+attr(cgss$s41)
+dim(cgss)
+view(cgss)
+attr(cgss[1])
+attr(cgss[1],)
+attr(cgss([1],))
+head(warpbreaks)
+install.packages("dplyr")
+install.packages("hflights")
+library(dplyr)
+library(hflights)
+head(hflights)
+summary(hflights)
+two<-c("AA","AS")
+lut<-c("AA"="American","AS"="Alaska","B6"="jetblue")
+two<-lut[two]
+two
+unique(hflights$CancellationCode)
+install.packages(lmtest)
+GSS <- foreign::read.spss("GSS2012.sav", to.data.frame=TRUE)
+names(GSS)
+summary(GSS$age)
+library(gmodels)
+install.packages(gmodels)
+install.packages("gmodels")
+GSS <- foreign::read.spss("/Users/liding/E/Bdata/rtemp/GSS2012.sav", to.data.frame=TRUE)
+library(gmodels)#
+with(GSS, CrossTable(RES2008, RES2010, missing.include=TRUE))
+?CrossTable
+library(gmodels)#
+with(GSS, CrossTable(RES2008, RES2010, missing.include=TRUE))
+example(CrossTable)
+rowSums(is.na(data))
+rowSums(is.na(GSS))
+library(Rcmdr)
+x <-rnorm(100) # 生成随机数 hist(x,freq=F) # 绘制直方图 curve(dnorm(x),add=T) # 添加曲线
+ylim <-range(0, h$density,dnorm(0)) #设定纵轴的取值范围 hist(x, freq=F, ylim=ylim) #绘制直方图 curve(dnorm(x),add=T,col="red") #添加曲线
+h <-hist(x, plot=F) # 绘制直方图 ylim <-range(0, h$density,dnorm(0)) #设定纵轴的取值范围 hist(x, freq=F, ylim=ylim) #绘制直方图curve(dnorm(x),add=T,col="red") #添加曲线
+?range
+x <-rnorm(100) # 生成随机数 hist(x,freq=F) # 绘制直方图 curve(dnorm(x),add=T, col="red") # 添加曲线
+lm(stats)
+?lm()
+boxplot(count ~ spray, data = InsectSprays)
+boxplot(count ~ spray, data = InsectSprays,col=red)
+boxplot(count ~ spray, data = InsectSprays,col="red")
+x <- rnorm(100)hist(x) op <- par(fig=c(.02,.5,.5,.98), new=TRUE) boxplot(x)
+n <- seq(1,50,by = 4)(x <- USArrests[n,]) # print ()hc1 <- hclust ( dist (x) , method = "complete") hc2 <- hclust(dist(scale(x)),method = "complete") hc3 <- hclust ( dist (x) , method = "ave") layout(matrix(c(1,1,2,3),nrow = 2,byrow = T))plot (hc1 ); plot (hc2 );
+(pc.cr <- princomp(USArrests, cor =TRUE)) plot(pc.cr , type="lines"  # or ”barplot”   ) # or screeplot loadings(pc.cr)
+install.packages("rjson")#
+#
+library(rjson)#
+#
+grades=fromJSON("grades.json")
+grades=fromJSON(grades.json)
+library(RCurl)#
+library(XML)#
+url <-"http://bj.xiaozhu.com/fangzi/5098280314.html"#
+doc <- htmlTreeParse(url, useInternalNodes=T)#
+#原因为htmlParse可以抓取http的页面，不能抓取https的页面#
+nodi<-getNodeSet(doc, "//h4")#
+getNodeSet(doc, "//h4/em")#
+# 提取内容#
+xmlValue(nodi[[1]])
+getNodeSet(doc, "//h4/em")
+library(RCurl)#
+library(XML)
+ibrary(RCurl)#
+library(XML)#
+url <-"http://bj.xiaozhu.com/fangzi/5098280314.html"#
+doc <- htmlTreeParse(url, useInternalNodes=T,encoding='utf-8')
+library(RCurl)#
+library(XML)#
+url <-"http://bj.xiaozhu.com/fangzi/5098280314.html"#
+doc <- htmlTreeParse(url, useInternalNodes=T,encoding='utf-8')
+library(magrittr)#
+library(ggplot2)#
+library(maptools)#
+shape_data <- readShapeSpatial('/Users/liding/E/Bdata/Course/7Space/map/chinaadm/CHN/CHN_adm3.shp')
+plot(shape_data)
+data(lalonda)
+data(lalonde)
+library(zelig)
+library(Zelig)
+data(lalonde)
+??Zelig
+library(Zeligverse)
+library(zeligverse)
+data(lalonde)
+head(lalonde)
+library(animation)
+?animation
+library(spdep)
+data
+data(package="spdep")
+chooseCRANmirror()
+library(ggmap)
+goog_key()
+register_google(key = "AIzaSyD2RsTJUIjfDXs7N2sBIWCE8HPGEu6nxB0")
+geocode("中国台湾")
+1+2
+log(10)
+install.packages("hrbrthemes")
+install.packages("RODBC")
+library(RODBC)
+channel <- odbcConnectAccess("/Users/liding/Downloads/china.mdb")
+help(package="RODBC")
+channel <- odbcConnect("/Users/liding/Downloads/china.mdb")
+channel <- odbcConnect("/Users/liding/Downloads/china")
+channel <- odbcConnectAccess("/Users/liding/Downloads/china")
+library(Hmisc)
+china <- mdb.get("/Users/liding/Downloads/china.mdb")
+channel <- odbcConnectAccess2007("/Users/liding/Downloads/china")
+channel <- odbcConnect("/Users/liding/Downloads/china")
+channel <- odbcConnect("/Users/liding/Downloads/china.mdb")
+conn <- odbcConnectAccess2007(path.expand("/Users/liding/Downloads/china.mdb"))
+fgdb <- "/Users/liding/Downloads/china.mdb"#
+#
+# List all feature classes in a file geodatabase#
+subset(ogrDrivers(), grepl("mdb", name))
+channel <- odbcConnectAccess("/Users/liding/Downloads/china.mdb")
+library(RODBC)
+2+2
+2*2
+2**2
+a <- 2
+a <- 2
+a
+library(dplyr)#
+library(readr)#
+library(ggplot2)#
+library(gganimate)#
+#
+#读入数据#
+setwd("/Users/liding/E/Bdata/liding17/2018R/l03workflow/")#
+gapminder <- read.csv("gapminder.csv")#
+#
+#初步了解数据#
+names(gapminder)#
+head(gapminder)#
+View(gapminder)#
+dim(gapminder)#
+table(gapminder$year)
+setwd("/Users/liding/E/Bdata/liding17/2018R/")#
+gapminder <- read.csv("data/gapminder.csv")#
+#
+#初步了解数据#
+names(gapminder)#
+head(gapminder)#
+View(gapminder)#
+dim(gapminder)#
+table(gapminder$year)

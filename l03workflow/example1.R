@@ -10,10 +10,10 @@ library(dplyr)
 library(readr)
 library(ggplot2)
 library(gganimate)
-
+help(filter)
 #读入数据
-setwd("/Users/liding/E/Bdata/liding17/2018R/l03workflow/")
-gapminder <- read.csv("gapminder.csv")
+setwd("/Users/liding/E/Bdata/liding17/2018R/")
+gapminder <- read.csv("data/gapminder.csv")
 
 #初步了解数据
 names(gapminder)

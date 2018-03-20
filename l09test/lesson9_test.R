@@ -10,7 +10,7 @@
 # --加载必要的包
 # -------------------------------------------
 
-if (!require(tidyvese)) install.packages('tidyverse')	
+if (!require(tidyverse)) install.packages('tidyverse')	
 if (!require(data.table))install.packages('data.table')
 if (!require(dplyr))install.packages('dplyr')
 if (!require(sjPlot))install.packages('sjPlot')

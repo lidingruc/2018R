@@ -101,9 +101,9 @@
 <slide class=""><hgroup><h2>R语言基础</h2></hgroup><article  id="r">
 
 <ul>
-<li>数据框、变量与工作环境</li>
+<li>数据框与变量操作</li>
 <li>R中其他数据对象</li>
-<li>基础性的描述统计</li>
+<li>基础统计</li>
 <li>R条件语句与循环</li>
 </ul>
 
@@ -111,10 +111,12 @@
 
 </article></slide><slide class=""><hgroup><h2>数据框与变量处理</h2></hgroup><article >
 
-<pre >- 数据框导入与创建
-- 数据的索引
-- 数据排序与类型
-- 创建和修改变量</pre>
+<ul>
+<li>数据框导入与创建</li>
+<li>数据的索引</li>
+<li>数据排序与类型</li>
+<li>创建和修改变量</li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>数据框:导入</h2></hgroup><article >
 
@@ -583,16 +585,31 @@ rm(data2, ave2)  # 从工作环境中移除data2
 vector1 &lt;- 1:10 + 2
 vector2 &lt;- 1:(10 + 2)</pre>
 
-</article></slide><slide class=""><hgroup><h2>向量</h2></hgroup><article >
+</article></slide><slide class=""><hgroup><h2>向量：赋值与索引</h2></hgroup><article >
 
-<p>向量化操作是R的基本特征，其操作如下：</p>
+<p>R语言中可以给向量、数据框、函数等指定一个“名字“。或则说，给名字对应的<strong>变量</strong>赋值。赋值操作符为等号“<code>=</code>”，也可以是&quot;<code>&lt;-</code>&quot;。</p>
 
-<pre class = 'prettyprint lang-r'>1 + 1 * 3
-c(0,1,1,2,3,9)
-c(&quot;hello world&quot;, &quot;I am a R user&quot;)
+<pre class = 'prettyprint lang-r'>x &lt;- c(1,2,3,4)
+log(x)</pre>
+
+<pre >## [1] 0.0000000 0.6931472 1.0986123 1.3862944</pre>
+
+<p>使用方括号索引一个向量：</p>
+
+<pre class = 'prettyprint lang-r'>x[2] # 第二个元素
+x[2:4] # 第2到4个元素
+x[-4] # 减去第4个元素后
+x[x&gt;2] # 大于2的元素</pre>
+
+</article></slide><slide class=""><hgroup><h2>向量:向量化操作</h2></hgroup><article >
+
+<p>R中没有专门的标量。向量化操作是R的基本特征：</p>
+
+<pre class = 'prettyprint lang-r'>nchar(c(&quot;hello world&quot;, &quot;I am a R user&quot;))
 c(1,2,3,4) + c(3,4,5,6)
 c(1,2,3,4) + c(1,2)
-1:6</pre>
+1:6
+seq(0,1,by=0.1)</pre>
 
 <p>向量之间除了四种数字运算外，还可以进行比较，例如：</p>
 
@@ -624,9 +641,11 @@ vec_mean &lt;- sum(vector_trimmed)/length(vector_trimmed)</pre>
 
 </article></slide><slide class=""><hgroup><h2>函数:</h2></hgroup><article >
 
-<p>在R语言中，所有操作和运算都是由函数完成的。和数学中的函数类似，大多数的函数由函数名和参数组成的。</p>
+<p>上面的基本运算符号还可以作为函数使用。R中还有很多函数来建立对应关系，大多数的函数由函数名和参数组成的。<code>exp</code>是函数名，括号中的1则是参数。又可以分为三部分构成，即输入、运算、输出。</p>
 
-<p>例如下面计算指数的例子中，<code>exp</code>是函数名，括号中的1则是参数。又可以分为三部分构成，即输入、运算、输出。</p>
+<pre class = 'prettyprint lang-r'>`*`(3,4)</pre>
+
+<pre >## [1] 12</pre>
 
 <pre class = 'prettyprint lang-r'>exp(1)</pre>
 
@@ -638,7 +657,7 @@ vec_mean &lt;- sum(vector_trimmed)/length(vector_trimmed)</pre>
 
 </article></slide><slide class=""><hgroup><h2>自定义函数</h2></hgroup><article >
 
-<p>一个求圆面积的函数</p>
+<p>我们还可以自定义函数，如求圆面积的函数</p>
 
 <pre class = 'prettyprint lang-r'>myfunc &lt;- function(r) {
   area &lt;- pi*r^2
@@ -648,25 +667,9 @@ print(myfunc(4))</pre>
 
 <pre >## [1] 50.26548</pre>
 
-<p>函数在调用时会新建一个特殊的子环境，用以处理函数中涉及到的变量，例如上面函数中的area变量，这种变量称为__局部变量__。因为不会在全局环境中出现而影响其它函数，使用起来非常安全。</p>
+<p>函数在调用时会新建一个特殊子环境，用以处理函数中涉及到的变量，例如上面函数中的area变量，这种变量称为__局部变量__。因为不会在全局环境中出现而影响其它函数，使用起来非常安全。</p>
 
 <p>函数内部可以调用__全局变量__，例如上面的pi。</p>
-
-</article></slide><slide class=""><hgroup><h2>变量</h2></hgroup><article >
-
-<p>R语言中可以给标量、向量、数据框、函数等等指定一个“名字“，反过来，这相对于给这个名字对应变量赋值。赋值操作符为等号“<code>=</code>”，也可以是&quot;<code>&lt;-</code>&quot;。下面的例子就是先将向量赋值给x变量，然后求取其对数。</p>
-
-<pre class = 'prettyprint lang-r'>x &lt;- c(1,2,3,4)
-log(x)</pre>
-
-<pre >## [1] 0.0000000 0.6931472 1.0986123 1.3862944</pre>
-
-<p>如果我们想从变量x（目前为一个集合）中取出某一个元素的话，可以使用方括号加索引号：</p>
-
-<pre class = 'prettyprint lang-r'>x[2] # 第二个元素
-x[2:4] # 第2到4个元素
-x[-4] # 减去第4个元素后
-x[x&gt;2] # 大于2的元素</pre>
 
 </article></slide><slide class=""><hgroup><h2>矩阵</h2></hgroup><article >
 
@@ -675,16 +678,16 @@ my_matrix &lt;- cbind(vector1,vector2,vector3)
 my_matrix </pre>
 
 <pre >##         vector1    vector2    vector3
-## [1,] -0.4541443 -0.4541443 -0.4541443
-## [2,]  0.1238932  0.1238932  0.1238932
-## [3,] -1.0952638 -1.0952638 -1.0952638</pre>
+## [1,] -0.6390264 -0.6390264 -0.6390264
+## [2,] -0.5983812 -0.5983812 -0.5983812
+## [3,]  1.2873570  1.2873570  1.2873570</pre>
 
 <pre class = 'prettyprint lang-r'>ifelse(my_matrix&gt;0,1,0)</pre>
 
 <pre >##      vector1 vector2 vector3
 ## [1,]       0       0       0
-## [2,]       1       1       1
-## [3,]       0       0       0</pre>
+## [2,]       0       0       0
+## [3,]       1       1       1</pre>
 
 </article></slide><slide class=""><hgroup><h2>矩阵</h2></hgroup><article  id="-1">
 
@@ -701,14 +704,14 @@ print(vector)</pre>
 <pre class = 'prettyprint lang-r'>vector4 &lt;- rnorm(8)
 vector4</pre>
 
-<pre >## [1] -1.0929927  1.3935018 -0.7058824  1.3453365 -1.9798296 -1.5073634
-## [7]  0.5988538  1.5598502</pre>
+<pre >## [1]  0.1523779  1.8831260 -0.6471380  0.4503565 -0.6421450 -1.2263807
+## [7]  0.5618366  1.4292503</pre>
 
 <pre class = 'prettyprint lang-r'>matrix(vector4,nrow=2,ncol = 4, byrow = FALSE)</pre>
 
 <pre >##           [,1]       [,2]      [,3]      [,4]
-## [1,] -1.092993 -0.7058824 -1.979830 0.5988538
-## [2,]  1.393502  1.3453365 -1.507363 1.5598502</pre>
+## [1,] 0.1523779 -0.6471380 -0.642145 0.5618366
+## [2,] 1.8831260  0.4503565 -1.226381 1.4292503</pre>
 
 </article></slide><slide class=""><hgroup><h2>矩阵运算</h2></hgroup><article >
 
@@ -787,9 +790,9 @@ data_list$data &lt;- data # + 数据</pre>
 <pre class = 'prettyprint lang-r'>data_list[[4]]</pre>
 
 <pre >##         vector1    vector2    vector3
-## [1,] -0.4541443 -0.4541443 -0.4541443
-## [2,]  0.1238932  0.1238932  0.1238932
-## [3,] -1.0952638 -1.0952638 -1.0952638</pre>
+## [1,] -0.6390264 -0.6390264 -0.6390264
+## [2,] -0.5983812 -0.5983812 -0.5983812
+## [3,]  1.2873570  1.2873570  1.2873570</pre>
 
 </article></slide><slide class=""><hgroup><h2>列表内部结构</h2></hgroup><article >
 
@@ -801,7 +804,7 @@ data_list$data &lt;- data # + 数据</pre>
 ##  $ age   : num [1:5] 23 43 51 32 60
 ##  $ city  : chr [1:5] &quot;beijing&quot; &quot;shanghai&quot; &quot;chengdu&quot; &quot;shanghai&quot; ...
 ##  $ gender: chr [1:5] &quot;F&quot; &quot;M&quot; &quot;F&quot; &quot;F&quot; ...
-##  $ mat   : num [1:3, 1:3] -0.454 0.124 -1.095 -0.454 0.124 ...
+##  $ mat   : num [1:3, 1:3] -0.639 -0.598 1.287 -0.639 -0.598 ...
 ##   ..- attr(*, &quot;dimnames&quot;)=List of 2
 ##   .. ..$ : NULL
 ##   .. ..$ : chr [1:3] &quot;vector1&quot; &quot;vector2&quot; &quot;vector3&quot;
@@ -1227,23 +1230,9 @@ SeqFi &lt;- fibonaci(100)</pre>
 
 </article></slide><slide class=""><hgroup><h2>课后自学强化</h2></hgroup><article >
 
-<p>基础部分</p>
+<p>《R语言实战》第一部分、第二部分。</p>
 
-<ul>
-<li><a href='https://campus.datacamp.com/courses/free-introduction-to-r/chapter-1-intro-to-basics-1?ex=1' title=''>Chapter 1 Intro to basics</a></li>
-<li><a href='https://campus.datacamp.com/courses/free-introduction-to-r/chapter-2-vectors-2?ex=1' title=''>Chapter 2 Vectors</a></li>
-<li><a href='https://campus.datacamp.com/courses/free-introduction-to-r/chapter-4-factors-4?ex=1' title=''>Chapter 4 Factors</a></li>
-<li><a href='https://campus.datacamp.com/courses/free-introduction-to-r/chapter-5-data-frames?ex=1' title=''>Chapter 5 Data frames</a></li>
-</ul>
-
-<p>中级部分</p>
-
-<ul>
-<li><a href='https://campus.datacamp.com/courses/intermediate-r/chapter-1-conditionals-and-control-flow?ex=1' title=''>Chapter 1 Conditionals and Control Flow</a></li>
-<li><a href='https://campus.datacamp.com/courses/intermediate-r/chapter-3-functions?ex=1' title=''>Chapter 3 Functions</a></li>
-</ul>
-
-<p>认真研读<a href='http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf' title=''>R语言基础小抄</a>，并将相关的代码输入到R代码文件中。</p>
+<p>把书读薄：<a href='http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf' title=''>R语言基础小抄</a>，并将相关的代码输入到R代码文件中。</p>
 
 <p><a href='https://www.rstudio.com/resources/cheatsheets/' title=''>更多小抄</a></p></article></slide>
 

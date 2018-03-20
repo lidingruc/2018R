@@ -1,5 +1,5 @@
 ############################
-# Rjava的安装需要
+# Rjava的安装
 
 ## 1、需要下载并安装java，设定好环境变量，注意macOS sierria不能装java jdk9,如果装了，需要卸载（具体见http://www.cnblogs.com/eadwin/p/7656310.html）。
 # 安装及设置环境变量的说明：mac http://www.cnblogs.com/zhangzhangwhu/p/7171735.html windows：

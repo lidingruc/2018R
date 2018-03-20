@@ -204,3 +204,27 @@ library(animation)    #动态图
 # mac使用brew install 包
 # http://brew.sh/   在官方网站对brew的用法进行了详细的描述
 #http://www.cnblogs.com/TankXiao/p/3247113.html
+
+
+
+# rmarkdown 转pdf文件  中文latex问题
+# 缺什么装什么，要求网络给力。另一种方式是装好MacTex https://www.tug.org/mactex/mactex-download.html
+# 中文可以安装 
+devtools::install_github(c('rstudio/rmarkdown', 'yihui/tinytex'))
+tinytex::install_tinytex()
+
+# 1 install.packages("tinytex")
+# 2 在转PDF的时候选择使用引擎：latex_engine: xelatex
+# 3 可以通过模板创建文档
+
+# https://github.com/rstudio/rticles/blob/master/inst/rmarkdown/templates/ctex/skeleton/skeleton.Rmd
+
+
+# 有些示例 http://users.eecs.northwestern.edu/~jesse/code/beamer-examples/
+# beamer主题及颜色搭配矩阵：https://hartwork.org/beamer-theme-matrix/
+# 风格库 http://deic.uab.es/~iblanes/beamer_gallery/individual/Luebeck-default-default.html
+
+#中英文混排字体搭配
+#2：宋体+Times new roman
+#4:  黑体+Arial
+#6:  楷体+Lucida Fax

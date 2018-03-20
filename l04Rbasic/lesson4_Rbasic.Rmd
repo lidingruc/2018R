@@ -2,11 +2,16 @@
 title: "数据科学与社会研究 <br> 第四讲、夯基：关于R的基础"
 author: "李丁 社会与人口学院"
 date: "2017年9月26日"
-output:
+output: 
   ioslides_presentation:
+    css: ../lec.css
     highlight: pygments
     widescreen: yes
-    css: ../lec.css
+  slidy_presentation:
+    highlight: pygments
+  beamer_presentation:
+    highlight: pygments
+    latex_engine: xelatex
 ---
 
 
@@ -22,10 +27,10 @@ output:
 
     
 ## 数据框与变量处理
-    - 数据框导入与创建
-    - 数据的索引
-    - 数据排序与类型
-    - 创建和修改变量
+- 数据框导入与创建
+- 数据的索引
+- 数据排序与类型
+- 创建和修改变量
     
 ## 数据框:导入
 用过Excel、SPSS、stata应知道数据（data）是一种矩阵。列表示变量，行表示案例。各列类型可以不同但长度通常一致。在R中，我们称之为数据框(Data frame)。
