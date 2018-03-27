@@ -104,21 +104,82 @@
 <slide class=""><hgroup><h2>内容提纲</h2></hgroup><article >
 
 <ul>
-<li>变量管理:使用<code>dplyr</code>
+<li><p>tibble数据框</p></li>
+<li><p>变量管理:使用<code>dplyr</code></p>
 
 <ul>
-<li><code>filter()</code>: 筛选案例</li>
-<li><code>sample_n()</code> / <code>sample_frac()</code>: 随机选择案例</li>
-<li><code>select()</code>: 筛选变量</li>
-<li><code>rename()</code>: 变量重命名</li>
-<li><code>fct_recode</code>:recode变量</li>
-<li><code>mutate()</code>: 增加新变量</li>
+<li><code>filter()</code>: 筛选案例 | <code>sample_n()</code> / <code>sample_frac()</code>: 随机选择案例</li>
+<li><code>select()</code>: 筛选变量 | <code>rename()</code>: 变量重命名</li>
+<li><code>fct_recode</code>:recode变量 | <code>mutate()</code>: 增加新变量</li>
+<li><code>summarise()</code> 汇总统计 | <code>group_by()</code> 分组</li>
 <li><code>arrange()</code>: 案例排序</li>
-<li><code>summarise()</code>: 汇总变量</li>
 </ul></li>
-<li>文本处理</li>
-<li>日期处理</li>
+<li>字符串处理</li>
+<li><p>日期处理</p></li>
 </ul>
+
+</article></slide><slide class=""><hgroup><h2>tibbles 数据框</h2></hgroup><article  id="tibbles-">
+
+<p>data.frame基础做了针对性的改进。无行名，不修改变量类型，灵活列印,索引方便等等。继承了data.frame的其他多数特性。</p>
+
+<pre class = 'prettyprint lang-r'>library(tidyverse)
+as_tibble(iris)</pre>
+
+<pre >## # A tibble: 150 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1         5.10        3.50         1.40       0.200 setosa 
+##  2         4.90        3.00         1.40       0.200 setosa 
+##  3         4.70        3.20         1.30       0.200 setosa 
+##  4         4.60        3.10         1.50       0.200 setosa 
+##  5         5.00        3.60         1.40       0.200 setosa 
+##  6         5.40        3.90         1.70       0.400 setosa 
+##  7         4.60        3.40         1.40       0.300 setosa 
+##  8         5.00        3.40         1.50       0.200 setosa 
+##  9         4.40        2.90         1.40       0.200 setosa 
+## 10         4.90        3.10         1.50       0.100 setosa 
+## # ... with 140 more rows</pre>
+
+</article></slide><slide class=""><hgroup><h2>tibble数据</h2></hgroup><article  id="tibble">
+
+<p>手工创建数据集</p>
+
+<pre class = 'prettyprint lang-r'>df &lt;- tibble(
+  x = 1:5, 
+  y = 1, 
+  z = x ^ 2 + y
+)
+df %&gt;% .$x  #  或者.[[&quot;x&quot;]]</pre>
+
+<pre >## [1] 1 2 3 4 5</pre>
+
+<pre class = 'prettyprint lang-r'>df</pre>
+
+<pre >## # A tibble: 5 x 3
+##       x     y     z
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    1.    2.
+## 2     2    1.    5.
+## 3     3    1.   10.
+## 4     4    1.   17.
+## 5     5    1.   26.</pre>
+
+</article></slide><slide class=""><hgroup><h2>tibble数据集</h2></hgroup><article  id="tibble">
+
+<p>tribble方便小块数据输入</p>
+
+<pre class = 'prettyprint lang-r'>tribble(
+  ~x, ~y, ~z,
+
+  &quot;a&quot;, 2, 3.6,
+  &quot;b&quot;, 1, 8.5
+)</pre>
+
+<pre >## # A tibble: 2 x 3
+##   x         y     z
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a        2.  3.60
+## 2 b        1.  8.50</pre>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>使用<code>dplyr</code> 处理变量</h2></hgroup><article  id="dplyr-">
 
@@ -137,30 +198,29 @@
 </ul>
 
 <pre class = 'prettyprint lang-r'># 读入数据
-library(tidyverse)
 bike &lt;- read_delim(&quot;../data/nc_bike_crash.csv&quot;, &quot;;&quot;, 
     escape_double = FALSE, trim_ws = TRUE)</pre>
 
 </article></slide><slide class=""><hgroup><h2>筛选个案 <code>filter()</code></h2></hgroup><article  id="-filter-1">
 
-<p>选出Durham县发生的与自行车相关的交通事故</p>
+<p>选出Durham县发生的与自行车相关的交通事故 注意：== | &amp; &gt; &lt; &gt;= &lt;= != 等比较符号。</p>
 
 <pre class = 'prettyprint lang-r'>bike %&gt;%
   filter(County == &quot;Durham&quot;)</pre>
 
 <pre >## # A tibble: 253 x 54
-##      FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D       Bike_Dir
-##    &lt;int&gt;    &lt;int&gt;      &lt;chr&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;chr&gt;          &lt;chr&gt;
-##  1    18       19         No       &lt;NA&gt;        6         No Not Applicable
-##  2    53       54        Yes      50-59       52         No   With Traffic
-##  3    56       57        Yes      16-19       18         No           &lt;NA&gt;
-##  4   209      210         No      16-19       16         No Facing Traffic
-##  5   228      229        Yes      40-49       40         No   With Traffic
-##  6   620      621        Yes      50-59       55         No   With Traffic
-##  7   667      668        Yes      60-69       61         No Not Applicable
-##  8   458      459        Yes      60-69       62         No   With Traffic
-##  9   576      577         No      40-49       49         No   With Traffic
-## 10   618      619         No      20-24       23         No   With Traffic
+##      FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir      
+##    &lt;int&gt;    &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;         
+##  1    18       19 No         &lt;NA&gt;              6 No         Not Applicable
+##  2    53       54 Yes        50-59            52 No         With Traffic  
+##  3    56       57 Yes        16-19            18 No         &lt;NA&gt;          
+##  4   209      210 No         16-19            16 No         Facing Traffic
+##  5   228      229 Yes        40-49            40 No         With Traffic  
+##  6   620      621 Yes        50-59            55 No         With Traffic  
+##  7   667      668 Yes        60-69            61 No         Not Applicable
+##  8   458      459 Yes        60-69            62 No         With Traffic  
+##  9   576      577 No         40-49            49 No         With Traffic  
+## 10   618      619 No         20-24            23 No         With Traffic  
 ## # ... with 243 more rows, and 47 more variables: Bike_Injur &lt;chr&gt;,
 ## #   Bike_Pos &lt;chr&gt;, Bike_Race &lt;chr&gt;, Bike_Sex &lt;chr&gt;, City &lt;chr&gt;,
 ## #   County &lt;chr&gt;, CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;, Crash_Date &lt;date&gt;,
@@ -183,28 +243,28 @@ bike &lt;- read_delim(&quot;../data/nc_bike_crash.csv&quot;, &quot;;&quot;,
   filter(County == &quot;Durham&quot;, Bike_Age &lt; 10)</pre>
 
 <pre >## # A tibble: 20 x 54
-##      FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D       Bike_Dir
-##    &lt;int&gt;    &lt;int&gt;      &lt;chr&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;chr&gt;          &lt;chr&gt;
-##  1    18       19         No       &lt;NA&gt;        6         No Not Applicable
-##  2    47       48         No     10-Jun        9         No Not Applicable
-##  3   124      125        Yes     10-Jun        8         No   With Traffic
-##  4   531      532        Yes     10-Jun        7         No   With Traffic
-##  5   704      705        Yes     10-Jun        9         No Not Applicable
-##  6    42       43         No     10-Jun        8         No   With Traffic
-##  7   392      393        Yes        0-5        2         No Not Applicable
-##  8   941      942         No     10-Jun        9         No   With Traffic
-##  9   436      437        Yes     10-Jun        6         No Not Applicable
-## 10   160      161        Yes     10-Jun        7         No   With Traffic
-## 11   273      274        Yes     10-Jun        7         No Facing Traffic
-## 12    78       79        Yes     10-Jun        7         No   With Traffic
-## 13   422      423         No     10-Jun        9         No Not Applicable
-## 14   570      571         No       &lt;NA&gt;        0    Missing Not Applicable
-## 15   683      684        Yes     10-Jun        8         No Not Applicable
-## 16    62       63        Yes     10-Jun        7         No   With Traffic
-## 17   248      249         No        0-5        4         No Not Applicable
-## 18   306      307        Yes     10-Jun        8         No   With Traffic
-## 19   231      232        Yes     10-Jun        8         No   With Traffic
-## 20   361      362        Yes     10-Jun        9         No   With Traffic
+##      FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir      
+##    &lt;int&gt;    &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;         
+##  1    18       19 No         &lt;NA&gt;              6 No         Not Applicable
+##  2    47       48 No         10-Jun            9 No         Not Applicable
+##  3   124      125 Yes        10-Jun            8 No         With Traffic  
+##  4   531      532 Yes        10-Jun            7 No         With Traffic  
+##  5   704      705 Yes        10-Jun            9 No         Not Applicable
+##  6    42       43 No         10-Jun            8 No         With Traffic  
+##  7   392      393 Yes        0-5               2 No         Not Applicable
+##  8   941      942 No         10-Jun            9 No         With Traffic  
+##  9   436      437 Yes        10-Jun            6 No         Not Applicable
+## 10   160      161 Yes        10-Jun            7 No         With Traffic  
+## 11   273      274 Yes        10-Jun            7 No         Facing Traffic
+## 12    78       79 Yes        10-Jun            7 No         With Traffic  
+## 13   422      423 No         10-Jun            9 No         Not Applicable
+## 14   570      571 No         &lt;NA&gt;              0 Missing    Not Applicable
+## 15   683      684 Yes        10-Jun            8 No         Not Applicable
+## 16    62       63 Yes        10-Jun            7 No         With Traffic  
+## 17   248      249 No         0-5               4 No         Not Applicable
+## 18   306      307 Yes        10-Jun            8 No         With Traffic  
+## 19   231      232 Yes        10-Jun            8 No         With Traffic  
+## 20   361      362 Yes        10-Jun            9 No         With Traffic  
 ## # ... with 47 more variables: Bike_Injur &lt;chr&gt;, Bike_Pos &lt;chr&gt;,
 ## #   Bike_Race &lt;chr&gt;, Bike_Sex &lt;chr&gt;, City &lt;chr&gt;, County &lt;chr&gt;,
 ## #   CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;, Crash_Date &lt;date&gt;, Crash_Grp &lt;chr&gt;,
@@ -223,17 +283,17 @@ bike &lt;- read_delim(&quot;../data/nc_bike_crash.csv&quot;, &quot;;&quot;,
 
 <p>头五条</p>
 
-<pre class = 'prettyprint lang-r'>bike %&gt;%
+<pre class = 'prettyprint lang-r'>bike %&gt;% 
   slice(1:5)</pre>
 
 <pre >## # A tibble: 5 x 54
-##     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D       Bike_Dir
-##   &lt;int&gt;    &lt;int&gt;      &lt;chr&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;chr&gt;          &lt;chr&gt;
-## 1    18       19         No       &lt;NA&gt;        6         No Not Applicable
-## 2    29       30        Yes      50-59       51         No   With Traffic
-## 3    33       34         No       &lt;NA&gt;       10         No   With Traffic
-## 4    35       36        Yes      16-19       17         No           &lt;NA&gt;
-## 5    49       50         No       &lt;NA&gt;        6         No Facing Traffic
+##     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir      
+##   &lt;int&gt;    &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;         
+## 1    18       19 No         &lt;NA&gt;              6 No         Not Applicable
+## 2    29       30 Yes        50-59            51 No         With Traffic  
+## 3    33       34 No         &lt;NA&gt;             10 No         With Traffic  
+## 4    35       36 Yes        16-19            17 No         &lt;NA&gt;          
+## 5    49       50 No         &lt;NA&gt;              6 No         Facing Traffic
 ## # ... with 47 more variables: Bike_Injur &lt;chr&gt;, Bike_Pos &lt;chr&gt;,
 ## #   Bike_Race &lt;chr&gt;, Bike_Sex &lt;chr&gt;, City &lt;chr&gt;, County &lt;chr&gt;,
 ## #   CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;, Crash_Date &lt;date&gt;, Crash_Grp &lt;chr&gt;,
@@ -247,6 +307,8 @@ bike &lt;- read_delim(&quot;../data/nc_bike_crash.csv&quot;, &quot;;&quot;,
 ## #   Rd_Conditi &lt;chr&gt;, Rd_Config &lt;chr&gt;, Rd_Defects &lt;chr&gt;, Rd_Feature &lt;chr&gt;,
 ## #   Rd_Surface &lt;chr&gt;, Region &lt;chr&gt;, Rural_Urba &lt;chr&gt;, Speed_Limi &lt;chr&gt;,
 ## #   Traff_Cntr &lt;chr&gt;, Weather &lt;chr&gt;, Workzone_I &lt;chr&gt;, Location &lt;chr&gt;</pre>
+
+<pre class = 'prettyprint lang-r'>#等价于bike %&gt;% head(5)</pre>
 
 </article></slide><slide class=""><hgroup><h2><code>slice()</code> 选择部分案例</h2></hgroup><article  id="slice--1">
 
@@ -257,13 +319,13 @@ bike %&gt;%
   slice((last_row-4):last_row)</pre>
 
 <pre >## # A tibble: 5 x 54
-##     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D       Bike_Dir
-##   &lt;int&gt;    &lt;int&gt;      &lt;chr&gt;      &lt;chr&gt;    &lt;int&gt;      &lt;chr&gt;          &lt;chr&gt;
-## 1   460      461        Yes     10-Jun        7         No Not Applicable
-## 2   474      475        Yes      50-59       50         No   With Traffic
-## 3   479      480        Yes      16-19       16         No Not Applicable
-## 4   487      488         No      40-49       47        Yes   With Traffic
-## 5   488      489        Yes      30-39       35         No Facing Traffic
+##     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir      
+##   &lt;int&gt;    &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;         
+## 1   460      461 Yes        10-Jun            7 No         Not Applicable
+## 2   474      475 Yes        50-59            50 No         With Traffic  
+## 3   479      480 Yes        16-19            16 No         Not Applicable
+## 4   487      488 No         40-49            47 Yes        With Traffic  
+## 5   488      489 Yes        30-39            35 No         Facing Traffic
 ## # ... with 47 more variables: Bike_Injur &lt;chr&gt;, Bike_Pos &lt;chr&gt;,
 ## #   Bike_Race &lt;chr&gt;, Bike_Sex &lt;chr&gt;, City &lt;chr&gt;, County &lt;chr&gt;,
 ## #   CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;, Crash_Date &lt;date&gt;, Crash_Grp &lt;chr&gt;,
@@ -277,6 +339,8 @@ bike %&gt;%
 ## #   Rd_Conditi &lt;chr&gt;, Rd_Config &lt;chr&gt;, Rd_Defects &lt;chr&gt;, Rd_Feature &lt;chr&gt;,
 ## #   Rd_Surface &lt;chr&gt;, Region &lt;chr&gt;, Rural_Urba &lt;chr&gt;, Speed_Limi &lt;chr&gt;,
 ## #   Traff_Cntr &lt;chr&gt;, Weather &lt;chr&gt;, Workzone_I &lt;chr&gt;, Location &lt;chr&gt;</pre>
+
+<pre class = 'prettyprint lang-r'># 等价于bike %&gt;% tail(5)</pre>
 
 </article></slide><slide class=""><hgroup><h2><code>sample_n()</code> or <code>sample_frac()</code>随机挑选案例</h2></hgroup><article  id="sample_n-or-sample_frac">
 
@@ -315,10 +379,11 @@ dim(bike_perc20)</pre>
 ##   Non-Intersection     2213  462
 ##   Non-Roadway           205   30</pre>
 
-</article></slide><slide class=""><hgroup><h2>选择描述某个变量</h2></hgroup><article >
+</article></slide><slide class=""><hgroup><h2>选择变量</h2></hgroup><article >
+
+<p>dplyr中的summarize默认summ该数据框中的变量</p>
 
 <pre class = 'prettyprint lang-r'>out &lt;- bike %&gt;%
-  select(Bike_Age,Bike_Injur) %&gt;%  # 示意
 summarize(
     min = min(Bike_Age ,na.rm = TRUE),
     q1 = quantile(Bike_Age ,0.25, na.rm = TRUE),
@@ -354,27 +419,18 @@ knitr::kable(out)</pre>
 </tr>
 </table>
 
-</article></slide><slide class=""><hgroup><h2>删除变量 <code>select()</code></h2></hgroup><article  id="-select">
+</article></slide><slide class=""><hgroup><h2>筛选变量-删除 <code>select()</code></h2></hgroup><article  id="--select">
 
 <pre class = 'prettyprint lang-r'>bike %&gt;%
+  select(FID,OBJECTID) %&gt;%
   select(-OBJECTID) %&gt;%
   names()</pre>
 
-<pre >##  [1] &quot;FID&quot;        &quot;AmbulanceR&quot; &quot;BikeAge_Gr&quot; &quot;Bike_Age&quot;   &quot;Bike_Alc_D&quot;
-##  [6] &quot;Bike_Dir&quot;   &quot;Bike_Injur&quot; &quot;Bike_Pos&quot;   &quot;Bike_Race&quot;  &quot;Bike_Sex&quot;  
-## [11] &quot;City&quot;       &quot;County&quot;     &quot;CrashAlcoh&quot; &quot;CrashDay&quot;   &quot;Crash_Date&quot;
-## [16] &quot;Crash_Grp&quot;  &quot;Crash_Hour&quot; &quot;Crash_Loc&quot;  &quot;Crash_Mont&quot; &quot;Crash_Time&quot;
-## [21] &quot;Crash_Type&quot; &quot;Crash_Ty_1&quot; &quot;Crash_Year&quot; &quot;Crsh_Sevri&quot; &quot;Developmen&quot;
-## [26] &quot;DrvrAge_Gr&quot; &quot;Drvr_Age&quot;   &quot;Drvr_Alc_D&quot; &quot;Drvr_EstSp&quot; &quot;Drvr_Injur&quot;
-## [31] &quot;Drvr_Race&quot;  &quot;Drvr_Sex&quot;   &quot;Drvr_VehTy&quot; &quot;ExcsSpdInd&quot; &quot;Hit_Run&quot;   
-## [36] &quot;Light_Cond&quot; &quot;Locality&quot;   &quot;Num_Lanes&quot;  &quot;Num_Units&quot;  &quot;Rd_Charact&quot;
-## [41] &quot;Rd_Class&quot;   &quot;Rd_Conditi&quot; &quot;Rd_Config&quot;  &quot;Rd_Defects&quot; &quot;Rd_Feature&quot;
-## [46] &quot;Rd_Surface&quot; &quot;Region&quot;     &quot;Rural_Urba&quot; &quot;Speed_Limi&quot; &quot;Traff_Cntr&quot;
-## [51] &quot;Weather&quot;    &quot;Workzone_I&quot; &quot;Location&quot;</pre>
+<pre >## [1] &quot;FID&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>重命名 <code>rename()</code></h2></hgroup><article  id="-rename">
 
-<p>修改输入错误、缩短、修改变量名</p>
+<p>修改变量名.多个包中都有这个函数。</p>
 
 <p>将<code>Speed_Limi</code> 改为<code>Speed_Limit</code>:</p>
 
@@ -386,6 +442,8 @@ knitr::kable(out)</pre>
 <pre >## [1] &quot;Speed_Limit&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>创建变量<code>mutate()</code></h2></hgroup><article  id="mutate">
+
+<p>可以自定义非常复杂的函数，而不仅仅是基本算数运算。</p>
 
 <pre class = 'prettyprint lang-r'>bike &lt;- bike %&gt;%
   mutate(Bike_birth=Crash_Year - Bike_Age,
@@ -399,17 +457,17 @@ knitr::kable(out)</pre>
 
 <pre >## # A tibble: 10 x 2
 ##    DrvrAge_Gr     n
-##         &lt;chr&gt; &lt;int&gt;
-##  1       0-19   373
-##  2      20-24   659
-##  3      25-29   531
-##  4      30-39   893
-##  5      40-49   867
-##  6      50-59   731
-##  7      60-69   488
-##  8         70    78
-##  9        70+   337
-## 10       &lt;NA&gt;   759</pre>
+##    &lt;chr&gt;      &lt;int&gt;
+##  1 0-19         373
+##  2 20-24        659
+##  3 25-29        531
+##  4 30-39        893
+##  5 40-49        867
+##  6 50-59        731
+##  7 60-69        488
+##  8 70            78
+##  9 70+          337
+## 10 &lt;NA&gt;         759</pre>
 
 <p>将70 和70+ 合并</p>
 
@@ -417,7 +475,7 @@ knitr::kable(out)</pre>
 
 <pre class = 'prettyprint lang-r'>library(forcats)
 bike &lt;- bike %&gt;%
-   forcats::as_factor(DrvrAge_Gr) %&gt;%  # 实际上可以不要
+  forcats::as_factor(DrvrAge_Gr) %&gt;%  # 实际上可以不要
   mutate(DrvrAge_Gr = fct_recode(DrvrAge_Gr,&quot;70+&quot;=&quot;70&quot;)) %&gt;%
   mutate(DrvrAge_Gr2 = fct_collapse(DrvrAge_Gr,
                                    &quot;0-19&quot;=&quot;0-19&quot;,
@@ -428,7 +486,7 @@ bike &lt;- bike %&gt;%
                                    &quot;60+&quot;=c(&quot;60-69&quot;,&quot;70+&quot;)
                                    ))</pre>
 
-<p>如果分类变量是字符串转变使用fct_recode或fct_collapse实际上会自动变为因子变量。如果是labelled数值转为因子后再recode比较好。</p>
+<p>得到的位因子变量。如果原变量是labelled数值，请先转为因子，再recode。</p>
 
 </article></slide><slide class=""><hgroup><h2>recode连续变量为分类变量</h2></hgroup><article  id="recode">
 
@@ -439,13 +497,13 @@ bike &lt;- bike %&gt;%
    count(B_agegr)                   </pre>
 
 <pre >## # A tibble: 5 x 2
-##    B_agegr     n
-##     &lt;fctr&gt; &lt;int&gt;
-## 1    youth  2028
+##   B_agegr      n
+##   &lt;fct&gt;    &lt;int&gt;
+## 1 youth     2028
 ## 2 oldyouth  1662
-## 3   midage  1632
-## 4    elder   225
-## 5     &lt;NA&gt;   169</pre>
+## 3 midage    1632
+## 4 elder      225
+## 5 &lt;NA&gt;       169</pre>
 
 <p>ggplot2::cut_number可以等案例数(近似)分割 findInterval也可以分组，左闭区间。cut默认是右闭</p>
 
@@ -460,34 +518,32 @@ bike %&gt;%count(DrvrAge_Gr3) </pre>
 
 <pre >## # A tibble: 8 x 2
 ##   DrvrAge_Gr3     n
-##        &lt;fctr&gt; &lt;int&gt;
-## 1        0-19   373
-## 2       20-24   659
-## 3       25-29   531
-## 4       30-39   893
-## 5       40-49   867
-## 6       50-59   731
-## 7       60-69   488
-## 8         70+  1174</pre>
+##   &lt;fct&gt;       &lt;int&gt;
+## 1 0-19          373
+## 2 20-24         659
+## 3 25-29         531
+## 4 30-39         893
+## 5 40-49         867
+## 6 50-59         731
+## 7 60-69         488
+## 8 70+          1174</pre>
 
 </article></slide><slide class=""><hgroup><h2>替换变量：连续变量</h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'># replace 满足条件的位置为其他取值
-bike &lt;- bike %&gt;%
+<pre class = 'prettyprint lang-r'>bike &lt;- bike %&gt;%
              mutate(Drvr_Age2=replace(Drvr_Age ,
                                         is.na(Drvr_Age),
                                         mean(Drvr_Age,na.rm=TRUE)))
 bike %&gt;%summarise(mean=mean(Drvr_Age2,na.rm=TRUE))</pre>
 
 <pre >## # A tibble: 1 x 1
-##       mean
-##      &lt;dbl&gt;
-## 1 39.21537</pre>
+##    mean
+##   &lt;dbl&gt;
+## 1  39.2</pre>
 
 </article></slide><slide class=""><hgroup><h2>替换变量：连续变量</h2></hgroup><article  id="-1">
 
-<pre class = 'prettyprint lang-r'># 因子变量只能替换为已定义的取值
-bike &lt;- bike %&gt;%
+<pre class = 'prettyprint lang-r'>bike &lt;- bike %&gt;%
              mutate(DrvrAge_Gr4=if_else(Drvr_Age&lt;30,1,
                                        if_else(Drvr_Age&gt;=60,3,2)))
 #bike %&gt;%count(DrvrAge_Gr4)
@@ -502,12 +558,12 @@ bike %&gt;%count(DrvrAge_Gr4)</pre>
 <pre >## # A tibble: 4 x 2
 ##   DrvrAge_Gr4     n
 ##         &lt;dbl&gt; &lt;int&gt;
-## 1           1  1563
-## 2           2  2491
-## 3           3   566
-## 4          NA  1096</pre>
+## 1          1.  1563
+## 2          2.  2491
+## 3          3.   566
+## 4         NA   1096</pre>
 
-</article></slide><slide class=""><hgroup><h2>文本替换</h2></hgroup><article >
+</article></slide><slide class=""><hgroup><h2>替换变量：文本变量</h2></hgroup><article >
 
 <div class="question">
 <p><code>BikeAge_gr</code> 中<code>10-Jun</code> or <code>15-Nov</code> 是什么意思?</p></div>
@@ -518,22 +574,22 @@ bike %&gt;%count(DrvrAge_Gr4)</pre>
 
 <pre >## # A tibble: 13 x 2
 ##    BikeAge_Gr crash_count
-##         &lt;chr&gt;       &lt;int&gt;
-##  1        0-5          60
-##  2     10-Jun         421
-##  3     15-Nov         747
-##  4      16-19         605
-##  5      20-24         680
-##  6      25-29         430
-##  7      30-39         658
-##  8      40-49         920
-##  9      50-59         739
-## 10      60-69         274
-## 11         70          12
-## 12        70+          58
-## 13       &lt;NA&gt;         112</pre>
+##    &lt;chr&gt;            &lt;int&gt;
+##  1 0-5                 60
+##  2 10-Jun             421
+##  3 15-Nov             747
+##  4 16-19              605
+##  5 20-24              680
+##  6 25-29              430
+##  7 30-39              658
+##  8 40-49              920
+##  9 50-59              739
+## 10 60-69              274
+## 11 70                  12
+## 12 70+                 58
+## 13 &lt;NA&gt;               112</pre>
 
-</article></slide><slide class=""><hgroup><h2>文本替换</h2></hgroup><article  id="-1">
+</article></slide><slide class=""><hgroup><h2>替换变量：文本变量</h2></hgroup><article  id="-1">
 
 <ul>
 <li>清理这个文本数据，年龄分组而不是日期
@@ -542,28 +598,13 @@ bike %&gt;%count(DrvrAge_Gr4)</pre>
 <li><code>10-Jun</code> 应该为 <code>6-10</code></li>
 <li><code>15-Nov</code> 应该为 <code>11-15</code></li>
 </ul></li>
-<li><p>可以使用R包: <code>stringr</code></p></li>
-<li><p>加载:</p></li>
 </ul>
-
-<pre class = 'prettyprint lang-r'>if(!require(stringr)) install.packages(stringr)</pre>
-
-<p>了解更多https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html</p>
-
-</article></slide><slide class=""><hgroup><h2><code>str_replace()</code> 替换文本</h2></hgroup><article  id="str_replace-">
-
-<p>我们要对 <code>BikeAge_Gr</code> 做如下处理</p>
-
-<pre >+ `10-Jun` should be `6-10`
-+ `15-Nov` should be `11-15`</pre>
 
 <pre class = 'prettyprint lang-r'>bike &lt;- bike %&gt;%
   mutate(BikeAge_Gr = str_replace(BikeAge_Gr, &quot;10-Jun&quot;, &quot;6-10&quot;)) %&gt;%
   mutate(BikeAge_Gr = str_replace(BikeAge_Gr, &quot;15-Nov&quot;, &quot;11-15&quot;))</pre>
 
-<p>替换操作时应该尤其小心! 但只要我们没有将改变存进原始数据，就可以重来。</p>
-
-</article></slide><slide class=""><hgroup><h2>替换文本</h2></hgroup><article >
+</article></slide><slide class=""><hgroup><h2>分类汇总与排序</h2></hgroup><article >
 
 <pre class = 'prettyprint lang-r'>bike %&gt;%
   group_by(BikeAge_Gr) %&gt;%
@@ -572,22 +613,67 @@ bike %&gt;%count(DrvrAge_Gr4)</pre>
 
 <pre >## # A tibble: 13 x 2
 ##    BikeAge_Gr crash_count
-##         &lt;chr&gt;       &lt;int&gt;
-##  1      40-49         920
-##  2      11-15         747
-##  3      50-59         739
-##  4      20-24         680
-##  5      30-39         658
-##  6      16-19         605
-##  7      25-29         430
-##  8       6-10         421
-##  9      60-69         274
-## 10       &lt;NA&gt;         112
-## 11        0-5          60
-## 12        70+          58
-## 13         70          12</pre>
+##    &lt;chr&gt;            &lt;int&gt;
+##  1 40-49              920
+##  2 11-15              747
+##  3 50-59              739
+##  4 20-24              680
+##  5 30-39              658
+##  6 16-19              605
+##  7 25-29              430
+##  8 6-10               421
+##  9 60-69              274
+## 10 &lt;NA&gt;               112
+## 11 0-5                 60
+## 12 70+                 58
+## 13 70                  12</pre>
 
-</article></slide><slide class=""><hgroup><h2>字符串处理</h2></hgroup><article >
+</article></slide><slide class=""><hgroup><h2>分类汇总与排序</h2></hgroup><article  id="-1">
+
+<p>top_n 可以得到最多的几个</p>
+
+<pre class = 'prettyprint lang-r'>bike %&gt;%
+  group_by(BikeAge_Gr) %&gt;%
+  summarize(crash_count= n()) %&gt;%
+  top_n(n = 5)   #如果要降序可以加一句 arrange(desc(crash_count)) %&gt;%</pre>
+
+<pre >## Selecting by crash_count</pre>
+
+<pre >## # A tibble: 5 x 2
+##   BikeAge_Gr crash_count
+##   &lt;chr&gt;            &lt;int&gt;
+## 1 11-15              747
+## 2 20-24              680
+## 3 30-39              658
+## 4 40-49              920
+## 5 50-59              739</pre>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>字符串处理</h2></hgroup><article >
+
+</article></slide><slide class=""><hgroup><h2>字符串：粘合：paste</h2></hgroup><article  id="paste">
+
+<pre class = 'prettyprint lang-r'>paste(&quot;X&quot;, 1:5, sep = &quot;.&quot;)</pre>
+
+<pre >## [1] &quot;X.1&quot; &quot;X.2&quot; &quot;X.3&quot; &quot;X.4&quot; &quot;X.5&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>paste(&quot;X&quot;, 1:5, sep = &quot;.&quot;, collapse = &quot;&quot;)</pre>
+
+<pre >## [1] &quot;X.1X.2X.3X.4X.5&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>paste0(&quot;X&quot;, 1:5, sep = &quot;.&quot;)</pre>
+
+<pre >## [1] &quot;X1.&quot; &quot;X2.&quot; &quot;X3.&quot; &quot;X4.&quot; &quot;X5.&quot;</pre>
+
+<pre class = 'prettyprint lang-r'># paste0(&quot;X&quot;, 1:5) 与 paste(&quot;X&quot;, 1:5, sep = &quot;&quot;) 等价
+str_c(&quot;x&quot;, 1:3, &quot;z&quot;,sep=&quot;_&quot;)</pre>
+
+<pre >## [1] &quot;x_1_z&quot; &quot;x_2_z&quot; &quot;x_3_z&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>str_c(c(&quot;x&quot;, 1:3, &quot;z&quot;), collapse = &quot;, &quot;)</pre>
+
+<pre >## [1] &quot;x, 1, 2, 3, z&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>字符串：提取</h2></hgroup><article >
 
 <pre class = 'prettyprint lang-r'>dna_ex &lt;- &quot;ACAAAGATGCCATTGTCCCCCGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCAACGGCCACCGCTGCCCTGCCCCTGGAGGGTGGCCCCACCGGCCGAGACAGCGAGCATATG&quot;
 
@@ -606,11 +692,15 @@ length(dna_ex)</pre>
 
 <pre class = 'prettyprint lang-r'>str_sub(dna_ex, 10, 20) &lt;- &quot;CCCCCAA&quot; # 替换</pre>
 
-</article></slide><slide class=""><hgroup><h2>字符串处理</h2></hgroup><article  id="-1">
+</article></slide><slide class=""><hgroup><h2>字符串：替换</h2></hgroup><article >
 
 <pre class = 'prettyprint lang-r'># 替换部分字符串
 x &lt;- c(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Pear&quot;)
-nchar(x)</pre>
+length(x)</pre>
+
+<pre >## [1] 3</pre>
+
+<pre class = 'prettyprint lang-r'>nchar(x)</pre>
 
 <pre >## [1] 5 6 4</pre>
 
@@ -619,7 +709,15 @@ x</pre>
 
 <pre >## [1] &quot;apple&quot;  &quot;banana&quot; &quot;pear&quot;</pre>
 
-</article></slide><slide class=""><hgroup><h2>文本处理</h2></hgroup><article >
+<pre class = 'prettyprint lang-r'>str_replace(x, &quot;[aeiou]&quot;, &quot;-&quot;)</pre>
+
+<pre >## [1] &quot;-pple&quot;  &quot;b-nana&quot; &quot;p-ar&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>str_replace_all(x, &quot;[aeiou]&quot;, &quot;-&quot;)</pre>
+
+<pre >## [1] &quot;-ppl-&quot;  &quot;b-n-n-&quot; &quot;p--r&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>字符串：切分</h2></hgroup><article >
 
 <pre class = 'prettyprint lang-r'># 切分字符串
 sp_dna &lt;- strsplit(dna_ex, &quot;&quot;) 
@@ -647,49 +745,61 @@ class(sp_dna)</pre>
 ## [17] &quot;GC&quot;                              &quot;T&quot;                              
 ## [19] &quot;TG&quot;</pre>
 
-</article></slide><slide class=""><hgroup><h2>匹配字符串</h2></hgroup><article >
+</article></slide><slide class=""><hgroup><h2>字符串:匹配与否</h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>x &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;)
+str_detect(x, &quot;e&quot;)</pre>
+
+<pre >## [1]  TRUE FALSE  TRUE</pre>
+
+<pre class = 'prettyprint lang-r'># 进入运算是作为1、0
+mean(str_detect(x, &quot;e&quot;))</pre>
+
+<pre >## [1] 0.6666667</pre>
+
+</article></slide><slide class=""><hgroup><h2>字符串：匹配+ 位置规定</h2></hgroup><article  id="-">
 
 <pre class = 'prettyprint lang-r'>x &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;)
 str_view(x, &quot;an&quot;)</pre>
 
-<div id="htmlwidget-6eecf3b05f401d974f4e" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6eecf3b05f401d974f4e">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-38b89287c1027a9d5ced" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-38b89287c1027a9d5ced">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
-<pre class = 'prettyprint lang-r'>str_view(x, &quot;.a.&quot;)</pre>
+<pre class = 'prettyprint lang-r'>str_view(x, &quot;.a.&quot;) # 前后有东西</pre>
 
-<div id="htmlwidget-a8a4bbb06c88424c4d88" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a8a4bbb06c88424c4d88">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e52d578d1bbe7ee453b5" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e52d578d1bbe7ee453b5">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
-<pre class = 'prettyprint lang-r'>str_view(c(&quot;abc&quot;, &quot;a.c&quot;, &quot;bef&quot;), &quot;a\\.c&quot;)</pre>
+<pre class = 'prettyprint lang-r'>str_view(c(&quot;abc&quot;, &quot;a.c&quot;, &quot;bef&quot;), &quot;a\\.c&quot;) # 作为文本的点</pre>
 
-<div id="htmlwidget-52dc377973e728b8361b" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-52dc377973e728b8361b">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-61c5596da9967bbd73eb" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-61c5596da9967bbd73eb">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
-<pre class = 'prettyprint lang-r'>x &lt;- &quot;a\\b&quot;
+<pre class = 'prettyprint lang-r'>x &lt;- &quot;a\\b&quot;  # 作为文本的反斜线
 str_view(x, &quot;\\\\&quot;)</pre>
 
-<div id="htmlwidget-8b50469257ef7e4188a1" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8b50469257ef7e4188a1">{"x":{"html":"<ul>\n  <li>a<span class='match'>\\<\/span>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5c6ffd0658ac341ba77a" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5c6ffd0658ac341ba77a">{"x":{"html":"<ul>\n  <li>a<span class='match'>\\<\/span>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
-</article></slide><slide class=""><hgroup><h2>匹配字符串</h2></hgroup><article  id="-1">
+</article></slide><slide class=""><hgroup><h2>字符串：匹配+ 位置规定</h2></hgroup><article  id="--1">
 
 <pre class = 'prettyprint lang-r'>x &lt;- c(&quot;apple pie&quot;, &quot;apple&quot;, &quot;apple cake&quot;)
-str_view(x, &quot;^a&quot;)</pre>
+str_view(x, &quot;^a&quot;) # 文本头</pre>
 
-<div id="htmlwidget-e3209c23e4c3173cf6c4" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e3209c23e4c3173cf6c4">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple pie<\/li>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li><span class='match'>a<\/span>pple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4643f6e687df0e399d78" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4643f6e687df0e399d78">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple pie<\/li>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li><span class='match'>a<\/span>pple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
-<pre class = 'prettyprint lang-r'>str_view(x, &quot;apple$&quot;)</pre>
+<pre class = 'prettyprint lang-r'>str_view(x, &quot;apple$&quot;) # 文本尾</pre>
 
-<div id="htmlwidget-fec622adaac1f93e479f" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fec622adaac1f93e479f">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-dc0e1cf27bbf9b80aa44" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dc0e1cf27bbf9b80aa44">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
-<pre class = 'prettyprint lang-r'>str_view(x, &quot;^apple$&quot;)</pre>
+<pre class = 'prettyprint lang-r'>str_view(x, &quot;^apple$&quot;) # 整个匹配</pre>
 
-<div id="htmlwidget-92155095221a4099eec8" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-92155095221a4099eec8">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-41acdd0e6d4cacbfc408" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-41acdd0e6d4cacbfc408">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
-</article></slide><slide class=""><hgroup><h2>字符串匹配</h2></hgroup><article >
+</article></slide><slide class=""><hgroup><h2>字符串：匹配+ 类型与数量</h2></hgroup><article  id="-">
 
 <ul>
 <li><code>\d</code>: matches any digit.</li>
@@ -705,68 +815,69 @@ str_view(x, &quot;^a&quot;)</pre>
 <li><p><code>{n,m}</code>: between n and m</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>字符串匹配</h2></hgroup><article  id="-1">
+</article></slide><slide class=""><hgroup><h2>字符串：匹配数量</h2></hgroup><article >
 
 <pre class = 'prettyprint lang-r'>x &lt;- &quot;1888 is the longest year in Roman numerals: MDCCCLXXXVIII&quot;
 str_view(x, &quot;CC?&quot;)</pre>
 
-<div id="htmlwidget-d4a8cf1d5deacf6e0efa" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d4a8cf1d5deacf6e0efa">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2a1670ac47c2f17b8402" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2a1670ac47c2f17b8402">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <pre class = 'prettyprint lang-r'>str_view(x, &quot;CC+&quot;)</pre>
 
-<div id="htmlwidget-77669b6b420505b8def8" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-77669b6b420505b8def8">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b27fbea2ed47e041f0a3" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b27fbea2ed47e041f0a3">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <pre class = 'prettyprint lang-r'>str_view(x, &#39;C[LX]+&#39;)</pre>
 
-<div id="htmlwidget-760c0bd5f8606f605072" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-760c0bd5f8606f605072">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCC<span class='match'>CLXXX<\/span>VIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6ac01e757d39e7dc1a25" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6ac01e757d39e7dc1a25">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCC<span class='match'>CLXXX<\/span>VIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <pre class = 'prettyprint lang-r'>str_view(x, &quot;C{2}&quot;)</pre>
 
-<div id="htmlwidget-155e76777aece9804f49" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-155e76777aece9804f49">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-61b31cd3cdeb312bf465" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-61b31cd3cdeb312bf465">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <pre class = 'prettyprint lang-r'>str_view(x, &quot;C{2,}&quot;)</pre>
 
-<div id="htmlwidget-d230ab2ef894fd627f72" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d230ab2ef894fd627f72">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6fc0e1d5d4abadf68db8" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6fc0e1d5d4abadf68db8">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <pre class = 'prettyprint lang-r'>str_view(x, &quot;C{2,3}&quot;)</pre>
 
-<div id="htmlwidget-15306217ef0c890a6afd" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-15306217ef0c890a6afd">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c778fbe3303cda468690" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c778fbe3303cda468690">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
-</article></slide><slide class=""><hgroup><h2>字符串匹配</h2></hgroup><article  id="-2">
+</article></slide><slide class=""><hgroup><h2>字符串：匹配数量</h2></hgroup><article  id="-1">
 
-<pre class = 'prettyprint lang-r'>str_view(x, &quot;C{2,3}&quot;) # 贪婪匹配</pre>
+<pre class = 'prettyprint lang-r'>x &lt;- &quot;1888 is the longest year in Roman numerals: MDCCCLXXXVIII&quot;
+str_view(x, &quot;C{2,3}&quot;) # 贪婪匹配</pre>
 
-<div id="htmlwidget-5dc5aaec98a909f578f6" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5dc5aaec98a909f578f6">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-920558034e1ab626a73d" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-920558034e1ab626a73d">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <pre class = 'prettyprint lang-r'>str_view(x, &#39;C{2,3}?&#39;)  # 最短匹配，在后面放一个问号</pre>
 
-<div id="htmlwidget-be537415af8871292432" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-be537415af8871292432">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5ded389c2ef8b530fcb3" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5ded389c2ef8b530fcb3">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <pre class = 'prettyprint lang-r'>str_view(x, &#39;C[LX]+?&#39;)</pre>
 
-<div id="htmlwidget-575add0f623d5f5b2a15" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-575add0f623d5f5b2a15">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCC<span class='match'>CL<\/span>XXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-59c2f56fdf31f3c3e5e0" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-59c2f56fdf31f3c3e5e0">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCC<span class='match'>CL<\/span>XXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <pre class = 'prettyprint lang-r'>str_view(c(&quot;grey&quot;, &quot;gray&quot;), &quot;gr(e|a)y&quot;)</pre>
 
-<div id="htmlwidget-e5b0a43ebe4e4e201ecb" style="width:960px;height:auto;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e5b0a43ebe4e4e201ecb">{"x":{"html":"<ul>\n  <li><span class='match'>grey<\/span><\/li>\n  <li><span class='match'>gray<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-94e9027547c35d7172e2" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-94e9027547c35d7172e2">{"x":{"html":"<ul>\n  <li><span class='match'>grey<\/span><\/li>\n  <li><span class='match'>gray<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
-</article></slide><slide class=""><hgroup><h2>匹配字符串</h2></hgroup><article  id="-2">
+</article></slide><slide class=""><hgroup><h2>字符串:匹配返回信息（基础包）</h2></hgroup><article >
 
-<pre class = 'prettyprint lang-r'>grep(&#39;AA&#39;, dna_ex, value = TRUE)</pre>
+<pre class = 'prettyprint lang-r'>grep(&#39;AA&#39;, dna_ex, value = TRUE)  # 原字符串</pre>
 
 <pre >## [1] &quot;ACAAAGATGCCCCCAACGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCAACGGCCACCGCTGCCCTGCCCCTGGAGGGTGGCCCCACCGGCCGAGACAGCGAGCATATG&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>regexpr(&#39;AA&#39;, dna_ex)</pre>
+<pre class = 'prettyprint lang-r'>regexpr(&#39;AA&#39;, dna_ex) # 首次匹配位置和长度</pre>
 
 <pre >## [1] 3
 ## attr(,&quot;match.length&quot;)
@@ -774,7 +885,7 @@ str_view(x, &quot;CC?&quot;)</pre>
 ## attr(,&quot;useBytes&quot;)
 ## [1] TRUE</pre>
 
-<pre class = 'prettyprint lang-r'>gregexpr(&#39;AA&#39;, dna_ex)</pre>
+<pre class = 'prettyprint lang-r'>gregexpr(&#39;AA&#39;, dna_ex) # 全部匹配位置和长度</pre>
 
 <pre >## [[1]]
 ## [1]  3 15 48
@@ -783,7 +894,7 @@ str_view(x, &quot;CC?&quot;)</pre>
 ## attr(,&quot;useBytes&quot;)
 ## [1] TRUE</pre>
 
-</article></slide><slide class=""><hgroup><h2>匹配字符串</h2></hgroup><article  id="-3">
+</article></slide><slide class=""><hgroup><h2>匹配字符串：全部匹配首尾位置</h2></hgroup><article >
 
 <pre class = 'prettyprint lang-r'>str_locate_all(dna_ex, &#39;AA&#39;) # stringr包, str_extract_all提取</pre>
 
@@ -793,7 +904,9 @@ str_view(x, &quot;CC?&quot;)</pre>
 ## [2,]    15  16
 ## [3,]    48  49</pre>
 
-</article></slide><slide class=""><hgroup><h2>字符串处理</h2></hgroup><article  id="-2">
+</article></slide><slide class=""><hgroup><h2>字符串处理：</h2></hgroup><article  id="-1">
+
+<p>计算下面的字符集中每一个单词有几个a</p>
 
 <pre class = 'prettyprint lang-r'>fruits &lt;- c(&#39;Apple&#39;, &#39;Banana&#39;, &#39;Orange&#39;, &#39;Grape&#39;, &#39;Pineapple&#39;, &#39;Kiwi&#39;, &#39;Peach&#39;, &#39;Mango&#39;, &#39;Strawberry&#39;, &#39;Guava&#39;, &#39;Cherry&#39;)
 fruits</pre>
@@ -802,45 +915,116 @@ fruits</pre>
 ##  [6] &quot;Kiwi&quot;       &quot;Peach&quot;      &quot;Mango&quot;      &quot;Strawberry&quot; &quot;Guava&quot;     
 ## [11] &quot;Cherry&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>grep(&#39;a&#39;, fruits, value = TRUE, ignore.case = TRUE)</pre>
+<pre class = 'prettyprint lang-r'>grep(&#39;a&#39;, fruits, value = TRUE, ignore.case = TRUE) #字符元素</pre>
 
 <pre >## [1] &quot;Apple&quot;      &quot;Banana&quot;     &quot;Orange&quot;     &quot;Grape&quot;      &quot;Pineapple&quot; 
 ## [6] &quot;Peach&quot;      &quot;Mango&quot;      &quot;Strawberry&quot; &quot;Guava&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>grep(&#39;a&#39;, fruits, value = FALSE, ignore.case = TRUE)</pre>
+<pre class = 'prettyprint lang-r'>grep(&#39;a&#39;, fruits, value = FALSE, ignore.case = TRUE) #元素位置</pre>
 
 <pre >## [1]  1  2  3  4  5  7  8  9 10</pre>
 
-<pre class = 'prettyprint lang-r'>positions_a &lt;- gregexpr(pattern = &quot;a&quot;, text = fruits, ignore.case = TRUE)
+<pre class = 'prettyprint lang-r'>positions_a &lt;- gregexpr(pattern = &quot;a&quot;, text = fruits, ignore.case = TRUE) # 每个元素匹配结果
 num_a &lt;- sapply(positions_a, function(x) ifelse(x[1] &gt; 0, length(x), 0))
-num_a </pre>
+num_a #每个元素中有几个小写a</pre>
 
 <pre >##  [1] 1 3 1 1 1 0 1 1 1 2 0</pre>
 
-</article></slide><slide class=""><hgroup><h2>字符串粘合：paste</h2></hgroup><article  id="paste">
+</article></slide><slide class=""><hgroup><h2>括号分组与backreferences</h2></hgroup><article  id="backreferences">
 
-<pre class = 'prettyprint lang-r'>paste(&quot;X&quot;, 1:5, sep = &quot;.&quot;)</pre>
+<pre class = 'prettyprint lang-r'>fruit[1:9]  #自带fruit数据</pre>
 
-<pre >## [1] &quot;X.1&quot; &quot;X.2&quot; &quot;X.3&quot; &quot;X.4&quot; &quot;X.5&quot;</pre>
+<pre >## [1] &quot;apple&quot;        &quot;apricot&quot;      &quot;avocado&quot;      &quot;banana&quot;      
+## [5] &quot;bell pepper&quot;  &quot;bilberry&quot;     &quot;blackberry&quot;   &quot;blackcurrant&quot;
+## [9] &quot;blood orange&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>paste(&quot;X&quot;, 1:5, sep = &quot;.&quot;, collapse = &quot;&quot;)</pre>
+<pre class = 'prettyprint lang-r'>str_view(fruit, &quot;(..)\\1&quot;, match = TRUE)  # 找出所有重复字符对</pre>
 
-<pre >## [1] &quot;X.1X.2X.3X.4X.5&quot;</pre>
+<p><div id="htmlwidget-095e2e8de7c89eef4834" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-095e2e8de7c89eef4834">{"x":{"html":"<ul>\n  <li>b<span class='match'>anan<\/span>a<\/li>\n  <li><span class='match'>coco<\/span>nut<\/li>\n  <li><span class='match'>cucu<\/span>mber<\/li>\n  <li><span class='match'>juju<\/span>be<\/li>\n  <li><span class='match'>papa<\/span>ya<\/li>\n  <li>s<span class='match'>alal<\/span> berry<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script> ## 例子:</p>
 
-<pre class = 'prettyprint lang-r'>paste0(&quot;X&quot;, 1:5, sep = &quot;.&quot;)</pre>
+<pre class = 'prettyprint lang-r'># stringr::words 数据
+# Find all words containing at least one vowel（元音）, and negate
+no_vowels_1 &lt;- !str_detect(words, &quot;[aeiou]&quot;)
+# Find all words consisting only of consonants (辅音 non-vowels)
+no_vowels_2 &lt;- str_detect(words, &quot;^[^aeiou]+$&quot;)
+identical(no_vowels_1, no_vowels_2)</pre>
 
-<pre >## [1] &quot;X1.&quot; &quot;X2.&quot; &quot;X3.&quot; &quot;X4.&quot; &quot;X5.&quot;</pre>
+<pre >## [1] TRUE</pre>
 
-<pre class = 'prettyprint lang-r'># paste0(&quot;X&quot;, 1:5) 与 paste(&quot;X&quot;, 1:5, sep = &quot;&quot;) 等价
-str_c(&quot;x&quot;, 1:3, &quot;z&quot;,sep=&quot;_&quot;)</pre>
+</article></slide><slide class=""><hgroup><h2>例子：匹配后的子集</h2></hgroup><article >
 
-<pre >## [1] &quot;x_1_z&quot; &quot;x_2_z&quot; &quot;x_3_z&quot;</pre>
+<pre class = 'prettyprint lang-r'>#等价
+words[str_detect(words, &quot;x$&quot;)]</pre>
 
-<pre class = 'prettyprint lang-r'>str_c(c(&quot;x&quot;, 1:3, &quot;z&quot;), collapse = &quot;, &quot;)</pre>
+<pre >## [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</pre>
 
-<pre >## [1] &quot;x, 1, 2, 3, z&quot;</pre>
+<pre class = 'prettyprint lang-r'>str_subset(words, &quot;x$&quot;)</pre>
 
-</article></slide><slide class=""><hgroup><h2>其他变换</h2></hgroup><article >
+<pre >## [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</pre>
+
+<pre class = 'prettyprint lang-r'># 数据框
+wddf &lt;- tibble(
+  word = words, 
+  i = seq_along(word)
+)
+wddf %&gt;% 
+  filter(str_detect(words, &quot;x$&quot;))</pre>
+
+<pre >## # A tibble: 4 x 2
+##   word      i
+##   &lt;chr&gt; &lt;int&gt;
+## 1 box     108
+## 2 sex     747
+## 3 six     772
+## 4 tax     841</pre>
+
+</article></slide><slide class=""><hgroup><h2>计算字符数量</h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>x &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;)
+str_count(x, &quot;a&quot;)</pre>
+
+<pre >## [1] 1 3 1</pre>
+
+<pre class = 'prettyprint lang-r'># 平均多少个元音
+mean(str_count(words, &quot;[aeiou]&quot;))</pre>
+
+<pre >## [1] 1.991837</pre>
+
+<pre class = 'prettyprint lang-r'>wddf %&gt;% 
+  mutate(
+    vowels = str_count(word, &quot;[aeiou]&quot;),
+    consonants = str_count(word, &quot;[^aeiou]&quot;)
+  )</pre>
+
+<pre >## # A tibble: 980 x 4
+##    word         i vowels consonants
+##    &lt;chr&gt;    &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+##  1 a            1      1          0
+##  2 able         2      2          2
+##  3 about        3      3          2
+##  4 absolute     4      4          4
+##  5 accept       5      2          4
+##  6 account      6      3          4
+##  7 achieve      7      4          3
+##  8 across       8      2          4
+##  9 act          9      1          2
+## 10 active      10      3          3
+## # ... with 970 more rows</pre>
+
+</article></slide><slide class=""><hgroup><h2>匹配不重叠发生</h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'># aba只出现了两次而不是三次
+str_count(&quot;abababa&quot;, &quot;aba&quot;)</pre>
+
+<pre >## [1] 2</pre>
+
+<pre class = 'prettyprint lang-r'>str_view_all(&quot;abababa&quot;, &quot;aba&quot;)</pre>
+
+<div id="htmlwidget-0ec1b4486270448af2ba" style="width:960px;height:auto;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0ec1b4486270448af2ba">{"x":{"html":"<ul>\n  <li><span class='match'>aba<\/span>b<span class='match'>aba<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>大小写、字符和数字转转换</h2></hgroup><article >
 
 <pre class = 'prettyprint lang-r'>string1 &lt;- &#39;RUC Data Services&#39;
 tolower(string1) </pre>
@@ -856,7 +1040,7 @@ string2</pre>
 
 <pre >## [1] &quot;1, 3, 4&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>#还有stringi包可以了解</pre>
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>日期的处理</h2></hgroup><article >
 
 </article></slide><slide class=""><hgroup><h2>日期函数</h2></hgroup><article >
 
@@ -886,11 +1070,11 @@ other_format</pre>
 
 <pre class = 'prettyprint lang-r'>format(Sys.Date(),format=&quot;%m %d %Y&quot;)</pre>
 
-<pre >## [1] &quot;03 05 2018&quot;</pre>
+<pre >## [1] &quot;03 27 2018&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>format(Sys.Date(),format=&quot;%m %d %y&quot;)</pre>
 
-<pre >## [1] &quot;03 05 18&quot;</pre>
+<pre >## [1] &quot;03 27 18&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>format(Sys.Date(),format=&quot;%B %b %Y&quot;)</pre>
 
@@ -900,7 +1084,7 @@ other_format</pre>
 
 <pre class = 'prettyprint lang-r'>(today &lt;- Sys.Date())</pre>
 
-<pre >## [1] &quot;2018-03-05&quot;</pre>
+<pre >## [1] &quot;2018-03-27&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>dif &lt;- today - real_dates
 class(dif)</pre>
@@ -910,11 +1094,11 @@ class(dif)</pre>
 <pre class = 'prettyprint lang-r'>difftime(today,real_dates,units=&quot;week&quot;)</pre>
 
 <pre >## Time differences in weeks
-## [1] 327.0000 273.4286 239.5714 160.0000</pre>
+## [1] 330.1429 276.5714 242.7143 163.1429</pre>
 
 <pre class = 'prettyprint lang-r'>as.character(today)</pre>
 
-<pre >## [1] &quot;2018-03-05&quot;</pre>
+<pre >## [1] &quot;2018-03-27&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>lubridate包</h2></hgroup><article  id="lubridate">
 
@@ -929,19 +1113,19 @@ class(dif)</pre>
 
 <pre class = 'prettyprint lang-r'>today()  # date</pre>
 
-<pre >## [1] &quot;2018-03-05&quot;</pre>
+<pre >## [1] &quot;2018-03-27&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>now() # date-time (time 可以用hms包)</pre>
 
-<pre >## [1] &quot;2018-03-05 14:32:44 CST&quot;</pre>
+<pre >## [1] &quot;2018-03-27 17:12:29 CST&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>as_date(now())</pre>
 
-<pre >## [1] &quot;2018-03-05&quot;</pre>
+<pre >## [1] &quot;2018-03-27&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>as_datetime(today())</pre>
 
-<pre >## [1] &quot;2018-03-05 UTC&quot;</pre>
+<pre >## [1] &quot;2018-03-27 UTC&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>lubridate包</h2></hgroup><article  id="lubridate-1">
 
@@ -987,18 +1171,18 @@ flights_dt  %&gt;%
   select(year, month, day, hour, minute,departure,dep_time)</pre>
 
 <pre >## # A tibble: 328,063 x 7
-##     year month   day  hour minute           departure            dep_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;              &lt;dttm&gt;              &lt;dttm&gt;
-##  1  2013     1     1     5     15 2013-01-01 05:15:00 2013-01-01 05:17:00
-##  2  2013     1     1     5     29 2013-01-01 05:29:00 2013-01-01 05:33:00
-##  3  2013     1     1     5     40 2013-01-01 05:40:00 2013-01-01 05:42:00
-##  4  2013     1     1     5     45 2013-01-01 05:45:00 2013-01-01 05:44:00
-##  5  2013     1     1     6      0 2013-01-01 06:00:00 2013-01-01 05:54:00
-##  6  2013     1     1     5     58 2013-01-01 05:58:00 2013-01-01 05:54:00
-##  7  2013     1     1     6      0 2013-01-01 06:00:00 2013-01-01 05:55:00
-##  8  2013     1     1     6      0 2013-01-01 06:00:00 2013-01-01 05:57:00
-##  9  2013     1     1     6      0 2013-01-01 06:00:00 2013-01-01 05:57:00
-## 10  2013     1     1     6      0 2013-01-01 06:00:00 2013-01-01 05:58:00
+##     year month   day  hour minute departure           dep_time           
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dttm&gt;              &lt;dttm&gt;             
+##  1  2013     1     1    5.    15. 2013-01-01 05:15:00 2013-01-01 05:17:00
+##  2  2013     1     1    5.    29. 2013-01-01 05:29:00 2013-01-01 05:33:00
+##  3  2013     1     1    5.    40. 2013-01-01 05:40:00 2013-01-01 05:42:00
+##  4  2013     1     1    5.    45. 2013-01-01 05:45:00 2013-01-01 05:44:00
+##  5  2013     1     1    6.     0. 2013-01-01 06:00:00 2013-01-01 05:54:00
+##  6  2013     1     1    5.    58. 2013-01-01 05:58:00 2013-01-01 05:54:00
+##  7  2013     1     1    6.     0. 2013-01-01 06:00:00 2013-01-01 05:55:00
+##  8  2013     1     1    6.     0. 2013-01-01 06:00:00 2013-01-01 05:57:00
+##  9  2013     1     1    6.     0. 2013-01-01 06:00:00 2013-01-01 05:57:00
+## 10  2013     1     1    6.     0. 2013-01-01 06:00:00 2013-01-01 05:58:00
 ## # ... with 328,053 more rows</pre>
 
 </article></slide><slide class=""><hgroup><h2>例子:一天内每十分钟航班数</h2></hgroup><article >

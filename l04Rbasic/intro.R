@@ -2,6 +2,7 @@
 # Introduction to R
 # Last Updated: November 2016
 # NYU Data Services: data.services@nyu.edu
+# Modified by liding at RUC
 # -------------------------------------------
 
 # -------------------------------------------

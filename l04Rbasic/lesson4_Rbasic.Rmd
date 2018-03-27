@@ -1,7 +1,7 @@
 ---
 title: "数据科学与社会研究 <br> 第四讲、夯基：关于R的基础"
 author: "李丁 社会与人口学院"
-date: "2017年9月26日"
+date:  "`r format(Sys.Date()+1, '%Y %b %d')`"
 output: 
   ioslides_presentation:
     css: ../lec.css
@@ -182,7 +182,7 @@ data$base <- NULL
 ## recode变量
 
 ```{r}
-data$age 			
+data$age 	
 data$age_cat[data$age <= 30] <-"Group 1"
 data$age_cat[data$age > 30 & data$age <= 50] <- "Group 2"
 data$age_cat[data$age > 50] <-"Group 3"
@@ -216,6 +216,7 @@ data[data$age>ave2, ] # 年龄超过平均年龄的案例
 (data <- cbind(data,ave2)) # data <- cbind(data,ave2) 
 data$ave2 <- NULL  # 删除ave2变量
 ```
+
 
 ## 工作环境{#myImageP70}
 

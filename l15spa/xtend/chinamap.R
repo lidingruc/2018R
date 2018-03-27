@@ -250,10 +250,31 @@ par(my.op)    #本句与主题无关。让做图参数退回默认值。
 #-----------程序结束 
 
 
+###
+#如果是省一级的数据
+sid <- sheng@data[c("ADCODE99","NAME")]
+sid<- data.frame(id=row.names(sid),sid)
+shengdata <- read.csv("/Users/liding/E/Bdata/liding17/2018R/data/shengdata.csv",sep = ",",encoding="utf-8")
+shengdata<-plyr::join(sid,shengdata,by="NAME",type="full")
+smap_data <- fortify(sheng)
+smap_data <- plyr::join(smap_data, shengdata, type ="full")
 
+ggplot(data = smap_data, aes(x = long, y = lat,  group = id, fill = kidgarden)) + 
+  geom_polygon(colour = 'black') + 
+  scale_fill_gradient(low = 'green', high = 'blue') + 
+  labs(title ="Numbers of kidgardens in China") +  
+  theme(axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(), 
+        panel.grid = element_blank()) +
+  coord_map() 
+
+
+###
 
 ###################
-# 经纬度转shp文件，下一步解决
+# 经纬度tab文件转shp文件，下一步解决
+# 包括读入arcgis的 mdb数据库然后进行转换
 # 如果能够解决就可以将中国大陆、港澳台的数据合并在一起
 # 实际上上面可以合并在一起了
 # https://stackoverflow.com/questions/23784427/convert-table-of-coordinate-to-shape-file-using-r
@@ -359,4 +380,130 @@ image_write(final_plot, "Cars2.png")
 # 叠加一个小logo
 out <- image_composite(plot, image_scale(logo_raw, "x100"), offset = "+1300+1000")
 image_browse(out)
+
+##遥感卫片处理
+#https://stackoverflow.com/questions/28907825/r-crop-geotiff-raster-using-packages-rgdal-and-raster
+#https://gis.stackexchange.com/questions/131409/how-to-read-and-write-tiff-image-and-locate-pixels-and-bands-of-images-in-r
+## install.packages("rgdal")
+## install.packages("raster")
+library("rgdal")
+library("raster")
+
+# 查看信息
+InFile = "/Users/liding/Downloads/urban2000/URBAN_2000_0.tif"
+dataType(raster(InFile))
+GDALinfo(InFile)
+
+# 选取部分写出  
+library(raster)    # For extent(), xmin(), ymax(), et al.
+library(gdalUtils) # For gdal_translate()
+
+# 输出文件
+outFile <- "subset.tif"
+# 选择范围
+ex <- extent(c(-75, -70, -55, -50))
+# 写出
+gdal_translate(InFile, outFile,
+               projwin=c(xmin(ex), ymax(ex), xmax(ex), ymin(ex)))
+
+
+ readTIFF
+
+
+# 另一种做法
+## Read in as three separate layers (red, green, blue)
+s <- stack(InFile)
+nlayers(s)
+plot(s)
+## Crop the RasterStack to the desired extent
+ex  <- raster(xmn=-75, xmx=-70, ymn=-55, ymx=-50)
+projection(ex) <- proj4string(s)
+s2 <- crop(s, ex)
+
+## Write it out as a GTiff, using Bytes
+writeRaster(s2, outFile, format="GTiff", datatype='INT1U', overwrite=TRUE)
+
+
+
+
+tobecroped <- raster("/Users/liding/Downloads/urban2000/URBAN_2000_0.tif")
+extent(tobecroped)
+ex  <- raster(xmn=-75, xmx=-70, ymn=-55, ymx=-50)
+
+projection(ex) <- proj4string(tobecroped)
+output <- "/Users/liding/Downloads/output.tif"
+crop(x = tobecroped, y = ex, filename = output)
+
+plot(tobecroped)
+# rasterImage
+
+# 一些基本概念
+#raster  栅格图片
+#tile 瓦片
+#brand（波段）
+#layer（图层）
+#ROI（感兴趣的区域）
+#GeoTIFF metadata
+# 层次数据模型（HDF）或其对地观测扩展（HDF-EOS）
+#dem就是digital elevation model，这里的tiff文件就是带有高程信息
+
+# HDF 文件
+#https://shekeine.github.io/modis/2014/08/25/MODIS_HDF_reprojection_subsetting_R
+
+# HDF-EOS to multi-band GeoTIFF in R  TIF 文件
+# https://shekeine.github.io/modis/2014/08/27/HDF_to_multi-band_geotiff
+
+# False colour composite (FCC) 
+#https://shekeine.github.io/visualization/2014/09/27/sfcc_rgb_in_R
+
+# 帮助理解栅格数据
+#Basic raster functions example:
+rm(list = ls())
+
+# create three identical RasterLayer objects
+r1<- r2 <- r3 <- raster(nrow=10, ncol=10)
+
+# Assign random cell values
+n <- ncell(r1)
+values(r1) <- runif(n)
+values(r2) <- c(rep(3, n/2), rep(5, n/2))
+values(r3) <- runif(n)
+values(r1) <- values(r3)<- runif(n)        # same as previous line
+
+# combine three RasterLayer objects into a RasterStack
+s <- stack(r1, r2, r3)
+s
+plot(s)
+
+# now change extent
+# also see setextent() for more flexibility
+e <- extent(s)
+e
+e <- extent(0,5,50,60)
+extent(s) <- e
+plot(s)
+
+# simple raster math
+r1 <- r1+10
+rsqrt <- sqrt(r1)
+extent(r1)
+extent(rsqrt)
+
+s2 <- stack(r1,rsqrt)
+plot(s2)
+
+# extract a layer
+lyr <- raster(s2, layer=2)
+plot(lyr)
+
+# summary stats – “Summary methods” in documentation:  mean,
+# median, min max, range, prod, sum, any, all.  These always
+# return a raster layer.
+
+mean(s2)
+
+#  cellStats returns single number for each layer.
+
+cellStats(s2,"mean") 
+
 

@@ -14,28 +14,27 @@ output:
 
 + 变量管理:使用`dplyr`
 
-    - `filter()`: 筛选案例
-    - `sample_n()` / `sample_frac()`: 随机选择案例
-    - `select()`: 筛选变量 
-    - `rename()`: 变量重命名
-    - `fct_recode`:recode变量
-    - `mutate()`: 增加新变量
-    - `summarise()` 汇总统计
-    - `group_by()` 分组
+    - `filter()`: 筛选案例  | `sample_n()` / `sample_frac()`: 随机选择案例
+    - `select()`: 筛选变量  | `rename()`: 变量重命名
+    - `fct_recode`:recode变量 |  `mutate()`: 增加新变量
+    - `summarise()` 汇总统计  |  `group_by()` 分组
     - `arrange()`: 案例排序 
 
 
 + 字符串处理
 + 日期处理
 
-# tibbles 数据框
+## tibbles 数据框
+
 data.frame基础做了针对性的改进。无行名，不修改变量类型，灵活列印,索引方便等等。继承了data.frame的其他多数特性。
-```{r}
+
+```{r,message=FALSE}
 library(tidyverse)
 as_tibble(iris)
 ```
 
 ## tibble数据
+
 手工创建数据集
 ```{r}
 df <- tibble(
@@ -43,8 +42,8 @@ df <- tibble(
   y = 1, 
   z = x ^ 2 + y
 )
-df
 df %>% .$x  #  或者.[["x"]]
+df
 ```
 
 ## tibble数据集
@@ -333,6 +332,7 @@ str_sub(dna_ex, 10, 20) <- "CCCCCAA" # 替换
 ```{r}
 # 替换部分字符串
 x <- c("Apple", "Banana", "Pear")
+length(x)
 nchar(x)
 str_sub(x, 1, 1) <- str_to_lower(str_sub(x, 1, 1))
 x

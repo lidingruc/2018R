@@ -520,6 +520,61 @@ ggplot(data.melt,aes(x=Year,y=value,
             position=position_fill())+
   scale_fill_brewer()
 
+#################################
+# 绘制两个均值的示例
+# 类似的例子
+#https://stackoverflow.com/questions/22305023/how-to-get-a-barplot-with-several-variables-side-by-side-grouped-by-a-factor
+#
+# ggplot争取数据来源于一个数据
+library(reshape2)
+library(ggplot2)
+# 分别绘制两个变量的取值
+d <- data.frame(A=c(1:10), B=c(11:20))
+#id
+d$ind <- seq_along(d$A)
+# 一种做法，（要求一个系列是每个类别都比另一个小，不然会遮住）
+# 不推荐
+ggplot(d, aes(ind, y = value, fill = variable,col=variable)) +
+  geom_bar(aes(y = B, col=NA,fill = "B")
+           ,stat='identity', position='dodge')+ 
+  geom_bar(aes(y = A, col = "A",fill=NA)
+           ,stat='identity') 
+
+############
+#正确的做法，已经汇总好的数据
+#变成长数据
+d.m <- melt(d, id.var='ind')
+# 作图
+ggplot(d.m, aes(x=ind, y=value, fill=variable)) + 
+  geom_bar(stat='identity', position='dodge')
+
+# 自定义标签
+ggplot(d.m,aes(x=ind,y=value,fill=factor(variable)))+
+  geom_bar(stat="identity",position="dodge")+
+  scale_fill_discrete(name="Gender",
+                      breaks=c("A", "B"),
+                      labels=c("Male", "Female"))+
+  xlab("Beverage")+ylab("Mean Percentage")
+
+# 尚未汇总的数据
+# 参考https://stackoverflow.com/questions/11857935/plotting-the-average-values-for-each-level-in-ggplot2
+
+df=data.frame(score1=c(4,2,3,5,7,6,5,6,4,2,3,5,4,8),
+              score2=c(4,5,3,5,7,6,5,9,4,2,3,5,4,8),
+              age=c(18,18,23,50,19,39,19,23,22,22,40,35,22,16))
+ggplot(df, aes(x=factor(age), y=score1)) + 
+  stat_summary(fun.y="mean", geom="bar")
+
+# 分类，然后在ggplot中汇总
+df.m<- melt(df,id="age")
+ggplot(df.m, aes(x=factor(age), y=value, fill=factor(variable))) +
+  stat_summary(fun.y=mean, geom="bar",position=position_dodge(0.1))
+
+# 也可以先汇总好，然后在ggplot中作图
+temp = aggregate(list(score = df$score1), list(age = factor(df$age)), mean)
+ggplot(data=temp, aes(x = age, y=score)) +
+  geom_bar(stat='identity')
+
 
 ## 直方图
 ggplot(data=iris,aes(x=Sepal.Length))+ 

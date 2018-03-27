@@ -94,7 +94,7 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">2017年9月26日</p>
+            <p style="margin-top: 6px; margin-left: -2px;">2018 Mar 21</p>
           </hgroup>
   </slide>
 
@@ -678,15 +678,15 @@ my_matrix &lt;- cbind(vector1,vector2,vector3)
 my_matrix </pre>
 
 <pre >##         vector1    vector2    vector3
-## [1,] -0.6390264 -0.6390264 -0.6390264
-## [2,] -0.5983812 -0.5983812 -0.5983812
-## [3,]  1.2873570  1.2873570  1.2873570</pre>
+## [1,] 0.06738475 0.06738475 0.06738475
+## [2,] 0.68902280 0.68902280 0.68902280
+## [3,] 0.28184749 0.28184749 0.28184749</pre>
 
 <pre class = 'prettyprint lang-r'>ifelse(my_matrix&gt;0,1,0)</pre>
 
 <pre >##      vector1 vector2 vector3
-## [1,]       0       0       0
-## [2,]       0       0       0
+## [1,]       1       1       1
+## [2,]       1       1       1
 ## [3,]       1       1       1</pre>
 
 </article></slide><slide class=""><hgroup><h2>矩阵</h2></hgroup><article  id="-1">
@@ -704,14 +704,14 @@ print(vector)</pre>
 <pre class = 'prettyprint lang-r'>vector4 &lt;- rnorm(8)
 vector4</pre>
 
-<pre >## [1]  0.1523779  1.8831260 -0.6471380  0.4503565 -0.6421450 -1.2263807
-## [7]  0.5618366  1.4292503</pre>
+<pre >## [1]  0.7813953 -0.4615879  1.7109796 -1.5040974  0.8698776  0.3267915
+## [7]  0.1438609  2.4064756</pre>
 
 <pre class = 'prettyprint lang-r'>matrix(vector4,nrow=2,ncol = 4, byrow = FALSE)</pre>
 
-<pre >##           [,1]       [,2]      [,3]      [,4]
-## [1,] 0.1523779 -0.6471380 -0.642145 0.5618366
-## [2,] 1.8831260  0.4503565 -1.226381 1.4292503</pre>
+<pre >##            [,1]      [,2]      [,3]      [,4]
+## [1,]  0.7813953  1.710980 0.8698776 0.1438609
+## [2,] -0.4615879 -1.504097 0.3267915 2.4064756</pre>
 
 </article></slide><slide class=""><hgroup><h2>矩阵运算</h2></hgroup><article >
 
@@ -790,9 +790,9 @@ data_list$data &lt;- data # + 数据</pre>
 <pre class = 'prettyprint lang-r'>data_list[[4]]</pre>
 
 <pre >##         vector1    vector2    vector3
-## [1,] -0.6390264 -0.6390264 -0.6390264
-## [2,] -0.5983812 -0.5983812 -0.5983812
-## [3,]  1.2873570  1.2873570  1.2873570</pre>
+## [1,] 0.06738475 0.06738475 0.06738475
+## [2,] 0.68902280 0.68902280 0.68902280
+## [3,] 0.28184749 0.28184749 0.28184749</pre>
 
 </article></slide><slide class=""><hgroup><h2>列表内部结构</h2></hgroup><article >
 
@@ -804,7 +804,7 @@ data_list$data &lt;- data # + 数据</pre>
 ##  $ age   : num [1:5] 23 43 51 32 60
 ##  $ city  : chr [1:5] &quot;beijing&quot; &quot;shanghai&quot; &quot;chengdu&quot; &quot;shanghai&quot; ...
 ##  $ gender: chr [1:5] &quot;F&quot; &quot;M&quot; &quot;F&quot; &quot;F&quot; ...
-##  $ mat   : num [1:3, 1:3] -0.639 -0.598 1.287 -0.639 -0.598 ...
+##  $ mat   : num [1:3, 1:3] 0.0674 0.689 0.2818 0.0674 0.689 ...
 ##   ..- attr(*, &quot;dimnames&quot;)=List of 2
 ##   .. ..$ : NULL
 ##   .. ..$ : chr [1:3] &quot;vector1&quot; &quot;vector2&quot; &quot;vector3&quot;
