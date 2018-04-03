@@ -76,7 +76,7 @@ class(bike)
 ## R读入固定分割文件
 使用utils包中的read.table和read.csv命令，进一步变为tbl文件
 ```{r, eval=FALSE}
-bike <- read.csv("nc_bike_crash.csv", 
+bike <- read.csv("../data/nc_bike_crash.csv", 
                  sep = ";", 
                  stringsAsFactors = FALSE) %>%
        tbl_df() 
@@ -124,7 +124,7 @@ Stata14版本支持unicode编码。haven默认可以读入。
 
 ```{r,eval = FALSE}
 library(haven)
-cgss2003 <- read_dta("cgss2003.dta",encoding = "utf-8")
+cgss2003 <- read_dta("../data/cgss2003.dta",encoding = "utf-8")
 ```
 
 ## haven读入SPSS数据:CGSS{#myImageP70}
@@ -151,7 +151,11 @@ cgss2003 %>%  count(sitetype)
 ```
 </div>
 
-<div style="float: right;width: 60%;text-align: right;">
+
+<div style="float: right;width: 10%;text-align:right;">
+
+</div>
+<div style="float: left;width: 50%;text-align: left;">
 ```{r}
 ggplot(cgss2003, aes(x=sitetype)) +
   geom_bar() + 
@@ -162,7 +166,7 @@ ggplot(cgss2003, aes(x=sitetype)) +
 ## 使用label信息:使用sjPlot包分析-表
 
 ```{r , warning = FALSE,message= FALSE}
-#if(!require(sjmisc)) install.packages("sjmisc")
+if(!require(sjmisc)) install.packages("sjmisc")
 if(!require(sjPlot)) install.packages("sjPlot")
 sjt.frq(cgss2003$sitetype)
 ```
@@ -206,7 +210,7 @@ cgss2003  %>%
 cgss2003  %>%
   select(birth05) %>% 
   sjlabelled::zap_labels() %>% 
-  qplot(binwidth=5)
+  qplot(x=birth05,data=.,binwidth=5)
 ```
 
 ## **haven**读入SPSS和Stata数据的最优操作
@@ -224,6 +228,11 @@ w <- which(sapply(cgss2003, class) == 'labelled')
 cgss2003[w] <- lapply(cgss2003[w], 
                       function(x) as.numeric(as.character(x))
                       )
+```
+## 分析
+```{r,fig.height=2.5,message=FALSE}
+cgss2003  %>%
+  qplot(x=birth05,data=.,binwidth=5)
 ```
 
 ## foreign包读入数据{#myImageP90}
@@ -262,15 +271,15 @@ ggplot(data=cgss,aes(x=sitetype))+geom_bar() +theme(text=element_text(family="ST
 陈华珊自定义的ezdf包针对中文做了一些改进，将变量标签存在了meta数据框中,可分别设变量标签和文本变量的编码。其中定义了简单的汇总函数，可将取值标签自动添加到汇总统计中。
 ```{r,eval= FALSE}
 # 安装必要的包，运行一次即可
-install.packages('data.table')
+install.packages('haven', 'data.table')
 library(devtools)
-options(download.file.method = "wininet")
-install_git("https://github.com/huashan/ezdf")
-install_github('huashan/pander')
+install_github('huashan/ezdf')
+#install_github('huashan/pander')
 
 # 加载包
 library(ezdf)
-dat <- readStata(file,varNameEncoding="GB2312",charEncoding="GBK")
+dat <- readStata("../data/cgss2003.dta",varNameEncoding="GB2312",charEncoding="GBK")
+tbl(dat,~ commtype)
 ```
 
 更多信息:https://github.com/huashan/ezdf/blob/master/Doc/Easy_Data.pdf
@@ -431,6 +440,8 @@ gather(health_wide, key = ?, value = ?, score.1:score.4)
 
 具体参考：http://r4ds.had.co.nz/tidy-data.html#separating-and-uniting
 
+去年期末考试用到了这个命令。请认真研究。
+
 
 ## 数据变形中的缺失值问题
 长宽变换得到的数据为齐整的数据，如果原始数据中某些记录或者变量缺乏取值怎么办呢？
@@ -499,6 +510,13 @@ head(outer_merge)
 
 </div>
 
+## inner join{#myImageP90}
+
+![](../pic/join-inner.png)
+
+## outer join{#myImageP30}
+
+![](../pic/join-outer.png)
 
 ## 两个数据合并:前面的示例数据
 
@@ -517,7 +535,7 @@ rbind() ## 添加行
 cbind() ## 添加列 
 ```
 
-## 增加一些图形
+
 
 
 

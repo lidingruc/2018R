@@ -442,6 +442,7 @@ grep('a', fruits, value = FALSE, ignore.case = TRUE) #元素位置
 positions_a <- gregexpr(pattern = "a", text = fruits, ignore.case = TRUE) # 每个元素匹配结果
 num_a <- sapply(positions_a, function(x) ifelse(x[1] > 0, length(x), 0))
 num_a #每个元素中有几个小写a
+
 ```
 
 ## 括号分组与backreferences
