@@ -141,6 +141,7 @@ cgss2003 <- read_sav("../data/CGSS2003b.sav")  # spss7.0版数据
 str(cgss2003$sitetype)
 attr(cgss2003$sitetype,"label")
 attr(cgss2003$sitetype,"labels")
+attr(attr(cgss2003$sitetype,"labels"),"names")[7]
 ```
 
 ## 使用label信息：直接统计无标签信息{#myImageP50}

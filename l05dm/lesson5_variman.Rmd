@@ -533,7 +533,7 @@ class(other_format)
 日期格式定义
 ![](../pic/dates.png)
 ```{r}
-format(Sys.Date(),format="%m %d %Y")
+format(Sys.Date(),format="%m - %d - %Y")
 format(Sys.Date(),format="%m %d %y")
 format(Sys.Date(),format="%B %b %Y")
 ```
