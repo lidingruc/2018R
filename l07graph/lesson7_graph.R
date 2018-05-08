@@ -13,22 +13,23 @@
 # http://www.xueqing.tv/upload/april-training/day4/index.html#1
 #http://guides.nyu.edu/r
 
-id <- rep(1:4,4)
-year <- 
+
 #########################################################
 # 一图胜千言示例1：相关散点图
 
 setwd("/Users/liding/E/Bdata/rtemp/")
 data <- read.table('data/anscombe1.txt',T)
 head(data)
-data <- data[,-1]
+data <- data[,-1] # 删除第一个变量
 head(data)
 dim(data)
 
 # 我们可以看原始数据，可以汇总各种指标。
 colMeans(data)
 rowMeans(data)
-sapply(1:4,function(x) cor(data[,x],data[,x+4]))
+sapply(1:4,
+   function(x) cor(data[,x],data[,x+4]))
+
 # 但是，都远远不如可视化来得更为直接。
 par(mfrow=c(2,2))
 sapply(1:4,function(x) plot(data[,x],data[,x+4]))
@@ -46,10 +47,14 @@ head(MathAchSchool)
 # data management
 
 Bryk <- MathAchieve[, c("School", "SES", "MathAch")]
+
 Sector <- MathAchSchool$Sector
 names(Sector) <- row.names(MathAchSchool)
 Bryk$Sector <- Sector[as.character(Bryk$School)]
+
 head(Bryk)
+
+# 可以用join或者merge来做。
 
 # examine 20 Catholic
 
@@ -147,22 +152,26 @@ library(ggplot2)
 # 1、quick plot function
 # 散点图
 qplot(income,prestige, 
-      xlab="Average Income", ylab="Prestige Score",
-      geom=c("point", "smooth"), data=car::Prestige)
+      xlab="Average Income",
+      ylab="Prestige Score",
+      geom=c("point", "smooth"),
+      data=car::Prestige)
 
 # 分色散点图
+library(MASS)
 qplot(x = sugars, y = calories, color = as.factor(shelf),
       data = UScereal) 
 
 # 多个图形元素
 qplot(cty,hwy,
       data=mpg,
-      geom=c("point", "smooth"))
+      geom=c("jitter", "smooth"))
 
 # 分面
 qplot(hwy,data=mpg,binwidth=0.5) +
   scale_x_continuous(breaks =10:45) +
   facet_wrap(~ drv, ncol = 1)
+
 
 #2、ggplot function函数+ 图层
 
@@ -172,6 +181,7 @@ qplot(hwy,data=mpg,binwidth=0.5) +
 p1 <- ggplot(UScereal)
 
 p <- p1 + geom_histogram(aes(x = calories)) 
+
 print(p)
 summary(p)  ## 查看p的内部结构  两层内容
 
@@ -189,7 +199,7 @@ p1 + geom_dotplot()
 
 p1 + geom_density()
 
-p1 + geom_histogram(binwidth = 10)
+p1 + geom_histogram(binwidth = 30)
 
 
 # 可以添加多个图层
@@ -197,13 +207,14 @@ p1 +
   geom_histogram(binwidth = 10) +
   xlab('Calories in a Single Cup') +
   ylab('Frequency') + 
-  ggtitle('Distribution of Calories in US Cereals') + theme_bw()
+  ggtitle('Distribution of Calories in US Cereals') +
+  theme_bw()
 
 
 # 图层的顺序无关
 p1 + geom_histogram(binwidth = 10) + xlab('Calories in a Single Cup') +
   ylab('Frequency') + ggtitle('Distribution of Calories in US Cereals') + 
-  theme_bw() + theme(text = element_text(size = 30))
+  theme_bw() + theme(text = element_text(size = 20))
 
 
 # 可以添加多个 geom_function
@@ -280,10 +291,12 @@ ggplot(mpg, aes(x = factor(1), fill = factor(class))) +
   coord_polar(theta = "y")
 
 # 结构连续变化图
-setwd("/Users/liding/E/Bdata/liding17/2017R/lesson7")
-data <- read.csv('soft_impact.csv',T)
+setwd("/Users/liding/E/Bdata/liding17/2018R/")
+data <- read.csv('/Users/liding/E/Bdata/liding17/2018R/data/soft_impact.csv',T)
 head(data)
+library(tidyverse)
 library(tidyr)
+
 data.melt <- gather(data,key=variable,value=value,-Year )
 
 #用reshape2命令进行数据整理
@@ -348,6 +361,7 @@ ggplot(df.m, aes(x=factor(age), y=value, fill=factor(variable))) +
 
 # 也可以先汇总好，然后在ggplot中作图
 temp = aggregate(list(score = df$score1), list(age = factor(df$age)), mean)
+
 ggplot(data=temp, aes(x = age, y=score)) +
   geom_bar(stat='identity')
 

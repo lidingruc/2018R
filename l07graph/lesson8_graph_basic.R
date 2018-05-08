@@ -28,7 +28,7 @@ boxplot(UScereal$calories, horizontal = TRUE)
 # Q: 各个类别是否均匀 evenly distributed?
 
 barplot(table(UScereal$shelf))
-
+barplot(prop.table(table(UScereal$shelf)))
 plot(UScereal$shelf,type="p") # 没有意义
 
 # 两个连续变量：Two Continuous Variables
@@ -48,8 +48,7 @@ plot(UScereal[, c(2:8, 10)]) # 8个变量的scatterplot matrix
 
 # Q: Is the distribution of Variable Y, different across categories of Variable X?
 
-boxplot(sugars ~ shelf, data = UScereal, horizontal = TRUE)
-
+boxplot(sugars ~ shelf, data = UScereal, horizontal = FALSE)
 
 # 两个连续变量和一个分类变量
 # Two Continuous Variables and One Categorical Variable
@@ -68,8 +67,8 @@ legend('topright', inset = .05, legend = c(3,2,1),
 ##########################
 # 1、添加标题
 # 方法1：在plot中用ylab, xlab and main参数
-if(!require(MASS)) install.packages("MASS")
-data(UScereal)
+#if(!require(MASS)) install.packages("MASS")
+#data(UScereal)
 
 plot(calories ~ sugars, data = UScereal, ylab = 'Calories',
      xlab = 'Sugars (grams)', main = 'Nutrition of a Single Cup of Cereal')
@@ -79,6 +78,7 @@ plot(calories ~ sugars, data = UScereal, ylab = 'Calories',
 # Turn off axes and annotations (axis labels)
 
 plot(calories ~ sugars, data = UScereal, ann = FALSE)
+
 title(main = 'Nutrition of a Single Cup of Cereal', ylab = 'Calories',
       xlab = 'Sugars (grams)') # add afterwards
 
@@ -93,7 +93,7 @@ legend('topleft', inset = .05, legend = c(3,2,1),
 # 修改点形状和颜色 Point Shape and Color 
 # Tip: Changing color or shape of points can be used to represent the same dimension
 
-plot(calories ~ sugars, data = UScereal, pch = 15)
+plot(calories ~ sugars, data = UScereal, pch = 22)
 
 # Set a color to a factor variable, and R will use default colors
 plot(calories ~ sugars, data = UScereal, pch = 19, col = shelf, bg = shelf)
@@ -105,6 +105,7 @@ legend('topright', inset = .05, legend = c(3,2,1),
 palette(c('#e5f5f9', '#99d8c9', '#2ca25f'))
 
 plot(calories ~ sugars, data = UScereal, pch = 19, col = shelf, bg = shelf)
+
 legend('topright', inset = .05, legend = c(3,2,1),
        fill = c('#e5f5f9', '#99d8c9', '#2ca25f'))
 
@@ -155,6 +156,7 @@ plot(calories ~ sugars, data = UScereal, pch = 19, ann = FALSE, cex = 1.5)
 outliers <- UScereal[which(UScereal$calories > 300),]
 text(outliers$sugars, outliers$calories - 15,
      labels = row.names(outliers), cex = .75)
+
 title(main = 'Nutrition of a Single Cup of Cereal', ylab = 'Calories',
       xlab = 'Sugars (grams)', cex.main = 2, cex.lab = 1.5)
 
@@ -173,6 +175,7 @@ hist(UScereal$sugars, breaks = 15)
 
 # 保存图片
 dev.print(png,file="file1.png",width=480,height=640)
+
 
 # 还原图形布局为单张图片
 par(mfrow = c(1, 1)) 
@@ -232,8 +235,8 @@ args(plot.default)  # default plot method
 
 # points, lines, axes, frames
 
-# windows()  # 打开独立的图形窗口  for windows system
-# X11() # for Mac system
+#windows()  # 打开独立的图形窗口  for windows system
+X11() # for Mac system
 
 plot(c(0, 1), c(0, 1), type="n", xlab="", ylab="")  # coordinate system
 
@@ -256,13 +259,14 @@ par(mfrow=c(1, 2))  # array of plots
 ## 点线形状、轴标签、线型
 # The pch argument changes the shape of the points
 plot(1:25, pch=1:25, xlab="Symbol Number", ylab="")  # symbols
-lines(1:25, type="S", lty="dashed") # type p l b c o s S h
+
+lines(1:25, type="b", lty="dashed") # type p l b c o s S h
 
 ## 字符、轴、外边框
 plot(26:1, pch=letters, xlab="letters", ylab="",
      axes=FALSE, frame.plot=TRUE)
 # no plot 
-plot(c(1, 7), c(0, 1), type="n", axes=FALSE,  # lines
+plot(c(1, 7), c(0, 1), type="o", axes=FALSE,  # lines
      xlab="Line Type (lty)", ylab="")
 
 # add frame
@@ -272,8 +276,10 @@ box()
 # 设置坐标轴方位、标签位置、线型
 axis(1, at=1:6)  # x-axis 1 在南 2在西 3在北 4 在东
 axis(2, at=c(0,0.5,1)) 
+
 for (lty in 1:6) 
   lines(c(lty, lty, lty + 1), c(0, 0.5, 1), lty=lty)
+
 
 # 坐标系、直线
 plot(c(0, 1), c(0, 1), type="n", xlab="", ylab="")
@@ -417,7 +423,7 @@ pie(rep(1, 10), col=gray(0:9/9))
 # 定义好的color
 length(colors())
 head(colors(), 20) # first 20 named colors
-pie(rep(1, 20), labels=head(colors(), 20), col=head(colors(), 20))
+pie(rep(1, 40), labels=head(colors(), 40), col=head(colors(), 40))
 
 
 # for palettes based on psychophysical principles, see colorspace package
@@ -453,7 +459,8 @@ p0 <- c(0, p0)
 # 画出阴影部分
 polygon(z0, p0, col="gray")
 # 手工确定示意公式标签的头尾首尾位置
-coords <- locator(2)    
+coords <- locator(2)  
+
 arrows(coords$x[1], coords$y[1], coords$x[2], coords$y[2], code=1,
        length=0.125)
 text(coords$x[2], coords$y[2], pos=3,   # text above tail of arrow

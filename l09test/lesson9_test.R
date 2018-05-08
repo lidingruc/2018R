@@ -143,6 +143,7 @@ view_df(cgss2013[,550:577], show.frq = TRUE, show.prc = TRUE)
 # ------------------------------------------- 
 ############
 # A、Chi-square Test, small difference
+# 教育水平和性别
 chisq.test(cgss2013$a7a,cgss2013$a2)
 summary(table(cgss2013$a2, cgss2013$a7a))
 
@@ -155,9 +156,10 @@ chisq.test(cgss2013$a7a,cgss2013$a2)$expected
 chisq.test(cgss2013$a7a,cgss2013$a2)$resid
 
 ##########
-mytable<-xtabs(~ cgss2013$a7a,cgss2013$a2)
+mytable<-xtabs(~cgss2013$a7a+cgss2013$a2)
 chisq.test(mytable)
 fisher.test(mytable)
+
 ##########
 #似然比检验
 #### Likelihood-Ratio Test Statistic for IxJ tables
@@ -302,7 +304,7 @@ lines(yConf$lwr~x,col='black',lty=3)
 lines(yConf$upr~x,col='black',lty=3)
 lines(yPred$lwr~x,col='black',lty=2)
 lines(yPred$upr~x,col='black',lty=2)
-lines(yPred$fix~x,col='black',lty=1)
+lines(yPred$fit~x,col='black',lty=1)
 
 ## 纳入虚拟变量 要转为因子类型
 set.seed(1)
@@ -409,6 +411,7 @@ aggregate(x=tips$tip,
 #stata做法： table sex,c(mean tip)
 
 #方法2 data.table中的dcast方法。更多介绍见后面
+library(data.table)
 dcast(data=tips,sex~. ,fun=mean)  ## 默认的汇总 size
 
 dcast(data=tips,sex~. ,value.var='tip',fun=mean) # 分性别汇总
@@ -493,9 +496,10 @@ colwise(mean,is.numeric)(iris)
 #count~length
 
 #
+library(nycflights13)
 summary_temp <- weather %>% 
   summarize(mean = mean(temp, na.rm = TRUE), std_dev = sd(temp, na.rm = TRUE))
-kable(summary_temp)
+knitr::kable(summary_temp)
 
 
 # 分组之后比较均值
