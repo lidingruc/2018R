@@ -46,8 +46,7 @@ models <- tibble(
 
 ggplot(sim1, aes(x, y)) + 
   geom_abline(aes(intercept = a1, slope = a2), data = models, alpha = 1/4) +
-  geom_point() +
-  geom_box()
+  geom_point()
 
 # 拟合情况示意图
 dist1 <- sim1 %>% 
@@ -802,26 +801,6 @@ ggplot(pred5, aes(x = age_cat, y = fit, color = gender)) +
     theme_bw()
 
 
-### 作业3 11月29日之前提交到liding@ruc.edu.cn 
-### 文件名和邮件标题都统一为“R第3作业学号姓名”的样式。
-### 最好使用rmd+doc格式，不行则可以使用R+doc的格式
-
-# 使用CGSS2013数据
-# （1）依据民族 a4 产生一个新变量ethic，合并为汉族和少数民族两类；依据教育a7a，生成edu，类别合并为“文盲“,"小学"，"初中"，"高中","大学"五类。
-#  (2) 比较汉族和少数民族受访者在收入a8a上是否存在显著差异；不同教育水平的受访者收入a8a是否存在显著差异。综合利用ggplot作图和统计检验呈现自己的观点。
-# （3）根据出生年份a3a产生一个年龄变量age，探索收入a8a与年龄age之间的关系。可以产生一个lninc变量等于log10(a8a+1)，以之作为本题及下一题的因变量。
-
-#  (4) 将age、ethic、edu作为解释变量，建立回归模型。探索其中是否存在交互效应、非线性效应。
-
-# （5）数据中有一些案例的收入取值很低，您觉得应该如何处理比较好？
-
-
-cgss2013 <- cgss2013 %>%
-  mutate(lninc=log10(a8a+1))
-ggplot(cgss2013,aes(x=2013-a3a,y=lninc))+ geom_point()
-
-
-
 ####################
 #回归诊断的标准输出
 #1、残差——拟合值图判断线性性
@@ -912,5 +891,6 @@ shrinkage(fit)
 
 fit2 <- lm(Murder ~ Population + Illiteracy, data = states)
 shrinkage(fit2)
+
 
 

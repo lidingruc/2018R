@@ -1,0 +1,32 @@
+#### Principal Components of the Holzinger and Swineford Data
+
+library(MBESS)
+data(HS.data)
+
+#### Run the principal components on visual, cubes, paper, flags, general
+
+library(psych)
+
+#### This will only extract one component
+pc<-principal(HS.data[,7:11])
+pc
+
+  ## Eigenvalues
+  pc$values
+
+  ## Scree plot
+  plot(pc$values)
+
+  ## Factor Loadings
+  pc$loadings
+
+  ## Communality coefficients
+  pc$communality
+
+  ## To produce the component scores, we must specify a new model
+  pc2<-principal(HS.data[,7:11], scores=T)
+  pc2$scores
+
+  ## We can now use these component scores in a regression equation
+  m1<-lm(pc2$scores~HS.data$numeric+HS.data$arithmet)
+  summary(m1)

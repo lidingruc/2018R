@@ -1,0 +1,56 @@
+#### Principal Components of the Holzinger and Swineford Data
+#### More than One Component Solution
+
+library(MBESS)
+data(HS.data)
+library(psych)
+
+#### Subset the dataset to include only 8 variables
+new.data<-subset(HS.data, select=c(deduct, numeric, problemr, arithmet, 
+  paragrap, sentence, wordc, wordm))
+cor(new.data)
+
+#### This will extract ALL components (note that the rotation default is
+#### varimax)
+pc8<-principal(new.data, nfactors=8)
+pc8
+
+  ## Eigenvalues
+  pc8$values
+
+  ## Scree plot
+  plot(pc8$values)
+
+  ## Factor Loadings
+  pc8$loadings
+
+  ## Communality coefficients
+  pc8$communality
+
+  ## To produce the component scores, we must specify a new model
+  pc8.2<-principal(new.data, nfactors=8, scores=T)
+  pc8.2$scores
+
+#### This will extract 2 components
+pc2<-principal(new.data, nfactors=2, rotate="varimax")
+pc2
+
+  ## Eigenvalues
+  pc2$values
+
+  ## Scree plot
+  plot(pc2$values)
+
+  ## Factor Loadings
+  pc2$loadings
+
+  ## Communality coefficients
+  pc2$communality
+
+  ## To produce the component scores, we must specify a new model
+  pc2.2<-principal(new.data, nfactors=2, scores=T)
+  pc2.2$scores
+
+#### Run the analysis with Quartimax rotation
+pc2.quar<-principal(new.data, nfactors=2, rotate="quartimax")
+pc2.quar

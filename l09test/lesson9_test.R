@@ -189,7 +189,7 @@ t.test(cgss2013$a8a, mu=25000,alternative ='less')
 
 # Independent 2 group t test where y is numeric and x is a binary factor
 t.test(a8a ~ a2, data = cgss2013)
-
+var.test(a8a ~ a2, data = cgss2013)
 # Paired t test
 t.test(cgss2013$a8a, cgss2013$a8b, paired = TRUE) 
 tResults <- t.test(cgss2013$a8a, cgss2013$a8b, paired = TRUE) 

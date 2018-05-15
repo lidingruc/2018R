@@ -1,0 +1,32 @@
+#### Exploratory Factor Analysis of the Holzinger and Swineford Data
+#### One Factor Solution
+
+library(MBESS)
+data(HS.data)
+
+#### Run the EFA on visual, cubes, paper, flags, general
+
+library(psych)
+
+#### This will only extract one component
+efa<-factor.pa(HS.data[,7:11])
+efa
+
+  ## Eigenvalues
+  efa$values
+
+  ## Scree plot
+  plot(efa$values)
+
+  ## Factor Loadings
+  efa$loadings
+
+  ## Communality coefficients
+  efa$communality
+
+  ## To produce the component scores, we must specify a new model
+  efa2<-factor.pa(HS.data[,7:11], scores=T)
+  efa2$scores
+
+  ## We can now use these factor scores in a regression equation
+  m1<-lm(efa2$scores~HS.data$numeric+HS.data$arithmet)

@@ -1,0 +1,98 @@
+#### Model for running a Confirmatory Factor Analysis of the 
+#### Benson & Bandalos (1992) Reactions to Tests scale data
+
+library(sem)
+
+#### First Specify the Covariance Matrix
+cor.mat<-read.moments(names=c("ten1", "ten2", "ten3", "wor1", "wor2", 
+  "wor3", "irthk1", "irthk2", "irthk3", "body1", "body2", "body3"))
+  .7821
+  .5602  .9299
+  .5695  .6281  .9751
+  .1969  .2599  .2362  .6352
+  .2290  .2835  .3079  .4575  .7943
+  .2609  .3670  .3575  .4327  .4151  .6783
+  .0556  .0740  .0981  .2094  .2306  .2503  .6855
+  .0025  .0279  .0798  .2049  .2270  .2257  .4224  .6951
+  .0180  .0753  .0744  .1892  .2352  .2008  .4343  .4514  .6065
+  .1617  .1919  .2893  .1376  .1744  .1845  .0645  .0731  .0921  .4068
+  .2628  .3047  .4043  .1742  .2066  .2547  .1356  .1334  .1283  .1958  .7015
+  .2966  .3040  .3919  .1942  .1864  .2402  .1073  .0988  .0599  .2233  .3033  .5786
+
+#### Now specify the structure of the data
+model.paths<-specify.model()
+  tension -> ten1, lambda11, NA
+  tension -> ten2, lambda12, NA
+  tension -> ten3, lambda13, 1
+  worry -> wor1, lambda21, NA
+  worry -> wor2, lambda22, NA 
+  worry -> wor3, lambda23, 1
+  testirt -> irthk1, lambda31, NA 
+  testirt -> irthk2, lambda32, NA
+  testirt -> irthk3, lambda33, 1
+  bodysymp -> body1, lambda41, NA
+  bodysymp -> body2, lambda42, NA
+  bodysymp -> body3, lambda43, 1
+  tension <-> worry, phi12, NA
+  tension <-> testirt, phi13, NA
+  tension <-> bodysymp, phi14, NA
+  worry <-> testirt, phi23, NA
+  worry <-> bodysymp, phi24, NA
+  testirt <-> bodysymp, phi34, NA
+  ten1 <-> ten1, ten1.var, NA
+  ten2 <-> ten2, ten2.var, NA
+  ten3 <-> ten3, ten3.var, NA
+  wor1 <-> wor1, wor1.var, NA
+  wor2 <-> wor2, wor2.var, NA
+  wor3 <-> wor3, wor3.var, NA
+  irthk1 <-> irthk1, irthk1.var, NA
+  irthk2 <-> irthk2, irthk2.var, NA
+  irthk3 <-> irthk3, irthk3.var, NA
+  body1 <-> body1, body1.var, NA
+  body2 <-> body2, body2.var, NA
+  body3 <-> body3, body3.var, NA
+  tension <-> tension, NA, 1
+  worry <-> worry, NA, 1
+  testirt <-> testirt, NA, 1
+  bodysymp <-> bodysymp, NA, 1
+
+#### Run the CFA
+sem.rtts<-sem(model.paths, cor.mat, 318)
+summary(sem.rtts)
+
+#### Compute the Modification Indices
+mod.indices(sem.rtts)
+
+###########################################################
+
+#### Let's test a New Model where we remove the 
+  ## Latent factor "bodysym" from the analysis
+model.paths2<-specify.model()
+  tension -> ten1, lambda11, NA
+  tension -> ten2, lambda12, NA
+  tension -> ten3, lambda13, 1
+  worry -> wor1, lambda21, NA
+  worry -> wor2, lambda22, NA 
+  worry -> wor3, lambda23, 1
+  testirt -> irthk1, lambda31, NA 
+  testirt -> irthk2, lambda32, NA
+  testirt -> irthk3, lambda33, 1
+  tension <-> worry, phi12, NA
+  tension <-> testirt, phi13, NA
+  worry <-> testirt, phi23, NA
+  ten1 <-> ten1, ten1.var, NA
+  ten2 <-> ten2, ten2.var, NA
+  ten3 <-> ten3, ten3.var, NA
+  wor1 <-> wor1, wor1.var, NA
+  wor2 <-> wor2, wor2.var, NA
+  wor3 <-> wor3, wor3.var, NA
+  irthk1 <-> irthk1, irthk1.var, NA
+  irthk2 <-> irthk2, irthk2.var, NA
+  irthk3 <-> irthk3, irthk3.var, NA
+  tension <-> tension, NA, 1
+  worry <-> worry, NA, 1
+  testirt <-> testirt, NA, 1
+  
+#### Run new CFA
+sem.rtts2<-sem(model.paths2, cor.mat, 318)
+summary(sem.rtts2)

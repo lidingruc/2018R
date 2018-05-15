@@ -1,0 +1,57 @@
+#### Exploratory Factor Analysis of the Holzinger and Swineford Data
+#### More than One Component Solution
+
+library(MBESS)
+data(HS.data)
+library(psych)
+
+#### Subset the dataset to include only 8 variables
+new.data<-subset(HS.data, select=c(deduct, numeric, problemr, arithmet, 
+  paragrap, sentence, wordc, wordm))
+cor(new.data)
+
+#### This will extract ALL components (note that the rotation default is
+#### varimax, but we will change this to oblimin)
+library(GPArotation)  #### This will allow us to do oblimin
+efa8<-factor.pa(new.data, nfactors=8, rotate="oblimin")
+efa8
+
+  ## Eigenvalues
+  efa8$values
+
+  ## Scree plot
+  plot(efa8$values)
+
+  ## Factor Loadings
+  efa8$loadings
+
+  ## Communality coefficients
+  efa8$communality
+
+  ## To produce the component scores, we must specify a new model
+  efa8.2<-factor.pa(new.data, nfactors=8, scores=T, rotate="oblimin")
+  efa8.2$scores
+
+#### This will extract 2 components
+efa2<-factor.pa(new.data, nfactors=2, rotate="oblimin")
+efa2
+
+  ## Eigenvalues
+  efa2$values
+
+  ## Scree plot
+  plot(efa2$values)
+
+  ## Factor Loadings
+  efa2$loadings
+
+  ## Communality coefficients
+  efa2$communality
+
+  ## To produce the component scores, we must specify a new model
+  efa2.2<-factor.pa(new.data, nfactors=2, scores=T, rotate="oblimin")
+  efa2.2$scores
+
+#### Run the analysis with Promax rotation
+efa2.promax<-factor.pa(new.data, nfactors=2, rotate="promax")
+efa2.promax
