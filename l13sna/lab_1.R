@@ -22,32 +22,6 @@
 ##########################################################################
  
 ###
-# 0. R BASICS 
-###
- 
-# Any line starting with # is a "comment" line and is ignored by
-# R. Any other line is treated as a command. Run commands by 
-# copying and pasting them into the R Console.
-#
-# If (when) you get confused, a good place to start is with R's
-# built-in help functionality. R offers detailed help files for
-# each function and each package. To access help type ?[function
-# or package name] in the console. For example, for help on the
-# "sum" function, type:
-?sum
- 
-# To install all packages need for Social Network Analysis 
-# Labs in R, uncomment and run the following code:
- 
-#source("http://sna.stanford.edu/setup.R")
-
-# You only need to run this once per computer!
- 
-# To load the packages from , you need to call the "library"
-# command. Note that you need to do this each session; packages
-# don't load automatically by default (though you can set this 
-# as a preference if you'd like).
- 
 # For this lab, we will use the "igraph" package.
 # A manual is available at 
 # http://cran.r-project.org/web/packages/igraph/igraph.pdf.
@@ -60,7 +34,7 @@ library(igraph)
 #
 # detach(package:igraph)
  
-# IMPORTANT NOTE: Unlike in most languages, R objects are numbered
+# 注意IMPORTANT NOTE: Unlike in most languages, R objects are numbered
 # from 1 instead of 0, so if you want the first element in a
 # vector, you would reference it by vector_name[1]. HOWEVER,
 # igraph objects are numbered starting from 0. This can lead to 
@@ -71,40 +45,37 @@ library(igraph)
 ###
 # 1. LOADING DATA
 ###
- 
-# The <- operator sets a variable equal to something. In this case,
-# we will set a number of basic R data structures, called "data 
-# frames," to hold the contents of the files we will open. 
+# Dta files are part of an R package you can read them as 
+# follows:
+# BACKGROUND These are data collected from the managers of a high-tec company. The company manufactured high-tech equipment on the west coast of the United States and had just over 100 employees with 21 managers. Each manager was asked to whom do you go to for advice and who is your friend, to whom do you report was taken from company documents. In addition attribute information was collected. This consisted of the managers age (in years), length of service or tenure (in years), level in the corporate hierarchy (coded 1,2 and 3; 1=CEO, 2 = Vice President, 3 = manager) and department (coded 1,2,3,4 with the CEO in department 0 ie not in a department). This data is used by Wasserman and Faust in their network analysis book.
+# http://www.analytictech.com/ucinet/help/hs5181.htm
 #
-# read.table() is the most common R command for loading data from
-# files in which values are in tabular format. The function loads
-# the table into a data frame object, which is the basic data type
-# for most operations in R. By default, R assumes that the table
-# has no header and is delimited by any white space; these
-# settings are fine for our purposes here.
-#
-# One handy aspect of R is that you can read in data from a URL 
-# directly by referencing the URL in the read.table() function,
-# as follows: 
+data(kracknets, package = "NetData")
+
+# 其他读入数据的方式：可略过,直接跳到184行。为了熟悉数据可以读入本地文件，自己处理。
+
+# 网络文件
+# You can read in data from a URL  directly by referencing the URL in the read.table() function, as follows: 
 # advice_data_frame <- read.table('http://sna.stanford.edu/sna_R_labs/data/Krack-High-Tec-edgelist-Advice.txt')
 
 # friendship_data_frame <- read.table('http://sna.stanford.edu/sna_R_labs/data/Krack-High-Tec-edgelist-Friendship.txt')
 
 # reports_to_data_frame <- read.table('http://sna.stanford.edu/sna_R_labs/data/Krack-High-Tec-edgelist-ReportsTo.txt')
  
+#本地txt文件
 # If the files you want to work with are on your local machine, 
 # the easiest way to access them is to first set your working 
 # directory via the setwd() command, and then reference the 
 # files by name:
-#
- setwd('/Users/liding/E/Bdata/liding17/2017R/l11sna/Data')
+
+ setwd('/Users/liding/E/Bdata/liding17/2018R/l13sna/Data')
  advice_data_frame <- read.table('Krack-High-Tec-edgelist-Advice.txt')
  
  friendship_data_frame <- read.table('Krack-High-Tec-edgelist-Friendship.txt')
  
-  reports_to_data_frame <- read.table('Krack-High-Tec-edgelist-ReportsTo.txt')
+reports_to_data_frame <- read.table('Krack-High-Tec-edgelist-ReportsTo.txt')
  
-  attributes <- read.csv('Krack-High-Tec-Attributes.csv', header=T)
+attributes <- read.csv('Krack-High-Tec-Attributes.csv', header=T)
 
   
 # Note that when you set a variable equal to something, if all 
@@ -122,6 +93,7 @@ tail(reports_to_data_frame)
 # To view your data in a spreadsheet-like window, use the command 'fix()'. 
 fix(reports_to_data_frame)
 
+# 其他格式的文件
 # The attribute data for this lab is in a comma-separated-value
 # (CSV) file. read.csv() loads a CSV file into a data frame
 # object. In this case, we do have a header row, so we set
@@ -142,15 +114,7 @@ attributes
 # custom data types, such as SPSS files via read.spss() and 
 # STATA files via read.dta().
  
-# When data files are part of an R package you can read them as 
-# follows:
-#
-# data(kracknets, package = "NetData")
- 
-# In the future, we will load data this way. However, it is useful 
-# to get a sense of how things often must be done in R.
- 
- 
+
 ###
 # 2. LOADING GRAPHS
 ###
@@ -227,7 +191,7 @@ krack_full_nonzero_edges <- subset(krack_full_data_frame,
 	(advice_tie > 0 | friendship_tie > 0 | reports_to_tie > 0))
 head(krack_full_nonzero_edges)
 
-
+# 构建作图数据
 # Now we can import our data into a "graph" object using igraph's 
 # graph.data.frame() function. Coercing the data into a graph
 # object is what allows us to perform network-analysis techniques.
@@ -256,7 +220,7 @@ summary(krack_full_symmetrized)
  
  
 ###
-# 3. ADDING VERTEX ATTRIBUTES TO A GRAPH OBJECT
+# 3. ADDING VERTEX(节点) ATTRIBUTES TO A GRAPH OBJECT
 ###
  
 # One way to add the attributes to your graph object is to iterate
@@ -268,6 +232,7 @@ summary(krack_full_symmetrized)
 # the attributes table. The double-for loop tells R to repeat the
 # code between the brackets once for each attribute and once for
 # each vertex.
+# “人工”将节点的属性设定到图中
 for (i in V(krack_full)) {
     for (j in names(attributes)) {
         krack_full <- igraph::set.vertex.attribute(krack_full, 
@@ -276,7 +241,8 @@ for (i in V(krack_full)) {
                                            attributes[i + 1, j])
     }
 }
- 
+
+# 另一种方式是将属性数据直接读入图数据
 # A shorter way is to just read in attribute names when you
 # create the graph object:
  
@@ -301,7 +267,7 @@ igraph::get.vertex.attribute(krack_full, 'DEPT')
 ###
 # 4. VISUALIZE THE NETWORKS
 ###
- 
+# 泛函数+外存图形
 # We can use R's general-purpose plot() method to generate custom
 # visualizations of the network.
 
@@ -379,6 +345,7 @@ dev.off()
  
 # Now let's color-code vertices by department and clean up the 
 # plot by removing vertex labels and shrinking the arrow size. 
+# 注意游标0开始
 dept_vertex_colors = igraph::get.vertex.attribute(krack_full,"DEPT")
 colors = c('Black', 'Red', 'Blue', 'Yellow', 'Green')
 dept_vertex_colors[dept_vertex_colors == 0] = colors[1]
@@ -409,8 +376,9 @@ dev.off()
 # Now let's incorporate additional tie types. We'll use the 
 # layout generated by the reports-to ties but overlay the 
 # advice and friendship ties in red and blue.
-
+# 预定义三种颜色
 tie_type_colors = c(rgb(1,0,0,.5), rgb(0,0,1,.5), rgb(0,0,0,.5))
+
 E(krack_full)$color[ E(krack_full)$advice_tie==1 ] = tie_type_colors[1]
 E(krack_full)$color[ E(krack_full)$friendship_tie==1 ] = tie_type_colors[2]
 E(krack_full)$color[ E(krack_full)$reports_to_tie==1 ] = tie_type_colors[3]
@@ -473,3 +441,43 @@ write.graph(krack_full, file='krack_full.dl', format="pajek")
 # use the "edgelist" format. Note that neither of these will
 # write the attributes; only the ties are maintained.
 write.graph(krack_full, file='krack_full.txt', format="edgelist")
+
+
+# without loop
+is.simple(krack_full)
+is.simple(krack_friendship_only)
+
+
+dg <- degree(krack_friendship_only)
+
+# 子群划分
+com <- walktrap.community(krack_friendship_only, steps=3)
+
+subgroup <- split(com$labels, com$membership)
+
+V(gg)$sg <- com$membership + 1
+V(gg)$color <- rainbow(max(V(gg)$sg))[V(gg)$sg]
+# 中间度
+V(gg)$bte <- betweenness(gg, directed=F)
+top <- quantile(V(gg)$bte,0.99)
+V(gg)$size <- 5
+V(gg)[bte>=top]$size <- 15
+V(gg)$label <- NA
+V(gg)[bte>=top]$label <- V(gg)[bte>=top]$name
+V(gg)$cex <- 1
+V(gg)[bte>=top]$cex <- 2
+
+png("renren_friend_community_betweenness.png",width=900,height=900)
+par(mar=c(0,0,0,0))
+set.seed(14)
+plot(gg,
+     layout=layout.fruchterman.reingold,
+     vertex.size=V(gg)$size, vertex.color=V(gg)$color,
+     vertex.label=V(gg)$label, vertex.label.cex=V(gg)$cex,
+     edge.color=grey(0.8)
+)
+dev.off()
+print(V(gg)[bte>=top]$name)
+return(list(friend=friend, subgroup=subgroup))
+}
+}

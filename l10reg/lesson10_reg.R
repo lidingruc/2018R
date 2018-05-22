@@ -245,6 +245,7 @@ ggplot(grid, aes(x1, x2)) +
 ggplot(grid, aes(x1, pred, colour = x2, group = x2)) + 
   geom_line() +
   facet_wrap(~ model)
+
 ggplot(grid, aes(x2, pred, colour = x1, group = x1)) + 
   geom_line() +
   facet_wrap(~ model)
@@ -287,6 +288,7 @@ mod2 <- lm(y ~ ns(x, 2), data = sim5)
 mod3 <- lm(y ~ ns(x, 3), data = sim5)
 mod4 <- lm(y ~ ns(x, 4), data = sim5)
 mod5 <- lm(y ~ ns(x, 5), data = sim5)
+
 
 grid <- sim5 %>% 
   data_grid(x = seq_range(x, n = 50, expand = 0.1)) %>% 
@@ -824,6 +826,7 @@ par(mfrow=c(1,1))
 plot(women$height, women$weight, main = "Women Age 30-39", 
      xlab = "Height (in inches)", ylab = "Weight (in lbs)")
 lines(women$height, fitted(fit))
+
 #诊断图
 par(mfrow=c(2,2))
 plot(fit)
