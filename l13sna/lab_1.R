@@ -25,7 +25,7 @@
 # For this lab, we will use the "igraph" package.
 # A manual is available at 
 # http://cran.r-project.org/web/packages/igraph/igraph.pdf.
-library(igraph) 
+# library(igraph) 
  
 # Sometimes, different packages overlap in functionality and 
 # cause unexpected behavior when both are loaded simultaneously.
@@ -40,16 +40,83 @@ library(igraph)
 # igraph objects are numbered starting from 0. This can lead to 
 # lots of confusion, since it's not always obvious at first which 
 # objects are native to R and which belong to igraph. 
- 
- 
-###
-# 1. LOADING DATA
+
+######################################
+# 0.basic
+
+
+rm(list=ls())# clear memory
+library(igraph)# load package igraph
+##I. Edge lists: graph() and get.edgelist(): graph() id starts from 1.
+g_el1 <- graph( c(1,2, 1,3, 2,3, 3,4 ))
+summary(ge11)
+plot(g_el1)
+# "directed" parameter can be changed to FALSE to create
+#undirected graphs from the default directed  graphs
+g_el2 <- graph( c(1,2, 1,3, 2,3, 3,4 ), directed=FALSE)
+summary(g_el2)
+plot(g_el2)
+#If you happen to have the edge list of a graph in a two-column matrix
+edgelist<-get.edgelist(g_el1) # get the deglist
+g_el3<-graph(t(edgelist))
+plot(g_el3)
+
+
+# generate graph from adjacency matrix
+library(igraph)
+#Generate graph object from adjacency matrix
+adjm_u<-matrix(
+  c(0, 1, 0, 0, 1, 0,
+    1, 0, 1, 0, 1, 0,
+    0, 1, 0, 1, 0, 0,
+    0, 0, 1, 0, 1, 1,
+    1, 1, 0, 1, 0, 0,
+    0, 0, 0, 1, 0, 0), # the data elements
+  nrow=6,
+  ncol=6,
+  byrow = TRUE)
+# number of rows
+# number of columns
+# fill matrix by rows
+g_adj_u <- graph.adjacency(adjm_u, mode="undirected")
+plot(g_adj_u)
+
+tkplot(g_adj_u)
+get.adjacency(g_adj_u) # get the adjacency matrix
+
+## III. create graph from data frame after creating data frame:
+# First createa data frame
+node1 = c("Her", "You", "Him")
+node2 = c("Him", "Her", "You")
+weight = c(10, -2, 3)
+df = data.frame(node1, node2, weight)
+# Use graph.data.frame() to create a gaph
+g <- graph.data.frame(df, directed=FALSE)
+V(g)$name # node names
+E(g)$weight # edge weights
+plot(g)
+
+#以准备好的数据
+
+library("igraphdata")
+data(karate)
+plot(karate)
+
+
+######################################
+# 1. LOADING DATA 
 ###
 # Dta files are part of an R package you can read them as 
 # follows:
 # BACKGROUND These are data collected from the managers of a high-tec company. The company manufactured high-tech equipment on the west coast of the United States and had just over 100 employees with 21 managers. Each manager was asked to whom do you go to for advice and who is your friend, to whom do you report was taken from company documents. In addition attribute information was collected. This consisted of the managers age (in years), length of service or tenure (in years), level in the corporate hierarchy (coded 1,2 and 3; 1=CEO, 2 = Vice President, 3 = manager) and department (coded 1,2,3,4 with the CEO in department 0 ie not in a department). This data is used by Wasserman and Faust in their network analysis book.
 # http://www.analytictech.com/ucinet/help/hs5181.htm
-#
+
+#SNA introduction
+rm(list=ls())# clear memory
+data(package="igraphdata") #get a list of data sets included in this package >Data sets in package igraphdata:
+data(foodwebs) # read in a named list of directed igraph graph objects foodwebs[[1]]
+data(karate) #Social network between members of a university karate club plot(karate)
+
 data(kracknets, package = "NetData")
 
 # 其他读入数据的方式：可略过,直接跳到184行。为了熟悉数据可以读入本地文件，自己处理。
@@ -443,41 +510,104 @@ write.graph(krack_full, file='krack_full.dl', format="pajek")
 write.graph(krack_full, file='krack_full.txt', format="edgelist")
 
 
+
 # without loop
-is.simple(krack_full)
-is.simple(krack_friendship_only)
+#  Clustering coeffcient
+# First generate the graph from edge list
+el_cc <- matrix( c("A", "B", "A","C", "B",
+                   "C", "B","E","D","E","C","D"), nc=2, byrow=TRUE)
+g_el_cc <- graph.edgelist(el_cc,directed=FALSE)
+tkplot(g_el_cc)
+# Then calculate CC
+transitivity(g_el_cc, type="localundirected")
 
 
-dg <- degree(krack_friendship_only)
 
-# 子群划分
-com <- walktrap.community(krack_friendship_only, steps=3)
+##一些指标的计算
 
-subgroup <- split(com$labels, com$membership)
+rm(list=ls())# clear memory
+library(igraph) # load package igraph
 
-V(gg)$sg <- com$membership + 1
-V(gg)$color <- rainbow(max(V(gg)$sg))[V(gg)$sg]
-# 中间度
-V(gg)$bte <- betweenness(gg, directed=F)
-top <- quantile(V(gg)$bte,0.99)
-V(gg)$size <- 5
-V(gg)[bte>=top]$size <- 15
-V(gg)$label <- NA
-V(gg)[bte>=top]$label <- V(gg)[bte>=top]$name
-V(gg)$cex <- 1
-V(gg)[bte>=top]$cex <- 2
+##################
+#Generate undirected graph object from adjacency matrix
+##################
+adjm_u<-matrix(
+  c(0, 1, 0, 0, 1, 0,
+    1, 0, 1, 0, 1, 0,
+    0, 1, 0, 1, 0, 0,
+    0, 0, 1, 0, 1, 1,
+    1, 1, 0, 1, 0, 0,
+    0, 0, 0, 1, 0, 0), # the data elements
+  nrow=6,
+  ncol=6,
+  byrow = TRUE)
+# number of rows
+# number of columns
+# fill matrix by rows
+g_adj_u <- graph.adjacency(adjm_u, mode="undirected")
+# calculate the degree and degree distribution
+degree(g_adj_u)
+degree.distribution(g_adj_u)
+degree(g_adj_u,loops = FALSE)
 
-png("renren_friend_community_betweenness.png",width=900,height=900)
-par(mar=c(0,0,0,0))
-set.seed(14)
-plot(gg,
-     layout=layout.fruchterman.reingold,
-     vertex.size=V(gg)$size, vertex.color=V(gg)$color,
-     vertex.label=V(gg)$label, vertex.label.cex=V(gg)$cex,
-     edge.color=grey(0.8)
-)
-dev.off()
-print(V(gg)[bte>=top]$name)
-return(list(friend=friend, subgroup=subgroup))
-}
-}
+# calculate the path distribution
+shortest.paths(g_adj_u)
+average.path.length(g_adj_u)
+path.length.hist(g_adj_u) # $res is the histogram of distances,
+# $unconnected is the number of pairs for which the first vertex is not
+# reachable from the second.
+
+# Calculate the clustering coefficient
+transitivity(g_adj_u, type="local")# local clustering 
+transitivity(g_adj_u, type="average") #average clustering 
+transitivity(g_adj_u) # global clustering: the ratio of the triangles
+# and the connected triples in the graph.
+
+# 有向网
+rm(list=ls())# clear memory
+library(igraph)# load package igraph
+##############
+#Generate directed graph object from adjacency matrix
+##############
+adjm_d<-matrix(
+  c(0, 1, 0, 0, 0,
+    0, 0, 1, 1, 1,
+    0, 0, 0, 0, 0,
+    0, 1, 1, 0, 0,
+    0, 0, 0, 1, 0), # the data elements
+  nrow=5,
+  ncol=5,
+  byrow = TRUE)
+# number of rows
+# number of columns
+# fill matrix by rows
+g_adj_d <- graph.adjacency(adjm_d, mode="directed")
+# calculate the indegree and outdegree distribution
+degree(g_adj_d, mode="in")
+degree(g_adj_d, mode="out")
+degree.distribution(g_adj_d, mode="in")
+degree.distribution(g_adj_d, mode="out")
+degree(g_adj_d,mode="in",loops = FALSE)
+degree(g_adj_d,mode="out",loops = FALSE)
+# calculate the path and distribution
+shortest.paths(g_adj_d, mode="out")
+shortest.paths(g_adj_d, mode="in")
+average.path.length(g_adj_d)
+path.length.hist (g_adj_d) # $res is the histogram of distances,
+# $unconnected is the number of pairs for which the first vertex is not
+# reachable from the second.
+
+
+#generating the Erd ̈os-R ́enyi Random Network
+library(igraph)
+g <- erdos.renyi.game(100, 1/100)
+tkplot(g) # interactive plot
+
+library(network)
+
+data(flo)
+nflo<-network(flo,directed=FALSE)    #Convert to network object form
+all(nflo[,]==flo)                    #Trust, but verify
+#A fancy display:
+plot(nflo,displaylabels=TRUE,boxed.labels=FALSE,label.cex=0.75)
+
