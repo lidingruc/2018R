@@ -218,7 +218,7 @@ detach("package:extrafont")
 rm(list = ls()) 
  
 # Set the working directory to the folder containing the workshop files:
-setwd("/Users/liding/E/Bdata/liding17/2017R/l11sna/") 
+setwd("/Users/liding/E/Bdata/liding17/2018R/l13sna/") 
 
 # If you don't know the path to the folder and you're in RStudio, go to the
 # "Session" menu -> "Set Working Directory" -> "To Source File Location"

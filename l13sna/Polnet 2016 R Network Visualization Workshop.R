@@ -967,7 +967,7 @@ visNetwork(nodes, links)
 # We can set the height and width of the window visNetwork() takes 
 # with parameters 'hight' and 'width', and the title with 'main'
 
-visNetwork(nodes, links, height="600px", width="100%", main="Network!")
+visNetwork(nodes, links, height="600px", width="100%", main="Network!")12690
 
 # Like 'igraph' did, 'visNetwork' allows us to set graphic properties 
 # as node or edge attributes. We can add them as columns in our data.

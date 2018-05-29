@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://mgimond.github.io/Spatial/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Intro to GIS and Spatial Analysis</title>
+  <meta name="description" content="This is a compilation of lecture notes that accompany my Intro to GIS and Spatial Analysis course.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Intro to GIS and Spatial Analysis">
+  <meta property="og:type" content="book">
+  
+  
+  <meta property="og:description" content="This is a compilation of lecture notes that accompany my Intro to GIS and Spatial Analysis course.">
+  <meta name="github-repo" content="mgimond/private-test">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Intro to GIS and Spatial Analysis">
+  
+  <meta name="twitter:description" content="This is a compilation of lecture notes that accompany my Intro to GIS and Spatial Analysis course.">
+  
+
+<meta name="author" content="Manuel Gimond">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="https://mgimond.github.io/Spatial/introGIS.html">
+<script src="./Intro to GIS and Spatial Analysis_files/jquery.min.js"></script>
+<link href="./Intro to GIS and Spatial Analysis_files/style.css" rel="stylesheet">
+<link href="./Intro to GIS and Spatial Analysis_files/plugin-bookdown.css" rel="stylesheet">
+<link href="./Intro to GIS and Spatial Analysis_files/plugin-highlight.css" rel="stylesheet">
+<link href="./Intro to GIS and Spatial Analysis_files/plugin-search.css" rel="stylesheet">
+<link href="./Intro to GIS and Spatial Analysis_files/plugin-fontsettings.css" rel="stylesheet">
+
+
+
+
+
+
+
+<script src="./Intro to GIS and Spatial Analysis_files/htmlwidgets.js"></script>
+<link href="./Intro to GIS and Spatial Analysis_files/leaflet.css" rel="stylesheet">
+<script src="./Intro to GIS and Spatial Analysis_files/leaflet.js"></script>
+<link href="./Intro to GIS and Spatial Analysis_files/leafletfix.css" rel="stylesheet">
+<script src="./Intro to GIS and Spatial Analysis_files/leaflet(1).js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #0000ff; } /* Keyword */
+code > span.ch { color: #008080; } /* Char */
+code > span.st { color: #008080; } /* String */
+code > span.co { color: #008000; } /* Comment */
+code > span.ot { color: #ff4000; } /* Other */
+code > span.al { color: #ff0000; } /* Alert */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #008000; font-weight: bold; } /* Warning */
+code > span.cn { } /* Constant */
+code > span.sc { color: #008080; } /* SpecialChar */
+code > span.vs { color: #008080; } /* VerbatimString */
+code > span.ss { color: #008080; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #0000ff; } /* ControlFlow */
+code > span.op { } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ff4000; } /* Preprocessor */
+code > span.do { color: #008000; } /* Documentation */
+code > span.an { color: #008000; } /* Annotation */
+code > span.cv { color: #008000; } /* CommentVar */
+code > span.at { } /* Attribute */
+code > span.in { color: #008000; } /* Information */
+</style>
+
+<link rel="stylesheet" href="./Intro to GIS and Spatial Analysis_files/style(1).css" type="text/css">
+<script type="text/javascript" src="./Intro to GIS and Spatial Analysis_files/MathJax.js"></script><style>#haloword-pron { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -34px; }#haloword-pron:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -34px; }#haloword-open { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -17px; }#haloword-open:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -17px; }#haloword-close { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px 0; }#haloword-close:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px 0; }#haloword-add { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -51px; }#haloword-add:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -51px; }#haloword-remove { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -68px; }#haloword-remove:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -68px; }</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.mjx-chtml {display: inline-block; line-height: 0; text-indent: 0; text-align: left; text-transform: none; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; letter-spacing: normal; word-wrap: normal; word-spacing: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; margin: 0; padding: 1px 0}
+.MJXc-display {display: block; text-align: center; margin: 1em 0; padding: 0}
+.mjx-chtml[tabindex]:focus, body :focus .mjx-chtml[tabindex] {display: inline-table}
+.mjx-full-width {text-align: center; display: table-cell!important; width: 10000em}
+.mjx-math {display: inline-block; border-collapse: separate; border-spacing: 0}
+.mjx-math * {display: inline-block; -webkit-box-sizing: content-box!important; -moz-box-sizing: content-box!important; box-sizing: content-box!important; text-align: left}
+.mjx-numerator {display: block; text-align: center}
+.mjx-denominator {display: block; text-align: center}
+.MJXc-stacked {height: 0; position: relative}
+.MJXc-stacked > * {position: absolute}
+.MJXc-bevelled > * {display: inline-block}
+.mjx-stack {display: inline-block}
+.mjx-op {display: block}
+.mjx-under {display: table-cell}
+.mjx-over {display: block}
+.mjx-over > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-under > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-stack > .mjx-sup {display: block}
+.mjx-stack > .mjx-sub {display: block}
+.mjx-prestack > .mjx-presup {display: block}
+.mjx-prestack > .mjx-presub {display: block}
+.mjx-delim-h > .mjx-char {display: inline-block}
+.mjx-surd {vertical-align: top}
+.mjx-mphantom * {visibility: hidden}
+.mjx-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 2px 3px; font-style: normal; font-size: 90%}
+.mjx-annotation-xml {line-height: normal}
+.mjx-menclose > svg {fill: none; stroke: currentColor}
+.mjx-mtr {display: table-row}
+.mjx-mlabeledtr {display: table-row}
+.mjx-mtd {display: table-cell; text-align: center}
+.mjx-label {display: table-row}
+.mjx-box {display: inline-block}
+.mjx-block {display: block}
+.mjx-span {display: inline}
+.mjx-char {display: block; white-space: pre}
+.mjx-itable {display: inline-table; width: auto}
+.mjx-row {display: table-row}
+.mjx-cell {display: table-cell}
+.mjx-table {display: table; width: 100%}
+.mjx-line {display: block; height: 0}
+.mjx-strut {width: 0; padding-top: 1em}
+.mjx-vsize {width: 0}
+.MJXc-space1 {margin-left: .167em}
+.MJXc-space2 {margin-left: .222em}
+.MJXc-space3 {margin-left: .278em}
+.mjx-chartest {display: block; visibility: hidden; position: absolute; top: 0; line-height: normal; font-size: 500%}
+.mjx-chartest .mjx-char {display: inline}
+.mjx-chartest .mjx-box {padding-top: 1000px}
+.MJXc-processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MJXc-processed {display: none}
+.mjx-test {display: block; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.mjx-ex-box-test {position: absolute; width: 1px; height: 60ex}
+.mjx-line-box-test {display: table!important}
+.mjx-line-box-test span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+#MathJax_CHTML_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.mjx-chtml .mjx-noError {line-height: 1.2; vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+.MJXc-TeX-unknown-R {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: normal}
+.MJXc-TeX-unknown-I {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: normal}
+.MJXc-TeX-unknown-B {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: bold}
+.MJXc-TeX-unknown-BI {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: bold}
+.MJXc-TeX-ams-R {font-family: MJXc-TeX-ams-R,MJXc-TeX-ams-Rw}
+.MJXc-TeX-cal-B {font-family: MJXc-TeX-cal-B,MJXc-TeX-cal-Bx,MJXc-TeX-cal-Bw}
+.MJXc-TeX-frak-R {font-family: MJXc-TeX-frak-R,MJXc-TeX-frak-Rw}
+.MJXc-TeX-frak-B {font-family: MJXc-TeX-frak-B,MJXc-TeX-frak-Bx,MJXc-TeX-frak-Bw}
+.MJXc-TeX-math-BI {font-family: MJXc-TeX-math-BI,MJXc-TeX-math-BIx,MJXc-TeX-math-BIw}
+.MJXc-TeX-sans-R {font-family: MJXc-TeX-sans-R,MJXc-TeX-sans-Rw}
+.MJXc-TeX-sans-B {font-family: MJXc-TeX-sans-B,MJXc-TeX-sans-Bx,MJXc-TeX-sans-Bw}
+.MJXc-TeX-sans-I {font-family: MJXc-TeX-sans-I,MJXc-TeX-sans-Ix,MJXc-TeX-sans-Iw}
+.MJXc-TeX-script-R {font-family: MJXc-TeX-script-R,MJXc-TeX-script-Rw}
+.MJXc-TeX-type-R {font-family: MJXc-TeX-type-R,MJXc-TeX-type-Rw}
+.MJXc-TeX-cal-R {font-family: MJXc-TeX-cal-R,MJXc-TeX-cal-Rw}
+.MJXc-TeX-main-B {font-family: MJXc-TeX-main-B,MJXc-TeX-main-Bx,MJXc-TeX-main-Bw}
+.MJXc-TeX-main-I {font-family: MJXc-TeX-main-I,MJXc-TeX-main-Ix,MJXc-TeX-main-Iw}
+.MJXc-TeX-main-R {font-family: MJXc-TeX-main-R,MJXc-TeX-main-Rw}
+.MJXc-TeX-math-I {font-family: MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw}
+.MJXc-TeX-size1-R {font-family: MJXc-TeX-size1-R,MJXc-TeX-size1-Rw}
+.MJXc-TeX-size2-R {font-family: MJXc-TeX-size2-R,MJXc-TeX-size2-Rw}
+.MJXc-TeX-size3-R {font-family: MJXc-TeX-size3-R,MJXc-TeX-size3-Rw}
+.MJXc-TeX-size4-R {font-family: MJXc-TeX-size4-R,MJXc-TeX-size4-Rw}
+@font-face {font-family: MJXc-TeX-ams-R; src: local('MathJax_AMS'), local('MathJax_AMS-Regular')}
+@font-face {font-family: MJXc-TeX-ams-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_AMS-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_AMS-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_AMS-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-B; src: local('MathJax_Caligraphic Bold'), local('MathJax_Caligraphic-Bold')}
+@font-face {font-family: MJXc-TeX-cal-Bx; src: local('MathJax_Caligraphic'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-cal-Bw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Bold.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Bold.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-R; src: local('MathJax_Fraktur'), local('MathJax_Fraktur-Regular')}
+@font-face {font-family: MJXc-TeX-frak-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-B; src: local('MathJax_Fraktur Bold'), local('MathJax_Fraktur-Bold')}
+@font-face {font-family: MJXc-TeX-frak-Bx; src: local('MathJax_Fraktur'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-frak-Bw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Bold.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Bold.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-BI; src: local('MathJax_Math BoldItalic'), local('MathJax_Math-BoldItalic')}
+@font-face {font-family: MJXc-TeX-math-BIx; src: local('MathJax_Math'); font-weight: bold; font-style: italic}
+@font-face {font-family: MJXc-TeX-math-BIw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Math-BoldItalic.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Math-BoldItalic.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Math-BoldItalic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-R; src: local('MathJax_SansSerif'), local('MathJax_SansSerif-Regular')}
+@font-face {font-family: MJXc-TeX-sans-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-B; src: local('MathJax_SansSerif Bold'), local('MathJax_SansSerif-Bold')}
+@font-face {font-family: MJXc-TeX-sans-Bx; src: local('MathJax_SansSerif'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-sans-Bw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Bold.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Bold.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-I; src: local('MathJax_SansSerif Italic'), local('MathJax_SansSerif-Italic')}
+@font-face {font-family: MJXc-TeX-sans-Ix; src: local('MathJax_SansSerif'); font-style: italic}
+@font-face {font-family: MJXc-TeX-sans-Iw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Italic.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Italic.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-script-R; src: local('MathJax_Script'), local('MathJax_Script-Regular')}
+@font-face {font-family: MJXc-TeX-script-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Script-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Script-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Script-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-type-R; src: local('MathJax_Typewriter'), local('MathJax_Typewriter-Regular')}
+@font-face {font-family: MJXc-TeX-type-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Typewriter-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Typewriter-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Typewriter-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-R; src: local('MathJax_Caligraphic'), local('MathJax_Caligraphic-Regular')}
+@font-face {font-family: MJXc-TeX-cal-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-B; src: local('MathJax_Main Bold'), local('MathJax_Main-Bold')}
+@font-face {font-family: MJXc-TeX-main-Bx; src: local('MathJax_Main'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-main-Bw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Main-Bold.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-I; src: local('MathJax_Main Italic'), local('MathJax_Main-Italic')}
+@font-face {font-family: MJXc-TeX-main-Ix; src: local('MathJax_Main'); font-style: italic}
+@font-face {font-family: MJXc-TeX-main-Iw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Main-Italic.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-R; src: local('MathJax_Main'), local('MathJax_Main-Regular')}
+@font-face {font-family: MJXc-TeX-main-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Main-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-I; src: local('MathJax_Math Italic'), local('MathJax_Math-Italic')}
+@font-face {font-family: MJXc-TeX-math-Ix; src: local('MathJax_Math'); font-style: italic}
+@font-face {font-family: MJXc-TeX-math-Iw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Math-Italic.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size1-R; src: local('MathJax_Size1'), local('MathJax_Size1-Regular')}
+@font-face {font-family: MJXc-TeX-size1-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Size1-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size2-R; src: local('MathJax_Size2'), local('MathJax_Size2-Regular')}
+@font-face {font-family: MJXc-TeX-size2-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Size2-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size3-R; src: local('MathJax_Size3'), local('MathJax_Size3-Regular')}
+@font-face {font-family: MJXc-TeX-size3-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Size3-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size4-R; src: local('MathJax_Size4'), local('MathJax_Size4-Regular')}
+@font-face {font-family: MJXc-TeX-size4-Rw; src /*1*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/eot/MathJax_Size4-Regular.eot'); src /*2*/: url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff') format('woff'), url('https://cdn.bootcss.com/mathjax/2.7.1/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf') format('opentype')}
+</style></head>
+
+<body><div id="MathJax_Message" style="display: none;"></div>
+
+
+
+  <div class="book without-animation with-summary   font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary"><div class="book-search" role="search"><input type="search" class="form-control" placeholder="Type to search"></div>
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter active" data-level="" data-path="index.html"><a href="https://mgimond.github.io/Spatial/index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introGIS.html"><a href="https://mgimond.github.io/Spatial/introGIS.html"><i class="fa fa-check"></i><b>1</b> Introduction to GIS</a><ul style="display: none;">
+<li class="chapter" data-level="1.1" data-path="introGIS.html"><a href="https://mgimond.github.io/Spatial/introGIS.html#what-is-a-gis"><i class="fa fa-check"></i><b>1.1</b> What is a GIS?</a><ul style="display: none;">
+<li class="chapter" data-level="1.1.1" data-path="introGIS.html"><a href="https://mgimond.github.io/Spatial/introGIS.html#gis-software"><i class="fa fa-check"></i><b>1.1.1</b> GIS software</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introGIS.html"><a href="https://mgimond.github.io/Spatial/introGIS.html#qgis"><i class="fa fa-check"></i><b>1.1.2</b> QGIS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introGIS.html"><a href="https://mgimond.github.io/Spatial/introGIS.html#what-is-spatial-analysis"><i class="fa fa-check"></i><b>1.2</b> What is Spatial Analysis?</a></li>
+<li class="chapter" data-level="1.3" data-path="introGIS.html"><a href="https://mgimond.github.io/Spatial/introGIS.html#whats-in-an-acronym"><i class="fa fa-check"></i><b>1.3</b> What’s in an Acronym?</a></li>
+</ul></li>
+<li class="part"><span><b>I Working with spatial data</b></span></li>
+<li class="chapter" data-level="2" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html"><i class="fa fa-check"></i><b>2</b> Feature Representation</a><ul style="display: none;">
+<li class="chapter" data-level="2.1" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#vector-vs.raster"><i class="fa fa-check"></i><b>2.1</b> Vector vs.&nbsp;Raster</a><ul style="display: none;">
+<li class="chapter" data-level="2.1.1" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#vector"><i class="fa fa-check"></i><b>2.1.1</b> Vector</a></li>
+<li class="chapter" data-level="2.1.2" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#raster"><i class="fa fa-check"></i><b>2.1.2</b> Raster</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#object-vs.field"><i class="fa fa-check"></i><b>2.2</b> Object vs.&nbsp;Field</a><ul style="display: none;">
+<li class="chapter" data-level="2.2.1" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#object-view"><i class="fa fa-check"></i><b>2.2.1</b> Object View</a></li>
+<li class="chapter" data-level="2.2.2" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#field-view"><i class="fa fa-check"></i><b>2.2.2</b> Field View</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#scale"><i class="fa fa-check"></i><b>2.3</b> Scale</a></li>
+<li class="chapter" data-level="2.4" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#attribute-tables"><i class="fa fa-check"></i><b>2.4</b> Attribute Tables</a><ul style="display: none;">
+<li class="chapter" data-level="2.4.1" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#measurement-levels"><i class="fa fa-check"></i><b>2.4.1</b> Measurement Levels</a></li>
+<li class="chapter" data-level="2.4.2" data-path="feature-representation.html"><a href="https://mgimond.github.io/Spatial/feature-representation.html#data-type"><i class="fa fa-check"></i><b>2.4.2</b> Data type</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="gis-data-management.html"><a href="https://mgimond.github.io/Spatial/gis-data-management.html"><i class="fa fa-check"></i><b>3</b> GIS Data Management</a><ul style="display: none;">
+<li class="chapter" data-level="3.1" data-path="gis-data-management.html"><a href="https://mgimond.github.io/Spatial/gis-data-management.html#gis-file-data-formats"><i class="fa fa-check"></i><b>3.1</b> GIS File Data Formats</a><ul style="display: none;">
+<li class="chapter" data-level="3.1.1" data-path="gis-data-management.html"><a href="https://mgimond.github.io/Spatial/gis-data-management.html#vector-data-file-formats"><i class="fa fa-check"></i><b>3.1.1</b> Vector Data File Formats</a></li>
+<li class="chapter" data-level="3.1.2" data-path="gis-data-management.html"><a href="https://mgimond.github.io/Spatial/gis-data-management.html#raster-data-file-formats"><i class="fa fa-check"></i><b>3.1.2</b> Raster Data File Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="gis-data-management.html"><a href="https://mgimond.github.io/Spatial/gis-data-management.html#managing-gis-files"><i class="fa fa-check"></i><b>3.2</b> Managing GIS Files</a></li>
+<li class="chapter" data-level="3.3" data-path="gis-data-management.html"><a href="https://mgimond.github.io/Spatial/gis-data-management.html#managing-a-map-project-in-arcgis"><i class="fa fa-check"></i><b>3.3</b> Managing a Map Project in ArcGIS</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html"><i class="fa fa-check"></i><b>4</b> Symbolizing features</a><ul style="display: none;">
+<li class="chapter" data-level="4.1" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#color"><i class="fa fa-check"></i><b>4.1</b> Color</a><ul style="display: none;">
+<li class="chapter" data-level="4.1.1" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#hue"><i class="fa fa-check"></i><b>4.1.1</b> Hue</a></li>
+<li class="chapter" data-level="4.1.2" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#lightness"><i class="fa fa-check"></i><b>4.1.2</b> Lightness</a></li>
+<li class="chapter" data-level="4.1.3" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#saturation"><i class="fa fa-check"></i><b>4.1.3</b> Saturation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#color-space"><i class="fa fa-check"></i><b>4.2</b> Color Space</a></li>
+<li class="chapter" data-level="4.3" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#classification"><i class="fa fa-check"></i><b>4.3</b> Classification</a><ul style="display: none;">
+<li class="chapter" data-level="4.3.1" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#qualitative-color-scheme"><i class="fa fa-check"></i><b>4.3.1</b> Qualitative color scheme</a></li>
+<li class="chapter" data-level="4.3.2" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#sequential-color-scheme"><i class="fa fa-check"></i><b>4.3.2</b> Sequential color scheme</a></li>
+<li class="chapter" data-level="4.3.3" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#divergent-color-scheme"><i class="fa fa-check"></i><b>4.3.3</b> Divergent color scheme</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#so-how-do-i-find-a-proper-color-scheme-for-my-data"><i class="fa fa-check"></i><b>4.4</b> So how do I find a proper color scheme for my data?</a></li>
+<li class="chapter" data-level="4.5" data-path="symbolizing-features.html"><a href="https://mgimond.github.io/Spatial/symbolizing-features.html#classification-intervals"><i class="fa fa-check"></i><b>4.5</b> Classification Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pitfalls-to-avoid.html"><a href="https://mgimond.github.io/Spatial/pitfalls-to-avoid.html"><i class="fa fa-check"></i><b>5</b> Pitfalls to avoid</a><ul style="display: none;">
+<li class="chapter" data-level="5.1" data-path="pitfalls-to-avoid.html"><a href="https://mgimond.github.io/Spatial/pitfalls-to-avoid.html#representing-count"><i class="fa fa-check"></i><b>5.1</b> Representing Count</a></li>
+<li class="chapter" data-level="5.2" data-path="pitfalls-to-avoid.html"><a href="https://mgimond.github.io/Spatial/pitfalls-to-avoid.html#maup"><i class="fa fa-check"></i><b>5.2</b> MAUP</a></li>
+<li class="chapter" data-level="5.3" data-path="pitfalls-to-avoid.html"><a href="https://mgimond.github.io/Spatial/pitfalls-to-avoid.html#ecological-fallacy"><i class="fa fa-check"></i><b>5.3</b> Ecological Fallacy</a></li>
+<li class="chapter" data-level="5.4" data-path="pitfalls-to-avoid.html"><a href="https://mgimond.github.io/Spatial/pitfalls-to-avoid.html#mapping-rates"><i class="fa fa-check"></i><b>5.4</b> Mapping rates</a></li>
+<li class="chapter" data-level="5.5" data-path="pitfalls-to-avoid.html"><a href="https://mgimond.github.io/Spatial/pitfalls-to-avoid.html#coping-with-unstable-rates"><i class="fa fa-check"></i><b>5.5</b> Coping with Unstable Rates</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="good-map-making-tips.html"><a href="https://mgimond.github.io/Spatial/good-map-making-tips.html"><i class="fa fa-check"></i><b>6</b> Good Map Making Tips</a><ul style="display: none;">
+<li class="chapter" data-level="6.1" data-path="good-map-making-tips.html"><a href="https://mgimond.github.io/Spatial/good-map-making-tips.html#elements-of-a-map"><i class="fa fa-check"></i><b>6.1</b> Elements of a map</a></li>
+<li class="chapter" data-level="6.2" data-path="good-map-making-tips.html"><a href="https://mgimond.github.io/Spatial/good-map-making-tips.html#how-to-create-a-good-map"><i class="fa fa-check"></i><b>6.2</b> How to create a <em>good</em> map</a></li>
+<li class="chapter" data-level="6.3" data-path="good-map-making-tips.html"><a href="https://mgimond.github.io/Spatial/good-map-making-tips.html#typefaces-and-fonts"><i class="fa fa-check"></i><b>6.3</b> Typefaces and Fonts</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="uncertainty-in-census-data.html"><a href="https://mgimond.github.io/Spatial/uncertainty-in-census-data.html"><i class="fa fa-check"></i><b>7</b> Uncertainty in Census Data</a><ul style="display: none;">
+<li class="chapter" data-level="7.1" data-path="uncertainty-in-census-data.html"><a href="https://mgimond.github.io/Spatial/uncertainty-in-census-data.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="uncertainty-in-census-data.html"><a href="https://mgimond.github.io/Spatial/uncertainty-in-census-data.html#mapping-uncertainty"><i class="fa fa-check"></i><b>7.2</b> Mapping uncertainty</a></li>
+<li class="chapter" data-level="7.3" data-path="uncertainty-in-census-data.html"><a href="https://mgimond.github.io/Spatial/uncertainty-in-census-data.html#problems-in-mapping-uncertainty"><i class="fa fa-check"></i><b>7.3</b> Problems in mapping uncertainty</a></li>
+<li class="chapter" data-level="7.4" data-path="uncertainty-in-census-data.html"><a href="https://mgimond.github.io/Spatial/uncertainty-in-census-data.html#class-comparison-maps"><i class="fa fa-check"></i><b>7.4</b> Class comparison maps</a></li>
+<li class="chapter" data-level="7.5" data-path="uncertainty-in-census-data.html"><a href="https://mgimond.github.io/Spatial/uncertainty-in-census-data.html#problem-when-performing-bivariate-analysis"><i class="fa fa-check"></i><b>7.5</b> Problem when performing bivariate analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="spatial-operations-and-vector-overlays.html"><a href="https://mgimond.github.io/Spatial/spatial-operations-and-vector-overlays.html"><i class="fa fa-check"></i><b>8</b> Spatial Operations and Vector Overlays</a><ul style="display: none;">
+<li class="chapter" data-level="8.1" data-path="spatial-operations-and-vector-overlays.html"><a href="https://mgimond.github.io/Spatial/spatial-operations-and-vector-overlays.html#selection-by-attribute"><i class="fa fa-check"></i><b>8.1</b> Selection by Attribute</a><ul style="display: none;">
+<li class="chapter" data-level="8.1.1" data-path="spatial-operations-and-vector-overlays.html"><a href="https://mgimond.github.io/Spatial/spatial-operations-and-vector-overlays.html#set-algebra"><i class="fa fa-check"></i><b>8.1.1</b> Set Algebra</a></li>
+<li class="chapter" data-level="8.1.2" data-path="spatial-operations-and-vector-overlays.html"><a href="https://mgimond.github.io/Spatial/spatial-operations-and-vector-overlays.html#boolean-algebra"><i class="fa fa-check"></i><b>8.1.2</b> Boolean Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="spatial-operations-and-vector-overlays.html"><a href="https://mgimond.github.io/Spatial/spatial-operations-and-vector-overlays.html#selection-by-location"><i class="fa fa-check"></i><b>8.2</b> Selection by location</a></li>
+<li class="chapter" data-level="8.3" data-path="spatial-operations-and-vector-overlays.html"><a href="https://mgimond.github.io/Spatial/spatial-operations-and-vector-overlays.html#vector-overlay"><i class="fa fa-check"></i><b>8.3</b> Vector Overlay</a><ul style="display: none;">
+<li class="chapter" data-level="8.3.1" data-path="spatial-operations-and-vector-overlays.html"><a href="https://mgimond.github.io/Spatial/spatial-operations-and-vector-overlays.html#clip"><i class="fa fa-check"></i><b>8.3.1</b> Clip</a></li>
+<li class="chapter" data-level="8.3.2" data-path="spatial-operations-and-vector-overlays.html"><a href="https://mgimond.github.io/Spatial/spatial-operations-and-vector-overlays.html#intersect"><i class="fa fa-check"></i><b>8.3.2</b> Intersect</a></li>
+<li class="chapter" data-level="8.3.3" data-path="spatial-operations-and-vector-overlays.html"><a href="https://mgimond.github.io/Spatial/spatial-operations-and-vector-overlays.html#union"><i class="fa fa-check"></i><b>8.3.3</b> Union</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html"><i class="fa fa-check"></i><b>9</b> Coordinate Systems</a><ul style="display: none;">
+<li class="chapter" data-level="9.1" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#geographic-coordinate-systems"><i class="fa fa-check"></i><b>9.1</b> Geographic Coordinate Systems</a><ul style="display: none;">
+<li class="chapter" data-level="9.1.1" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#sphere-and-ellipsoid"><i class="fa fa-check"></i><b>9.1.1</b> Sphere and Ellipsoid</a></li>
+<li class="chapter" data-level="9.1.2" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#geoid"><i class="fa fa-check"></i><b>9.1.2</b> Geoid</a></li>
+<li class="chapter" data-level="9.1.3" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#datum"><i class="fa fa-check"></i><b>9.1.3</b> Datum</a></li>
+<li class="chapter" data-level="9.1.4" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#building-the-geographic-coordinate-system"><i class="fa fa-check"></i><b>9.1.4</b> Building the Geographic Coordinate System</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#projected-coordinate-systems"><i class="fa fa-check"></i><b>9.2</b> Projected Coordinate Systems</a><ul style="display: none;">
+<li class="chapter" data-level="9.2.1" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#planar-projections"><i class="fa fa-check"></i><b>9.2.1</b> Planar Projections</a></li>
+<li class="chapter" data-level="9.2.2" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#cylindrical-projection"><i class="fa fa-check"></i><b>9.2.2</b> Cylindrical Projection</a></li>
+<li class="chapter" data-level="9.2.3" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#conical-projection"><i class="fa fa-check"></i><b>9.2.3</b> Conical Projection</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="coordinate-systems.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems.html#spatial-properties"><i class="fa fa-check"></i><b>9.3</b> Spatial Properties</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html"><i class="fa fa-check"></i><b>10</b> Map Algebra</a><ul style="display: none;">
+<li class="chapter" data-level="10.1" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html#local-operations-and-functions"><i class="fa fa-check"></i><b>10.1</b> Local operations and functions</a></li>
+<li class="chapter" data-level="10.2" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html#focal-operations-and-functions"><i class="fa fa-check"></i><b>10.2</b> Focal operations and functions</a></li>
+<li class="chapter" data-level="10.3" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html#zonal-operations-and-functions"><i class="fa fa-check"></i><b>10.3</b> Zonal operations and functions</a></li>
+<li class="chapter" data-level="10.4" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html#global-operations-and-functions"><i class="fa fa-check"></i><b>10.4</b> Global operations and functions</a></li>
+<li class="chapter" data-level="10.5" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html#operators-and-functions"><i class="fa fa-check"></i><b>10.5</b> Operators and functions</a><ul style="display: none;">
+<li class="chapter" data-level="10.5.1" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html#mathematical-operators-and-functions"><i class="fa fa-check"></i><b>10.5.1</b> Mathematical operators and functions</a></li>
+<li class="chapter" data-level="10.5.2" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html#logical-comparison"><i class="fa fa-check"></i><b>10.5.2</b> Logical comparison</a></li>
+<li class="chapter" data-level="10.5.3" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html#boolean-or-logical-operators"><i class="fa fa-check"></i><b>10.5.3</b> Boolean (or Logical) operators</a></li>
+<li class="chapter" data-level="10.5.4" data-path="map-algebra.html"><a href="https://mgimond.github.io/Spatial/map-algebra.html#combining-operations"><i class="fa fa-check"></i><b>10.5.4</b> Combining operations</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Spatial Analysis</b></span></li>
+<li class="chapter" data-level="11" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html"><i class="fa fa-check"></i><b>11</b> Point Pattern Analysis</a><ul style="display: none;">
+<li class="chapter" data-level="11.1" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#centrography"><i class="fa fa-check"></i><b>11.1</b> Centrography</a></li>
+<li class="chapter" data-level="11.2" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#density-based-analysis"><i class="fa fa-check"></i><b>11.2</b> Density based analysis</a><ul style="display: none;">
+<li class="chapter" data-level="11.2.1" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#global-density"><i class="fa fa-check"></i><b>11.2.1</b> Global density</a></li>
+<li class="chapter" data-level="11.2.2" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#local-density"><i class="fa fa-check"></i><b>11.2.2</b> Local density</a></li>
+<li class="chapter" data-level="11.2.3" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#modeling-intensity-as-a-function-of-a-covariate"><i class="fa fa-check"></i><b>11.2.3</b> Modeling intensity as a function of a covariate</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#distance-based-analysis"><i class="fa fa-check"></i><b>11.3</b> Distance based analysis</a><ul style="display: none;">
+<li class="chapter" data-level="11.3.1" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#average-nearest-neighbor"><i class="fa fa-check"></i><b>11.3.1</b> Average Nearest Neighbor</a></li>
+<li class="chapter" data-level="11.3.2" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#k-and-l-functions"><i class="fa fa-check"></i><b>11.3.2</b> K and L functions</a></li>
+<li class="chapter" data-level="11.3.3" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#the-pair-correlation-function-g"><i class="fa fa-check"></i><b>11.3.3</b> The Pair Correlation Function <span class="math inline"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-1-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 116%; position: relative;"><span id="MJXc-Node-1" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-2" class="mjx-mrow"><span id="MJXc-Node-3" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.249em; padding-bottom: 0.496em; padding-right: 0.003em;">g</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>g</mi></math></span></span><script type="math/tex" id="MathJax-Element-1">g</script></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="point-pattern-analysis.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#first-and-second-order-effects"><i class="fa fa-check"></i><b>11.4</b> First and second order effects</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="hypothesis-testing.html"><a href="https://mgimond.github.io/Spatial/hypothesis-testing.html"><i class="fa fa-check"></i><b>12</b> Hypothesis testing</a><ul style="display: none;">
+<li class="chapter" data-level="12.1" data-path="hypothesis-testing.html"><a href="https://mgimond.github.io/Spatial/hypothesis-testing.html#irpcsr"><i class="fa fa-check"></i><b>12.1</b> IRP/CSR</a></li>
+<li class="chapter" data-level="12.2" data-path="hypothesis-testing.html"><a href="https://mgimond.github.io/Spatial/hypothesis-testing.html#testing-for-csr-with-the-ann-tool"><i class="fa fa-check"></i><b>12.2</b> Testing for CSR with the ANN tool</a><ul style="display: none;">
+<li class="chapter" data-level="12.2.1" data-path="hypothesis-testing.html"><a href="https://mgimond.github.io/Spatial/hypothesis-testing.html#arcgis-average-nearest-neighbor-tool"><i class="fa fa-check"></i><b>12.2.1</b> ArcGIS’ Average Nearest Neighbor Tool</a></li>
+<li class="chapter" data-level="12.2.2" data-path="hypothesis-testing.html"><a href="https://mgimond.github.io/Spatial/hypothesis-testing.html#a-better-approach-a-monte-carlo-test"><i class="fa fa-check"></i><b>12.2.2</b> A better approach: a Monte Carlo test</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="hypothesis-testing.html"><a href="https://mgimond.github.io/Spatial/hypothesis-testing.html#alternatives-to-csrirp"><i class="fa fa-check"></i><b>12.3</b> Alternatives to CSR/IRP</a></li>
+<li class="chapter" data-level="12.4" data-path="hypothesis-testing.html"><a href="https://mgimond.github.io/Spatial/hypothesis-testing.html#monte-carlo-test-with-k-and-l-functions"><i class="fa fa-check"></i><b>12.4</b> Monte Carlo test with K and L functions</a></li>
+<li class="chapter" data-level="12.5" data-path="hypothesis-testing.html"><a href="https://mgimond.github.io/Spatial/hypothesis-testing.html#PPM"><i class="fa fa-check"></i><b>12.5</b> Testing for a covariate effect</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="spatial-autocorrelation.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html"><i class="fa fa-check"></i><b>13</b> Spatial Autocorrelation</a><ul style="display: none;">
+<li class="chapter" data-level="13.1" data-path="spatial-autocorrelation.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html#global-morans-i"><i class="fa fa-check"></i><b>13.1</b> Global Moran’s I</a><ul style="display: none;">
+<li class="chapter" data-level="13.1.1" data-path="spatial-autocorrelation.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html#computing-the-morans-i"><i class="fa fa-check"></i><b>13.1.1</b> Computing the Moran’s I</a></li>
+<li class="chapter" data-level="13.1.2" data-path="spatial-autocorrelation.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html#monte-carlo-approach-to-estimating-significance"><i class="fa fa-check"></i><b>13.1.2</b> Monte Carlo approach to estimating significance</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="spatial-autocorrelation.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html#morans-i-at-different-lags"><i class="fa fa-check"></i><b>13.2</b> Moran’s I at different lags</a></li>
+<li class="chapter" data-level="13.3" data-path="spatial-autocorrelation.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html#local-morans-i"><i class="fa fa-check"></i><b>13.3</b> Local Moran’s I</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="spatial-interpolation.html"><a href="https://mgimond.github.io/Spatial/spatial-interpolation.html"><i class="fa fa-check"></i><b>14</b> Spatial Interpolation</a><ul style="display: none;">
+<li class="chapter" data-level="14.1" data-path="spatial-interpolation.html"><a href="https://mgimond.github.io/Spatial/spatial-interpolation.html#deterministic-approach-to-interpolation"><i class="fa fa-check"></i><b>14.1</b> Deterministic Approach to Interpolation</a><ul style="display: none;">
+<li class="chapter" data-level="14.1.1" data-path="spatial-interpolation.html"><a href="https://mgimond.github.io/Spatial/spatial-interpolation.html#proximity-interpolation"><i class="fa fa-check"></i><b>14.1.1</b> Proximity interpolation</a></li>
+<li class="chapter" data-level="14.1.2" data-path="spatial-interpolation.html"><a href="https://mgimond.github.io/Spatial/spatial-interpolation.html#inverse-distance-weighted-idw"><i class="fa fa-check"></i><b>14.1.2</b> Inverse Distance Weighted (IDW)</a></li>
+<li class="chapter" data-level="14.1.3" data-path="spatial-interpolation.html"><a href="https://mgimond.github.io/Spatial/spatial-interpolation.html#fine-tuning-the-interpolation-parameters"><i class="fa fa-check"></i><b>14.1.3</b> Fine tuning the interpolation parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="spatial-interpolation.html"><a href="https://mgimond.github.io/Spatial/spatial-interpolation.html#statistical-approach-to-interpolation"><i class="fa fa-check"></i><b>14.2</b> Statistical Approach to Interpolation</a><ul style="display: none;">
+<li class="chapter" data-level="14.2.1" data-path="spatial-interpolation.html"><a href="https://mgimond.github.io/Spatial/spatial-interpolation.html#trend-surfaces"><i class="fa fa-check"></i><b>14.2.1</b> Trend Surfaces</a></li>
+<li class="chapter" data-level="14.2.2" data-path="spatial-interpolation.html"><a href="https://mgimond.github.io/Spatial/spatial-interpolation.html#ordinary-kriging"><i class="fa fa-check"></i><b>14.2.2</b> Ordinary Kriging</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Appendix</b></span></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html"><i class="fa fa-check"></i>Data Manipulation in R</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#reading-vector-files"><i class="fa fa-check"></i>Reading vector files</a><ul style="display: none;">
+<li><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#reading-a-shapefile-with-rgdal">Reading a shapefile with <code>rgdal</code> ​</a></li>
+<li><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#reading-a-shapefile-with-maptools">Reading a shapefile with <code>maptools</code> ​</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#reading-a-geopackage"><i class="fa fa-check"></i>Reading a GeoPackage</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#reading-gis-raster-files"><i class="fa fa-check"></i>Reading GIS raster files</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#dissecting-the-file-summary"><i class="fa fa-check"></i>Dissecting the file summary</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#mapping-spatial-data"><i class="fa fa-check"></i>Mapping spatial data</a><ul style="display: none;">
+<li><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#mapping-with-spplot">Mapping with <code>spplot</code> ​</a></li>
+<li><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#mapping-with-tmap">Mapping with <code>tmap</code> ​</a></li>
+<li><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#mapping-rasters-with-tmap">Mapping rasters with <code>tmap</code> ​</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#joining-tables-to-spatial-features"><i class="fa fa-check"></i>Joining tables to spatial features</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#converting-xy-data-to-point-objects"><i class="fa fa-check"></i>Converting XY data to point objects</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#geocoding-street-addresses"><i class="fa fa-check"></i>Geocoding street addresses</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#exporting-to-a-shapefile"><i class="fa fa-check"></i>Exporting to a shapefile</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#exporting-to-a-geopackage"><i class="fa fa-check"></i>Exporting to a GeoPackage</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation-in-r.html"><a href="https://mgimond.github.io/Spatial/data-manipulation-in-r.html#exporting-to-a-raster-file-format"><i class="fa fa-check"></i>Exporting to a raster file format</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="coordinate-systems-in-r.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems-in-r.html"><i class="fa fa-check"></i>Coordinate Systems in R</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="coordinate-systems-in-r.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems-in-r.html#checking-for-a-coordinate-system"><i class="fa fa-check"></i>Checking for a coordinate system</a></li>
+<li class="chapter" data-level="" data-path="coordinate-systems-in-r.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems-in-r.html#understanding-the-coordinate-syntax"><i class="fa fa-check"></i>Understanding the coordinate syntax</a></li>
+<li class="chapter" data-level="" data-path="coordinate-systems-in-r.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems-in-r.html#assigning-a-coordinate-system"><i class="fa fa-check"></i>Assigning a coordinate system</a></li>
+<li class="chapter" data-level="" data-path="coordinate-systems-in-r.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems-in-r.html#modifying-coordinate-systems"><i class="fa fa-check"></i>Modifying coordinate systems</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="coordinate-systems-in-r.html"><a href="https://mgimond.github.io/Spatial/coordinate-systems-in-r.html#example-of-failed-transformations"><i class="fa fa-check"></i>Example of failed transformations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="vector-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/vector-operations-in-r.html"><i class="fa fa-check"></i>Vector operations in R</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="vector-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/vector-operations-in-r.html#dissolve-by-contiguous-shape"><i class="fa fa-check"></i>Dissolve by contiguous shape</a></li>
+<li class="chapter" data-level="" data-path="vector-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/vector-operations-in-r.html#dissolve-by-attribute"><i class="fa fa-check"></i>Dissolve by attribute</a></li>
+<li class="chapter" data-level="" data-path="vector-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/vector-operations-in-r.html#calculate-area"><i class="fa fa-check"></i>Calculate area</a></li>
+<li class="chapter" data-level="" data-path="vector-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/vector-operations-in-r.html#subsetting"><i class="fa fa-check"></i>Subsetting</a></li>
+<li class="chapter" data-level="" data-path="vector-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/vector-operations-in-r.html#intersecting"><i class="fa fa-check"></i>Intersecting</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="vector-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/vector-operations-in-r.html#intersecting-polygons-with-line-and-point-objects"><i class="fa fa-check"></i>Intersecting polygons with line and point objects</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="vector-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/vector-operations-in-r.html#unioning"><i class="fa fa-check"></i>Unioning</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="raster-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/raster-operations-in-r.html"><i class="fa fa-check"></i>Raster operations in R</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="raster-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/raster-operations-in-r.html#local-operations-and-functions-1"><i class="fa fa-check"></i>Local operations and functions</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="raster-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/raster-operations-in-r.html#unary-operations-and-functions-applied-to-single-raster"><i class="fa fa-check"></i>Unary operations and functions (applied to single raster)</a></li>
+<li class="chapter" data-level="" data-path="raster-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/raster-operations-in-r.html#binary-operations-and-functions-where-two-layers-are-used"><i class="fa fa-check"></i>Binary operations and functions (where two layers are used)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="raster-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/raster-operations-in-r.html#focal-operations-and-functions-1"><i class="fa fa-check"></i>Focal operations and functions</a></li>
+<li class="chapter" data-level="" data-path="raster-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/raster-operations-in-r.html#zonal-operations-and-functions-1"><i class="fa fa-check"></i>Zonal operations and functions</a></li>
+<li class="chapter" data-level="" data-path="raster-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/raster-operations-in-r.html#global-operations-and-functions-1"><i class="fa fa-check"></i>Global operations and functions</a></li>
+<li class="chapter" data-level="" data-path="raster-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/raster-operations-in-r.html#computing-cumulative-distances"><i class="fa fa-check"></i>Computing cumulative distances</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="raster-operations-in-r.html"><a href="https://mgimond.github.io/Spatial/raster-operations-in-r.html#working-example"><i class="fa fa-check"></i>Working example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html"><i class="fa fa-check"></i>Point pattern analysis in R</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#density-based-analysis-1"><i class="fa fa-check"></i>Density based analysis</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#quadrat-density-1"><i class="fa fa-check"></i>Quadrat density</a></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#quadrat-density-on-a-tesselated-surface"><i class="fa fa-check"></i>Quadrat density on a tesselated surface</a></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#kernel-density-raster"><i class="fa fa-check"></i>Kernel density raster</a></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#kernel-density-adjusted-for-covariate-1"><i class="fa fa-check"></i>Kernel Density Adjusted for Covariate</a></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#modeling-intensity-as-a-function-of-a-covariate-1"><i class="fa fa-check"></i>Modeling intensity as a function of a covariate</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#distance-based-analysis-1"><i class="fa fa-check"></i>Distance based analysis</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#average-nearest-neighbor-analysis"><i class="fa fa-check"></i>Average nearest neighbor analysis</a></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#k-and-l-functions-1"><i class="fa fa-check"></i>K and L functions</a></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#the-pair-correlation-function-g-1"><i class="fa fa-check"></i>The Pair Correlation Function g</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#hypothesis-tests"><i class="fa fa-check"></i>Hypothesis tests</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#test-for-clustering"><i class="fa fa-check"></i>Test for clustering</a></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#computing-a-pseudo-p-value"><i class="fa fa-check"></i>Computing a pseudo p-value</a></li>
+<li class="chapter" data-level="" data-path="point-pattern-analysis-in-r.html"><a href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html#testing-for-a-covariate-effect"><i class="fa fa-check"></i>Testing for a covariate effect</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="spatial-autocorrelation-in-r.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation-in-r.html"><i class="fa fa-check"></i>Spatial Autocorrelation in R</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="spatial-autocorrelation-in-r.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation-in-r.html#define-neighboring-polygons"><i class="fa fa-check"></i>Define neighboring polygons</a></li>
+<li class="chapter" data-level="" data-path="spatial-autocorrelation-in-r.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation-in-r.html#computing-the-morans-i-statistic-the-hard-way"><i class="fa fa-check"></i>Computing the Moran’s I statistic: the hard way</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="spatial-autocorrelation-in-r.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation-in-r.html#computing-a-pseudo-p-value-from-an-mc-simulation"><i class="fa fa-check"></i>Computing a pseudo p-value from an MC simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="spatial-autocorrelation-in-r.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation-in-r.html#computing-the-morans-i-statistic-the-easy-way"><i class="fa fa-check"></i>Computing the Moran’s I statistic: the easy way</a></li>
+<li class="chapter" data-level="" data-path="spatial-autocorrelation-in-r.html"><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation-in-r.html#morans-i-as-a-function-of-a-distance-band"><i class="fa fa-check"></i>Moran’s I as a function of a distance band</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="interpolation-in-r.html"><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html"><i class="fa fa-check"></i>Interpolation in R</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="interpolation-in-r.html"><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#thiessen-polygons"><i class="fa fa-check"></i>Thiessen polygons</a></li>
+<li class="chapter" data-level="" data-path="interpolation-in-r.html"><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#idw"><i class="fa fa-check"></i>IDW</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="interpolation-in-r.html"><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#fine-tuning-the-interpolation"><i class="fa fa-check"></i>Fine-tuning the interpolation</a></li>
+<li class="chapter" data-level="" data-path="interpolation-in-r.html"><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#cross-validation"><i class="fa fa-check"></i>Cross-validation</a></li>
+</ul></li>
+<li><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#st-order-polynomial-fit">1<sup>st</sup> order polynomial fit</a></li>
+<li><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#nd-order-polynomial">2<sup>nd</sup> order polynomial</a></li>
+<li class="chapter" data-level="" data-path="interpolation-in-r.html"><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#kriging"><i class="fa fa-check"></i>Kriging</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="interpolation-in-r.html"><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#fit-the-variogram-model"><i class="fa fa-check"></i>Fit the variogram model</a></li>
+<li class="chapter" data-level="" data-path="interpolation-in-r.html"><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#generate-kriged-surface"><i class="fa fa-check"></i>Generate Kriged surface</a></li>
+<li class="chapter" data-level="" data-path="interpolation-in-r.html"><a href="https://mgimond.github.io/Spatial/interpolation-in-r.html#generate-the-variance-and-confidence-interval-maps"><i class="fa fa-check"></i>Generate the variance and confidence interval maps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="mapping-rates-in-r.html"><a href="https://mgimond.github.io/Spatial/mapping-rates-in-r.html"><i class="fa fa-check"></i>Mapping rates in R</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="mapping-rates-in-r.html"><a href="https://mgimond.github.io/Spatial/mapping-rates-in-r.html#raw-rates"><i class="fa fa-check"></i>Raw Rates</a></li>
+<li class="chapter" data-level="" data-path="mapping-rates-in-r.html"><a href="https://mgimond.github.io/Spatial/mapping-rates-in-r.html#standardized-mortality-ratios-relative-risk."><i class="fa fa-check"></i>Standardized mortality ratios (relative risk).</a></li>
+<li class="chapter" data-level="" data-path="mapping-rates-in-r.html"><a href="https://mgimond.github.io/Spatial/mapping-rates-in-r.html#dykes-and-unwins-chi-square-statistic"><i class="fa fa-check"></i>Dykes and Unwin’s chi-square statistic</a></li>
+<li class="chapter" data-level="" data-path="mapping-rates-in-r.html"><a href="https://mgimond.github.io/Spatial/mapping-rates-in-r.html#unstable-ratios"><i class="fa fa-check"></i>Unstable ratios</a><ul style="display: none;">
+<li class="chapter" data-level="" data-path="mapping-rates-in-r.html"><a href="https://mgimond.github.io/Spatial/mapping-rates-in-r.html#global-empirical-bayes-eb-rate-estimate"><i class="fa fa-check"></i>Global Empirical Bayes (EB) rate estimate</a></li>
+<li class="chapter" data-level="" data-path="mapping-rates-in-r.html"><a href="https://mgimond.github.io/Spatial/mapping-rates-in-r.html#local-empirical-bayes-eb-rate-estimate"><i class="fa fa-check"></i>Local Empirical Bayes (EB) rate estimate</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="https://mgimond.github.io/Spatial/references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body fixed">
+      <div class="body-inner">
+        <div class="book-header fixed" role="navigation" style="background-color: rgb(255, 255, 255);">
+          <a class="btn pull-left js-toolbar-action" aria-label="" href="https://mgimond.github.io/Spatial/index.html#"><i class="fa fa-align-justify"></i></a><a class="btn pull-left js-toolbar-action" aria-label="Search" href="https://mgimond.github.io/Spatial/index.html#"><i class="fa fa-search"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" href="https://mgimond.github.io/Spatial/index.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="https://mgimond.github.io/Spatial/">Intro to GIS and Spatial Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Intro to GIS and Spatial Analysis</h1>
+<h4 class="author"><em>Manuel Gimond</em></h4>
+<h4 class="date"><em>Last edited on 2017-11-03</em></h4>
+</div>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p>These pages are a compilation of lecture notes for my Introduction to GIS and Spatial Analysis course (ES214). They are ordered in such a way to follow the course outline, but most pages can be read in any desirable order. The course (and this book) is split into two parts: data manipulation &amp; visualization and exploratory spatial data analysis. The first part of this book is usually conducted using <a href="http://desktop.arcgis.com/">ArcGIS Desktop</a> whereas the latter part of the book is conducted in <a href="https://www.r-project.org/">R</a>. ArcGIS was chosen as the GIS data manipulation environment because of its “desirability” in job applications for undergraduates in the Unites States. But other GIS software environments, such as the open source software <a href="http://qgis.org/">QGIS</a>, could easily be adopted in lieu of ArcGIS–even R can be used to perform many spatial data manipulations such as clipping, buffering and projecting. Even though some of the chapters of this book make direct reference to ArcGIS techniques, most chapters can be studied without access to the software.</p>
+<p>The latter part of this book (and the course) make heavy use of R because of a) its broad appeal in the world of data analysis b) its rich (if not richest) array of spatial analysis and spatial statistics packages c) its scripting environment (which facilitates reproducibility) d) and its very cheap cost (it’s completely free and open source!). But R can be used for many traditional “GIS” application that involve most data manipulation operations–the only benefit in using a full-blown GIS environment like ArcGIS or QGIS is in creating/editing spatial data, rendering complex maps and manipulating spatial data.</p>
+<p>The Appendix covers various aspects of spatial data manipulation and analysis using R. The course only focuses on point pattern analysis and spatial autocorrelation using R, but I’ve added other R resources for students wishing to expand their GIS skills using R.</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="./Intro to GIS and Spatial Analysis_files/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="https://mgimond.github.io/Spatial/introGIS.html" class="navigation navigation-next navigation-unique" aria-label="Next page" style="margin-right: 0px;"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="./Intro to GIS and Spatial Analysis_files/app.min.js"></script>
+<script src="./Intro to GIS and Spatial Analysis_files/lunr.js"></script>
+<script src="./Intro to GIS and Spatial Analysis_files/plugin-search.js"></script>
+<script src="./Intro to GIS and Spatial Analysis_files/plugin-sharing.js"></script>
+<script src="./Intro to GIS and Spatial Analysis_files/plugin-fontsettings.js"></script>
+<script src="./Intro to GIS and Spatial Analysis_files/plugin-bookdown.js"></script>
+<script src="./Intro to GIS and Spatial Analysis_files/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+
+<div id="haloword-lookup" class="ui-widget-content ui-draggable"><div id="haloword-title"><span id="haloword-word"></span><a herf="#" id="haloword-pron" class="haloword-button" title="发音"></a><audio id="haloword-audio"></audio><div id="haloword-control-container"><a herf="#" id="haloword-add" class="haloword-button" title="加入单词表"></a><a herf="#" id="haloword-remove" class="haloword-button" title="移出单词表"></a><a href="https://mgimond.github.io/Spatial/index.html#" id="haloword-open" class="haloword-button" title="查看单词详细释义" target="_blank"></a><a herf="#" id="haloword-close" class="haloword-button" title="关闭查询窗"></a></div><br style="clear: both;"></div><div id="haloword-content"></div></div><div id="cli_dialog_div"></div></body></html>
