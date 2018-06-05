@@ -69,7 +69,6 @@ library(classInt)     ## Class intervals
 library(spgwr)        ## GWR
 
 
-
 ## Set working directory (if you already downloaded the files)
 
 setwd("/Users/liding/E/Bdata/liding17/2018R/l14spa/intro")	## Mac
@@ -213,6 +212,7 @@ br.palette(10)
 
 par(mar=c(0,3,0,0),cex=.6)
 plot(seq(1,5),cex=10,pch=11,col=br.palette(n=5))
+
 dev.off()
 
 
@@ -227,7 +227,8 @@ var <- data$Bush_pct
 #关于投影的说明：https://github.com/OSGeo/proj.4/wiki/GenParms
 #http://proj4.org/projections/index.html
 #proj4string(data) <- CRS("+proj=longlat +datum=WGS84")
-#proj4string(data) <- CRS("+proj=lcc")
+
+proj4string(data) <- CRS("+proj=lcc")
 
 spplot(data, zcol="Bush_pct", col.regions=br.palette(100), main="Percent of County Vote for Bush (2004)")
 
@@ -281,6 +282,7 @@ cols <- ifelse(data$Bush > data$Kerry,"red","blue")
 
 par(mar=rep(0,4))
 plot(election,col=cols,border=NA)
+
 legend(x="bottom",cex=.7,fill=c("red","blue"),bty="n",legend=c("Bush","Kerry"),title="Winner of County Vote (2004)",ncol=2)
 
 dev.off()

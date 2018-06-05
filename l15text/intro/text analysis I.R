@@ -130,22 +130,20 @@ write.csv(seg, file="samgov2.csv", row.names=FALSE)
 #   $(/usr/libexec/java_home)
 
 ## 2¡¢°²×°rjava£¬ÁôÒâ°²×°µÄÂ·¾¶: 
-#   install.packages("rJava", type = "source")
+#   install.packages("rJava")
 #   Èç¹û°²×°¹ı¿ÉÒÔÏÈÉ¾³ı 
 #   remove.packages("rJava")
 
 ## 3¡¢Éè¶¨¶¯Ì¬¿âÎ»ÖÃ£¬ÈÃRjavaÄÜ¹»ÕÒµ½java
 #    ÔÚcmd ÖĞÊäÈë
 #   sudo ln -f -s $(/usr/libexec/java_home)/jre/lib/server/libjvm.dylib /usr/local/lib
-#   ln -s $(/usr/libexec/java_home)/jre/lib/server/libjvm.dylib /Library/Frameworks/R.framework/Versions/3.3/Resources/lib/
+#   ln -s $(/usr/libexec/java_home)/jre/lib/server/libjvm.dylib /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/
 
 # ²Î¿¼×ÊÁÏ
 # https://stackoverflow.com/questions/37014340/installing-r-package-opennlp-in-r
 # https://stackoverflow.com/questions/30738974/rjava-load-error-in-rstudio-r-after-upgrading-to-osx-yosemite
 
-
-
-install.packages("rJava", type = "source")
+install.packages("rJava")
 install.packages("openNLP")
 require(rJava)
 require(openNLP)
@@ -157,13 +155,13 @@ install.packages("Rweibo", repos = "http://R-Forge.R-project.org")
 
 
 library(rJava); 
-#library(tmcn); 
+library(tmcn); 
 library(Rwordseg); 
 # °²×°ĞÂ´Êµä-sougou ÊäÈë·¨
 # ²éÕÒÏÂÔØÏà¹Ø×Öµä
 # http://pinyin.sogou.com/dict/
 #Çå»ª´óÑ§´Ê¿â http://thuocl.thunlp.org/
-
+setwd("/Users/liding/E/Bdata/liding17/2018R/l15text/intro/data")
 installDict("¿ÆÑ§·¢Õ¹¹Û.scel","kxfzg")
 installDict("xinli.scel","xinli") # ĞÄÀíÑ§
 installDict("zzx.scel","zzx") # ÕşÖÎÑ§
@@ -185,8 +183,29 @@ segmentCN("³çÈÊ³Â·»´åÊé¼ÇÓÎ¹ğ·¢Óë³çÈÊÏØÉ­ÁÖ¹«°²·Ö¾Ö´ó¶Ó³¤ÖìÓ¥¹´½áÖ¸Ê¹ÈË½«ÁÖÄ¾Ò»·
 
 # ¶à¸öÎÄµµ·Ö´Ê
 segmentCN(c("Ï°½üÆ½Ç°ÍùÃÀ¹ú³öÏ¯µÚËÄ½ìºË°²È«·å»á", "Àî¿ËÇ¿£ºÍÆ½øÉÏº£½¨Éè¿Æ¼¼´´ĞÂÖĞĞÄ", "ºéĞãÖù¾ÍÈÎ¹úÃñµ³Ö÷Ï¯ ×ÅÀ¶ÒÂ½ÓÖ¤Êé¼°Ó¡ĞÅ"))  
+#¶ÁÈëÎÄ±¾
+lecture<-read.csv("samgov1.csv",encoding="utf-8")
 
-words=unlist(lapply(X=res, FUN=segment));  
+############################# 
+# ÎÄ±¾Ô¤´¦Àí
+head(lecture)
+nchar(lecture) #¼ÆËã×Ö·û´®³¤¶È
+n=length(lecture[,1]);  
+print(n) 
+# É¾³ı¿ÕĞĞ
+res=lecture[lecture!=" "]; 
+ls()
+#fix(res)
+#ÌŞ³ıURL  
+res=gsub(pattern="http:[a-zA-Z\\/\\.0-9]+","",res);   
+
+#ÌŞ³ıÌØÊâ´Ê  
+res=gsub(pattern="[ÎÒ|Äã|µÄ|ÁË|Ò»ÏÂ|Ò»¸ö|Ã»ÓĞ|ÕâÑù|ÏÖÔÚ|Ô­¸æ|±»¸æ|±±¾©|·¨Ôº|¼ò³Æ]","",res);
+
+#ÌŞ³ıÊı×Ö 
+res=gsub(pattern="/^[^0-9]*$/","",res); 
+
+words=unlist(lapply(X=res, FUN=segmentCN));  
 word=lapply(X=words, FUN=strsplit, " ");  
 v=table(unlist(word));    
 summary(v)
@@ -231,8 +250,9 @@ d <- d[,-2]
 wordcloud2(d)
 # ·Å´ó¿ÉÒÔ¿´ĞÎ×´
 wordcloud2(d,shape="diamond")
-wordcloud2(d, figPath="niu.jpg")
-
+wordcloud2(d, figPath="niu.jpg") # Ã»ÓĞ³É¹¦
+# ²Î¿¼
+#http://www.dataguru.cn/article-9524-1.html?utm_source=tuicool&utm_medium=referral
 ## Êä³ö½á¹û  
 
 

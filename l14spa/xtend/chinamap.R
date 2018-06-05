@@ -63,8 +63,9 @@ nhimg <- image_read("BASIC/南海诸岛.png")
 #china_map <- raster::aggregate(china_map,by=c("ID_2","NL_NAME_2"))
 
 #读入外部统计数据  
-mydata <- read_excel("~/Downloads/市级平均数据.xlsx", 
+mydata <- read_excel("/Users/liding/E/Bdata/liding17/2018R/l14spa/xtend/市级平均数据.xlsx", 
                      sheet = "Average")
+
 names(mydata) <- c("prov","NL_NAME_2","ename","fic","fii","ti","ainc","cap","dci")
 # 地图统计单元数据中ID_2,NL_NAME_2
 x <- china_map@data
@@ -133,7 +134,7 @@ p <- ggplot()+
     plot.background=element_rect(I(0),linetype=0),
     plot.title = element_text(family="STKaiti",size=32,
                 hjust=0.5,  colour = "red",face = "bold")
-  ) + labs(title = "中国各县财政收入")
+  ) + labs(title = "中国各地级市财政收入")
 
 #  theme_nothing() 
 # 画底图(大陆),保存 比较慢,8分钟
@@ -211,7 +212,9 @@ ext<-extent(china_map)
 my.op<-par()    #记住做图参数的默认值。 
 png(filename="中国地图+南海p.png",width = 960, height = 960, units = "px", pointsize = 12)
 
+
 palette(plotclr)
+
 plot(china_map,col=data$fic_q,border=NA,    #刚才读入的地图
      xlim=c(ext[1],ext[2]),    #定义大图中要显示的经度（x轴）范围，即x最小值和最大值 
      ylim=c(ext[3]+8,ext[4])    #定义要显示的纬度范围，即y的最大、最小值。

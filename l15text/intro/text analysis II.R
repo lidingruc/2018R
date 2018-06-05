@@ -4,7 +4,7 @@
 # 文本分析主题模型
 
 # 设置文档存储位置
-setwd("/Users/liding/E/Bdata/Course/6TextasData/")
+setwd("/Users/liding/E/Bdata/liding17/2018R/l15text/intro/data")
 
 library(rJava);  
 library(Rwordseg); 
