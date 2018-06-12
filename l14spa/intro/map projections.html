@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://www.nceas.ucsb.edu/scicomp/recipes/projections -->
+<html lang="en" dir="ltr" class="js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortlink" href="https://www.nceas.ucsb.edu/node/676">
+<link rel="shortcut icon" href="https://www.nceas.ucsb.edu/files/favicon_0_0.ico" type="image/vnd.microsoft.icon">
+<meta name="Generator" content="Drupal 7 (http://drupal.org)">
+<link rel="canonical" href="https://www.nceas.ucsb.edu/scicomp/recipes/projections">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Look up map projections in various standard formats | NCEAS</title>
+<style type="text/css" media="all">
+@import url("https://www.nceas.ucsb.edu/modules/system/system.base.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/modules/system/system.menus.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/modules/system/system.messages.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/modules/system/system.theme.css?p7r3zw");
+</style>
+<style type="text/css" media="all">
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.core.min.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.theme.min.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.menu.min.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.autocomplete.min.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/libraries/mediaelement/build/mediaelementplayer.min.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.accordion.min.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.button.min.css?p7r3zw");
+</style>
+<style type="text/css" media="all">
+@import url("https://www.nceas.ucsb.edu/modules/aggregator/aggregator.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/modules/comment/comment.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/date/date_api/date.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/date/date_popup/themes/datepicker.1.7.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/modules/field/theme/field.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/logintoboggan/logintoboggan.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/modules/node/node.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/modules/search/search.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/modules/user/user.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/views/css/views.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/ckeditor/css/ckeditor.css?p7r3zw");
+</style>
+<style type="text/css" media="all">
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/ctools/css/ctools.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/geshifilter/geshifilter.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/panels/css/panels.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/modules/print/css/printlinks.css?p7r3zw");
+</style>
+<style type="text/css" media="screen">
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/adaptivetheme/at_core/css/at.settings.style.headings.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/adaptivetheme/at_core/css/at.settings.style.image.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/adaptivetheme/at_core/css/at.layout.css?p7r3zw");
+</style>
+<style type="text/css" media="all">
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/pixture_reloaded/css/pixture_reloaded.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/pixture_reloaded/css/pixture_reloaded.settings.style.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/files/color/nceas_adaptive-9453666c/colors.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/nceas_adaptive/css/bootstrap.min.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/nceas_adaptive/css/grid.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/nceas_adaptive/fonts/font-awesome/css/font-awesome.min.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/nceas_adaptive/css/nceas_adaptive.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/nceas_adaptive/css/nceas_adaptive.responsive.css?p7r3zw");
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/nceas_adaptive/css/lightbox/lightbox.css?p7r3zw");
+</style>
+<link type="text/css" rel="stylesheet" href="./map projections_files/nceas_adaptive.responsive.layout.css" media="only screen">
+<style type="text/css" media="screen">
+@import url("https://www.nceas.ucsb.edu/files/adaptivetheme/nceas_adaptive_files/nceas_adaptive.fonts.css?p7r3zw");
+</style>
+
+<!--[if lte IE 9]>
+<style type="text/css" media="screen">
+@import url("https://www.nceas.ucsb.edu/sites/all/themes/nceas_adaptive/css/ie-lte-9.css?p7r3zw");
+</style>
+<![endif]-->
+<script src="./map projections_files/hm.js"></script><script type="text/javascript" src="./map projections_files/jquery.min.js"></script>
+<script type="text/javascript" src="./map projections_files/jquery.once.js"></script>
+<script type="text/javascript" src="./map projections_files/drupal.js"></script>
+<script type="text/javascript" src="./map projections_files/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="./map projections_files/jquery.ui.widget.min.js"></script>
+<script type="text/javascript" src="./map projections_files/jquery.ui.position.min.js"></script>
+<script type="text/javascript" src="./map projections_files/jquery.ui.menu.min.js"></script>
+<script type="text/javascript" src="./map projections_files/jquery.ui.autocomplete.min.js"></script>
+<script type="text/javascript" src="./map projections_files/mediaelement-and-player.min.js"></script>
+<script type="text/javascript" src="./map projections_files/jquery.ui.accordion.min.js"></script>
+<script type="text/javascript" src="./map projections_files/jquery.ui.button.min.js"></script>
+<script type="text/javascript" src="./map projections_files/autocomplete.js"></script>
+<script type="text/javascript" src="./map projections_files/spamspan.js"></script>
+<script type="text/javascript" src="./map projections_files/mediaelement.js"></script>
+<script type="text/javascript" src="./map projections_files/responsive-menu.js"></script>
+<script type="text/javascript" src="./map projections_files/bootstrap-popovers.min.js"></script>
+<script type="text/javascript" src="./map projections_files/lightbox.min.js"></script>
+<script type="text/javascript" src="./map projections_files/include.js"></script>
+<script type="text/javascript" src="./map projections_files/scalefix.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"nceas_adaptive","theme_token":"aFqJ_NQot0lsjl8LAH-cv2v9R-76LGV7l7zLRbqh-Yk","js":{"sites\/all\/modules\/jquery_update\/replace\/jquery\/1.10\/jquery.min.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.core.min.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.widget.min.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.position.min.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.menu.min.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.autocomplete.min.js":1,"sites\/all\/libraries\/mediaelement\/build\/mediaelement-and-player.min.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.accordion.min.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.button.min.js":1,"sites\/all\/modules\/gss\/scripts\/autocomplete.js":1,"sites\/all\/modules\/spamspan\/spamspan.js":1,"sites\/all\/modules\/mediaelement\/mediaelement.js":1,"sites\/all\/themes\/nceas_adaptive\/js\/responsive-menu.js":1,"sites\/all\/themes\/nceas_adaptive\/js\/bootstrap-popovers.min.js":1,"sites\/all\/themes\/nceas_adaptive\/js\/lightbox.min.js":1,"sites\/all\/themes\/nceas_adaptive\/js\/include.js":1,"sites\/all\/themes\/adaptivetheme\/at_core\/scripts\/scalefix.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"misc\/ui\/jquery.ui.core.css":1,"misc\/ui\/jquery.ui.theme.css":1,"misc\/ui\/jquery.ui.menu.css":1,"misc\/ui\/jquery.ui.autocomplete.css":1,"sites\/all\/libraries\/mediaelement\/build\/mediaelementplayer.min.css":1,"misc\/ui\/jquery.ui.accordion.css":1,"misc\/ui\/jquery.ui.button.css":1,"modules\/aggregator\/aggregator.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"sites\/all\/modules\/logintoboggan\/logintoboggan.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/geshifilter\/geshifilter.css":1,"sites\/all\/modules\/panels\/css\/panels.css":1,"sites\/all\/modules\/print\/css\/printlinks.css":1,"sites\/all\/themes\/adaptivetheme\/at_core\/css\/at.settings.style.headings.css":1,"sites\/all\/themes\/adaptivetheme\/at_core\/css\/at.settings.style.image.css":1,"sites\/all\/themes\/adaptivetheme\/at_core\/css\/at.layout.css":1,"sites\/all\/themes\/pixture_reloaded\/color\/colors.css":1,"sites\/all\/themes\/pixture_reloaded\/css\/pixture_reloaded.css":1,"sites\/all\/themes\/pixture_reloaded\/css\/pixture_reloaded.settings.style.css":1,"sites\/all\/themes\/nceas_adaptive\/colors\/colors.css":1,"sites\/all\/themes\/nceas_adaptive\/css\/bootstrap.min.css":1,"sites\/all\/themes\/nceas_adaptive\/css\/grid.css":1,"sites\/all\/themes\/nceas_adaptive\/css\/responsivegrid.css":1,"sites\/all\/themes\/nceas_adaptive\/fonts\/font-awesome\/css\/font-awesome.min.css":1,"sites\/all\/themes\/nceas_adaptive\/css\/nceas_adaptive.css":1,"sites\/all\/themes\/nceas_adaptive\/css\/nceas_adaptive.responsive.css":1,"sites\/all\/themes\/nceas_adaptive\/css\/lightbox\/lightbox.css":1,"public:\/\/adaptivetheme\/nceas_adaptive_files\/nceas_adaptive.responsive.layout.css":1,"public:\/\/adaptivetheme\/nceas_adaptive_files\/nceas_adaptive.fonts.css":1,"sites\/all\/themes\/nceas_adaptive\/css\/ie-lte-9.css":1}},"gss":{"key":"007109703429894052769:goxd3p0ce8y"},"mediaelementAll":true,"urlIsAjaxTrusted":{"\/search\/node":true,"\/scicomp\/recipes\/projections":true},"adaptivetheme":{"nceas_adaptive":{"layout_settings":{"bigscreen":"three-col-grail","tablet_landscape":"three-col-grail","tablet_portrait":"one-col-vert","smalltouch_landscape":"one-col-vert","smalltouch_portrait":"one-col-stack"},"media_query_settings":{"bigscreen":"only screen","tablet_landscape":"only screen and (min-width:769px) and (max-width:1024px)","tablet_portrait":"only screen and (min-width:481px) and (max-width:768px)","smalltouch_landscape":"only screen and (min-width:321px) and (max-width:480px)","smalltouch_portrait":"only screen and (max-width:320px)"}}}});
+//--><!]]>
+</script>
+<!--[if lt IE 9]>
+<script src="https://www.nceas.ucsb.edu/sites/all/themes/adaptivetheme/at_core/scripts/html5.js?p7r3zw"></script>
+<script src="https://www.nceas.ucsb.edu/sites/all/themes/adaptivetheme/at_core/scripts/respond.js?p7r3zw"></script>
+<![endif]-->
+<style>#haloword-pron { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -34px; }#haloword-pron:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -34px; }#haloword-open { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -17px; }#haloword-open:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -17px; }#haloword-close { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px 0; }#haloword-close:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px 0; }#haloword-add { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -51px; }#haloword-add:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -51px; }#haloword-remove { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -68px; }#haloword-remove:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -68px; }</style><script type="text/javascript" src="./map projections_files/YNoteClipper.js" charset="utf-8"></script></head>
+<body class="html not-front not-logged-in one-sidebar sidebar-first page-node page-node- page-node-676 node-type-scicomp site-name-hidden atr-7.x-3.x atv-7.x-3.0-rc1 site-name-nceas section-scicomp color-scheme-custom nceas-adaptive bs-n bb-n mb-dd mbp-l rc-0" style="">
+  <div id="skip-link" class="nocontent">
+    <a href="https://www.nceas.ucsb.edu/scicomp/recipes/projections#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <header id="top" class="clearfix" role="banner">
+  <div class="container change">
+
+    		<div class="inner-container">
+	          	            <div id="logo">
+	              <a href="https://www.nceas.ucsb.edu/"><img class="site-logo" src="./map projections_files/newLogo_0.png" alt="NCEAS"></a>	            </div>
+	          	
+	          	            <!-- start: Site name and Slogan hgroup -->
+	            <hgroup id="name-and-slogan" class="element-invisible h-group">
+	
+	              	                <h1 id="site-name" class="element-invisible"><a href="https://www.nceas.ucsb.edu/" title="Home page">NCEAS</a></h1>
+	              	
+	              	
+	            </hgroup><!-- /end #name-and-slogan -->
+	          	                        	<div id="nceas-header" class="row">
+              		<div class="region region-header"><div class="region-inner clearfix"><div id="block-block-3" class="block block-block no-title odd first block-count-1 block-region-header block-3"><div class="block-inner clearfix">  
+  
+  <div class="block-content content"><div class="subscribe">
+	<a href="http://www.nceas.ucsb.edu/news/feed" title="NCEAS RSS Feed"><i class="icon fa fa-rss-square"></i></a>
+	<a href="https://twitter.com/nceas" title="NCEAS Twitter"><i class="icon fa fa-twitter-square"></i></a>
+<a href="https://www.facebook.com/NCEASUCSB/" title="NCEAS Facebook"><i class="icon fa fa-facebook-square"></i></a>	
+<a href="http://lists.nceas.ucsb.edu/mailman/listinfo/info" title="NCEAS Email Newsletter"><i class="icon fa fa-envelope-square"></i></a>
+        <a href="https://www.nceas.ucsb.edu/content/VizSearch" title="NCEAS VizSearch: Visualization of NCEAS Products and Publications"><img src="./map projections_files/VIZSearchButton.png" class="icon"></a>
+</div></div>
+  </div></div><div id="block-search-form" class="block block-search no-title even last block-count-2 block-region-header block-form" role="search"><div class="block-inner clearfix">  
+  
+  <div class="block-content content"><form class="gss" action="https://www.nceas.ucsb.edu/scicomp/recipes/projections" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+      <h2 class="element-invisible">Search form</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Search </label>
+ <input title="Enter the terms you wish to search for." type="search" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+</div>
+<div class="form-actions form-wrapper" id="edit-actions"><input type="submit" id="edit-submit" name="op" value="Search" class="form-submit"></div><input type="hidden" name="form_build_id" value="form-fgclgY_jOj2z1Ao1qtaNp32_9m6tHhRQev-jIt9cvCY">
+<input type="hidden" name="form_id" value="search_block_form">
+</div>
+</div></form></div>
+  </div></div></div></div>            	</div>
+          	  	    </div>
+     
+        
+          <nav id="nceas-menu" class="row">
+          <div id="menu-bar" class="nav clearfix"><nav id="block-system-main-menu" class="block block-system block-menu menu-wrapper menu-bar-wrapper clearfix odd first last block-count-3 block-region-menu-bar block-main-menu" role="navigation">  
+      <h2 class="element-invisible block-title">Main menu</h2>
+  
+  <ul class="menu clearfix"><li class="first collapsed menu-depth-1 menu-item-7890"><a href="https://www.nceas.ucsb.edu/about">About</a></li><li class="expanded menu-depth-1 menu-item-39"><a href="https://www.nceas.ucsb.edu/science">Research</a><ul class="menu clearfix"><li class="first leaf menu-depth-2 menu-item-40"><a href="https://www.nceas.ucsb.edu/science">Research at NCEAS</a></li><li class="leaf menu-depth-2 menu-item-1498"><a href="https://www.nceas.ucsb.edu/featured">Current Projects</a></li><li class="last leaf menu-depth-2 menu-item-103"><a href="https://www.nceas.ucsb.edu/products">Publications &amp; Products</a></li></ul></li><li class="collapsed menu-depth-1 menu-item-7919"><a href="https://www.nceas.ucsb.edu/ecoinfo" title="">Informatics</a></li><li class="expanded menu-depth-1 menu-item-42"><a href="https://www.nceas.ucsb.edu/opportunities">Opportunities</a><ul class="menu clearfix"><li class="first leaf menu-depth-2 menu-item-107"><a href="https://www.nceas.ucsb.edu/training">Trainings</a></li><li class="leaf menu-depth-2 menu-item-9121"><a href="https://www.nceas.ucsb.edu/calls-for-proposals">Calls for Proposals</a></li><li class="leaf menu-depth-2 menu-item-8938"><a href="https://www.nceas.ucsb.edu/fellowships">Fellowship Programs</a></li><li class="leaf menu-depth-2 menu-item-9122"><a href="https://www.nceas.ucsb.edu/partner-with-us">Partner with us</a></li><li class="last leaf menu-depth-2 menu-item-7781"><a href="https://www.nceas.ucsb.edu/roundtables">Roundtables</a></li></ul></li><li class="expanded menu-depth-1 menu-item-808"><a href="https://www.nceas.ucsb.edu/news-events">News</a><ul class="menu clearfix"><li class="first leaf menu-depth-2 menu-item-810"><a href="https://www.nceas.ucsb.edu/news" title="">News &amp; Announcements</a></li><li class="last leaf menu-depth-2 menu-item-999"><a href="https://www.nceas.ucsb.edu/activities" title="">Upcoming Research Activities</a></li></ul></li><li class="expanded menu-depth-1 menu-item-70"><a href="https://www.nceas.ucsb.edu/give">Give</a><ul class="menu clearfix"><li class="first leaf menu-depth-2 menu-item-7895"><a href="https://www.nceas.ucsb.edu/give">Give to NCEAS</a></li><li class="leaf menu-depth-2 menu-item-113"><a href="https://www.nceas.ucsb.edu/contact">Contact Us</a></li><li class="last leaf menu-depth-2 menu-item-786"><a href="http://ucsb.us12.list-manage1.com/subscribe?u=d7494403ed9d8c97a5479f0d4&amp;id=bbef3949b4">Subscribe </a></li></ul></li><li class="last leaf menu-depth-1 menu-item-9197"><a href="https://www.nceas.ucsb.edu/contact">Contact</a></li></ul>
+  </nav></div>      </nav>
+    
+  </div>
+
+</header> <!-- /header -->
+
+<div class="texture-overlay">
+  <div id="page" class="container page ssc-n ssw-n ssa-l sss-n btc-n btw-b bta-l bts-n ntc-n ntw-b nta-l nts-n ctc-n ctw-b cta-l cts-n ptc-n ptw-b pta-l pts-n">
+    <!-- Messages and Help -->
+        
+    <!-- Breadcrumbs -->
+    <!--<div id="breadcrumb" class="clearfix"><nav class="breadcrumb-wrapper clearfix" role="navigation" aria-labelledby="breadcrumb-label"><h2 id="breadcrumb-label" class="element-invisible">You are here</h2><ol id="crumbs" class="clearfix"><li class="crumb crumb-first"><a href="/node">content</a></li></ol></nav></div>-->
+
+    
+    <!-- Three column 3x33 Gpanel -->
+    
+    <div id="columns">
+      <div class="columns-inner clearfix inner-container">
+
+        <div id="content-column">
+          <div class="content-inner">
+
+            
+            <section id="main-content" role="main">
+
+                                            <header id="main-content-header" class="clearfix">
+
+                                      <h1 id="page-title">Look up map projections in various standard formats</h1>
+                  
+                  
+                </header>
+                            
+                              <div id="content">
+                  <div id="block-system-main" class="block block-system no-title odd first last block-count-4 block-region-content block-main">  
+  
+  <div id="node-676" class="node node-scicomp node-promoted article odd node-full ia-n clearfix" role="article">
+
+  
+      
+      <div class="submitted">
+      Submitted by <span class="username">regetz</span> on <time datetime="2010-05-09T22:53:57-0700">9 May 2010 - 10:53pm</time>    </div>
+  
+  <div class="content">
+    <span class="print-link"></span><div class="field field-name-body field-type-text-with-summary field-label-hidden view-mode-full"><div class="field-items"><div class="field-item even"><p>Geospatial data are usually only useful when associated with a spatial reference system (SRS). In a nutshell, this is the information needed to relate spatial coordinates in the dataset to actual positions on our planet, and by extension to relate spatial datasets to one another. When using programmatic tools to convert spatial data into a different SRS (e.g., when performing map projection), and even just to specify the SRS when this information is missing from the data source itself, you will sometimes need to express it in a standard format that the program can understand. There are several common ways to do this.
+<!--break-->
+Different software applications have traditionally used (and required) different formats, but most modern software libraries (including those associated with <a href="https://www.nceas.ucsb.edu/scicomp/software/r">R</a>, <a href="https://www.nceas.ucsb.edu/scicomp/software/grass-gis">GRASS GIS</a>, and <a href="https://www.nceas.ucsb.edu/scicomp/software/gdal">GDAL</a>) will support at least one of the following: EPSG codes, PROJ.4 strings, and the Well-known text (WKT) format. Each of these formats is described below.</p>
+
+<hr><br>
+
+<p class="rtecenter"><strong>For any of these formats, often the fastest solution is to enter relevant keywords (e.g., "Hawaii", "mercator", or "equal area") in the search box at <a href="http://www.spatialreference.org/">http://www.spatialreference.org</a>. Provided you can find the SRS that meets your needs, it's then simply a matter of clicking the link for the desired format and copying the information.</strong></p>
+
+<h4>EPSG codes</h4>
+<p>Thanks to the now-defunct <a href="http://www.epsg.org/">European Petroleum Survey Group</a>, almost all common spatial reference systems have a recognized integer ID called an EPSG code. These codes are often the simplest way to identify a projection. If you know the correct EPSG code, it saves you from having to write down the projection in a more verbose form, which can be an error prone step. For example, the EPSG code for <em>NAD83(HARN) / Hawaii zone 3</em> is simply written as <tt>EPSG:2784</tt>. However, the main limitation of these codes is that not all projections have one!</p>
+<p>There are several ways to discover the EPSG code for a particular projection:</p>
+<ul>
+    <li>As described above, use the web: <a href="http://www.spatialreference.org/">Online spatial reference search</a></li>
+    <li>Use R (<a href="http://cran.r-project.org/web/packages/rgdal/index.html">rgdal</a> package)
+<div class="geshifilter"><pre class="rsplus geshifilter-rsplus" style="font-family:monospace;"><span style="color: #228B22;"># R code: </span>
+<span style="color: #0000FF; font-weight: bold;">library</span><span style="color: #080;">(</span>rgdal<span style="color: #080;">)</span>
+EPSG <span style="color: #080;">&lt;-</span> make_EPSG<span style="color: #080;">(</span><span style="color: #080;">)</span>
+&nbsp;
+<span style="color: #228B22;"># As an example, search for Hawaii state projections</span>
+EPSG<span style="color: #080;">[</span><span style="color: #0000FF; font-weight: bold;">grep</span><span style="color: #080;">(</span><span style="color: #ff0000;">"hawaii"</span>, EPSG$note, ignore.<span style="">case</span><span style="color: #080;">=</span>TRUE<span style="color: #080;">)</span>, <span style="color: #ff0000;">1</span><span style="color: #080;">:</span><span style="color: #ff0000;">2</span><span style="color: #080;">]</span>
+&nbsp;
+<span style="color: #228B22;"># Get PROJ.4 information for a particular EPSG code</span>
+<span style="color: #0000FF; font-weight: bold;">subset</span><span style="color: #080;">(</span>EPSG, code<span style="color: #080;">==</span><span style="color: #ff0000;">2784</span><span style="color: #080;">)</span></pre></div></li>
+</ul>
+
+<h4>PROJ.4 strings</h4>
+<a href="http://trac.osgeo.org/proj/">PROJ.4</a> strings are a quirky looking but compact way to identify a spatial reference system. Using the PROJ.4 syntax, it is possible to specify the complete set of parameters that define a particular SRS. As an example, here is the PROJ.4 string for the same Hawaii SRS shown above:<p></p>
+<pre>+proj=tmerc +lat_0=21.16666666666667 +lon_0=-158 +k=0.99999 \
++x_0=500000 +y_0=0 +ellps=GRS80 +units=m +no_defs
+</pre>
+<p>There are several ways to discover the PROJ.4 string for a particular spatial reference system:</p>
+<ul>
+    <li>As described above, use the web: <a href="http://www.spatialreference.org/">Online spatial reference search</a></li>
+    <li>Given a particular EPSG code, you can extract the associated PROJ.4 string in R. This can be useful when the best you can do is find an EPSG code for a similar SRS, which you then need to tweak by modifying a part of the PROJ.4 string (see below for more details):
+<div class="geshifilter"><pre class="rsplus geshifilter-rsplus" style="font-family:monospace;"><span style="color: #228B22;"># R code: </span>
+<span style="color: #0000FF; font-weight: bold;">library</span><span style="color: #080;">(</span>rgdal<span style="color: #080;">)</span>
+EPSG <span style="color: #080;">&lt;-</span> make_EPSG<span style="color: #080;">(</span><span style="color: #080;">)</span>
+&nbsp;
+<span style="color: #228B22;"># As an example, search for Hawaii state projections</span>
+EPSG<span style="color: #080;">[</span><span style="color: #0000FF; font-weight: bold;">grep</span><span style="color: #080;">(</span><span style="color: #ff0000;">"hawaii"</span>, EPSG$note, ignore.<span style="">case</span><span style="color: #080;">=</span>TRUE<span style="color: #080;">)</span>, <span style="color: #ff0000;">1</span><span style="color: #080;">:</span><span style="color: #ff0000;">2</span><span style="color: #080;">]</span>
+&nbsp;
+<span style="color: #228B22;"># Get PROJ.4 information for a particular EPSG code</span>
+<span style="color: #0000FF; font-weight: bold;">subset</span><span style="color: #080;">(</span>EPSG, code<span style="color: #080;">==</span><span style="color: #ff0000;">2784</span><span style="color: #080;">)</span></pre></div></li>
+</ul>
+<p>For highly customized projections, it may be necessary to construct the PROJ.4 string manually, perhaps using information obtained from a metadata document. The PROJ.4 string is a sequence of parameters, each one beginning with a <tt>+</tt> symbol. The mandatory <tt>+proj</tt> parameter gives the general projection using a PROJ.4-specific name (note: for unprojected data, use <tt>+proj=latlon</tt>). If a standard ellipsoid (<tt>+ellps</tt>) is used, it can be given by name, as can the datum (<tt>+datum</tt>). There are several ways to obtain a listing of the accepted names for each of these parameters:
+</p><ul>
+    <li>Use the <tt>proj</tt> command line tool. When entered in a terminal window (OS X, Linux) or at the DOS Command Prompt (Windows) on a computer that has PROJ.4 installed, the three commands below will produce a list of all available named projections, ellipsoids, and datums, respectively:
+<pre>proj -lp
+proj -le
+proj -ld
+</pre></li>
+    <li>Alternatively, in R you can use the <a href="http://cran.r-project.org/web/packages/rgdal/index.html">rgdal</a> package to do the same thing:
+<div class="geshifilter"><pre class="rsplus geshifilter-rsplus" style="font-family:monospace;"><span style="color: #228B22;"># R code:</span>
+<span style="color: #0000FF; font-weight: bold;">library</span><span style="color: #080;">(</span>rgdal<span style="color: #080;">)</span>
+projInfo<span style="color: #080;">(</span><span style="color: #ff0000;">"proj"</span><span style="color: #080;">)</span>     <span style="color: #228B22;"># projections</span>
+projInfo<span style="color: #080;">(</span><span style="color: #ff0000;">"ellps"</span><span style="color: #080;">)</span>    <span style="color: #228B22;"># ellipsoids</span>
+projInfo<span style="color: #080;">(</span><span style="color: #ff0000;">"datum"</span><span style="color: #080;">)</span>    <span style="color: #228B22;"># datums</span></pre></div>
+</li></ul>
+<p>You will then need to add any additional parameters (and their values) required to define the specific projection. For many common projections, refer to this <a href="http://www.remotesensing.org/geotiff/proj_list/">online documentation of the relevant parameters</a>. More generally, the PROJ.4 string will be built from a small set of <a href="http://trac.osgeo.org/proj/wiki/GenParms">parameters common to most/all projections</a>. You can also find out if a given projection uses any non-standard PROJ.4 parameters by using the command line statement <tt>proj -l=&lt;name&gt;</tt>, where <tt>&lt;name&gt;</tt> is the PROJ.4 projection name. Of course, for all of these parameters, it will be up to you to specify the appropriate values!</p>
+
+<h4>Well-known text (WKT) format</h4>
+WKT formats tend to be the easiest to read and understand, and consequently this is the format that many software tools use when displaying the spatial reference system for a given dataset. Probably for the same reason, it is common exchange format bundled with spatial data files. For example, the .prj files associated with shapefiles produced by ArcGIS use an ESRI-flavored WKT format. Here is a WKT example:<p></p>
+<pre>PROJCS["NAD83(HARN) / Hawaii zone 3",
+    GEOGCS["NAD83(HARN)",
+        DATUM["NAD83_High_Accuracy_Regional_Network",
+            SPHEROID["GRS 1980",6378137,298.257222101,
+                AUTHORITY["EPSG","7019"]],
+            AUTHORITY["EPSG","6152"]],
+        PRIMEM["Greenwich",0,
+            AUTHORITY["EPSG","8901"]],
+        UNIT["degree",0.01745329251994328,
+            AUTHORITY["EPSG","9122"]],
+        AUTHORITY["EPSG","4152"]],
+    UNIT["metre",1,
+        AUTHORITY["EPSG","9001"]],
+    PROJECTION["Transverse_Mercator"],
+    PARAMETER["latitude_of_origin",21.16666666666667],
+    PARAMETER["central_meridian",-158],
+    PARAMETER["scale_factor",0.99999],
+    PARAMETER["false_easting",500000],
+    PARAMETER["false_northing",0],
+    AUTHORITY["EPSG","2784"],
+    AXIS["X",EAST],
+    AXIS["Y",NORTH]]
+</pre>
+<p>While you can glean much information when scanning it by eye, this verbose format is probably the <em>least</em> desirable to write down by hand or even copy-and-paste, so specifying the EPSG code or PROJ.4 string should be preferred in cases where one or both of those formats will do. Otherwise, the <a href="http://www.spatialreference.org/">Spatial Reference</a> site will again be your best bet, or possibly copy the .prj file from a shapefile that you know uses the SRS you desire.</p>
+
+<br>
+<h3>Learning More:</h3>
+<ul>
+    <li><a href="http://www.remotesensing.org/geotiff/proj_list/">List of common PROJ.4 projections and their options</a></li>
+    <li><a href="http://trac.osgeo.org/proj/wiki/GenParms">PROJ.4 wiki page</a> documenting the general PROJ.4 parameters available for defining (most) coordinate systems</li>
+    <li><a href="http://www.flexprojector.com/">Flex Projector</a>, a free, cross-platform Java application that provides a graphical interface for manipulating map projections. Designed primarily to enable users to create arbitrary new projections for custom map visualizations, this tool can be quite educational for those who simply want to get a sense of how and why projections differ.</li>
+</ul></div></div></div><section class="field field-name-taxonomy-vocabulary-7 field-type-taxonomy-term-reference field-label-above view-mode-full"><h2 class="field-label">scicomp:&nbsp;</h2><ul class="field-items"><li class="field-item even"><a href="https://www.nceas.ucsb.edu/category/scicomp/software/r">R</a></li><li class="field-item odd"><a href="https://www.nceas.ucsb.edu/category/scicomp/topic/spatial">Spatial</a></li></ul></section>  </div>
+
+  <ul class="links inline"><li class="print_html first last"><a href="https://www.nceas.ucsb.edu/print/676" title="Display a printer-friendly version of this page." class="print-page" rel="nofollow"><img class="print-icon print-icon-margin image-style-none" src="./map projections_files/print_icon.gif" alt="Printer-friendly version" title="Printer-friendly version">Printer-friendly version</a></li></ul>
+  
+</div>
+
+  </div>                </div>
+              
+              <!-- Feed icons (RSS, Atom icons etc -->
+              
+            </section> <!-- /main-content -->
+
+            
+          </div>
+        </div> <!-- /content-column -->
+
+        <div class="region region-sidebar-first sidebar"><div class="region-inner clearfix"><div id="block-views-sidebar-block-1" class="block block-views no-title odd first last block-count-5 block-region-sidebar-first block-sidebar-block-1"><div class="block-inner clearfix">  
+  
+  <div class="block-content content"><div class="view view-sidebar view-id-sidebar view-display-id-block_1 view-dom-id-e8b9c7cd86dabc28aec3b8b5af85d4ef">
+        
+  
+  
+      <div class="view-content">
+      <div class="item-list">    <ul>          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field views-field-field-sidelinks">        <div class="field-content"><a href="https://www.nceas.ucsb.edu/scicomp">Scientific Computing</a></div>  </div></li>
+          <li class="views-row views-row-2 views-row-even views-row-last">  
+  <div class="views-field views-field-field-sidelinks">        <div class="field-content"><a href="https://www.nceas.ucsb.edu/scicomp/solutions">Coding Recipes</a></div>  </div></li>
+      </ul></div>    </div>
+  
+  
+  
+  
+  
+  
+</div></div>
+  </div></div></div></div>                
+
+      </div>
+    </div> <!-- /columns -->
+
+    
+    <!-- four-4x25 Gpanel -->
+    
+          <footer id="footer" role="contentinfo" class="inner-container">
+        <div id="footer-inner" class="clearfix">
+          <div class="region region-footer"><div class="region-inner clearfix"><nav id="block-menu-block-1" class="block block-menu-block odd first block-count-6 block-region-footer block-1" role="navigation"><div class="block-inner clearfix">  
+      <h2 class="block-title">About</h2>
+  
+  <div class="block-content content"><div class="menu-block-wrapper menu-block-1 menu-name-main-menu parent-mlid-7890 menu-level-1">
+  <ul class="menu clearfix"><li class="first leaf menu-mlid-9119 menu-depth-2 menu-item-9119"><a href="https://www.nceas.ucsb.edu/about">About Us</a></li><li class="leaf menu-mlid-7892 menu-depth-2 menu-item-7892"><a href="https://www.nceas.ucsb.edu/phone_list">Staff Directory</a></li><li class="leaf menu-mlid-7893 menu-depth-2 menu-item-7893"><a href="https://www.nceas.ucsb.edu/employment">Employment</a></li><li class="last leaf menu-mlid-7780 menu-depth-2 menu-item-7780"><a href="https://www.nceas.ucsb.edu/visitors">For Visitors &amp; Residents</a></li></ul></div>
+</div>
+  </div></nav><nav id="block-menu-block-2" class="block block-menu-block even block-count-7 block-region-footer block-2" role="navigation"><div class="block-inner clearfix">  
+      <h2 class="block-title">Research</h2>
+  
+  <div class="block-content content"><div class="menu-block-wrapper menu-block-2 menu-name-main-menu parent-mlid-39 menu-level-1">
+  <ul class="menu clearfix"><li class="first leaf menu-mlid-40 menu-depth-2 menu-item-40"><a href="https://www.nceas.ucsb.edu/science">Research at NCEAS</a></li><li class="leaf menu-mlid-1498 menu-depth-2 menu-item-1498"><a href="https://www.nceas.ucsb.edu/featured">Current Projects</a></li><li class="last leaf menu-mlid-103 menu-depth-2 menu-item-103"><a href="https://www.nceas.ucsb.edu/products">Publications &amp; Products</a></li></ul></div>
+</div>
+  </div></nav><nav id="block-menu-block-4" class="block block-menu-block odd block-count-8 block-region-footer block-4" role="navigation"><div class="block-inner clearfix">  
+      <h2 class="block-title">Data Science</h2>
+  
+  <div class="block-content content"><div class="menu-block-wrapper menu-block-4 menu-name-main-menu parent-mlid-7919 menu-level-1">
+  <ul class="menu clearfix"><li class="first leaf menu-mlid-7913 menu-depth-2 menu-item-7913"><a href="https://www.nceas.ucsb.edu/ecoinfo">Overview</a></li><li class="leaf menu-mlid-7914 menu-depth-2 menu-item-7914"><a href="https://www.nceas.ucsb.edu/ecoinfo/tools">Software and Tools</a></li><li class="leaf menu-mlid-7915 menu-depth-2 menu-item-7915"><a href="https://www.nceas.ucsb.edu/ecoinfo/projects">Research Projects</a></li><li class="leaf menu-mlid-7917 menu-depth-2 menu-item-7917"><a href="https://www.nceas.ucsb.edu/computing">Computing Support</a></li><li class="last leaf menu-mlid-7918 menu-depth-2 menu-item-7918"><a href="https://data.nceas.ucsb.edu/">Data Repository</a></li></ul></div>
+</div>
+  </div></nav><nav id="block-menu-block-3" class="block block-menu-block even block-count-9 block-region-footer block-3" role="navigation"><div class="block-inner clearfix">  
+      <h2 class="block-title">Opportunities</h2>
+  
+  <div class="block-content content"><div class="menu-block-wrapper menu-block-3 menu-name-main-menu parent-mlid-42 menu-level-1">
+  <ul class="menu clearfix"><li class="first leaf menu-mlid-107 menu-depth-2 menu-item-107"><a href="https://www.nceas.ucsb.edu/training">Trainings</a></li><li class="leaf menu-mlid-9121 menu-depth-2 menu-item-9121"><a href="https://www.nceas.ucsb.edu/calls-for-proposals">Calls for Proposals</a></li><li class="leaf menu-mlid-8938 menu-depth-2 menu-item-8938"><a href="https://www.nceas.ucsb.edu/fellowships">Fellowship Programs</a></li><li class="leaf menu-mlid-9122 menu-depth-2 menu-item-9122"><a href="https://www.nceas.ucsb.edu/partner-with-us">Partner with us</a></li><li class="last leaf menu-mlid-7781 menu-depth-2 menu-item-7781"><a href="https://www.nceas.ucsb.edu/roundtables">Roundtables</a></li></ul></div>
+</div>
+  </div></nav><nav id="block-menu-block-5" class="block block-menu-block odd block-count-10 block-region-footer block-5" role="navigation"><div class="block-inner clearfix">  
+      <h2 class="block-title">News</h2>
+  
+  <div class="block-content content"><div class="menu-block-wrapper menu-block-5 menu-name-main-menu parent-mlid-808 menu-level-1">
+  <ul class="menu clearfix"><li class="first leaf menu-mlid-810 menu-depth-2 menu-item-810"><a href="https://www.nceas.ucsb.edu/news" title="">News &amp; Announcements</a></li><li class="last leaf menu-mlid-999 menu-depth-2 menu-item-999"><a href="https://www.nceas.ucsb.edu/activities" title="">Upcoming Research Activities</a></li></ul></div>
+</div>
+  </div></nav><nav id="block-menu-block-6" class="block block-menu-block even block-count-11 block-region-footer block-6" role="navigation"><div class="block-inner clearfix">  
+      <h2 class="block-title">Connect</h2>
+  
+  <div class="block-content content"><div class="menu-block-wrapper menu-block-6 menu-name-main-menu parent-mlid-70 menu-level-1">
+  <ul class="menu clearfix"><li class="first leaf menu-mlid-7895 menu-depth-2 menu-item-7895"><a href="https://www.nceas.ucsb.edu/give">Give to NCEAS</a></li><li class="leaf menu-mlid-113 menu-depth-2 menu-item-113"><a href="https://www.nceas.ucsb.edu/contact">Contact Us</a></li><li class="last leaf menu-mlid-786 menu-depth-2 menu-item-786"><a href="http://ucsb.us12.list-manage1.com/subscribe?u=d7494403ed9d8c97a5479f0d4&amp;id=bbef3949b4">Subscribe </a></li></ul></div>
+</div>
+  </div></nav><div id="block-block-1" class="block block-block no-title odd last block-count-12 block-region-footer block-1"><div class="block-inner clearfix">  
+  
+  <div class="block-content content"><div class="footer">
+	<a href="http://www.nceas.ucsb.edu/" target="_self"><img alt="" src="./map projections_files/NCEAS-stacked-logo-200px.png" style="height: 60px; float: left; width: 66px;"></a><br>
+	<a href="http://www.ucsb.edu/" target="_blank"><img src="./map projections_files/UC_Santa_Barbara_Wordmark_Navy_RGB.png" style="float: left; height: 15px; margin-left: 6px; margin-right: 6px; width: 200px;" target="_blank"> </a>
+	<p>&nbsp;</p>
+	<p>National Center for Ecological Analysis and Synthesis<br>
+		735 State Street, Suite 300, Santa Barbara, CA 93101<br>
+		Copyright © 2013 The Regents of the University of California, All Rights Reserved<br>
+		UC Santa Barbara, Santa Barbara CA 93106 | 805-893-8000<br>
+		<a href="https://www.ucsb.edu/terms-of-use" target="_blank">Terms of Use</a> | <a href="http://www.nceas.ucsb.edu/accessibility" title="NCEAS is committed to the accessibility of its products for all users">Accessibility</a> | <a href="http://www.policy.ucsb.edu/privacy-notification/" target="_blank">UCSB Privacy Policy</a> |&nbsp;<a title="E-mail the NCEAS webmaster" href="mailto:webmaster@nceas.ucsb.edu" class="spamspan">Contact</a></p>
+</div>
+<p>&nbsp;</p>
+</div>
+  </div></div></div></div>        </div>
+      </footer>
+    
+  </div> <!-- /page -->
+</div> <!-- /texture overlay -->
+  
+
+<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none;"></ul><div id="lightboxOverlay" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="https://www.nceas.ucsb.edu/scicomp/recipes/projections"><div class="lb-nav"><a class="lb-prev" href="https://www.nceas.ucsb.edu/scicomp/recipes/projections"></a><a class="lb-next" href="https://www.nceas.ucsb.edu/scicomp/recipes/projections"></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div><div id="haloword-lookup" class="ui-widget-content ui-draggable"><div id="haloword-title"><span id="haloword-word"></span><a herf="#" id="haloword-pron" class="haloword-button" title="发音"></a><audio id="haloword-audio"></audio><div id="haloword-control-container"><a herf="#" id="haloword-add" class="haloword-button" title="加入单词表"></a><a herf="#" id="haloword-remove" class="haloword-button" title="移出单词表"></a><a href="https://www.nceas.ucsb.edu/scicomp/recipes/projections#" id="haloword-open" class="haloword-button" title="查看单词详细释义" target="_blank"></a><a herf="#" id="haloword-close" class="haloword-button" title="关闭查询窗"></a></div><br style="clear: both;"></div><div id="haloword-content"></div></div><div id="cli_dialog_div"></div><div id="ydNoteWebClipper" style="position: fixed; right: 10px; top: 10px; padding-bottom: 10px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: 100%; font-family: arial, sans-serif; color: rgb(51, 51, 51); z-index: 2147483647 !important; display: none; width: 300px;"><div id="ydNoteWebClipper-New" class="ydnwc-dialog" style="width: 292px;"><div id="ydNoteWebClipper_view" style="height: 220px; width: 290px;"></div><div id="ydNoteWebClipper_loadview" style="position: absolute; height: 258px; background: rgb(255, 255, 255); top: 0px; left: 200px; display: none;"><img src="./map projections_files/loading.gif" style="position: absolute;top: 20%;margin-left: -65px;"></div></div><div style="display: none;"><form id="_YNoteContentForm" name="_YNoteContentForm" action="https://note.youdao.com/yws/mapi/wcp?method=putfile&amp;keyfrom=wcp" target="2ContentFrame" enctype="multipart/form-data" method="POST"><input type="text" name="tl" id="_YNoteContentFormtitle" value=""><input type="text" name="p" id="_YNoteContentFormpath" value=""><textarea name="bs" id="_YNoteContentFormcontent"></textarea><input type="text" name="src" id="_YNoteContentFormsource" value=""><input type="text" name="type" id="_YNoteContentFormtype" value=""><input type="text" name="userid" id="_YNoteContentFormuserid" value=""><input type="text" name="len" id="_YNoteContentFormlen" value=""><input type="text" name="cs" id="_YNoteContentFormcharset" value=""><input type="text" name="e" id="_YNoteContentFormsign" value=""></form></div></div></body></html>

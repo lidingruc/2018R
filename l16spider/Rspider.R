@@ -19,7 +19,7 @@
 #示例1.1：httr抓取网页
 #########################
 # 抓取小猪短租上面的信息，可以先在浏览器中打开下面的网址，看看相关页面！
-setwd("/Users/liding/E/Bdata/liding17/2017R/l145spider")
+setwd("/Users/liding/E/Bdata/liding17/2018R/l16spider")
 library(httr)
 library(xml2)
 url<-"http://bj.xiaozhu.com/fangzi/5098280314.html"

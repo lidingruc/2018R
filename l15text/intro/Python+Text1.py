@@ -21,7 +21,7 @@ news = '习近平抵达捷克进行国事访问'
 
 # In[2]:
 
-print news
+print(news)
 
 
 # In[3]:
@@ -31,7 +31,7 @@ texts = ['云南去年5800余名公职人员受处分','国务院成立山东疫
 
 # In[4]:
 
-print texts[1]
+print(texts[1])
 
 
 # ## 2-Text Detection
@@ -63,12 +63,12 @@ len("Hello Tsinghua!") #length of the string
 
 # In[14]:
 
-print "1\t2" #\t is tab
+print("1\t2") #\t is tab
 
 
 # In[15]:
 
-print "云南去年5800余名公职人员受处分\n国务院成立山东疫苗案调查组\n东北三省取消玉米临储" #end-line character
+print("云南去年5800余名公职人员受处分\n国务院成立山东疫苗案调查组\n东北三省取消玉米临储") #end-line character
 
 
 # ## 3-Text Computation
@@ -85,12 +85,12 @@ print "云南去年5800余名公职人员受处分\n国务院成立山东疫苗�
 
 # In[18]:
 
-print "alice".upper()
+print ("alice".upper())
 
 
 # In[19]:
 
-print "ALICE".lower()
+print ("ALICE".lower())
 
 
 # In[20]:
@@ -110,8 +110,8 @@ print "ALICE".lower()
 
 # In[23]:
 
-print "   White Rabbit   ".strip()
-print "\t White Rabbit  \t ".strip('\t ')
+print ("   White Rabbit   ".strip())
+print ("\t White Rabbit  \t ".strip('\t '))
 
 
 # In[24]:
@@ -126,8 +126,8 @@ print "\t White Rabbit  \t ".strip('\t ')
 
 # In[26]:
 
-print "a" in "Rabbit" #returns a boolean 
-print "doors" in "There were doors all round the hall" #returns a boolean
+print ("a" in "Rabbit")#returns a boolean 
+print ("doors" in "There were doors all round the hall") #returns a boolean
 
 
 # ## 4-Text Data
@@ -139,7 +139,7 @@ id_number={'张三':'54201','李四':'87302','王五':'32201'}
 
 # In[28]:
 
-print id_number['李四']
+print (id_number['李四'])
 
 
 # In[29]:
@@ -171,7 +171,7 @@ doc_set = [doc_a, doc_b, doc_c, doc_d, doc_e]
 
 # In[32]:
 
-print doc_set
+print (doc_set)
 
 
 # ## 5-Text Reading

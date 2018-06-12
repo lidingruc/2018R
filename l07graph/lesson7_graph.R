@@ -309,6 +309,14 @@ ggplot(data.melt,aes(x=Year,y=value,
             position=position_fill())+
   scale_fill_brewer()
 
+ggplot(data.melt,aes(x=Year,y=value,
+                     group=variable,color=variable))+
+  geom_line() +
+  geom_point() +
+  theme(text = element_text(family = "STKaiti")) +
+  labs(color="软件类型",x="年份",y="影响力")
+
+
 #################################
 # 绘制两个均值的示例
 # 类似的例子

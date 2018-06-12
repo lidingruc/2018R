@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>北京空气质量指数AQI_PM2.5月统计历史数据_中国空气质量在线监测分析平台历史数据</title>
+<meta name="keywords" content="北京PM2.5历史数据,北京PM2.5历史数据查询,北京空气质量指数历史数据查询,中国空气质量在线监测分析平台">
+<meta name="description" content="北京PM2.5月历史数据,北京PM2.5月历史数据查询,北京空气质量指数历史数据查询,中国空气质量在线监测分析平台历史数据">
+<meta http-equiv="refresh" content="300">
+<link rel="shortcut icon" href="../resource/icons/logo.png">
+<link rel="stylesheet" type="text/css" href="resource/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="resource/css/style.css?v=1.1" type="text/css">
+</head>
+<body>
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" >
+  <div class="container" style="padding:0px 0px 0 10px">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/historydata/" style="padding:0px"><img src="resource/img/logo.png" width="148px" height="50px" /></a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/historydata/" >空气质量</a></li>
+        <li><a href="weather.php" >历史天气</a></li>
+        <li><a href="../" target="_blank">分析平台</a></li>
+        <li><a href="https://map.zq12369.com" target="_blank">风场地图</a></li>
+<!--         <li><a href="http://blog.aqistudy.cn" target="_blank">官方博客</a></li> -->
+        <!-- <li><a href="http://bbs.aqistudy.cn" target="_blank">交流论坛</a></li> -->
+        <li><a href="weixin.php" >微信平台</a></li>
+        <li><a href="sponsor.php">友情赞助</a></li>
+        <li><a href="about.php">关于</a></li>
+      </ul>
+
+      <form class="navbar-form navbar-right" role="search" action="monthdata.php">
+         <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入要查询的城市名" name='city' value="北京">
+         </div>
+         <button type="submit" class="btn btn-default">提交</button>
+      </form>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+  <div id="myCarousel" class="carousel slide hidden-xs" data-ride="carousel">
+     <!-- 轮播（Carousel）指标 -->
+     <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+     </ol>
+     <!-- 轮播（Carousel）项目 -->
+     <div class="carousel-inner">
+        <div class="item" style="height:300px;">
+           <img src="resource/img/air2.jpg" alt="Second slide" width="100%">
+           <div class="carousel-caption biaoyu">科学发展，生态优先，环境改善，环保先行！</div>
+        </div>
+        <div class="item " style="height:300px;">
+           <img src="resource/img/air1.jpg" alt="First slide" width="100%">
+           <div class="carousel-caption biaoyu">同呼吸、共担当、齐行动，改善空气质量，从我做起！</div>
+        </div>
+        <div class="item active" style="height:300px;">
+           <img src="resource/img/air3.jpg" alt="Third slide" width="100%">
+           <div class="carousel-caption biaoyu">生命来源自然，健康来自环保！</div>
+        </div>
+     </div>
+     <!-- 轮播（Carousel）导航 -->
+     <a class="carousel-control left" href="#myCarousel"
+        data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+     <a class="carousel-control right" href="#myCarousel"
+        data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+  </div>
+<h2 id="title">北京空气质量指数月统计历史数据</h2>
+<div class="container">
+  <div class="row">
+  <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12" style="padding:0 5px">
+  <table width="100%" class="table table-condensed table-bordered table-striped table-hover table-responsive" style="margin-bottom:5px">
+      <tr height=38px>
+        <th align="center" style="background:#d9edf7">月份</th>
+        <th align="center" style="background:#d9edf7">AQI</th>
+        <th align="center" style="background:#d9edf7" class="hidden-xs">范围</th>
+        <th align="center" style="background:#d9edf7" width="80px" >质量等级</th>
+        <th align="center" style="background:#d9edf7">PM2.5</th>
+        <th align="center" style="background:#d9edf7">PM10</th>
+        <th align="center" style="background:#d9edf7" class="hidden-xs">SO2</th>
+        <th align="center" style="background:#d9edf7" class="hidden-xs">CO</th>
+        <th align="center" style="background:#d9edf7" class="hidden-xs">NO2</th>
+        <th align="center" style="background:#d9edf7" class="hidden-xs">O3</th>
+      </tr>
+  </table>
+  <span style="color:gray;font-size:12px">数值单位：μg/m3(CO为mg/m3)<br/></span>
+  <span style="color:gray;font-size:12px">每月AQI数据和PM2.5浓度数据是本站根据当天环保总站每小时数据计算求平均的结果，存在丢数据场景，仅供参考。如果数据无法正常显示，请尝试使用<a href='https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=chrome&rsv_pq=b4d98b8400009b26&rsv_t=f897l1tNmVRDDbamciZKvfBjKCHNJJYE3cj9vlWycNYtZeFznk5l8XCwW%2FM&rqlang=cn&rsv_enter=1&rsv_sug3=2&rsv_sug1=2&rsv_sug7=100' target="_blank" />chrome</a>浏览器。</span>
+  <div class="panel panel-info">
+	<div style="padding-right:20px;">
+	  <div id="container" style="min-width:200px;height:380px;"></div>
+	  <div id="containerlevel" style="min-width:200px;height:380px;"></div>
+	</div>
+  </div>
+  </div>
+  <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12" style="padding:0 5px" >
+      <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="text-align:center">北京月统计数据</h3>
+      </div>
+      <div >
+        <div id="piecontainer" style="height:200px;"></div>
+      </div>
+     </div>
+
+     <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title" style="text-align:center">北京其他月份历史数据</h3>
+        </div>
+        <div style="padding:10px 10px 10px 10px">
+           <ul class="unstyled1">
+             <li><a href="daydata.php?city=北京&month=201312">2013年12月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201401">2014年01月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201402">2014年02月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201403">2014年03月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201404">2014年04月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201405">2014年05月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201406">2014年06月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201407">2014年07月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201408">2014年08月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201409">2014年09月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201410">2014年10月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201411">2014年11月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201412">2014年12月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201501">2015年01月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201502">2015年02月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201503">2015年03月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201504">2015年04月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201505">2015年05月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201506">2015年06月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201507">2015年07月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201508">2015年08月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201509">2015年09月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201510">2015年10月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201511">2015年11月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201512">2015年12月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201601">2016年01月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201602">2016年02月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201603">2016年03月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201604">2016年04月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201605">2016年05月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201606">2016年06月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201607">2016年07月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201608">2016年08月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201609">2016年09月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201610">2016年10月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201611">2016年11月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201612">2016年12月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201701">2017年01月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201702">2017年02月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201703">2017年03月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201704">2017年04月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201705">2017年05月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201706">2017年06月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201707">2017年07月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201708">2017年08月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201709">2017年09月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201710">2017年10月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201711">2017年11月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201712">2017年12月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201801">2018年01月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201802">2018年02月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201803">2018年03月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201804">2018年04月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201805">2018年05月</a></li>
+                          <li><a href="daydata.php?city=北京&month=201806">2018年06月</a></li>
+                        </ul>
+        </div>
+     </div>
+
+     <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="text-align:center">全国主要城市历史数据</h3>
+      </div>
+      <div style="padding:10px 10px 0 10px">
+         <ul class="unstyled">
+            <li><a href='monthdata.php?city=北京'>北京</a></li>
+            <li><a href='monthdata.php?city=上海'>上海</a></li>
+            <li><a href='monthdata.php?city=天津'>天津</a></li>
+            <li><a href='monthdata.php?city=重庆'>重庆</a></li>
+            <li><a href='monthdata.php?city=杭州'>杭州</a></li>
+            <li><a href='monthdata.php?city=哈尔滨'>哈尔滨</a></li>
+            <li><a href='monthdata.php?city=长春'>长春</a></li>
+            <li><a href='monthdata.php?city=沈阳'>沈阳</a></li>
+            <li><a href='monthdata.php?city=石家庄'>石家庄</a></li>
+            <li><a href='monthdata.php?city=太原'>太原</a></li>
+            <li><a href='monthdata.php?city=西安'>西安</a></li>
+            <li><a href='monthdata.php?city=济南'>济南</a></li>
+            <li><a href='monthdata.php?city=乌鲁木齐'>乌鲁木齐</a></li>
+            <li><a href='monthdata.php?city=拉萨'>拉萨</a></li>
+            <li><a href='monthdata.php?city=西宁'>西宁</a></li>
+            <li><a href='monthdata.php?city=兰州'>兰州</a></li>
+            <li><a href='monthdata.php?city=银川'>银川</a></li>
+            <li><a href='monthdata.php?city=郑州'>郑州</a></li>
+            <li><a href='monthdata.php?city=南京'>南京</a></li>
+            <li><a href='monthdata.php?city=武汉'>武汉</a></li>
+            <li><a href='monthdata.php?city=合肥'>合肥</a></li>
+            <li><a href='monthdata.php?city=福州'>福州</a></li>
+            <li><a href='monthdata.php?city=南昌'>南昌</a></li>
+            <li><a href='monthdata.php?city=长沙'>长沙</a></li>
+            <li><a href='monthdata.php?city=贵阳'>贵阳</a></li>
+            <li><a href='monthdata.php?city=成都'>成都</a></li>
+            <li><a href='monthdata.php?city=广州'>广州</a></li>
+            <li><a href='monthdata.php?city=昆明'>昆明</a></li>
+            <li><a href='monthdata.php?city=南宁'>南宁</a></li>
+            <li><a href='monthdata.php?city=深圳'>深圳</a></li>
+        </ul>
+      </div>
+     </div>
+
+     <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="text-align:center">微信公众平台</h3>
+      </div>
+      <div style="padding:10px 10px 10px 10px">
+         <a href="weixin.php"><img src="https://www.zq12369.com/resource/img/health/weixin/zhenqiweixin.jpg" width="100%" alt="真气环保二维码"/></a>
+      </div>
+     </div>
+
+  </div>
+  </div>
+  
+<br/>
+<hr style="margin-bottom:5px"/>
+<div class="container" >
+	<div class="row link">
+	    <div class="col-sm-5" style="padding:0px">
+		版权所有 &copy; 2013-2018 <a href="#" style="color:#333">PM2.5科学实验专家小组</a> 技术支持: <a href="http://weibo.com/wangjiezju/" target="_blank" style="color:#333">王杰</a>
+		<script type="text/javascript">
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = 'https://w.cnzz.com/c.php?id=1254317176&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+    </script>
+		</div>
+		<div class="col-sm-7" style="text-align:right;padding:0px">
+		<a href="https://www.aqistudy.cn/" target="_blank">分析平台</a>|
+		<a href="https://www.aqistudy.cn/historydata/">历史数据</a>|
+		<a href="https://www.zq12369.com/" target="_blank">真气网</a>|
+    <a href="https://map.zq12369.com/" target="_blank">风场地图</a>|
+		<a href="weixin.php">微信平台</a>|
+		<a href="sponsor.php">友情赞助</a>|
+		<a href="about.php">关于平台</a>
+		</div>
+	</div>
+</div></div>
+<script type="text/javascript" src="resource/js/jquery.min.js?v=1.5"></script>
+<script type="text/javascript" src="resource/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="resource/highcharts/highcharts-more.js"></script>
+<script type="text/javascript">
+var city = '北京';
+$(function () {
+
+  loaddata();
+  Highcharts.setOptions({
+        global: {
+            useUTC: false
+        }
+     });
+});
+
+var alfa = 0.8;
+var valuePlotBaud = [{
+  from: 0,
+  to: 50,
+  color: 'rgba(0, 254, 3, ' + alfa + ')',
+  label: {
+    text: '优',
+    style: {
+      color: "#606060"
+    }
+  }
+}, {
+  from: 51,
+  to: 100,
+  color: 'rgba(254, 245, 0, ' + alfa + ')',
+  label: {
+    text: '良',
+    style: {
+      color: '#606060'
+    }
+  }
+}, {
+  from: 101,
+  to: 150,
+  color: 'rgba(254, 125, 0, ' + alfa + ')',
+  label: {
+    text: '轻度污染',
+    style: {
+      color: '#606060'
+    }
+  }
+}, {
+  from: 151,
+  to: 200,
+  color: 'rgba(255, 3, 3, ' + alfa + ')',
+  label: {
+    text: '中度污染',
+    style: {
+      color: '#606060'
+    }
+  }
+}, {
+  from: 201,
+  to: 300,
+  color: 'rgba(188, 3,205 , ' + alfa + ')',
+  label: {
+    text: '重度污染',
+    style: {
+      color: '#606060'
+    }
+  }
+}, {
+  from: 301,
+  to:600,
+  color: 'rgba(72, 0, 78, ' + alfa + ')',
+  label: {
+    text: '严重污染',
+    style: {
+      color: '#606060'
+    }
+  }
+}];
+
+function loaddata() {
+  var method = 'GETMONTHDATA';
+  var param = {};
+  param.city = city;
+  getServerData(method, param, function(obj) {
+    // console.log(obj);
+    obj = obj.data;
+    items = obj.items;
+    showTable(items);
+    var data = obj.datas;
+    var data_min = obj.datas_min;
+    var data_max = obj.datas_max;
+    var min = obj.min;
+    var avg = obj.avg;
+    var max = obj.max;
+    showHistoryChart(data, data_min, data_max, min, avg, max);
+    var datas1 = obj.datas1;
+    var datas2 = obj.datas2;
+    var datas3 = obj.datas3;
+    var datas4 = obj.datas4;
+    var datas5 = obj.datas5;
+    var datas6 = obj.datas6;
+    showLevel(datas1, datas2, datas3, datas4, datas5, datas6);
+    var level = obj.level;
+    showPieChart(level.level1, level.level2, level.level3, level.level4, level.level5, level.level6);
+  }, 6);
+}
+
+function showTable(items) {
+  items.forEach(function(item) {
+    // $('.table tbody').append(`
+    //   <tr>
+    //     <td align="center"><a href="daydata.php?city=${city}&month=${item.time_point}">${item.time_point}</a></td>
+    //     <td align="center">${item.aqi}</td>
+    //     <td align="center">${item.min_aqi}~${item.max_aqi}</td>
+    //     <td align="center"><span style="display:block;width:60px;text-align:center; ${getAQIStyle(item.aqi)}">${item.quality}</span></td>
+    //     <td align="center">${item.pm2_5}</td>
+    //     <td align="center">${item.pm10}</td>
+    //     <td align="center">${item.so2}</td>
+    //     <td align="center">${item.co}</td>
+    //     <td align="center">${item.no2}</td>
+    //     <td align="center">${item.o3}</td>
+    //   </tr>`);
+
+    $('.table tbody').append('\
+      <tr>\
+        <td align="center"><a href="daydata.php?city=' + city + '&month=' + item.time_point + '">' + item.time_point + '</a></td>\
+        <td align="center">' + item.aqi + '</td>\
+        <td align="center" class="hidden-xs">' + item.min_aqi + '~' + item.max_aqi + '</td>\
+        <td align="center"><span style="display:block;width:60px;text-align:center;' + getAQIStyle(item.aqi) + '">' + item.quality + '</span></td>\
+        <td align="center">' + item.pm2_5 + '</td>\
+        <td align="center">' + item.pm10 + '</td>\
+        <td align="center" class="hidden-xs">' + item.so2 + '</td>\
+        <td align="center" class="hidden-xs">' + item.co + '</td>\
+        <td align="center" class="hidden-xs">' + item.no2 + '</td>\
+        <td align="center" class="hidden-xs">' + item.o3 + '</td>\
+      </tr>'
+      );
+  });
+}
+
+function showHistoryChart(data, data_min, data_max, min, avg, max) {
+  $('#container').highcharts({
+  chart: {
+            zoomType: '',
+            spacingRight: 0
+        },
+        title: {
+            text: '北京空气质量指数（AQI）月变化趋势'
+        },
+        subtitle: {
+            text: '最小值：' + min + ' 平均值：' + avg + ' 最大值：' + max
+        },
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats:{
+            millisecond: '%H:%M:%S.%L',
+            second: '%H:%M:%S',
+            minute: '%H:%M',
+            hour: '%H:%M',
+            day: '%m-%d',
+            week: '%m-%d',
+            month: '%Y-%m',
+            year: '%Y'
+            }
+        },
+        yAxis: {
+            title: {
+                text: '空气质量指数(AQI)'
+            },
+            min:0,
+            plotBands:valuePlotBaud
+        },
+        tooltip: {
+          shared: true,
+            enabled: true,
+            useHTML: true,
+          formatter: function() {
+            tip = '' + Highcharts.dateFormat('%Y年%m月', this.x) +'<br/>'
+                 + "<table width='160px' class='table-condensed table-bordered table-striped' style='margin:0px'>"
+                  for (i=this.points.length-1;i>=0;i--)
+                  {
+                    color = this.points[i].series.color;
+                  name = this.points[i].series.name;
+                  y = this.points[i].y;
+                  level = this.points[i].point.level;
+                  tip = tip +  "<tr><td width='80px' style='color:" + color + "'>" + name +"</td><td align='right'><b>"+ y + "</b></td><td align='center' style='" + getAQIStyle(y) + "'>"+ level + "</td></tr>";
+                  }
+                  tip = tip + "</table>";
+                  return tip;
+
+            }
+        },
+        plotOptions:{
+          series:{
+            marker: {
+                  enabled: true
+              },
+            turboThreshold: 0
+          }
+        },
+        legend: {
+            enabled: true
+        },
+        credits : {
+            enabled:false
+        },
+        series: [{
+            name: '最大值',
+            type:'spline',
+            color: '#a94442',
+            data: data_max
+        },{
+            name: '平均值',
+            type:'spline',
+      color: '#31708f',
+            data: data
+        },{
+            name: '最小值',
+            type:'spline',
+            color: '#3c763d',
+            data: data_min
+        }]
+    });
+}
+
+function showLevel(datas1, datas2, datas3, datas4, datas5, datas6){
+  $('#containerlevel').highcharts({
+      chart: {
+      type: 'area',
+            zoomType: '',
+            spacingRight: 0
+        },
+        title: {
+            text: '北京空气质量指数（AQI）等级月变化趋势'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats:{
+            millisecond: '%H:%M:%S.%L',
+            second: '%H:%M:%S',
+            minute: '%H:%M',
+            hour: '%H:%M',
+            day: '%m-%d',
+            week: '%m-%d',
+            month: '%Y-%m',
+            year: '%Y'
+            }
+        },
+        yAxis: {
+            title: {
+                text: '空气质量等级'
+            }
+        },
+        tooltip: {
+          //pointFormat: '<div class="width:100px"><div class="float:left"><span style="color:{series.color}">{series.name}</span>:</div><div class="float:left;text-align:right;"> <b>{point.y:,.0f}</b>天 ({point.percentage:.1f}%)<br/></div></div>',
+            shared: true,
+            useHTML:true,
+          formatter: function() {
+
+                tip = '' + Highcharts.dateFormat('%Y年%m月', this.x) +'<br/>'
+                    + "<table width='160px' class='table-condensed table-bordered table-striped' style='margin:5px 0 0 0'>";
+                    for (i=this.points.length-1;i>=0;i--)
+                    {
+                      color = this.points[i].series.color;
+
+                    name = this.points[i].series.name;
+                    style = getAQIStyleByLevel(name);
+                    y = this.points[i].y;
+                    percentage =(this.points[i].percentage).toFixed(1);
+                    tip = tip +  "<tr><td width='80px' style='text-align:center;" + style + "'>" + name +"</td><td align='right'><b>"+ y + "</b>天</td><td align='right'>" + percentage + "%</td></tr>";
+                    }
+                    tip = tip + "</table>";
+                    return tip;
+
+            }
+        },
+        plotOptions:{
+          series:{
+            marker: {
+                  enabled: false
+              },
+            turboThreshold: 0
+          },
+          area: {
+                stacking: 'percent',
+                lineColor: '#ffffff',
+                lineWidth: 1,
+                marker: {
+                    lineWidth: 1,
+                    lineColor: '#ffffff'
+                }
+            }
+        },
+        legend: {
+            enabled: true
+        },
+        credits : {
+            enabled:false
+        },
+        series: [{
+            name: '严重污染',
+            color: '#9c0a4e',
+            data: datas6
+        },{
+            name: '重度污染',
+            color: '#d20040',
+            data: datas5
+        },{
+            name: '中度污染',
+            color: '#ff401a',
+            data: datas4
+        },{
+            name: '轻度污染',
+            color: '#fa0',
+            data: datas3
+        },{
+            name: '良',
+            color: '#efdc31',
+            data: datas2
+        },{
+            name: '优',
+            color: '#43ce17',
+            data: datas1
+        }]
+    });
+}
+
+function showPieChart(level1, level2, level3, level4, level5, level6) {
+    var ratioArray = [];
+    if(level1>0)
+      {
+        ratioArray.push({
+          name:'优',
+          color:'#43ce17',
+          y:level1
+        });
+      }
+      if(level2>0)
+      {
+        ratioArray.push({
+          name:'良',
+          color:'#efdc31',
+          y:level2
+        });
+      }
+      if(level3>0)
+      {
+        ratioArray.push({
+          name:'轻度污染',
+          color:'#fa0',
+          y:level3
+        });
+      }
+      if(level4>0)
+      {
+        ratioArray.push({
+          name:'中度污染',
+          color:'#ff401a',
+          y:level4
+        });
+      }
+      if(level5>0)
+      {
+        ratioArray.push({
+          name:'重度污染',
+          color:'#d20040',
+          y:level5
+        });
+      }
+      if(level6>0)
+      {
+        ratioArray.push({
+          name:'严重污染',
+          color:'#9c0a4e',
+          y:level6
+        });
+      }
+
+    $('#piecontainer').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.y}</b>月({point.percentage:.1f}%)'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>'
+                },
+                events: {
+                click: function(e) {
+
+                }
+            }
+            }
+        },
+        legend: {
+                enabled: true
+            },
+        credits: {
+                enabled:false
+         },
+        series: [{
+            type: 'pie',
+            name: '月数',
+            data: ratioArray
+        }]
+      });
+}
+
+
+function getAQIStyle(aqi)
+{
+   if(aqi<=0)
+   {
+     style = "background-color:#6E6E6E;color:black;";
+   }
+   else if(aqi<=50)
+   {
+     style = "background-color:#43ce17;color:black;";
+   }
+   else if(aqi<=100)
+   {
+    style = "background-color:#efdc31;color:black;";
+   }
+   else if(aqi<=150)
+   {
+    style = "background-color:#fa0;color:black;";
+   }
+   else if(aqi<=200)
+   {
+    style = "background-color:#ff401a;color:white;";
+   }
+   else if(aqi<=300)
+   {
+    style = "background-color:#d20040;color:white;";
+   }
+   else
+   {
+    style = "background-color:#9c0a4e;color:white;";
+   }
+   return style;
+}
+
+function getAQIStyleByLevel(level)
+{
+   if(level=="无")
+   {
+     style = 'background-color:#6E6E6E;color:black;';
+   }
+   else if(level=="优")
+   {
+     style = 'background-color:#43ce17;color:black;';
+   }
+   else if(level=="良")
+   {
+    style = 'background-color:#efdc31;color:black;';
+   }
+   else if(level=="轻度污染")
+   {
+    style = 'background-color:#fa0;color:black;';
+   }
+   else if(level=="中度污染")
+   {
+    style = 'background-color:#ff401a;color:white;';
+   }
+   else if(level=="重度污染")
+   {
+    style = 'background-color:#d20040;color:white;';
+   }
+   else
+   {
+    style = 'background-color:#9c0a4e;color:white;';
+   }
+   return style;
+}
+</script>
+</body>
+</html>

@@ -7,6 +7,11 @@
 
 #不管是用ggplot2还是plot函数，最好不直接作图于绘图窗口
 #太慢
+# 用shp文件作图
+###地图下载常用的网站：
+#http://www.diva-gis.org/gdata
+#http://www.naturalearthdata.com/
+#https://www.zhihu.com/question/19592414
 
 #加载一些必要的包
 #地图处理和制作
@@ -51,6 +56,7 @@ sh<-rgdal::readOGR("BASIC/省会城市.shp")
 
 #合并地理单元数量
 china_map<- bind(mland, tw, mc,hk)
+
 
 #可以写出合并后的结果，中文字符编码问题，以后解决
 #如果解决好，以后不用读入多个地图

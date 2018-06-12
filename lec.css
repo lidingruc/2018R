@@ -38,6 +38,12 @@ pre {
   margin-bottom: 0px;
 }
 
+#myImageP95 img {
+  width: 95%;
+  height: 95%;
+}
+
+
 #myImageP90 img {
   width: 90%;
   height: 90%;
