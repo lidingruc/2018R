@@ -33,14 +33,15 @@ str(html)
 
 
 # content提取返回对象中的网页内容
-doc<-content(html,"raw", encoding = "utf-8") # raw二进制码
+doc<-content(html,"raw", encoding = "utf-8") # raw十六进制码
 
 doc<-content(html,"text")  # text 文本
 cat(doc,file="xiaozhu.html") # 可以列印出去
 
 doc<-content(html,"parsed") # parsed 解析
 class(doc)
-xml_find_all(doc,"//h4") #xml2函数提取标题4
+xml_find_all(doc,"//h4")[1]
+xml_find_all(doc,"//div[@class='pho_info']/h4") #xml2函数提取标题4
 
 
 ##########################
@@ -163,6 +164,7 @@ uid <- hh
 thisurl <- paste("http://friend.renren.com/GetFriendList.do?curpage=0&id=", uid, sep="")
 response <- getURL(thisurl, curl=cH, .encoding="gbk")
 
+cat(response,file="a.txt")
 # write(response , "temp.txt") # 调试时，可以写出去看源码（通常自己编写时需要分析html源码）
 
 doc <- XML::htmlParse(response)
@@ -219,6 +221,7 @@ stopifnot(Sys.which("phantomjs") != "")
 library("rdom") # 这个包封装了phantomjs
 library(XML)
 library(stringi)
+library(tidyverse)
 # 北京市空气质量
 URL <- URL%>% xml2::url_escape(reserved ="][!$&'()*+,;=:/?@#") 
 

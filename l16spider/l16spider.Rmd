@@ -1,7 +1,7 @@
 ---
 title: "基于R的网络爬虫"
 author: "李丁"
-date: "2017年12月20日"
+date: "2018年6月12日"
 output:
   ioslides_presentation:
     highlight: pygments
@@ -426,6 +426,7 @@ NETWORK + XHR
       + 更新、复杂化爬虫设定
       + 更深入的研究真实网址
       + 进行浏览器模拟（慢，但是人能看到的也能爬到）
+
 ## python 爬虫
 
 - 关键在于了解python的基本工作环境

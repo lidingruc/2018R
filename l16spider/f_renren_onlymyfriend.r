@@ -2,7 +2,7 @@
 
 # 只看我的好友
 
-f_renren_onlymyfriend <- function(name="******", pwd="******"){
+f_renren_onlymyfriend <- function(name="***", pwd="****"){
 
 library(RCurl)
 library(rjson)

@@ -1,0 +1,1270 @@
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<!--
+
+
+
+
+
+-->
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta charset="utf-8" />
+
+<meta name="Description" content="人人网 校内是一个真实的社交网络，联络你和你周围的朋友。 加入人人网校内你可以:联络朋友，了解他们的最新动态；和朋友分享相片、音乐和电影；找到老同学，结识新朋友；用照片和日志记录生活,展示自我。" />
+<meta name="Keywords" content="Xiaonei,Renren,校内,大学,同学,同事,白领,个人主页,博客,相册,群组,社区,交友,聊天,音乐,视频,校园,人人,人人网" />
+
+
+
+
+
+<link rel="shortcut icon" type="image/x-icon" href="http://a.xnimg.cn/favicon-rr.ico?ver=3" />
+<link rel="apple-touch-icon" href="http://a.xnimg.cn/wap/apple_icon_.png" />
+
+
+<link href="http://s.xnimg.cn/a72965/n/core/global2-all-min.css" rel="stylesheet" />
+
+
+<script>
+
+
+XN = {get_check:'767945254',get_check_x:'f986e880',env:{domain:'renren.com',shortSiteName:'人人',siteName:'人人网'}};
+photoSeedSrc= 'http://s.xnimg.cn/a70595/n/apps/photo/photoSeed.js';
+</script>
+
+<script src="http://s.xnimg.cn/a72842/n/core/base-all2.js"></script>
+
+
+<script type="text/javascript">
+	window.isOldVersion = false;
+</script>
+
+
+
+
+<script>
+
+
+
+	if (window.asyncHTMLManager) {
+		window.asyncHTMLManager.addEvent('load', function() {
+			load_jebe_ads(1, false, true);
+		});
+	} else {
+		load_jebe_ads(1);
+	}
+
+
+
+XN.getFileVersion([
+	'http://s.xnimg.cn/a19816/csspro/apps/profile.css',
+	'http://s.xnimg.cn/a54265/csspro/module/friendSelector.css',
+	'http://s.xnimg.cn/a16298/csspro/module/status-pop.css',
+	'http://s.xnimg.cn/a58689/csspro/module/school-selector.css',
+	'http://s.xnimg.cn/a64379/csspro/module/minieditor.css',
+	'http://s.xnimg.cn/a20457/jspro/xn.app.recommendFriend.js',
+	'http://s.xnimg.cn/a63482/jspro/xn.app.status.js',
+	'http://s.xnimg.cn/a57901/jspro/xn.app.share.js',
+	'http://s.xnimg.cn/a64158/jspro/xn.app.ilike.js',
+	'http://s.xnimg.cn/a58863/jspro/xn.ui.pager.js',
+	'http://s.xnimg.cn/a32035/jspro/xn.ui.multiFriendSelectorBox.js',
+	'http://s.xnimg.cn/a57199/jspro/xn.app.friend.group.js',
+	'http://s.xnimg.cn/a59856/jspro/xn.app.addFriend.js',
+	'http://s.xnimg.cn/a5881/jspro/xn.ui.multiFriendSelectorBox.forGuide.js',
+	'http://s.xnimg.cn/a68889/jspro/lib/mediaplayer.js',
+	'http://s.xnimg.cn/a55198/jspro/xn.ui.schoolSelectors.js',
+	'http://s.xnimg.cn/a13200/jspro/album/ZeroClipboard.js',
+	'http://s.xnimg.cn/a66084/jspro/xn.ui.emoticons.js',
+	'http://s.xnimg.cn/a30963/n/apps/home/modules/drag-upload/drag-upload.js',
+	'http://a.xnimg.cn/swf/album/ZeroClipboard.swf?ver=$revxxx$',
+	'http://a.xnimg.cn/n/core/modules/flashUploader/flashUploader.js',
+	'http://s.xnimg.cn/a33832/n/core/modules/flashUploader/upload-pop-all-min.css',
+	'http://s.xnimg.cn/a52793/apps/wiki/css/wiki-card-all-min.css',
+	'http://s.xnimg.cn/a57926/apps/wiki/js/wiki_model.js',
+	'http://s.xnimg.cn/a52502/apps/wiki/js/wikicard-load.js',
+	'http://s.xnimg.cn/a66726/n/core/feed/video/video-show.js'
+]);
+
+XN.namespace( 'user' );
+XN.$extend(XN.user, {
+	'id':'498934189',
+	'ruid':'498934189',
+	'tinyPic':'http://hdn.xnimg.cn/photos/hdn321/20130118/1515/tiny_zRH4_29c800000096113e.jpg',
+	'name':"%E6%9D%8E%E5%A7%9D%E8%A8%80",
+	'pageVersion':6
+});
+
+
+
+XN.event.addEvent(window, 'load', function(){
+	var r = parseInt(Math.random()*150);
+	if (r == 5 && window.UGC) UGC.Network.ping.performance.start("100000","sns.home.performance");
+});
+
+XN.user.isVip = false;
+XN.user.hideAds = false;
+
+object.predefine('xn/namecard', 'http://s.xnimg.cn/a63148/modules/namecard/js/namecard.js');
+object.predefine('xn/showShareFriend', 'http://s.xnimg.cn/a54260/n/core/modules/show-share-friend/showShareFriendsModule.js');
+object.predefine('xn/mentionMain', 'http://s.xnimg.cn/a64315/n/core/modules/mention/index.js');
+object.predefine('xn/site-nav/switch-account', 'http://s.xnimg.cn/a72319/n/core/modules/site-nav/switch-account.js');
+object.predefine('xn/site-nav/drop-menu-profile xn/site-nav/drop-menu-app', 'http://s.xnimg.cn/a58640/n/core/modules/site-nav/drop-menu.js');
+object.predefine('xn/site-nav/search', 'http://s.xnimg.cn/a55318/n/core/modules/site-nav/search.js');
+object.predefine('xn/ilike', 'http://s.xnimg.cn/a66921/n/core/modules/ilike/index.js');
+object.predefine('xn/group/vote', 'http://s.xnimg.cn/a49736/n/core/feed/group/group-vote.js');
+object.predefine('xn/lib/switch', 'http://s.xnimg.cn/a54374/n/core/lib/switch.js');
+object.predefine('xn/lib/scrollFix', 'http://s.xnimg.cn/a61394/n/core/lib/scrollFix.js');
+object.predefine('xnapp/birthday', 'http://s.xnimg.cn/a69743/apps/home/compatible/birthday.js');
+object.predefine('xn/apps/toolsBox', 'http://s.xnimg.cn/a53568/jspro/modules/tools-box/tools-box.js');
+object.predefine('xn/feed/videoShow','http://s.xnimg.cn/a66726/n/core/feed/video/video-show.js');
+</script>
+
+
+
+<link rel="stylesheet" type="text/css" href="http://s.xnimg.cn/a58765/jspro/privacy/style/hidden-all-min.css" media="all" />
+<script type="text/javascript" src="http://s.xnimg.cn/a68308/jspro/xn.app.privacy.hidden.js"></script>
+
+
+
+
+
+	
+
+		<link href="http://s.xnimg.cn/a11667/csspro/old/base.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="http://s.xnimg.cn/a11666/css/dialogpro.css" rel="stylesheet" type="text/css">
+		<link href="http://s.xnimg.cn/a17262/css/friend.css" rel="stylesheet" type="text/css">
+		<title>人人网 - 李姝言的好友</title>
+		<script type="text/javascript" src="http://s.xnimg.cn/a58863/jspro/xn.ui.pager.js"></script>
+		<script type="text/javascript" src="http://s.xnimg.cn/a7751/jspro/xn.app.friendFriendsSearch.js"></script>
+	</head>
+	<body id="friendpage">
+		<div id="container">
+			
+
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+		<div id="showNewNav" style="display:none"></div>
+		
+			<div id="dropmenuHolder" class="dropmenu-holder dropmenu-holder-new rr">
+				
+					<div id="accountDropDownMenu" class="menu-dropdown" style="display: none">
+						<div class="menu-dropdown-border">
+							<div class="account-menu">
+								<div class="accounts" id="otherAccount" style="display:none"></div>
+								
+								
+									<div class="optionmenu options">
+										<ul>
+											<li><a class="optionprivacy" href="http://safe.renren.com/">帐户设置</a></li>
+											<li><a href="http://i.renren.com/" class="optionvip">VIP中心</a></li>
+											<li><a href="http://pay.renren.com/" class="optionpay">充值中心</a></li>
+											
+											
+										</ul>
+									</div>
+								
+								<div class="optionsupport"><a href="http://help.renren.com/helpcenter">联系客服</a></div>
+								<a accesskey="0" href="http://www.renren.com/Logout.do?requesttoken=767945254" class="logout">退出</a>
+							</div>
+						</div>
+					</div>
+					
+					<div id="appsMenuPro" class="menu-dropdown" style="position: absolute; display: block; z-index: 10001; left: -9999px; top: -9999px; "></div>
+				
+				
+			</div>
+			
+			<div class="site-nav-wrapper">
+				<div id="navBar" class="site-nav fixed">
+					<div id="navigation-for-buddylist">
+						<div class="navigation-wrapper">
+							<div class="navigation navigation-new clearfix">
+
+
+								
+										<div id="logo2"><h1><a href="http://www.renren.com" title="人人网 renren.com - 人人网校内是一个真实的社交网络，联系朋友，一起玩游戏"><img alt="人人网 renren.com - 人人网校内是一个真实的社交网络，联系朋友，一起玩游戏" title="人人网 renren.com - 人人网校内是一个真实的社交网络，联系朋友，一起玩游戏" height="31" width="160" src="http://s.xnimg.cn/imgpro/v6/logo.png?f=trunk" /></a></h1></div>
+									
+								<div class="nav-body clearfix">
+									
+										<div class="nav-main">
+											
+											
+											
+											
+											<div class="menu">
+												<div class="menu-title">
+													
+														<a accesskey="1" href="http://www.renren.com/home?id=498934189"><span class="menu-title-text" stats="V6Hd_home">首页</span></a>
+													
+													
+												</div>
+											</div>
+											
+											<div class="menu">
+												<div id="profileMenuActive" class="menu-title"><a id="showProfileMenu" accesskey="2" href="http://www.renren.com/profile.do?id=498934189"><span stats="V6Hd_Profile" class="menu-title-text">个人主页</span><span class="nav-drop-menu-btn"></span></a></div>
+											</div>
+											
+											
+												<div class="menu">
+													
+															
+														
+													<div class="menu-title" id="friendMenuActive"><a id="showFriendMenu" accesskey="3" href="http://friend.renren.com/myfriendlistx.do"><span class="menu-title-text" stats="V6Hd_frd">好友</span></a></div>
+												</div>
+																		
+											
+											
+											
+												<div class="menu">
+													<div class="menu-title" id="showAppMenu">
+														<a href="http://app.renren.com?origin=40182" target="_blank"><span class="menu-title-text">应用</span><span class="nav-drop-menu-btn"></span>
+														</a>
+													</div>
+												</div>
+																						
+												 
+												
+											
+										</div>
+									
+									<div class="nav-other">
+										<div id="navMessage">
+											
+											<span class="remind" title = "提醒">
+											<a href="#nogo" onclick="return false;" hidefocus="true">&nbsp;</a>
+											</span>
+											<span class="apply" title = "朋友">
+											<a href="#nogo" onclick="return false;" hidefocus="true">&nbsp;</a>
+											</span>
+											<span class="notice" title = "通知">
+											<a href="#nogo" onclick="return false;" hidefocus="true">&nbsp;</a>
+											</span>
+											
+											</div>
+										
+												
+													<div id="navSearch_new" class="navSearch">
+														<input stats="Hd_sInput" type="text" maxlength="100" id="navSearchInput" class="navSearchInput" accesskey="/" name="q" class="input-text" defaultVal="找人、视频、日志、照片" value="找人、视频、日志、照片" tabindex="1" autocomplete="off"/>
+															<a href="javascript:;" id="searchBtnAC" class="searchBtnAC">搜索</a>
+													</div>
+												
+													<div class="menu account-action" id="accountMenu">
+													<div class="menu-title"><a href="#" onclick="return false;">帐号</a></div>
+												</div>
+											
+											
+									</div>
+								</div>
+							</div>
+							
+							<div class="nav-drop-menu-holder" id="navDropMenuHolder">
+								
+									
+									
+									<div class="nav-drop-menu nav-drop-menu-profile" id="navProfileDropMenu">
+										
+										<a class="nav-drop-menu-item" href="http://i.renren.com/store/view/home?wc=10000"><img src="http://a.xnimg.cn/imgpro/icons/Vipdraw.gif" class="icon" /> 装扮主页</a>
+										
+										<a class="nav-drop-menu-item" href="http://www.renren.com/profile.do?id=498934189&amp;v=info&amp;act=edit"><img src="http://a.xnimg.cn/imgpro/icons/account.gif" class="icon" /> 修改资料</a>
+										
+										
+											
+											
+											
+											
+											
+										
+									</div>
+									
+									
+										<div class="nav-app-drop-menu nav-app-drop-menu-a" id="appsMenuWrap"></div>
+									
+								
+							</div>
+									
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div id="container-for-buddylist">
+				
+		
+			
+	<div id="opi" class="page-wrapper clearfix">
+		<div class="full-page-holder">
+			<div class="full-page clearfix">
+				<div class="compatible">
+			<div id="content">
+				<div id="toc">
+					<p class="status">(<span class="count">89</span>个好友)</p>
+					<p class="crumbs">
+						<a href="http://www.renren.com/profile.do?id=498934189">李姝言</a>
+						<span class="pipe">/</span>好友
+					</p>
+				</div>
+				<div class="stdcontainer">
+					
+					
+					
+						<ol style="display: none;"  id="topPage_s" class="pagerpro"></ol>
+						<form class="searchbar" onsubmit="return false;">
+						<input type="text" name="keyword" id="search_friend_s" value="搜索TA的好友" class="search">
+						<input type="submit" value="搜索" class="submit">
+						</form>
+					
+						<div class="page" id="topPage">
+							
+
+
+
+		 
+	
+
+
+
+
+	
+	
+	
+	
+	
+	
+	<span class="this-page">1</span>
+	
+		<a title="跳到第2页" href="/GetFriendList.do?curpage=1&amp;id=498934189">2</a>
+	
+	
+		<a title="跳到第3页" href="/GetFriendList.do?curpage=2&amp;id=498934189">3</a>
+	
+	
+		<a title="跳到第4页" href="/GetFriendList.do?curpage=3&amp;id=498934189">4</a>
+	
+	
+		<a title="跳到第5页" href="/GetFriendList.do?curpage=4&amp;id=498934189">5</a>
+	
+	
+	
+		<a title="下一页" href="/GetFriendList.do?curpage=1&amp;id=498934189">下一页 &gt;</a>
+	
+
+
+
+						</div>
+					
+					
+							
+							<div id="list-results">
+								<ol id="friendListCon_s"></ol>
+								<ol id="friendListCon">
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=230760442"><img src="http://hdn.xnimg.cn/photos/hdn221/20140605/1705/tiny_KTxe_299a0000bb7d1986.jpg" alt="http://hdn.xnimg.cn/photos/hdn221/20140605/1705/tiny_KTxe_299a0000bb7d1986.jpg (王仲哲BePatient)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=230760442">王仲哲BePatient</a>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>山东大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=230760442" onclick="return doPoke(event,'230760442','王仲哲BePatient')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=230760442&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(230760442, '王仲哲BePatient');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=70744"><img src="http://hd37.xiaonei.com/photos/hd37/20081205/18/43/tiny_HlyE_152e198107.jpg" alt="http://hd37.xiaonei.com/photos/hd37/20081205/18/43/tiny_HlyE_152e198107.jpg (王目分)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=70744">王目分</a>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>山东大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=70744" onclick="return doPoke(event,'70744','王目分')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=70744&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(70744, '王目分');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=81717"><img src="http://hd18.xiaonei.com/photos/hd18/20081114/12/48/tiny_IgZu_2364i204096.jpg" alt="http://hd18.xiaonei.com/photos/hd18/20081114/12/48/tiny_IgZu_2364i204096.jpg (尹心)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=81717">尹心</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	
+			
+					
+							城市
+						
+				
+		
+</dt>
+		<dd>北京市</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=81717" onclick="return doPoke(event,'81717','尹心')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=81717&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(81717, '尹心');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=25604"><img src="http://hdn.xnimg.cn/photos/hdn521/20110503/1440/h_tiny_InWa_7855000222e22f74.jpg" alt="http://hdn.xnimg.cn/photos/hdn521/20110503/1440/h_tiny_InWa_7855000222e22f74.jpg (水川)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=25604">水川</a>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>中国传媒大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=25604" onclick="return doPoke(event,'25604','水川')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=25604&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(25604, '水川');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=32514"><img src="http://hdn.xnimg.cn/photos/hdn321/20110709/2135/tiny_oRJg_11913j019118.jpg" alt="http://hdn.xnimg.cn/photos/hdn321/20110709/2135/tiny_oRJg_11913j019118.jpg (唐思源)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=32514">唐思源</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>北京交通大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=32514" onclick="return doPoke(event,'32514','唐思源')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=32514&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(32514, '唐思源');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=51903"><img src="http://hd14.xiaonei.com/photos/hd14/20080315/08/11/tiny_828c150.jpg" alt="http://hd14.xiaonei.com/photos/hd14/20080315/08/11/tiny_828c150.jpg (汪世清)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=51903">汪世清</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>Pennsylvania State University Park</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=51903" onclick="return doPoke(event,'51903','汪世清')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=51903&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(51903, '汪世清');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=42360"><img src="http://head.xiaonei.com/photos/42/360/236109.jpg" alt="http://head.xiaonei.com/photos/42/360/236109.jpg (杨虎)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=42360">杨虎</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>北京林业大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=42360" onclick="return doPoke(event,'42360','杨虎')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=42360&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(42360, '杨虎');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=230849902"><img src="http://hdn.xnimg.cn/photos/hdn521/20141106/1450/h_tiny_y5O3_021c00002711195a.jpg" alt="http://hdn.xnimg.cn/photos/hdn521/20141106/1450/h_tiny_y5O3_021c00002711195a.jpg (刘丽恒)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=230849902">刘丽恒</a>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>西北大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=230849902" onclick="return doPoke(event,'230849902','刘丽恒')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=230849902&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(230849902, '刘丽恒');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=228487049"><img src="http://hdn.xnimg.cn/photos/hdn521/20110908/1650/tiny_Ghgy_2433o019117.jpg" alt="http://hdn.xnimg.cn/photos/hdn521/20110908/1650/tiny_Ghgy_2433o019117.jpg (杜衡)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=228487049">杜衡</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>西北大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=228487049" onclick="return doPoke(event,'228487049','杜衡')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=228487049&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(228487049, '杜衡');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=31132"><img src="http://hd34.xiaonei.com/photos/hd34/20080512/19/09/tiny_4755c107.jpg" alt="http://hd34.xiaonei.com/photos/hd34/20080512/19/09/tiny_4755c107.jpg (郭宏斌)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=31132">郭宏斌</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>中国农业大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=31132" onclick="return doPoke(event,'31132','郭宏斌')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=31132&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(31132, '郭宏斌');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=45148"><img src="http://hdn.xnimg.cn/photos/hdn321/20120228/0305/h_tiny_mu2t_7a8b000751202f75.jpg" alt="http://hdn.xnimg.cn/photos/hdn321/20120228/0305/h_tiny_mu2t_7a8b000751202f75.jpg (连建敏)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=45148">连建敏</a>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>吉林大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=45148" onclick="return doPoke(event,'45148','连建敏')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=45148&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(45148, '连建敏');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=21807"><img src="http://hdn.xnimg.cn/photos/hdn521/20150904/2350/tiny_tywp_74c8000434c8195a.jpg" alt="http://hdn.xnimg.cn/photos/hdn521/20150904/2350/tiny_tywp_74c8000434c8195a.jpg (徐飞鸿)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=21807">徐飞鸿</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>中国传媒大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=21807" onclick="return doPoke(event,'21807','徐飞鸿')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=21807&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(21807, '徐飞鸿');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=234084085"><img src="http://hdn.xnimg.cn/photos/hdn221/20170626/2355/tiny_QfXu_b09200008e1d195a.jpg" alt="http://hdn.xnimg.cn/photos/hdn221/20170626/2355/tiny_QfXu_b09200008e1d195a.jpg (王东飞_Wizard)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=234084085">王东飞_Wizard</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	
+			
+					
+							城市
+						
+				
+		
+</dt>
+		<dd>西安市</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=234084085" onclick="return doPoke(event,'234084085','王东飞_Wizard')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=234084085&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(234084085, '王东飞_Wizard');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=224576076"><img src="http://hdn.xnimg.cn/photos/hdn521/20150725/1105/h_tiny_BCye_7c490000b6c1195a.jpg" alt="http://hdn.xnimg.cn/photos/hdn521/20150725/1105/h_tiny_BCye_7c490000b6c1195a.jpg (王斌)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=224576076">王斌</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	
+			
+					
+							城市
+						
+				
+		
+</dt>
+		<dd>石家庄市</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=224576076" onclick="return doPoke(event,'224576076','王斌')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=224576076&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(224576076, '王斌');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=54001"><img src="http://hdn.xnimg.cn/photos/hdn121/20110126/1400/tiny_PsQU_65094f019116.jpg" alt="http://hdn.xnimg.cn/photos/hdn121/20110126/1400/tiny_PsQU_65094f019116.jpg (宁展飞)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=54001">宁展飞</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>中国农业大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=54001" onclick="return doPoke(event,'54001','宁展飞')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=54001&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(54001, '宁展飞');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=233827379"><img src="http://hdn.xnimg.cn/photos/hdn321/20120626/1555/tiny_8kfc_0cb6000086001376.jpg" alt="http://hdn.xnimg.cn/photos/hdn321/20120626/1555/tiny_8kfc_0cb6000086001376.jpg (李佳伟)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=233827379">李佳伟</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>咸阳师范学院</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=233827379" onclick="return doPoke(event,'233827379','李佳伟')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=233827379&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(233827379, '李佳伟');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=62548"><img src="http://hdn.xnimg.cn/photos/hdn121/20091022/1340/tiny_CH8w_4549f019117.jpg" alt="http://hdn.xnimg.cn/photos/hdn121/20091022/1340/tiny_CH8w_4549f019117.jpg (小玮)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=62548">小玮</a>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>北京航空航天大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=62548" onclick="return doPoke(event,'62548','小玮')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=62548&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(62548, '小玮');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=24724"><img src="http://hdn.xnimg.cn/photos/hdn321/20111218/2210/h_tiny_fO7a_7a910000de2a2f75.jpg" alt="http://hdn.xnimg.cn/photos/hdn321/20111218/2210/h_tiny_fO7a_7a910000de2a2f75.jpg (乔建英)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=24724">乔建英</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>北京大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=24724" onclick="return doPoke(event,'24724','乔建英')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=24724&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(24724, '乔建英');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=86755"><img src="http://hdn.xnimg.cn/photos/hdn321/20101211/0010/h_tiny_s60h_1ad50000af0b2f75.jpg" alt="http://hdn.xnimg.cn/photos/hdn321/20101211/0010/h_tiny_s60h_1ad50000af0b2f75.jpg (刘佩佩)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=86755">刘佩佩</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>厦门大学</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=86755" onclick="return doPoke(event,'86755','刘佩佩')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=86755&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(86755, '刘佩佩');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+										<li>
+											
+
+<p class="avatar"><a href="http://www.renren.com/profile.do?id=50719"><img src="http://head.xiaonei.com/photos/20070512/1505/tiny148181.jpg" alt="http://head.xiaonei.com/photos/20070512/1505/tiny148181.jpg (孙毅)" /></a></p>
+<div class="info">
+	<dl>
+		<dt>姓名:</dt>
+		<dd><a href="http://www.renren.com/profile.do?id=50719">孙毅</a><span class="rank"><a href="http://www.renren.com/info/Help.do#help1_15"><img src="http://s.xnimg.cn/img/star.gif" alt="星级" /></a></span>
+
+		
+	    
+
+</dd>
+		<!--先设定一个networkid_的变量为网络ID -->
+		
+		<dt>
+
+	学校
+</dt>
+		<dd>大连理工</dd>
+	</dl>
+</div>
+
+											<ul class="actions">
+												
+												
+
+<!--		<li><a href="http://www.renren.com/Poke.do?id=50719" onclick="return doPoke(event,'50719','孙毅')">打个招呼</a></li>  -->
+		<li><a href="http://msg.renren.com/SendMessage.do?id=50719&amp;from=李姝言的好友&amp;oriUrl=http%3A%2F%2Ffriend.renren.com%2FGetFriendList.do%3Fcurpage%3D0%26id%3D498934189">发站内信</a></li>
+<!--		<li><a href="#" onclick="javascript:talkto(50719, '孙毅');return false">即时聊天</a></li>  -->
+	
+
+											</ul>
+										</li>
+									
+								</ol>
+							</div>
+						
+						<ol style="display: none;" id="bottomPage_s" class="pagerpro"></ol>
+					
+						<div id = "bottomPage" class="page">
+							
+
+
+
+		 
+	
+
+
+
+
+	
+	
+	
+	
+	
+	
+	<span class="this-page">1</span>
+	
+		<a title="跳到第2页" href="/GetFriendList.do?curpage=1&amp;id=498934189">2</a>
+	
+	
+		<a title="跳到第3页" href="/GetFriendList.do?curpage=2&amp;id=498934189">3</a>
+	
+	
+		<a title="跳到第4页" href="/GetFriendList.do?curpage=3&amp;id=498934189">4</a>
+	
+	
+		<a title="跳到第5页" href="/GetFriendList.do?curpage=4&amp;id=498934189">5</a>
+	
+	
+	
+		<a title="下一页" href="/GetFriendList.do?curpage=1&amp;id=498934189">下一页 &gt;</a>
+	
+
+
+
+						</div>
+					
+					</div>
+				</div>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+	
+	<div id="footer">
+		
+			
+				
+			
+		<div class="site-footer" style="background:#fff;position:relative;">
+			<div class="main">
+				<ul class="link">
+					<li style="margin-right:3px;"><a href="http://www.renren-inc.com/zh/product/renren.html" target="_blank">关于我们</a></li>
+					<li style="margin-right:3px;"><a href="http://wan.renren.com" target="_blank">人人游戏</a></li>
+					<li style="margin-right:3px;"><a href="http://www.jingwei.com" target="_blank">经纬网</a></li>
+					<!-- <li style="margin-right:3px;"><a href="http://www.nuomi.com" target="_blank">糯米网</a></li> -->
+					<li style="margin-right:3px;"><a href="http://fenqi.renren.com" target="_blank">人人分期</a></li>
+					<li style="margin-right:3px;"><a href="http://mobile.renren.com/mobilelink.do?psf=40002" target="_blank">手机应用</a></li>
+					<li style="margin-right:3px;"><a href="http://page.renren.com/register/regGuide/" target="_blank">公共主页</a></li>
+					<li style="margin-right:3px;"><a href="http://dev.renren.com" target="_blank">开放平台</a></li>
+					<li style="margin-right:3px;"><a href="http://bolt.jebe.renren.com/introduce.htm" target="_blank">自助广告</a></li>
+					<li style="margin-right:3px;"><a href="http://page.renren.com/marketing/index" target="_blank">品牌营销</a></li>
+					<li style="margin-right:3px;"><a href="http://ir.renren-inc.com/phoenix.zhtml?c=244796&p=irol-irhome" target="_blank">About Us</a></li>
+					<li style="margin-right:3px;"><a href="http://www.renren-inc.com/zh/" target="_blank">人人集团</a></li>
+					<li style="margin-right:3px;"><a href="http://www.renren-inc.com/zh/hr/" target="_blank">招聘</a></li>
+					<li style="margin-right:3px;"><a href="http://support.renren.com/helpcenter" target="_blank">客服帮助</a></li>
+					<li style="margin-right:3px;"><a href="http://www.renren.com/siteinfo/privacy" target="_blank">隐私</a></li>
+				</ul>
+				<span class="copyright">
+					人人网<span title="revision$revxxx$; YZSJHL29-112.opi.com">&copy;</span>2018
+				</span>
+			</div>
+			<div class="haoes">
+				<!-- 临时添加公司信息 -->
+				<span>公司全称：北京千橡网景科技发展有限公司 &nbsp;公司电话：010-84481818 &nbsp;公司地址：北京市朝阳区酒仙桥中路18号国投创意信息产业园北楼1层</span>
+				<p class="company-name"><span>北京千橡网景科技发展有限公司：</span>
+					<span><a href="http://sq.ccm.gov.cn/ccnt/sczr/service/business/emark/toDetail/DFB957BAEB8B417882539C9B9F9547E6">京网文[2013]0136-030号</a></span><span class="dot">·</span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP证090254号</a><span class="dot">·</span><span>京公网安备110000000009号</span><span class="dot">·</span><span>甲测资字11002066</span>
+				</p>
+				<span>文化部监督电子邮箱：wlwh@vip.sina.com</span><span class="dot">·</span><a href="http://a.xnimg.cn/n/core/res/certificate.jpg" target="_blank">互联网药品信息服务资格证</a><span class="dot">·</span><a href="http://py.qianlong.com" target="_blank">北京地区网站联合辟谣平台</a><br>
+				<p class="special-add"><span>违法和不良信息举报电话：027-87676735 举报邮箱：<a href="mailto:jubao@renren-inc.com">jubao@renren-inc.com</a></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.bjjubao.org/" target="_blank"><img src="http://s.xnimg.cn/imgpro/civilization/bljubao.gif" width="25" height="24">北京互联网举报中心
+</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.bj.cyberpolice.cn/index.jsp" target="_blank"><img src="http://s.xnimg.cn/imgpro/civilization/c_2.jpg" width="25" height="24">网络110报警服务</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.bjwhzf.gov.cn/accuse.do" target="_blank"><img src="http://s.xnimg.cn/imgpro/civilization/c_3.jpg" width="25" height="24">北京文化市场举报热线</a>
+			</div>
+		</div>
+	</div>
+	
+
+</div>
+
+
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	<div id="bottombar"></div>
+	
+
+
+
+
+
+	<div id="toolBackTo" class="back-to" style="display:none;">
+		<a stats="site_footer_back_to_top" class="backtotop" href="#top">返回顶部
+			<img stats="site_footer_back_to_top" src="http://a.xnimg.cn/imgpro/button/back-tip.png" class="back-tip" />
+		</a>
+	</div>
+
+
+
+<script src="http://s.xnimg.cn/a12023/jspro/beacon.js"></script>
+<script>
+COMSCORE.beacon({ c1:2, c2:6934070, c3:"", c4:"", c5:"", c6:"", c15:"" });
+</script>
+<noscript>
+<img src="http://b.scorecardresearch.com/p?c1=2&c2=6934070&c3=&c4=&c5=&c6=&c15=&cj=1" />
+</noscript>
+
+
+
+
+		</div>
+	</body>
+</html>
+
