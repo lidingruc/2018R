@@ -358,6 +358,29 @@ prop.table(margin.table(table(health$gender, health$age_cat), 2))
 cor(health[5:9])
 plot(health[5:9])
 
+# ++++++++++++++++++++++++++++
+# 自定义输出flattenCorrMatrix
+# ++++++++++++++++++++++++++++
+# cormat :correlation coefficients matric
+# pmat :  correlation p-values matrix
+# nmat : valid n matrix
+flattenCorrMatrix <- function(cormat, pmat,nmat) {
+  ut <- upper.tri(cormat)
+  data.frame(
+    row = rownames(cormat)[row(cormat)[ut]],
+    column = rownames(cormat)[col(cormat)[ut]],
+    cor  =(cormat)[ut],
+    p = pmat[ut],
+    n = nmat[ut]
+  )
+}
+#Example of usage :
+  
+library(Hmisc)
+res2<-rcorr(as.matrix(mtcars[,1:7]))
+flattenCorrMatrix(res2$r, res2$P,res2$n)
+
+
 # -----------------------------------------------------------------------------------
 # -- Exercise 5 
 # --- Using e2, create an appropriate set of statistics for the rate variable 

@@ -948,3 +948,52 @@ DT::datatable(data)
 write.table(data, "chinanpo.csv", row.names=FALSE, sep=",")
 
 
+#########################
+#示例3.2: 简单翻页
+# rvest提取抓取中山古镇各村居的财务公报，css Selector
+#########################
+
+#http://www.zs.gov.cn/gzz/zwgk/list/index.action?did=2758
+#首先分析得到真实的翻页函数为一个post json
+#http://www.zs.gov.cn/ajax/infoPage.action?opensign=0&all=0&did=2758&curPage=1&pageSize=900&timestamp=1533177780991
+
+library(plyr)
+library(RCurl)
+library(jsonlite) # 比library(rjson) 好用，直接得到表
+library(rvest)
+library(stringr)
+library("data.table")
+library(dplyr)
+
+url <- "http://www.zs.gov.cn/ajax/infoPage.action?opensign=0&all=0&did=2758&curPage=1&pageSize=900&timestamp=1533177780991"
+response <- getURL(url)
+dat <- fromJSON(response)
+n <- dat[[1]]
+hid <- dat[[4]]
+data <- dat$rows
+
+url <- "http://www.zs.gov.cn/gzz/zwgk/view/index.action?did=2758&id="
+
+dlink <- list()
+# 共有739页，示例抓取3页
+durl <- "http://www.zs.gov.cn"
+setwd("/Users/liding/E/研究/城乡研究/城市研究/中山/古镇社会治理材料/村级财务/")
+for(i in 1:n){
+  web<-read_html(paste0(url,data$id[i]))
+  link<-web%>%html_nodes("div.sc p a")%>%html_attrs()
+  if (length(link) >0){
+  link1<-c(1:length(link))  #初始化一个和link长度相等的link1
+  for(j in 1:length(link)){
+   link1[j]<-link[[j]][1]
+  download.file(URLencode(paste0(durl,link[[j]][1])),paste0(data$title[i],j,".xls"),
+                method = 'auto', quiet = FALSE, mode = "w",
+                cacheOK = TRUE, extra = getOption("download.file.extra"))
+   Sys.sleep(5)
+  }
+  dlink <- c(dlink,link1) 
+  }
+}
+write.table(dlink, "durl.csv", row.names=FALSE, sep=",")
+
+
+

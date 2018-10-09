@@ -91,3 +91,65 @@ Terms[,1:10]
 ctm<-CTM(d.dtm,k=5, control=list(seed=111))
 Terms <- terms(ctm, 10)
 Terms[,1:5]
+
+
+# 相似性
+library(stringr)
+library(text2vec)
+data("movie_review")
+# select 500 rows for faster running times
+movie_review = movie_review[1:500, ]
+prep_fun = function(x) {
+  x %>% 
+    # make text lower case
+    str_to_lower %>% 
+    # remove non-alphanumeric symbols
+    str_replace_all("[^[:alnum:]]", " ") %>% 
+    # collapse multiple spaces
+    str_replace_all("\\s+", " ")
+}
+movie_review$review_clean = prep_fun(movie_review$review)
+cosine 
+
+#定义两个文档：
+doc_set_1 = movie_review[1:300, ]
+it1 = itoken(doc_set_1$review_clean, progressbar = FALSE)
+
+# specially take different number of docs in second set
+doc_set_2 = movie_review[301:500, ]
+it2 = itoken(doc_set_2$review_clean, progressbar = FALSE)
+
+#1、Jaccard距离
+vectorizer = hash_vectorizer(2 ^ 18, c(1L, 2L))
+dtm1 = create_dtm(it1, vectorizer)
+dtm2 = create_dtm(it2, vectorizer)
+d1_d2_jac_sim = sim2(dtm1, dtm2, method = "jaccard", norm = "none")
+#生成了一个300*200的相似性矩阵。
+dtm1_2 = dtm1[1:200, ]
+dtm2_2 = dtm2[1:200, ]
+d1_d2_jac_psim = psim2(dtm1_2, dtm2_2, method = "jaccard", norm = "none")
+str(d1_d2_jac_psim)
+#生成了一个200个数值的相似性系数。
+
+#2、cosine距离
+d1_d2_cos_sim = sim2(dtm1, dtm2, method = "cosine", norm = "l2")
+
+#3、Euclidean 距离
+x = dtm_tfidf_lsa[1:300, ]
+y = dtm_tfidf_lsa[1:200, ]
+m1 = dist2(x, y, method = "euclidean")
+
+#4、RWMD距离
+data("movie_review")
+tokens = movie_review$review %>%
+  tolower %>%
+  word_tokenizer
+v = create_vocabulary(itoken(tokens)) %>%
+  prune_vocabulary(term_count_min = 5, doc_proportion_max = 0.5)
+corpus = create_corpus(itoken(tokens), vocab_vectorizer(v, skip_grams_window = 5))
+dtm = get_dtm(corpus)
+tcm = get_tcm(corpus)
+glove_model = GloVe$new(word_vectors_size = 50, vocabulary = v, x_max = 10)
+wv = glove_model$fit(tcm, n_iter = 10)
+rwmd_model = RWMD(wv)
+rwmd_dist = dist2(dtm[1:10, ], dtm[1:100, ], method = rwmd_model, norm = 'none')

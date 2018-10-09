@@ -13,6 +13,7 @@ library(gganimate)
 help(filter)
 #读入数据
 setwd("/Users/liding/E/Bdata/liding17/2018R/")
+#setwd("Users\\liding\\E\\Bdata\\liding17\\2018R\\")
 gapminder <- read.csv("data/gapminder.csv")
 
 #初步了解数据

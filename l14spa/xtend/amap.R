@@ -190,6 +190,41 @@ p + theme_clean()
 #所有的电子地图、导航设备，都需要加入国家保密插件。第一步，地图公司测绘地图，测绘完成后，送到国家测绘局，将真实坐标的电子地图，加密成“火星坐标”，这样的地图才是可以出版和发布的，然后才可以让GPS公司处理。第二步，所有的GPS公司，只要需要汽车导航的，需要用到导航电子地图的，都需要在软件中加入国家保密算法，将COM口读出来的真实的坐标信号，加密转换成国家要求的保密的坐标。这样，GPS导航仪和导航电子地图就可以完全匹配，GPS也就可以正常工作了。
 
 
+#示例2通过Baidu API自己获取shp坐标
+# https://mp.weixin.qq.com/s/cD6yjE0T_GYRSo9OblTt8g
+# 坐标转换
+#https://zhuanlan.zhihu.com/p/40355546
+# 需要处理存在多个地理单元的问题，例如河北省
+# 
+devtools::install_github("caijun/geoChina")
+library(leaflet)
+library(leafletCN)
+library(geoChina)
+library(maptools)
+
+setwd("/Users/liding/E/Bdata/rtemp/")
+bj <- readLines("hebeib.txt")
+bjd <- strsplit(bj, ';')[[1]]
+
+bjll <- strsplit(bjd, ',')
+# 有3个区
+table(lengths(bjll))
+# 可以根据这个lengths信息，进一步拆分
+# 
+bjll <- as.data.frame(t(data.frame(bjd)))
+rownames(bjll) <- 1:length(bjll[,1])
+names(bjll) <- c("lon","lat")
+bjll[,1] <- as.numeric(as.character(bjll[,1]))
+bjll[,2] <- as.numeric(as.character(bjll[,2]))
+describe(bjll)
+
+mapgbj=bd2gcj(bjll$lat,bjll$lon)
+
+leaflet() %>% 
+  amap() %>%
+  addPolylines(data=mapgbj,~lng,~lat,color="blue")
+
+
 ####################################################
 ##########                                ##########
 ##########         SECTION 3              ##########
@@ -199,6 +234,67 @@ p + theme_clean()
 ####       用json数据作图            ####
 #########################################
 
+## json行政区地图-分省地图
+## 地图数据来源 http://datav.aliyun.com/static/tools/atlas/#&lat=33.521903996156105&lng=104.29849999999999&zoom=3
+library(jsonlite)
+library(leaflet)
+library(dplyr)
+library(geojsonio)
+library(rgdal)
+library(sf)
+library(ggplot2)
+library(maptools)
+library(plyr)
+library(htmltools)
+library(psych)
+options(stringsAsFactors=FALSE,warn=FALSE)
+setwd("/Users/liding/E/Bdata/liding17/2018R/l14spa/map/")
+
+#读入数据
+#geojson2<-fromJSON("中国.json",simplifyVector=FALSE)  #不强转化为数据框。
+geojson3<-readLines("中国.json",warn=FALSE,encoding="UTF-8")%>%paste(collapse="\n")%>%fromJSON(simplifyVector=FALSE)
+
+#
+#mdata <- read.clipboard.tab()
+mdata<-read.delim("/Users/liding/E/Bdata/rtemp/c1617birth.csv",sep="\t")
+
+#向list对象中添加数据
+geojson3$features<-lapply(geojson3$features,function(feat){
+  feat$properties$scale<-mdata$p2317[mdata$pid==feat$properties$adcode]
+  feat
+})
+
+#从list对象中读取数据
+mydata<-ldply(geojson3$features,function(feat){ 
+  name<-feat$properties$name
+  id<- feat$properties$adcode
+  mydata<-data.frame(name,id)
+})
+
+mydata <- left_join(mydata,mdata,by = c("id" = "pid"))
+
+# Default styles for all features  
+geojson3$style=list(weight=1,color="#555555",opacity=1,fillOpacity=0.8)
+# Color by scale using quantiles
+# mydata$type<-cut(mydata$p2317,c(0,50,60,70,80,100),replace=TRUE)
+pal<-colorQuantile("Greens",mydata$p2317)
+
+# Add a properties$style list to each feature
+geojson3$features <- lapply(geojson3$features, function(feat) {
+  feat$properties$style<-list(
+    fillColor=pal(feat$properties$scale)
+  )
+  feat
+})
+
+leaflet()%>%
+  setView(mydata,lng=116.38,lat=39.9,zoom=3)%>%
+  addGeoJSON(geojson3,group="GeoJSON")
+
+
+#########################################
+####       用json数据作市级图            ####
+#########################################
 ## json行政区地图
 ## 地图数据来源 http://datav.aliyun.com/static/tools/atlas/#&lat=33.521903996156105&lng=104.29849999999999&zoom=3
 library("jsonlite")
@@ -422,6 +518,36 @@ location_district
 bj_college = getPlace('大学','北京')
 head(bj_college)
 
+#google地图获取需要使用北大的vpn，人大的vpn不可用
+library(ggmap)
+q <- get_map("北京",zoom = 11,  source = "stamen",maptype = "toner")
+#作图
+ggmap(q) + 
+  geom_point(data = bj_college, aes(lon, lat)) +
+  theme(text = element_text(family = "STKaiti"))
+
+
+# 盲人按摩 盲人按摩 洗脚
+hd_massage = getPlace('足浴','北京市海淀区')
+cy_massage = getPlace('足浴','北京市朝阳区')
+tz_massage = getPlace('足浴','北京市通州区')
+cp_massage = getPlace('足浴','北京市昌平区')
+sj_massage = getPlace('足浴','北京市石景山区')
+ft_massage = getPlace('足浴','北京市丰台区')
+dx_massage = getPlace('足浴','北京市大兴区')
+dc_massage = getPlace('足浴','北京市东城区')
+xc_massage = getPlace('足浴','北京市西城区')
+
+massage <- rbind(hd_massage,cy_massage,tz_massage,cp_massage,sj_massage,ft_massage,dx_massage,dc_massage,xc_massage)
+
+write.csv(massage,"/Users/liding/E/Bdata/rtemp/data/massage.csv")
+
+ggmap(q) + 
+  geom_point(data =massage , aes(lon, lat)) +
+  theme(text = element_text(family = "STKaiti"))
+
+
+
 ## Mcdonald's in shanghai
 sh_mcdonald = getPlace('麦当劳', '上海')
 head(sh_mcdonald)
@@ -434,6 +560,7 @@ bjMap = getBaiduMap('北京',color = 'bw')
 df = getRoute('首都国际机场', '北京南苑机场')
 ggmap(bjMap) + geom_path(data = df, aes(lon, lat), alpha = 0.5, col = 'red')
 head(df)  #此处对getRoute有一个直观认识，得到的是路线上的经纬度
+
 
 
 #########################################
@@ -662,5 +789,31 @@ p1
 # 遥感图片分析
 # 见文件 make-maps-in-r
 
+## 回龙观的图书馆
+hlglab <- c("昌平区图书馆回龙观第一分馆",
+            "昌平区回龙观爱丁岛亲子悦读馆",
+            "昌平区回龙观爱阅宝亲子图书馆",
+            "昌平区回龙观樊登书店",
+            "昌平区回龙观回+创业图书馆",
+            "昌平区回龙观回龙观亲子图书馆",
+            "昌平区回龙观三联回+书店",
+            "昌平区回龙观桃园书馆",
+            "昌平区回龙观玩美时光图书馆",
+            "昌平区回龙观幸福树童书屋",
+            "昌平区回龙观悦学思素质教育空间")
   
-  
+library(baidumap)
+options(baidumap.key = '9c9978a893e2dd6c3be3d3241f8e8f61')
+hllab = getCoordinate(hlglab, formatted = T)
+hllab = na.omit(hllab)
+plotdata = data.frame(lon = hllab[,1],
+                      lat = hllab[,2],
+                      city = rownames(hllab))
+## 绘制地图
+library(REmap)
+remapB(markPointData = data.frame(plotdata$city),
+       markPointTheme = markPointControl(symbol = "pin",
+                                         effect=F,
+                                         symbolSize = 5,
+                                         color="red"),
+       geoData = plotdata)
