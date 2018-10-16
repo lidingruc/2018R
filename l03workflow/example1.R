@@ -3,7 +3,7 @@
 # 李丁(liding@ruc.edu.cn)
 # 中国人民大学社会与人口学院
 
-###################################################
+#####################################
 # 第一个例子
 # 加载后面的分析中需要用到的包
 library(dplyr)
@@ -14,7 +14,7 @@ help(filter)
 #读入数据
 setwd("/Users/liding/E/Bdata/liding17/2018R/")
 #setwd("Users\\liding\\E\\Bdata\\liding17\\2018R\\")
-gapminder <- read.csv("data/gapminder.csv")
+gapminder <- read.csv("/Users/liding/E/Bdata/liding17/2018R/data/gapminder.csv")
 
 #初步了解数据
 names(gapminder)
@@ -22,6 +22,10 @@ head(gapminder)
 View(gapminder)
 dim(gapminder)
 table(gapminder$year)
+table(gapminder$year[1:300])
+table(gapminder[1:300,3])
+table(gapminder[gapminder$year==2007,3])
+
 
 #选择2007年数据进行分析
 gap07 <- gapminder %>%
@@ -62,8 +66,10 @@ cgss2003 <- sjlabelled::drop_labels(cgss2003)
 cgss2003 <- sjmisc::to_label(cgss2003) 
 # 将剩下的labelled变量转化为数值变量（原来带特殊值标签的连续变量在此）。
 w <- which(sapply(cgss2003, class) == 'labelled')
+  
 cgss2003[w] <- lapply(cgss2003[w], 
-                      function(x) as.numeric(as.character(x))
+                   function(x) as.numeric(as.character(x))
+                      
 )
 
 #定义一个函数，方便查看数据集中有哪些变量
@@ -79,6 +85,7 @@ des <- function (dfile) {
   dfile_var = data.frame(var =names(dfile), lbl = lbl) 
   View(dfile_var)
 }  
+
 # 通过View数据框的方式查看有哪些变量
 des(cgss2003)
 
@@ -177,6 +184,7 @@ row.names(Duncan)[c(6, 16, 27)]
 
 # fitting a regression
 (duncan.model <- lm(prestige ~ income + education))
+
 summary(duncan.model)  # again, summary generic
 # 科学计数设定 options(scipen=10)
 detach("Duncan")
