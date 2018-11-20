@@ -15,6 +15,7 @@ output:
     + 导入CSV数据
     + haven导入SPSS、stata数据
     + foreign包导入SPSS、stata数据
+    + 读入数据库数据
     
 - 数据整理 Tidy data
     + 理想的数据结构
@@ -293,6 +294,23 @@ tbl(dat,~ commtype)
 - 使用 `stringsAsFactors = FALSE` 修改默认设定
 + 可以将其他数据导出为csv文件(注意编码)然后读入R 
 
+##  读入数据库数据
+
+ - 电脑首选需要安装ODBC驱动，R需要安装RODBC包
+ - 然后在电脑系统里设置ODBC数据源(注意字符编码格式)
+ - 用RDOBC连接数据源，利用SQL语句查询和修改数据
+ 
+```{r}
+library(RODBC)
+setwd("/Users/liding/Documents/空间/data/")
+#channel<-odbcConnect("mydsn",uid="user",pwd="rply") 
+#channel<-odbcConnectAccess("TrainDatabase.mdb") # 不能用
+channel <- odbcConnect("train") 
+sqlTables(channel)
+df <-sqlFetch(channel, "TrainList")
+head(df)
+```
+
 
 # 数据整理
 
@@ -535,8 +553,6 @@ dataframe的合并
 rbind() ## 添加行
 cbind() ## 添加列 
 ```
-
-
 
 
 

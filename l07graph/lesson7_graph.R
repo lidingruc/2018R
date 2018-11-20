@@ -145,7 +145,8 @@ wireframe(V1~x*y,data=result6,scales = list(arrows = FALSE),
 # 图层语法
 
 library(ggplot2)
-
+library(car)
+library(MASS)
 ###################################################
 # A. ggplot 函数
 
@@ -158,6 +159,12 @@ qplot(income,prestige,
       data=car::Prestige)
 
 # 分色散点图
+qplot(income,prestige, 
+      color = type,
+      xlab="Average Income",
+      ylab="Prestige Score",
+      data=car::Prestige) 
+
 library(MASS)
 qplot(x = sugars, y = calories, color = as.factor(shelf),
       data = UScereal) 
@@ -170,7 +177,7 @@ qplot(cty,hwy,
 # 分面
 qplot(hwy,data=mpg,binwidth=0.5) +
   scale_x_continuous(breaks =10:45) +
-  facet_wrap(~ drv, ncol = 1)
+  facet_wrap(~ drv, nrow = 3)
 
 
 #2、ggplot function函数+ 图层
@@ -197,7 +204,7 @@ p1 <- ggplot(UScereal, aes(x = calories))
 
 p1 + geom_dotplot()
 
-p1 + geom_density()
+p1 + geom_density() 
 
 p1 + geom_histogram(binwidth = 30)
 
@@ -212,9 +219,13 @@ p1 +
 
 
 # 图层的顺序无关
-p1 + geom_histogram(binwidth = 10) + xlab('Calories in a Single Cup') +
-  ylab('Frequency') + ggtitle('Distribution of Calories in US Cereals') + 
-  theme_bw() + theme(text = element_text(size = 20))
+p1 + 
+  geom_histogram(binwidth = 10) +
+  xlab('Calories in a Single Cup') +
+  ylab('Frequency') +
+  ggtitle('Distribution of Calories in US Cereals') + 
+  theme_bw() +
+  theme(text = element_text(size = 20))
 
 
 # 可以添加多个 geom_function
@@ -364,8 +375,10 @@ ggplot(df, aes(x=factor(age), y=score1)) +
 
 # 分类，然后在ggplot中汇总
 df.m<- melt(df,id="age")
+
 ggplot(df.m, aes(x=factor(age), y=value, fill=factor(variable))) +
   stat_summary(fun.y=mean, geom="bar",position=position_dodge(0.1))
+
 
 # 也可以先汇总好，然后在ggplot中作图
 temp = aggregate(list(score = df$score1), list(age = factor(df$age)), mean)
@@ -441,7 +454,7 @@ p2 + geom_point() + scale_color_manual(values = my_colors)
 # 或者在geom_point function中设定:
 p2 <- ggplot(UScereal, aes(x = sugars, y = calories))
 
-p2 + geom_point(aes(color = mfr)) 
+p2 + geom_point(aes(color = mfr))
 
 
 # 给点添加标签 Adding Labels to points
@@ -461,9 +474,11 @@ p2 + geom_point(aes(color = mfr), size = 4)
 # 编辑 legend
 
 # Use the scale_color_manual() layer, and the color argument in the labs() layer 
-p2 + geom_point(aes(color = mfr), size = 5) +labs(color = 'Manufacturer') + 
+p2 + geom_point(aes(color = mfr), size = 5) +
+  labs(color = 'Manufacturer') + 
   scale_color_manual(values = c('blue', 'green', 'purple', 'navyblue', 'red', 'orange'),
-                     labels = c('General Mills', 'Kelloggs', 'Nabisco', 'Post', 'Quaker Oats', 'Ralston Purina'))  + theme(text = element_text(size = 30)) 
+                     labels = c('General Mills', 'Kelloggs', 'Nabisco', 'Post', 'Quaker Oats', 'Ralston Purina'))  + 
+  theme(text = element_text(size = 30)) 
 
 
 ###################################################
@@ -592,7 +607,7 @@ xyplot(Sepal.Width~Sepal.Length,groups=Species,data=iris)
 #矩阵散点
 splom(iris[1:4])  # 矩阵散点图
 #分面直方图
-histogram(~Sepal.Length | Species,data=iris,layout(c(1,3)))
+histogram(~Sepal.Length | Species,data=iris,layout(c(1,2,3)))
 
 
 ###################################################

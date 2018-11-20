@@ -620,3 +620,25 @@ for(i in 1:nrow(merged)) {
   }
 }
 
+
+
+soft <- read.csv("/Users/liding/E/Bdata/liding17/2018R/data/soft_impact.csv")
+head(soft)
+
+library(ggplot2)
+
+
+ggplot(data=soft) +
+  geom_line(aes(x=Year,y=JMP),color="red")+
+  geom_line(aes(x=Year,y=SAS),color="green")+
+  geom_line(aes(x=Year,y=SPSS),color="navy")
+
+library(tidyverse)
+soft_long <- gather(soft,key="soft",value="count",-Year)  
+
+ggplot(data=soft_long)+
+  geom_line(aes(x=Year,y=count,color=soft))
+
+
+
+

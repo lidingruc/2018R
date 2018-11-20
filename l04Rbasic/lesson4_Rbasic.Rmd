@@ -470,6 +470,17 @@ margin.table(table(Mroz$wc, Mroz$hc), 2)
 prop.table(margin.table(table(Mroz$wc, Mroz$hc), 1))
 prop.table(margin.table(table(Mroz$wc, Mroz$hc), 2))
 ```
+
+## 基础统计:列联表
+```{r}
+# 行列边缘分布
+# install.packages("catspec")
+library(catspec)
+ctab(with(Mroz, table(wc,hc)), type = 'r')
+# 行列百分比
+ctab(with(Mroz, table(wc,hc)), type = c('c','n'))
+```
+
 ## 基础统计:相关
 
 ```{r}

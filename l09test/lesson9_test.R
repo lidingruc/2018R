@@ -92,33 +92,33 @@ as.data.frame(prop.table(table(cgss2013$a7a)))
 
 # 交叉表
 table(cgss2013$a7a,cgss2013$a2)  
+ftable(cgss2013$a7a,cgss2013$a2)
+with(cgss2013,table(a7a,a2))
+xtabs(~a7a+a2,cgss2013)
+
 
 # row and column percentage
-
 prop.table(table(cgss2013$a7a,cgss2013$a2), 1)
 prop.table(table(cgss2013$a7a,cgss2013$a2), 2)
 
 # 边缘分布
+margin.table(table(cgss2013$a7a,cgss2013$a2),1)
 addmargins(table(cgss2013$a7a,cgss2013$a2))
 
 # 下面这种算法是错误的
-prop.table(addmargins(table(cgss2013$a7a,cgss2013$a2), 2))
+prop.table(addmargins(table(cgss2013$a7a,cgss2013$a2), 1))
+addmargins(prop.table(table(cgss2013$a7a,cgss2013$a2), 2))
 
+# svytable()  带权数的列联表
 
-# C. Correlation 
-cor(cgss2013$a8a,cgss2013$a8b,use="complete.obs")
-
-par(family="STKaiti")
-
-plot(cgss2013$a8a,cgss2013$a8b)
-
-
-#D、使用SJ系列包输出spss样式的输出结果
+#C、使用SJ系列包输出spss样式的输出结果
 library(sjPlot)
 library(sjmisc)
 
 #简单统计表 默认带上基本统计
-sjt.frq(cgss2013$a7a)
+frq(cgss2013$a7a)
+frq(cgss2013$a7a,out ="viewer")
+sjt.frq(cgss2013$a7a) # 旧命令
 
 #带自定义统计量
 sjt.frq(cgss2013$a7a,encoding = 'utf-8',
@@ -126,16 +126,25 @@ sjt.frq(cgss2013$a7a,encoding = 'utf-8',
         show.kurtosis = TRUE);
 
 ###########
+# 列联表
 sjt.xtab(cgss2013$a7a,cgss2013$a2, 
-         show.obs = TRUE, show.cell.prc = FALSE, show.col.prc = TRUE)
+         show.obs = TRUE, show.cell.prc = FALSE, show.col.prc = TRUE,title="分性别的教育分布情况")
+
+flat_table(cgss2013,a7a,a2,margin="row")
 
 # 图
 sjp.xtab(cgss2013$a2,cgss2013$a10, type ="bar", margin ="row",
          bar.pos = "stack")
 
 #查看数据集中因子变量的标签与频数信息
-view_df(cgss2013)
 view_df(cgss2013[,550:577], show.frq = TRUE, show.prc = TRUE)
+
+
+# D. Correlation 
+cor(cgss2013$a8a,cgss2013$a8b,use="complete.obs")
+
+par(family="STKaiti")
+plot(cgss2013$a8a,cgss2013$a8b)
 
 
 # -------------------------------------------
@@ -158,7 +167,6 @@ chisq.test(cgss2013$a7a,cgss2013$a2)$resid
 ##########
 mytable<-xtabs(~cgss2013$a7a+cgss2013$a2)
 chisq.test(mytable)
-fisher.test(mytable)
 
 ##########
 #似然比检验
@@ -178,7 +186,6 @@ observed
 chisq.test(observed, correct = F)
 cbind(observed, chisq.test(observed)$expected)
 cbind(observed, chisq.test(observed)$resid)
-
 
 ############
 # B、t-test
@@ -276,7 +283,7 @@ noise <- rnorm(n =100, mean =0, sd = 1)
 beta0 <- 1
 beta1 <- 2
 y <- beta0+ beta1*x +noise
-
+par(mfrow = c(1, 1))
 plot(y ~ x)
 
 model <- lm(y ~x)  # 生成了一个model 对象
@@ -441,7 +448,7 @@ ddply(tips,.(sex),ratio_fun)
 #stata做法：table sex smoker,c(sum tip sum total_bill)
 ddply(tips,sex~smoker,ratio_fun)
 
-## plyr包的主要函数（输入3种类型，输出3中类型，9中方法，加上3中特殊类型）
+## plyr包的主要函数（输入3种类型，输出3种类型，9种方法，加上3种特殊类型）
 ### ddply 输入数据框，输出数据框
 ### adply 输入数组，输出数据框 
 # input array, split by margins
