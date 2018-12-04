@@ -106,7 +106,12 @@ margin.table(table(cgss2013$a7a,cgss2013$a2),1)
 addmargins(table(cgss2013$a7a,cgss2013$a2))
 
 # 下面这种算法是错误的
+atable <- addmargins(table(cgss2013$a7a,cgss2013$a2), 1)
+
+prop.table(atable)
+
 prop.table(addmargins(table(cgss2013$a7a,cgss2013$a2), 1))
+
 addmargins(prop.table(table(cgss2013$a7a,cgss2013$a2), 2))
 
 # svytable()  带权数的列联表
@@ -130,7 +135,7 @@ sjt.frq(cgss2013$a7a,encoding = 'utf-8',
 sjt.xtab(cgss2013$a7a,cgss2013$a2, 
          show.obs = TRUE, show.cell.prc = FALSE, show.col.prc = TRUE,title="分性别的教育分布情况")
 
-flat_table(cgss2013,a7a,a2,margin="row")
+flat_table(cgss2013,a7a,a2,margin="col")
 
 # 图
 sjp.xtab(cgss2013$a2,cgss2013$a10, type ="bar", margin ="row",
@@ -159,7 +164,8 @@ summary(table(cgss2013$a2, cgss2013$a7a))
 # expected cell 
 ch01 <- chisq.test(cgss2013$a7a,cgss2013$a2)
 ch01$residuals
-chisq.test(cgss2013$a7a,cgss2013$a2)$expected
+ch01$expected
+
 
 # 标准化偏差，评估单元格影响
 chisq.test(cgss2013$a7a,cgss2013$a2)$resid
@@ -191,7 +197,7 @@ cbind(observed, chisq.test(observed)$resid)
 # B、t-test
 
 # One sample t test
-t.test(cgss2013$a8a, mu=25000)
+t.test(cgss2013$a8a, mu=24000)
 t.test(cgss2013$a8a, mu=25000,alternative ='less')
 
 # Independent 2 group t test where y is numeric and x is a binary factor

@@ -227,6 +227,8 @@ var <- data$Bush_pct
 #关于投影的说明：https://github.com/OSGeo/proj.4/wiki/GenParms
 #http://proj4.org/projections/index.html
 #proj4string(data) <- CRS("+proj=longlat +datum=WGS84")
+#聊聊GIS中那些坐标系
+#https://www.cnblogs.com/onsummer/p/7451128.html
 
 proj4string(data) <- CRS("+proj=lcc")
 

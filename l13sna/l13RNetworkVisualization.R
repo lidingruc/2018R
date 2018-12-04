@@ -254,7 +254,7 @@ nrow(links); nrow(unique(links[,c("from", "to")]))
 
 
 # --DATASET 2: matrix--
-
+setwd("/Users/liding/E/Bdata/liding17/2018R/l13sna")
 nodes2 <- read.csv("./Data/Dataset2-Media-User-Example-NODES.csv", header=T, as.is=T)
 links2 <- read.csv("./Data/Dataset2-Media-User-Example-EDGES.csv", header=T, row.names=1)
 
@@ -283,6 +283,9 @@ library("igraph")
 
 net <- graph_from_data_frame(d=links, vertices=nodes, directed=T) 
 
+# First attempt to plot the graph:
+plot(net) # not pretty!
+
 # Examine the resulting object:
 class(net)
 net 
@@ -306,7 +309,7 @@ nrow(V(net))
 # If you need them, you can extract an edge list 
 # or a matrix back from the igraph networks.
 as_edgelist(net, names=T)
-as_adjacency_matrix(net, attr="weight")
+#as_adjacency_matrix(net, attr="weight")
 
 # Or data frames describing nodes and edges:
 as_data_frame(net, what="edges")
@@ -317,8 +320,6 @@ as_data_frame(net, what="vertices")
 net[1,]
 net[5,7]
 
-# First attempt to plot the graph:
-plot(net) # not pretty!
 
 # Removing loops from the graph:
 net <- simplify(net, remove.multiple = F, remove.loops = T) 
