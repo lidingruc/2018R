@@ -384,7 +384,7 @@ colrs[V(net)$media.type]
 
 
 # Compute node degree (#links) and use it to set node size:
-(deg <- degree(net, mode="all"))
+(deg <- igraph::degree(net, mode="all"))
 V(net)$size <- deg*3
 V(net)$size <- V(net)$audience.size*0.6
 
@@ -578,6 +578,7 @@ plot(net)
 # much about the structure since the links we're examining are so dense.
 # One way to approach this is to see if we can sparsify the network.
 
+# 变量名x
 hist(links$weight)
 mean(links$weight)
 sd(links$weight)

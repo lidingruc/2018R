@@ -87,7 +87,7 @@ models
 ggplot(sim1, aes(x, y)) + 
   geom_point(size = 2, colour = "grey30") + 
   geom_abline(
-    aes(intercept = a1, slope = a2, colour = -dist), 
+    aes(intercept = a1, slope = a2, colour = dist), 
     data = filter(models, rank(dist) <= 10)
   )
 

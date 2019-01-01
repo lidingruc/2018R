@@ -1,7 +1,7 @@
 ---
 title: "基于R的网络爬虫"
 author: "李丁"
-date: "2018年6月12日"
+date: "2019年1月1日"
 output:
   ioslides_presentation:
     highlight: pygments
@@ -67,7 +67,7 @@ output:
 
 ## 网页结构 {#myImageP70}
 
- - HTML   +     CSS   +  JavaScript
+ - HTML   +  CSS（Cascading Style Sheets） +  JavaScript
  - 结构    +     样式  +     功能
  - 房间设置  +   装修样式   +  电器
 

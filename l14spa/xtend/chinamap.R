@@ -39,7 +39,7 @@ library(classInt)
 setwd("/Users/liding/E/Bdata/Course/7spa/map/chinaadm/")
 mland<-rgdal::readOGR("CHN/CHN_adm2.shp")
 #mland <- raster::aggregate(mland,by="ID_2")
-tw<-rgdal::readOGR("TWN/TWN_adm0.shp")
+tw<-rgdal::readOGR("TWN/TWN_adm0.shp",encoding="UTF-8")
 tw <- raster::aggregate(tw)
 mc<-rgdal::readOGR("MAC/MAC_adm0.shp")
 mc <- raster::aggregate(mc)
@@ -64,7 +64,7 @@ china_map<- bind(mland, tw, mc,hk)
 #china_map2<-rgdal::readOGR("BASIC/counties.shp")
 
 # 现成的南海地图
-nhimg <- image_read("BASIC/南海诸岛.png")
+nhimg <- image_read("/Users/liding/E/Bdata/liding17/2017R/l12spa/map/chinaadm/BASIC/南海诸岛.png")
 #保留想保留下来的ID信息
 #china_map <- raster::aggregate(china_map,by=c("ID_2","NL_NAME_2"))
 

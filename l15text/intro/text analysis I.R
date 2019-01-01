@@ -38,14 +38,14 @@ new_user_word(engine_new_word,
 segment(words,engine_new_word)
 
 # 停用词
-engine_s<-worker(stop_word = "stopword.txt")
+engine_s<-worker(stop_word = "stopword.txt",user='dictionary.txt')
 segment(words,engine_s)
 
 # 词频统计
 freq(segment(words,engine_new_word))
 
 # 词性确定
-qseg[words]
+#qseg[words]
 qseg<=words
 #词性标注也可以使用worker函数的type参数，type默认为mix，仅需将它设置为tag即可。
 tagger<-worker(type="tag")

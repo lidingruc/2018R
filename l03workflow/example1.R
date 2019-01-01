@@ -175,6 +175,16 @@ scatmat <- function(...) { # user-defined function
 }
 
 scatmat(prestige, income, education)
+# car包
+
+if(!require(car)) install.packages("car")
+library(car)
+scatterplotMatrix(~ income + education + prestige | type, data=Duncan)
+scatterplotMatrix(~ income + education + prestige | type, data=Duncan,
+                  regLine=FALSE, smooth=list(spread=FALSE))
+scatterplotMatrix(~ income + education + prestige,
+                  data=Duncan, id=TRUE, smooth=list(method=gamLine))
+
 
 # 可以标出图中点的标签，必须退出才能进行后面的
 plot(education, income)
